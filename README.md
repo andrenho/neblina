@@ -1,9 +1,10 @@
 # plio
-A single binary service in C++ that replaces most of online popular services. 
+A single binary service in C++ that replaces most of online popular services.
 
 # Layers
 
 - Deep backend
+  - Protobuf + automatic REST (?)
 - BFF
 - Frontend
 
