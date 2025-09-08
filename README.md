@@ -32,6 +32,10 @@ Web handler types:
   - Pure web page (HTML)
   - Web application (REST)
 
+Web application:
+  - Language to generate REST classes (from OpenAPI)
+  - Language to generate DAOs/Entities (from custom language ?) - connect to sqlite
+
 # Layers
 
 - Deep backend
