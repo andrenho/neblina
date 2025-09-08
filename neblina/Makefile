@@ -1,7 +1,7 @@
-CPPFLAGS=-Wall -Wextra -MMD
+CPPFLAGS=-Wall -Wextra -MMD -I.
 CXXFLAGS=-std=c++23
-TXT_OBJ=main/default_config.o
-OBJ=${TXT_OBJ} main/main.o main/config.o
+TXT_OBJ=main/default_config.gen.o
+OBJ=$(TXT_OBJ) main/main.o main/config.o
 
 ifdef RELEASE
 	CPPFLAGS+=-O3 -ffast-math -march=native -flto
@@ -11,7 +11,7 @@ endif
 
 all: neblina
 
-%.c: %.toml
+%.gen.c: %.toml
 	echo "#include <stdint.h>" > $@ && \
 	echo "static const uint8_t $(basename $(notdir $^))[] = {" >> $@ && \
 	cat $^ | gzip | xxd -i >> $@ && \
@@ -23,9 +23,7 @@ release:
 neblina: $(OBJ)
 	g++ -o $@ $^ $(LDFLAGS)
 
-.SECONDARY: ${TXT_OBJ}
-
 clean:
-	rm -rf $(OBJ) $(OBJ:.o=.d) neblina
+	rm -rf $(OBJ) $(OBJ:.o=.d) $(TXT_OBJ:.gen.o=.gen.c) neblina
 
 -include $(OBJ:.o=.d)
