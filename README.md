@@ -1,6 +1,6 @@
 # Neblina
 
-![Pico da Neblina](https://upload.wikimedia.org/wikipedia/commons/3/35/Pico_da_Neblina_%28FAB%29.jpg)
+<img src="https://upload.wikimedia.org/wikipedia/commons/3/35/Pico_da_Neblina_%28FAB%29.jpg" width="200">
 
 A single binary service in C++ that replaces most of online popular services.
 
