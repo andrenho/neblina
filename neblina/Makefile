@@ -1,7 +1,8 @@
 CPPFLAGS=-Wall -Wextra -MMD -I.
 CXXFLAGS=-std=c++23
+LDFLAGS=-lz
 TXT_OBJ=main/default_config.gen.o
-OBJ=$(TXT_OBJ) main/main.o main/config.o
+OBJ=$(TXT_OBJ) main/main.o main/config.o main/embedded.o
 
 ifdef RELEASE
 	CPPFLAGS+=-O3 -ffast-math -march=native -flto

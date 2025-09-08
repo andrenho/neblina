@@ -1,8 +1,10 @@
 #include "config.hh"
 
 #include <filesystem>
+#include <iostream>
 namespace fs = std::filesystem;
 
+#include "embedded.hh"
 #include "default_config.gen.c"
 
 Config::Config(int argc, char* argv[])
@@ -20,12 +22,13 @@ Config::Config(int argc, char* argv[])
 
 void Config::parse_arguments(int argc, char* argv[])
 {
-
+    // TODO - optget
 }
 
 void Config::create_config_file()
 {
-
+    std::string default_config_file = decode_embedded_text(default_config, sizeof default_config);
+    std::cout << default_config_file;
 }
 
 void Config::load_config_file()
