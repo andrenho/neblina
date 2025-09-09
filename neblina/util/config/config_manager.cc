@@ -11,7 +11,7 @@ using namespace std::string_literals;
 #include <getopt.h>
 #include <contrib/toml/toml.hpp>
 
-#include "embedded.hh"
+#include "../embed/embedded.hh"
 #include "default_config.gen.inc"
 
 ConfigManager::ConfigManager(int argc, char* argv[])

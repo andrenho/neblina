@@ -2,20 +2,23 @@ CPPFLAGS=-Wall -Wextra -MMD -I.
 CXXFLAGS=-std=c++23
 LDFLAGS=-lz
 OBJ=main.o \
-	util/config_manager.o 	util/embedded.o \
-	watchdog/watchdog.o 	watchdog/watchdog_config.o
+	util/config/config_manager.o    \
+	util/embed/embedded.o 		\
+	util/tcp/tcp_server.o 		\
+	watchdog/watchdog.o 		\
+	watchdog/watchdog_config.o
 
 ifdef RELEASE
-	CPPFLAGS+=-O3 -ffast-math -march=native -flto
+  CPPFLAGS+=-O3 -ffast-math -march=native -flto
 else
-	CPPFLAGS+=-O0 -ggdb
+  CPPFLAGS+=-O0 -ggdb
 endif
 
 UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S),Darwin)
-    STAT_PRM="-f %z"
+  STAT_PRM="-f %z"
 else
-	STAT_PRM="-c %s"
+  STAT_PRM="-c %s"
 endif
 
 all: neblina

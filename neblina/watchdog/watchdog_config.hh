@@ -5,7 +5,7 @@
 #include <vector>
 #include <string>
 
-#include "util/config_manager.hh"
+#include "../util/config/config_manager.hh"
 
 struct WatchdogConfig {
     explicit WatchdogConfig(ConfigManager const& cm);
