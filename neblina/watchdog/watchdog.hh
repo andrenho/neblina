@@ -14,7 +14,7 @@ public:
 private:
     struct Service {
         WatchdogConfig::Service details;
-        std::optional<pid_t>    pid;
+        std::optional<pid_t>    pid {};
         size_t                  attempts = 0;
     };
 

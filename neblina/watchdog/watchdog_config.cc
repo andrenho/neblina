@@ -16,5 +16,6 @@ WatchdogConfig::WatchdogConfig(ConfigManager const& cm)
         };
         if (svc.name.empty() || svc.port == 0)
             throw std::runtime_error("Incorrect watchdog service configuration");
+        services.emplace_back(std::move(svc));
     };
 }

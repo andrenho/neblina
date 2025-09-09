@@ -1,10 +1,12 @@
 #include "watchdog.hh"
 
 #include <chrono>
+#include <cstring>
 #include <iostream>
 #include <thread>
 #include <unistd.h>
 
+using namespace std::string_literals;
 using namespace std::chrono_literals;
 
 Watchdog::Watchdog(ConfigManager& cm)
@@ -45,17 +47,8 @@ void Watchdog::start_service(Service& svc)
 
     if (pid == 0) {   // child process
         std::cout << "Starting service " << svc.details.name << " with pid " << getpid() << "\n";
-
-        char* args[] = {
-            (char *) program_name_.c_str(),
-            (char *) "-C",
-            (char *) config_filename_.c_str(),
-            (char *) "-s",
-            (char *) svc.details.name.c_str(),
-        };
-        execvp(args[0], args);
-
-        throw std::runtime_error("execvp failed when starting a new service");
+        execlp(program_name_.c_str(), program_name_.c_str(), "-C", config_filename_.c_str(), "-s", svc.details.name.c_str(), nullptr);
+        throw std::runtime_error("execvp failed when starting a new service: "s + strerror(errno));
     } else if (pid > 0) {
         svc.pid.emplace(pid);
     } else {

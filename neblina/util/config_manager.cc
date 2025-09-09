@@ -45,7 +45,7 @@ void ConfigManager::parse_arguments(int argc, char* argv[])
             { "service",  required_argument, nullptr, 's' },
         };
         int idx;
-        int c = getopt_long(argc, argv, "hw:C:", long_options, &idx);
+        int c = getopt_long(argc, argv, "hs:C:", long_options, &idx);
         if (c == -1)
             break;
 
@@ -60,10 +60,10 @@ void ConfigManager::parse_arguments(int argc, char* argv[])
                 service = optarg;
                 break;
         }
-
-        if (optind < argc)
-            throw std::runtime_error("Argument "s + argv[optind] + " not supported.");
     }
+
+    if (optind < argc)
+        throw std::runtime_error("Argument "s + argv[optind] + " not supported.");
 }
 
 void ConfigManager::create_config_file(std::string const& filepath)
