@@ -1,21 +1,24 @@
 #include "watchdog_config.hh"
 
-WatchdogConfig::WatchdogConfig(Config const& config)
+WatchdogConfig::WatchdogConfig(Config& config_)
 {
-    /*
-    auto t_service_array = cm.toml()["watchdog"]["services"].as_array();
-    if (!t_service_array)
+    simdjson::dom::parser parser;
+    simdjson::dom::element config;
+    auto error = parser.load("/home/andre/.config/neblina/neblina.json").get(config);
+    if (error)
+        throw std::runtime_error("Error parsing config file JSON");
+
+    auto t_services = config["watchdog"]["services"].get_array();
+    if (t_services.error())
         throw std::runtime_error("Expected a 'services' key in config file");
-    for (auto&& e: *t_service_array) {
-        auto tbl = e.as_table();
+    for (auto service: t_services) {
         Service svc = {
-            .name = tbl->at("name").value_or(""),
-            .port = (uint16_t) tbl->at("port").value_or(0),
-            .open_to_world = tbl->at("port").value_or(false),
+            .name = std::string(service["name"]),
+            .port = (uint16_t) int(service["port"]),
+            .open_to_world = bool(service["open_to_world"])
         };
         if (svc.name.empty() || svc.port == 0)
             throw std::runtime_error("Incorrect watchdog service configuration");
         services.emplace_back(std::move(svc));
     };
-    */
 }

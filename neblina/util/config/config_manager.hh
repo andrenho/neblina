@@ -7,7 +7,7 @@
 #include <unordered_map>
 #include "contrib/simdjson/simdjson.h"
 
-using Config = simdjson::ondemand::document;
+using Config = simdjson::dom::element;
 
 class ConfigManager {
 public:

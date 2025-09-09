@@ -20,7 +20,7 @@ ConfigManager::ConfigManager(int argc, char* argv[])
 
     // if config file not indicated, use default, create if not present
     if (config_filename.empty()) {
-        config_filename = default_config_path_ + "/neblina.conf";
+        config_filename = default_config_path_ + "/neblina.json";
         if (!fs::exists(config_filename))
             create_config_file(config_filename);
     }
@@ -78,7 +78,10 @@ void ConfigManager::print_help(std::string const& program_name)
 
 Config ConfigManager::parse_config_file() const
 {
-    simdjson::ondemand::parser parser;
-    auto json = simdjson::padded_string::load(config_filename);
-    return parser.iterate(json);
+    simdjson::dom::parser parser;
+    simdjson::dom::element config;
+    auto error = parser.load(config_filename).get(config);
+    if (error)
+        throw std::runtime_error("Error parsing config file JSON");
+    return config;
 }
