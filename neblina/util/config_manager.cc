@@ -15,20 +15,20 @@ using namespace std::string_literals;
 #include "default_config.gen.inc"
 
 ConfigManager::ConfigManager(int argc, char* argv[])
-    : default_config_path_(std::string(getenv("HOME")) + "/.config/neblina")
+    : program_name(argv[0]), default_config_path_(std::string(getenv("HOME")) + "/.config/neblina")
 {
     parse_arguments(argc, argv);
 
     // if config file not indicated, use default, create if not present
-    if (config_filename_.empty()) {
-        config_filename_ = default_config_path_ + "/neblina.conf";
-        if (!fs::exists(config_filename_))
-            create_config_file(config_filename_);
+    if (config_filename.empty()) {
+        config_filename = default_config_path_ + "/neblina.conf";
+        if (!fs::exists(config_filename))
+            create_config_file(config_filename);
     }
 
     // load toml
     try {
-        toml_ = std::make_unique<toml::table>(toml::parse_file(config_filename_));
+        toml_ = std::make_unique<toml::table>(toml::parse_file(config_filename));
     } catch (toml::parse_error const& e) {
         throw std::runtime_error("Could not parse config file: "s + e.what());
     }
@@ -42,6 +42,7 @@ void ConfigManager::parse_arguments(int argc, char* argv[])
         static option long_options[] = {
             { "help",     no_argument,       nullptr, 'h' },
             { "config",   required_argument, nullptr, 'C' },
+            { "service",  required_argument, nullptr, 's' },
         };
         int idx;
         int c = getopt_long(argc, argv, "hw:C:", long_options, &idx);
@@ -53,7 +54,10 @@ void ConfigManager::parse_arguments(int argc, char* argv[])
                 print_help(argv[0]);
                 break;
             case 'C':
-                config_filename_ = optarg;
+                config_filename = optarg;
+                break;
+            case 's':
+                service = optarg;
                 break;
         }
 

@@ -11,6 +11,13 @@ else
 	CPPFLAGS+=-O0 -ggdb
 endif
 
+UNAME_S := $(shell uname -s)
+ifeq ($(UNAME_S),Darwin)
+    STAT_PRM="-f %z"
+else
+	STAT_PRM="-c %s"
+endif
+
 all: neblina
 
 util/config_manager.o: default_config.gen.inc
@@ -21,7 +28,7 @@ util/config_manager.o: default_config.gen.inc
 	echo "static const uint8_t $(basename $(notdir $^))[] = {" >> $@ && \
 	cat $^ | gzip | xxd -i >> $@ && \
 	echo "};" >> $@
-	echo "static size_t $(basename $(notdir $^))_uncompressed_sz = $(shell stat -c %s $^);" >> $@
+	echo "static size_t $(basename $(notdir $^))_uncompressed_sz = $(shell stat ${STAT_PRM} $^);" >> $@
 
 release:
 	$(MAKE) clean all RELEASE=1
@@ -30,6 +37,6 @@ neblina: $(OBJ)
 	g++ -o $@ $^ $(LDFLAGS)
 
 clean:
-	rm -rf $(OBJ) $(OBJ:.o=.d) neblina **/*.gen.inc
+	rm -rf $(OBJ) $(OBJ:.o=.d) neblina **/*.gen.inc *.gen.inc
 
 -include $(OBJ:.o=.d)

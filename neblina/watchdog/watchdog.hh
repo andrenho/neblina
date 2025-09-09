@@ -20,10 +20,12 @@ private:
 
     WatchdogConfig config_;
     std::vector<Service> services_;
+    const std::string program_name_;
+    const std::string config_filename_;
 
-    bool service_is_running(::Watchdog::Service const& svc);
-    bool service_eligible_for_retry(::Watchdog::Service const& svc);
-    void start_service(::Watchdog::Service const& svc);
+    bool service_is_running(Service const& svc);
+    bool service_eligible_for_retry(Service const& svc);
+    void start_service(Service& svc);
 };
 
 #endif //WATCHDOG_HH
