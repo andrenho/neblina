@@ -12,7 +12,8 @@ A single binary application in C++ that provides a whole cloud. It's small and s
   - New services can be added as .so plugins
   - Runs on any POSIX OS (Windows, Linux (PC or Pi), Mac, BSD, Android)
 - Avoid external libraries
-  - Rebuild the wheel
+  - No dependencies except for the ones already provided by the OS
+  - Reinvent the wheel
   - Use external libraries for security stuff (static library in this case (?))
 - Easy installation
   - Just drop the binary and run it, or run as a service
