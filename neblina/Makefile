@@ -23,7 +23,7 @@ endif
 
 all: neblina
 
-util/config_manager.o: default_config.gen.inc
+util/config/config_manager.o: default_config.gen.inc
 
 %.gen.inc: %.toml
 	echo "#include <stdint.h>" > $@ && \
