@@ -27,7 +27,7 @@ void Config::parse_arguments(int argc, char* argv[])
 
 void Config::create_config_file()
 {
-    std::string default_config_file = decode_embedded_text(default_config, sizeof default_config);
+    std::string default_config_file = decode_embedded_text(default_config, sizeof default_config, default_config_uncompressed_sz);
     std::cout << default_config_file;
 }
 

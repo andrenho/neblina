@@ -14,9 +14,11 @@ all: neblina
 
 %.gen.c: %.toml
 	echo "#include <stdint.h>" > $@ && \
+	echo "#include <stddef.h>" >> $@ && \
 	echo "static const uint8_t $(basename $(notdir $^))[] = {" >> $@ && \
 	cat $^ | gzip | xxd -i >> $@ && \
 	echo "};" >> $@
+	echo "static size_t $(basename $(notdir $^))_uncompressed_sz = $(shell stat -c %s $^);" >> $@
 
 release:
 	$(MAKE) clean all RELEASE=1
