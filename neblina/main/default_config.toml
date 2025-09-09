@@ -1,4 +1,0 @@
-[main]
-services = [
-    { name = "web", port = 80 }
-]

@@ -1,8 +1,9 @@
 CPPFLAGS=-Wall -Wextra -MMD -I.
 CXXFLAGS=-std=c++23
 LDFLAGS=-lz
-TXT_OBJ=main/default_config.gen.o
-OBJ=$(TXT_OBJ) main/main.o main/config.o main/embedded.o
+OBJ=main.o \
+	util/config_manager.o 	util/embedded.o \
+	watchdog/watchdog.o 	watchdog/watchdog_config.o
 
 ifdef RELEASE
 	CPPFLAGS+=-O3 -ffast-math -march=native -flto
@@ -12,7 +13,9 @@ endif
 
 all: neblina
 
-%.gen.c: %.toml
+util/config_manager.o: default_config.gen.inc
+
+%.gen.inc: %.toml
 	echo "#include <stdint.h>" > $@ && \
 	echo "#include <stddef.h>" >> $@ && \
 	echo "static const uint8_t $(basename $(notdir $^))[] = {" >> $@ && \
@@ -27,6 +30,6 @@ neblina: $(OBJ)
 	g++ -o $@ $^ $(LDFLAGS)
 
 clean:
-	rm -rf $(OBJ) $(OBJ:.o=.d) $(TXT_OBJ:.gen.o=.gen.c) neblina
+	rm -rf $(OBJ) $(OBJ:.o=.d) neblina **/*.gen.inc
 
 -include $(OBJ:.o=.d)

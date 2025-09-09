@@ -48,3 +48,8 @@ A single binary application in C++ that provides a whole cloud. It's small and s
 - HTTP (network service - special)
 - HTTPS (network service)
 - SFTP (network service)
+
+# Rules for new modules
+
+- Modules will use a section of the nebula.conf file for their own configuration
+- If a section is not present, the module should create it at first use
