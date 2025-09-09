@@ -1,11 +1,15 @@
 #ifndef CONFIG_HH
 #define CONFIG_HH
 
+#include <cstdint>
 #include <string>
+#include <unordered_map>
 
 class Config {
 public:
     Config(int argc, char* argv[]);
+
+    std::unordered_map<std::string, uint16_t> services;
 
 private:
     std::string config_filename;
