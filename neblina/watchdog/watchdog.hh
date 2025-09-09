@@ -11,7 +11,7 @@ using sc = std::chrono::system_clock;
 
 class Watchdog {
 public:
-    explicit Watchdog(ConfigManager& cm);
+    Watchdog(WatchdogConfig const& config, std::string const& program_name, std::string const& config_filename);
 
     [[noreturn]] void run();
 

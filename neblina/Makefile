@@ -6,7 +6,8 @@ OBJ=main.o \
 	util/embed/embedded.o 		\
 	util/tcp/tcp_server.o 		\
 	watchdog/watchdog.o 		\
-	watchdog/watchdog_config.o
+	watchdog/watchdog_config.o	\
+	contrib/simdjson/simdjson.o
 
 ifdef RELEASE
   CPPFLAGS+=-O3 -ffast-math -march=native -flto
@@ -25,7 +26,7 @@ all: neblina
 
 util/config/config_manager.o: default_config.gen.inc
 
-%.gen.inc: %.toml
+%.gen.inc: %.json
 	echo "#include <stdint.h>" > $@ && \
 	echo "#include <stddef.h>" >> $@ && \
 	echo "static const uint8_t $(basename $(notdir $^))[] = {" >> $@ && \

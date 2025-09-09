@@ -1,14 +1,15 @@
 #include <iostream>
 
 #include "util/config/config_manager.hh"
-#include "util/tcp/tcp_server.hh"
 #include "watchdog/watchdog.hh"
 
 int main(int argc, char* argv[])
 {
-    ConfigManager config(argc, argv);
-    if (config.service.empty())
-        Watchdog(config).run();
+    ConfigManager config_manager(argc, argv);
+    auto config = config_manager.parse_config_file();
+
+    if (config_manager.service.empty())
+        Watchdog(WatchdogConfig(config), config_manager.program_name, config_manager.config_filename).run();
     else
-        std::cout << "Started service " << config.service << std::endl;
+        std::cout << "Started service " << config_manager.service << std::endl;
 }

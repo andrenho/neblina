@@ -11,8 +11,8 @@
 using namespace std::string_literals;
 using namespace std::chrono_literals;
 
-Watchdog::Watchdog(ConfigManager& cm)
-    : config_(cm), program_name_(cm.program_name), config_filename_(cm.config_filename)
+Watchdog::Watchdog(WatchdogConfig const& config, std::string const& program_name, std::string const& config_filename)
+    : config_(config), program_name_(program_name), config_filename_(config_filename)
 {
     for (auto const& s: config_.services)
         services_.push_back({ .details = s });

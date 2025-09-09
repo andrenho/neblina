@@ -5,16 +5,16 @@
 #include <memory>
 #include <string>
 #include <unordered_map>
+#include "contrib/simdjson/simdjson.h"
 
-namespace toml::inline v3 { class table; }
+using Config = simdjson::ondemand::document;
 
 class ConfigManager {
 public:
     ConfigManager(int argc, char* argv[]);
     ~ConfigManager();
 
-    toml::v3::table& toml() { return *toml_; }
-    [[nodiscard]] toml::v3::table const& toml() const { return *toml_; }
+    [[nodiscard]] Config parse_config_file() const;
 
     std::string service;
     std::string config_filename;
@@ -26,7 +26,6 @@ private:
     static void print_help(std::string const& program_name);
 
     std::string default_config_path_;
-    std::unique_ptr<toml::v3::table> toml_;
 };
 
 #endif //CONFIG_HH

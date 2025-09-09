@@ -9,7 +9,6 @@ namespace fs = std::filesystem;
 using namespace std::string_literals;
 
 #include <getopt.h>
-#include <contrib/toml/toml.hpp>
 
 #include "../embed/embedded.hh"
 #include "default_config.gen.inc"
@@ -24,13 +23,6 @@ ConfigManager::ConfigManager(int argc, char* argv[])
         config_filename = default_config_path_ + "/neblina.conf";
         if (!fs::exists(config_filename))
             create_config_file(config_filename);
-    }
-
-    // load toml
-    try {
-        toml_ = std::make_unique<toml::table>(toml::parse_file(config_filename));
-    } catch (toml::parse_error const& e) {
-        throw std::runtime_error("Could not parse config file: "s + e.what());
     }
 }
 
@@ -82,4 +74,11 @@ void ConfigManager::print_help(std::string const& program_name)
     -C, --config [FILE]         Choose config file
 )", program_name);
     exit(0);
+}
+
+Config ConfigManager::parse_config_file() const
+{
+    simdjson::ondemand::parser parser;
+    auto json = simdjson::padded_string::load(config_filename);
+    return parser.iterate(json);
 }

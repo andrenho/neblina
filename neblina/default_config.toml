@@ -1,4 +1,0 @@
-[watchdog]
-services = [
-    { port = 8080, name = "web", open_to_world = false }
-]

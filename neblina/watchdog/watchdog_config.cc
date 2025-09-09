@@ -1,9 +1,8 @@
 #include "watchdog_config.hh"
 
-#include <contrib/toml/toml.hpp>
-
-WatchdogConfig::WatchdogConfig(ConfigManager const& cm)
+WatchdogConfig::WatchdogConfig(Config const& config)
 {
+    /*
     auto t_service_array = cm.toml()["watchdog"]["services"].as_array();
     if (!t_service_array)
         throw std::runtime_error("Expected a 'services' key in config file");
@@ -18,4 +17,5 @@ WatchdogConfig::WatchdogConfig(ConfigManager const& cm)
             throw std::runtime_error("Incorrect watchdog service configuration");
         services.emplace_back(std::move(svc));
     };
+    */
 }
