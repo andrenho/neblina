@@ -28,7 +28,6 @@ private:
         std::chrono::milliseconds retry_in = 50ms;
     };
 
-    Arguments const& args_;
     WatchdogConfig config_;
     std::vector<Service> services_;
 

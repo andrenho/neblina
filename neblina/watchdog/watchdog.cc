@@ -14,7 +14,7 @@ using namespace std::string_literals;
 using namespace std::chrono_literals;
 
 Watchdog::Watchdog(Arguments const& args)
-    : args_(args), config_(WatchdogConfig(args.config_file_path).load())
+    : ::Service(args), config_(WatchdogConfig(args.config_file_path).load())
 {
     for (auto const& s: config_.services)
         services_.push_back({ .details = s });
@@ -41,15 +41,20 @@ bool Watchdog::service_is_running(Service& svc)
     if (done == *svc.pid) {
         svc.pid = {};
         svc.retry_in *= 2;
-        std::cerr << "Service process '" << svc.details.name << "' has died with status " << WEXITSTATUS(status) << ". ";
-        if (WEXITSTATUS(status) == NON_RECOVERABLE_RETURN_CODE) {
-            std::cerr << " (non-recoverable) ";
+        if (WEXITSTATUS(status) == 0) {
+            std::cerr << "Service process " << svc.details.name << " has finalized successfully.\n";
             svc.attempts = MAX_ATTEMPTS;
+        } else {
+            std::cerr << "Service process '" << svc.details.name << "' has died with status " << WEXITSTATUS(status) << ". ";
+            if (WEXITSTATUS(status) == NON_RECOVERABLE_RETURN_CODE) {
+                std::cerr << " (non-recoverable) ";
+                svc.attempts = MAX_ATTEMPTS;
+            }
+            if (svc.attempts < MAX_ATTEMPTS)
+                std::cerr << "Attempt " << svc.attempts << " in " << svc.retry_in << ".\n";
+            else
+                std::cerr << "Giving up.\n";
         }
-        if (svc.attempts < MAX_ATTEMPTS)
-            std::cerr << "Attempt " << svc.attempts << " in " << svc.retry_in << ".\n";
-        else
-            std::cerr << "Giving up.\n";
         return false;
     }
 
