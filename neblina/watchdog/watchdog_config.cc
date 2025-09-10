@@ -11,7 +11,7 @@ std::vector<WatchdogConfig::Service> WatchdogConfig::services() const
         Service svc = {
             .name = std::string(service["name"]),
             .port = (uint16_t) service["port"].get_int64(),
-            .open_to_world = service["open_to_world"].get_bool(),
+            .open_to_world = service["open_to_world"].error() ? false : (bool) service["open_to_world"].get_bool()
         };
         if (svc.name.empty() || svc.port == 0)
             throw std::runtime_error("Incorrect watchdog service configuration");

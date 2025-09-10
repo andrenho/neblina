@@ -8,6 +8,8 @@
 #include <unistd.h>
 #include <sys/wait.h>
 
+#include "util/exceptions/non_recoverable_exception.hh"
+
 using namespace std::string_literals;
 using namespace std::chrono_literals;
 
@@ -40,6 +42,10 @@ bool Watchdog::service_is_running(Service& svc)
         svc.pid = {};
         svc.retry_in *= 2;
         std::cerr << "Service process '" << svc.details.name << "' has died with status " << WEXITSTATUS(status) << ". ";
+        if (WEXITSTATUS(status) == NON_RECOVERABLE_RETURN_CODE) {
+            std::cerr << " (non-recoverable) ";
+            svc.attempts = MAX_ATTEMPTS;
+        }
         if (svc.attempts < MAX_ATTEMPTS)
             std::cerr << "Attempt " << svc.attempts << " in " << svc.retry_in << ".\n";
         else
@@ -52,7 +58,7 @@ bool Watchdog::service_is_running(Service& svc)
 
 bool Watchdog::service_eligible_for_retry(Service& svc)
 {
-    if (svc.attempts > MAX_ATTEMPTS) {
+    if (svc.attempts >= MAX_ATTEMPTS) {
         services_.erase(
             std::remove_if(services_.begin(), services_.end(), [&](Service const& s) { return s.details.name == svc.details.name; }),
             services_.end());
