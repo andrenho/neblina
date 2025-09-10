@@ -5,24 +5,20 @@
 #include <vector>
 #include <string>
 
-#include "util/config/config_manager.hh"
+#include "service/config.hh"
 
-class WatchdogConfig {
+class WatchdogConfig : public Config {
 public:
-    explicit WatchdogConfig(ConfigManager& config_manager) : config_manager_(config_manager) {}
+    explicit WatchdogConfig(std::string const& config_file_path);
 
     struct Service {
         std::string name;
         uint16_t    port;
         bool        open_to_world;
     };
-    [[nodiscard]] std::vector<Service> services() const;
+    std::vector<Service> services;
 
-    [[nodiscard]] std::string config_filename() const;
-    [[nodiscard]] std::string program_name() const;
-
-private:
-    ConfigManager const& config_manager_;
+    WatchdogConfig& load() override;
 };
 
 #endif //WATCHDOG_CONFIG_HH

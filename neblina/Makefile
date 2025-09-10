@@ -1,9 +1,9 @@
 CPPFLAGS=-Wall -Wextra -MMD -I.
 CXXFLAGS=-std=c++23
 LDFLAGS=-lz
-OBJ=main.o \
-	util/config/config_manager.o    \
+OBJ=main.o arguments.o \
 	util/embed/embedded.o 		\
+	service/config.o			\
 	service/tcp/tcp_server.o	\
 	watchdog/watchdog.o 		\
 	watchdog/watchdog_config.o	\
@@ -24,7 +24,7 @@ endif
 
 all: neblina
 
-util/config/config_manager.o: default_config.gen.inc
+watchdog/watchdog.o: watchdog/watchdog.gen.inc
 
 %.gen.inc: %.json
 	echo "#include <stdint.h>" > $@ && \

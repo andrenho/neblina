@@ -7,12 +7,13 @@
 using namespace std::chrono_literals;
 using sc = std::chrono::system_clock;
 
+#include "arguments.hh"
 #include "service/service.hh"
 #include "watchdog_config.hh"
 
 class Watchdog : public Service {
 public:
-    explicit Watchdog(ConfigManager& config_manager);
+    explicit Watchdog(Arguments const& args);
 
     [[noreturn]] void run() override;
 
@@ -27,7 +28,7 @@ private:
         std::chrono::milliseconds retry_in = 50ms;
     };
 
-    ConfigManager& config_manager_;
+    Arguments const& args_;
     WatchdogConfig config_;
     std::vector<Service> services_;
 

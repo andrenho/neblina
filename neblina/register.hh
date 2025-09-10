@@ -6,14 +6,15 @@
 #include <unordered_map>
 #include <string>
 
+#include "arguments.hh"
 #include "service/service.hh"
 
-using ServiceRegistry = std::unordered_map<std::string, std::function<std::unique_ptr<Service>(ConfigManager&)>>;
+using ServiceRegistry = std::unordered_map<std::string, std::function<std::unique_ptr<Service>(Arguments&)>>;
 
 template <typename T>
 void register_native_service(ServiceRegistry& services)
 {
-    services[T::name()] = [](ConfigManager& cm){ return std::make_unique<T>(cm); };
+    services[T::name()] = [](Arguments& args){ return std::make_unique<T>(args); };
 }
 
 template <typename... Ts>

@@ -1,7 +1,0 @@
-{
-  "watchdog": {
-    "services": [
-      { "port": 23456, "name": "parrot_char" }
-    ]
-  }
-}

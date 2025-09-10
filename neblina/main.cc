@@ -1,28 +1,28 @@
+#define SERVICES Watchdog
+
 #include <iostream>
 
-#include "parrot/parrot_char.hh"
-#include "util/config/config_manager.hh"
 #include "watchdog/watchdog.hh"
 #include "register.hh"
 #include "util/exceptions/non_recoverable_exception.hh"
+#include "arguments.hh"
 
 int main(int argc, char* argv[])
 {
+    Arguments args(argc, argv);
+
     // register services
     ServiceRegistry services;
-    register_native_services<Watchdog, ParrotChar>(services);
-
-    // initialize utility classes
-    ConfigManager config_manager(argc, argv);
+    register_native_services<SERVICES>(services);
 
     // find and execute service
-    std::cout << "Starting service " << config_manager.service << "..." << std::endl;
-    auto it = services.find(config_manager.service);
+    std::cout << "Starting service " << args.service << "..." << std::endl;
+    auto it = services.find(args.service);
 
     try {
         if (it != services.end())  // native service
-            it->second(config_manager)->run();
-        throw NonRecoverableException(config_manager.service + " not a native service, and contributed services are not yet implemented.");
+            it->second(args)->run();
+        throw NonRecoverableException(args.service + " not a native service, and contributed services are not yet implemented.");
 
     } catch (NonRecoverableException& e) {
         std::cerr << e.what() << std::endl;
