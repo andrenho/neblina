@@ -125,9 +125,18 @@ void TCPServer::handle_new_data(pollfd const& pfd, std::vector<pollfd>& poll_fds
             std::remove_if(poll_fds.begin(), poll_fds.end(), [&](pollfd const& p) { return p.fd == pfd.fd; }),
             poll_fds.end());
     } else {   // data received from client
-        // TODO
-        for (size_t i = 0; i < (size_t) n; ++i)
-            printf("%02X ", buf[i]);
-        printf("\n");
+        std::vector<uint8_t> data(buf, buf + n);
+        new_data_available(data, pfd.fd);
+    }
+}
+
+void TCPServer::send_data(std::vector<uint8_t> const& data, int fd)
+{
+    size_t pos = 0;
+    while (pos < data.size()) {
+        int n = send(fd, &data.data()[pos], data.size() - pos, 0);
+        if (n < 0)
+            throw std::runtime_error("Error sending data: "s + strerror(errno));
+        pos += n;
     }
 }

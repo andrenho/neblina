@@ -5,12 +5,21 @@
 #include <vector>
 #include <sys/poll.h>
 
-class TCPServer {
+#include "util/service.hh"
+
+class TCPServer : public Service {
 public:
     TCPServer(uint16_t port, bool open_to_world=false, size_t buffer_sz=256);
-    ~TCPServer();
+    virtual ~TCPServer();
 
-    [[noreturn]] void run();
+    [[noreturn]] void run() override;
+
+    virtual void new_data_available(std::vector<uint8_t> const& data, int fd) = 0;
+
+    static const char* name() { return "parrot_char"; }
+
+protected:
+    void send_data(std::vector<uint8_t> const& data, int fd);
 
 private:
     uint16_t port_;
