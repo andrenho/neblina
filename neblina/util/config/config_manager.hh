@@ -5,6 +5,7 @@
 #include <memory>
 #include <string>
 #include <unordered_map>
+
 #include "contrib/simdjson/simdjson.h"
 
 using Config = simdjson::dom::element;
@@ -14,9 +15,9 @@ public:
     ConfigManager(int argc, char* argv[]);
     ~ConfigManager();
 
-    [[nodiscard]] Config config() const { return config_; }
+    [[nodiscard]] Config const& config() const { return config_; }
 
-    std::string service;
+    std::string service = "watchdog";
     std::string config_filename;
     const std::string program_name;
 

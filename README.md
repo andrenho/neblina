@@ -22,8 +22,8 @@ A single binary application in C++ that provides a whole cloud. It's small and s
 
 - Binary is initialized without options
   - Run watchdog, which starts other services
-  - Network services run as a fork of the original binary
-  - One network service = one port
+  - Services run as a fork of the original binary
+  - One service = one port = one fork
 - Special ports
   - 443 -> offload security and redirect to 80
   - 80 -> special service Web Listener

@@ -5,7 +5,7 @@
 #include <vector>
 #include <sys/poll.h>
 
-#include "util/service.hh"
+#include "service/service.hh"
 
 class TCPServer : public Service {
 public:

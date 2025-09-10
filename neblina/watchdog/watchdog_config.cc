@@ -1,8 +1,10 @@
 #include "watchdog_config.hh"
 
-WatchdogConfig::WatchdogConfig(Config const& config)
+std::vector<WatchdogConfig::Service> WatchdogConfig::services() const
 {
-    auto t_services = config["watchdog"]["services"].get_array();
+    std::vector<Service> services;
+
+    auto t_services = config_manager_.config()["watchdog"]["services"].get_array();
     if (t_services.error())
         throw std::runtime_error("Expected a 'services' key in config file");
     for (auto service: t_services) {
@@ -15,4 +17,16 @@ WatchdogConfig::WatchdogConfig(Config const& config)
             throw std::runtime_error("Incorrect watchdog service configuration");
         services.emplace_back(std::move(svc));
     };
+
+    return services;
+}
+
+std::string WatchdogConfig::config_filename() const
+{
+    return config_manager_.config_filename;
+}
+
+std::string WatchdogConfig::program_name() const
+{
+    return config_manager_.program_name;
 }

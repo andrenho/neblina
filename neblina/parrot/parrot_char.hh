@@ -1,7 +1,8 @@
 #ifndef PARROT_CHAR_HH
 #define PARROT_CHAR_HH
 
-#include "util/tcp/tcp_server.hh"
+#include "service/tcp/tcp_server.hh"
+#include "util/config/config_manager.hh"
 
 class ParrotChar : public TCPServer {
 public:

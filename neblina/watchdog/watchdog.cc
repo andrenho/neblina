@@ -11,10 +11,10 @@
 using namespace std::string_literals;
 using namespace std::chrono_literals;
 
-Watchdog::Watchdog(WatchdogConfig const& config, std::string const& program_name, std::string const& config_filename)
-    : config_(config), program_name_(program_name), config_filename_(config_filename)
+Watchdog::Watchdog(ConfigManager& config_manager)
+    : config_manager_(config_manager), config_(config_manager)
 {
-    for (auto const& s: config_.services)
+    for (auto const& s: config_.services())
         services_.push_back({ .details = s });
 }
 
@@ -74,7 +74,9 @@ void Watchdog::start_service(Service& svc)
 
     if (pid == 0) {   // child process
         std::cout << "Starting service " << svc.details.name << " with pid " << getpid() << "\n";
-        execlp(program_name_.c_str(), program_name_.c_str(), "-C", config_filename_.c_str(), "-s", svc.details.name.c_str(), nullptr);
+        execlp(config_.program_name().c_str(), config_.program_name().c_str(),
+            "-C", config_.config_filename().c_str(),
+            "-s", svc.details.name.c_str(), nullptr);
         throw std::runtime_error("execvp failed when starting a new service: "s + strerror(errno));
     } else if (pid > 0) {
         svc.pid.emplace(pid);

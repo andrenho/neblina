@@ -4,7 +4,7 @@ LDFLAGS=-lz
 OBJ=main.o \
 	util/config/config_manager.o    \
 	util/embed/embedded.o 		\
-	util/tcp/tcp_server.o 		\
+	service/tcp/tcp_server.o	\
 	watchdog/watchdog.o 		\
 	watchdog/watchdog_config.o	\
 	contrib/simdjson/simdjson.o

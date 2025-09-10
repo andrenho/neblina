@@ -7,13 +7,16 @@
 using namespace std::chrono_literals;
 using sc = std::chrono::system_clock;
 
+#include "service/service.hh"
 #include "watchdog_config.hh"
 
-class Watchdog {
+class Watchdog : public Service {
 public:
-    Watchdog(WatchdogConfig const& config, std::string const& program_name, std::string const& config_filename);
+    explicit Watchdog(ConfigManager& config_manager);
 
-    [[noreturn]] void run();
+    [[noreturn]] void run() override;
+
+    static const char* name() { return "watchdog"; }
 
 private:
     struct Service {
@@ -24,10 +27,9 @@ private:
         std::chrono::milliseconds retry_in = 50ms;
     };
 
+    ConfigManager& config_manager_;
     WatchdogConfig config_;
     std::vector<Service> services_;
-    const std::string program_name_;
-    const std::string config_filename_;
 
     static bool service_is_running(Service& svc);
     bool service_eligible_for_retry(Service& svc);
