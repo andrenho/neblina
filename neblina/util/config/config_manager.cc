@@ -24,6 +24,8 @@ ConfigManager::ConfigManager(int argc, char* argv[])
         if (!fs::exists(config_filename))
             create_config_file(config_filename);
     }
+
+    parse_config_file();
 }
 
 ConfigManager::~ConfigManager() = default;
@@ -76,12 +78,9 @@ void ConfigManager::print_help(std::string const& program_name)
     exit(0);
 }
 
-Config ConfigManager::parse_config_file() const
+void ConfigManager::parse_config_file()
 {
-    simdjson::dom::parser parser;
-    simdjson::dom::element config;
-    auto error = parser.load(config_filename).get(config);
+    auto error = parser_.load(config_filename).get(config_);
     if (error)
         throw std::runtime_error("Error parsing config file JSON");
-    return config;
 }

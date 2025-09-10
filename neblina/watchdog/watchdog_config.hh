@@ -8,7 +8,7 @@
 #include "../util/config/config_manager.hh"
 
 struct WatchdogConfig {
-    explicit WatchdogConfig(Config& config);
+    explicit WatchdogConfig(Config const& config);
 
     struct Service {
         std::string name;

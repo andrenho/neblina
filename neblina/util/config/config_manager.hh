@@ -14,18 +14,22 @@ public:
     ConfigManager(int argc, char* argv[]);
     ~ConfigManager();
 
-    [[nodiscard]] Config parse_config_file() const;
+    [[nodiscard]] Config config() const { return config_; }
 
     std::string service;
     std::string config_filename;
     const std::string program_name;
 
 private:
+    std::string           default_config_path_;
+    simdjson::dom::parser parser_;
+    Config                config_;
+
     void parse_arguments(int argc, char* argv[]);
     void create_config_file(std::string const& filepath);
-    static void print_help(std::string const& program_name);
+    void parse_config_file();
 
-    std::string default_config_path_;
+    static void print_help(std::string const& program_name);
 };
 
 #endif //CONFIG_HH
