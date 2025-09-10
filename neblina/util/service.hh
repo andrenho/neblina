@@ -3,7 +3,7 @@
 
 class Service {
 public:
-    virtual ~Service();
+    virtual ~Service() = default;
     [[noreturn]] virtual void run() = 0;
 };
 
