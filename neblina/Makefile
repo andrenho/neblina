@@ -3,8 +3,9 @@ CXXFLAGS=-std=c++23
 LDFLAGS=-lz
 OBJ=main.o arguments.o \
 	util/embed/embedded.o 		\
-	service/config.o			\
+	service/config.o		\
 	service/tcp/tcp_server.o	\
+	service/tcp/tcp_server_text.o	\
 	watchdog/watchdog.o 		\
 	watchdog/watchdog_config.o	\
 	contrib/simdjson/simdjson.o

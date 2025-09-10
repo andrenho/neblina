@@ -23,6 +23,7 @@ WatchdogConfig& WatchdogConfig::load()
         throw std::runtime_error("Expected a 'services' key in config file");
     for (auto service: t_services) {
         Service svc = {
+            .name = "",
             .port = (uint16_t) service["port"].get_int64(),
             .open_to_world = service["open_to_world"].error() ? false : (bool) service["open_to_world"].get_bool()
         };

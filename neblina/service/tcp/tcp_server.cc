@@ -1,23 +1,24 @@
 #include "tcp_server.hh"
 
-#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
 #include <cerrno>
 #include <cstring>
+
+#include <algorithm>
 #include <iostream>
+#include <memory>
+#include <string>
+#include <vector>
+#include <stdexcept>
+
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <netdb.h>
-#include <stdexcept>
-#include <string>
-#include <arpa/inet.h>
 #include <poll.h>
 
-#include <string>
-#include <vector>
 using namespace std::string_literals;
 
 TCPServer::TCPServer(Arguments const& arguments, uint16_t port, bool open_to_world, size_t buffer_sz)
@@ -141,4 +142,10 @@ void TCPServer::send_data(std::vector<uint8_t> const& data, int fd)
             throw std::runtime_error("Error sending data: "s + strerror(errno));
         pos += n;
     }
+}
+
+void TCPServer::send_data(const char* data, int fd)
+{
+    std::vector<uint8_t> v(data, data + strlen(data));
+    send_data(v, fd);
 }

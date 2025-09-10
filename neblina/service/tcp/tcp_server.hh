@@ -11,16 +11,17 @@
 class TCPServer : public Service {
 public:
     TCPServer(Arguments const& args, uint16_t port, bool open_to_world=false, size_t buffer_sz=256);
-    ~TCPServer() override;
+    virtual ~TCPServer() override;
 
     void run() override;
 
+protected:
     virtual void new_data_available(std::vector<uint8_t> const& data, int fd) = 0;
 
-protected:
-    static void send_data(std::vector<uint8_t> const& data, int fd);
-
     void finalize_service() { server_running_ = true; }
+
+    static void send_data(std::vector<uint8_t> const& data, int fd);
+    static void send_data(const char* data, int fd);
 
 private:
     uint16_t port_;

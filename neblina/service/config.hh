@@ -1,6 +1,7 @@
 #ifndef CONFIG_HH
 #define CONFIG_HH
 
+#include <cstdint>
 #include <string>
 
 class Config {
