@@ -12,13 +12,13 @@ WatchdogConfig& WatchdogConfig::load()
 {
     // TODO - use ondemand (?)
 
-    simdjson::dom::parser parser;
-    simdjson::dom::element config;
-    auto error = parser.load(config_filename_).get(config);
-    if (error)
+    simdjson::ondemand::parser parser;
+    auto json = simdjson::padded_string::load(config_filename_);
+    if (json.error())
         throw std::runtime_error("Error parsing config file JSON");
+    auto doc = parser.iterate(json);
 
-    auto t_services = config["services"].get_array();
+    auto t_services = doc["services"].get_array();
     if (t_services.error())
         throw std::runtime_error("Expected a 'services' key in config file");
     for (auto service: t_services) {
@@ -26,7 +26,7 @@ WatchdogConfig& WatchdogConfig::load()
             .port = (uint16_t) service["port"].get_int64(),
             .open_to_world = service["open_to_world"].error() ? false : (bool) service["open_to_world"].get_bool()
         };
-        if (!service["name"].get_string().get(svc.name) || svc.port == 0)
+        if (service["name"].get_string().get(svc.name) || svc.port == 0)
             throw std::runtime_error("Incorrect watchdog service configuration");
         services.emplace_back(std::move(svc));
     }

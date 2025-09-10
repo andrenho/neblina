@@ -14,6 +14,7 @@ void Arguments::print_help(std::string const& program_name)
 }
 
 Arguments::Arguments(int argc, char* argv[])
+    : program_name(argv[0])
 {
     config_file_path = std::string(getenv("HOME")) + "/.config/neblina";
 
