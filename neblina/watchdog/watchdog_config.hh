@@ -11,12 +11,7 @@ class WatchdogConfig : public Config {
 public:
     explicit WatchdogConfig(std::string const& config_file_path);
 
-    struct Service {
-        std::string name;
-        uint16_t    port;
-        bool        open_to_world;
-    };
-    std::vector<Service> services;
+    std::vector<std::string> services;
 
     WatchdogConfig& load() override;
 };

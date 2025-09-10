@@ -8,7 +8,7 @@
 
 class TCPServerText : public TCPServer {
 public:
-    TCPServerText(struct Arguments const& args, uint16_t port, bool open_to_world=false, size_t buffer_sz=256, char separator='\n')
+    TCPServerText(struct Arguments const& args, uint16_t port, bool open_to_world=false, size_t buffer_sz=256, char separator='\r')
         : TCPServer(args, port, open_to_world, buffer_sz), separator_(separator)
     {
         buffer_.reserve(buffer_sz);

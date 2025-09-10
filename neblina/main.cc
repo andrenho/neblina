@@ -1,10 +1,11 @@
-#define SERVICES Watchdog, ParrotChar
+#define SERVICES Watchdog, ParrotChar, ParrotText
 
 #include <iostream>
 
 #include "arguments.hh"
 #include "register.hh"
 #include "parrot/parrot_char.hh"
+#include "parrot/parrot_text.hh"
 #include "watchdog/watchdog.hh"
 #include "util/exceptions/non_recoverable_exception.hh"
 

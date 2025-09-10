@@ -17,7 +17,7 @@ Watchdog::Watchdog(Arguments const& args)
     : ::Service(args), config_(WatchdogConfig(args.config_file_path).load())
 {
     for (auto const& s: config_.services)
-        services_.push_back({ .details = s });
+        services_.push_back({ .name = s });
 }
 
 [[noreturn]] void Watchdog::run()
@@ -42,10 +42,10 @@ bool Watchdog::service_is_running(Service& svc)
         svc.pid = {};
         svc.retry_in *= 2;
         if (WEXITSTATUS(status) == 0) {
-            std::cerr << "Service process " << svc.details.name << " has finalized successfully.\n";
+            std::cerr << "Service process " << svc.name << " has finalized successfully.\n";
             svc.attempts = MAX_ATTEMPTS;
         } else {
-            std::cerr << "Service process '" << svc.details.name << "' has died with status " << WEXITSTATUS(status) << ". ";
+            std::cerr << "Service process '" << svc.name << "' has died with status " << WEXITSTATUS(status) << ". ";
             if (WEXITSTATUS(status) == NON_RECOVERABLE_RETURN_CODE) {
                 std::cerr << " (non-recoverable) ";
                 svc.attempts = MAX_ATTEMPTS;
@@ -65,7 +65,7 @@ bool Watchdog::service_eligible_for_retry(Service& svc)
 {
     if (svc.attempts >= MAX_ATTEMPTS) {
         services_.erase(
-            std::remove_if(services_.begin(), services_.end(), [&](Service const& s) { return s.details.name == svc.details.name; }),
+            std::remove_if(services_.begin(), services_.end(), [&](Service const& s) { return s.name == svc.name; }),
             services_.end());
         return false;
     }
@@ -84,10 +84,10 @@ void Watchdog::start_service(Service& svc)
     svc.last_attempt = sc::now();
 
     if (pid == 0) {   // child process
-        std::cout << "Starting service " << svc.details.name << " with pid " << getpid() << "\n";
+        std::cout << "Starting service " << svc.name << " with pid " << getpid() << "\n";
         execlp(args_.program_name.c_str(), args_.program_name.c_str(),
             "-C", args_.program_name.c_str(),
-            "-s", svc.details.name.c_str(), nullptr);
+            "-s", svc.name.c_str(), nullptr);
         throw std::runtime_error("execvp failed when starting a new service: "s + strerror(errno));
     } else if (pid > 0) {
         svc.pid.emplace(pid);

@@ -21,7 +21,7 @@ public:
 
 private:
     struct Service {
-        WatchdogConfig::Service   details;
+        std::string               name;
         std::optional<pid_t>      pid {};
         size_t                    attempts = 0;
         decltype(sc::now())       last_attempt = sc::now();

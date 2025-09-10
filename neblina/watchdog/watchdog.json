@@ -1,5 +1,6 @@
 {
   "services": [
-    { "port": 23456, "name": "parrot_char" }
+    "parrot_char",
+    "parrot_text"
   ]
 }

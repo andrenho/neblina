@@ -22,14 +22,9 @@ WatchdogConfig& WatchdogConfig::load()
     if (t_services.error())
         throw std::runtime_error("Expected a 'services' key in config file");
     for (auto service: t_services) {
-        Service svc = {
-            .name = "",
-            .port = (uint16_t) service["port"].get_int64(),
-            .open_to_world = service["open_to_world"].error() ? false : (bool) service["open_to_world"].get_bool()
-        };
-        if (service["name"].get_string().get(svc.name) || svc.port == 0)
-            throw std::runtime_error("Incorrect watchdog service configuration");
-        services.emplace_back(std::move(svc));
+        std::string service_name;
+        service.get_string(service_name);
+        services.push_back(service_name);
     }
 
     return *this;
