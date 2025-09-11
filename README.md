@@ -49,6 +49,13 @@ A single binary application in C++ that provides a whole cloud. It's small and s
 - HTTP (network service - special)
 - HTTPS (network service)
 - SFTP (network service)
+- XMPP
+- OAuth2
+- NNTP
+- Gopher?
+- Password manager
+- Notes
+- Documents
 
 # Rules for new modules
 
