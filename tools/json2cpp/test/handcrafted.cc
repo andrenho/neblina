@@ -3,37 +3,6 @@
 #include <simdjson.h>
 using namespace simdjson;
 
-HandcraftedSample HandcraftedSample::from_file(std::string const& file_path)
-{
-    padded_string json = padded_string::load(file_path);
-    return parse_json(json);
-}
-
-HandcraftedSample HandcraftedSample::from_string(std::string const& json_str)
-{
-    padded_string json(json_str);
-    return parse_json(json);
-}
-
-static simdjson_result<ondemand::value> validate(ondemand::value doc, const char* field)
-{
-    auto const& value = doc[field];
-    if (value.error())
-        throw std::runtime_error(std::string("Mandatory field '") + field + "not found in JSON.");
-    return value;
-}
-
-template <typename T>
-static std::optional<T> opt(ondemand::value doc, const char* field)
-{
-    auto value = doc[field];
-    if (value.error())
-        return {};
-    return value;
-}
-
-namespace json {
-
 template<typename T>
 concept IsVector = requires {
     typename T::value_type;
@@ -54,8 +23,19 @@ static T extract_value(auto&& value)
         return value.get_int64();
     else if constexpr(std::is_same_v<T, bool>)
         return value.get_bool();
-    return {};
+    throw std::runtime_error("JSON parsing not implemented for this type.");
 }
+
+template <>
+static HandcraftedSample::Destination extract_value(auto&& value)
+{
+    HandcraftedSample::Destination obj;
+    obj.name = require<std::string>(value, "name");
+    obj.state = require<std::string>(value, "state");
+    obj.zip = optional<std::string>(value, "zip");
+    return obj;
+}
+
 
 template <NotVector T>
 static std::optional<T> optional(auto&& doc, const char* field)
@@ -88,27 +68,29 @@ static T require(auto&& doc, const char* field)
     return opt.value();
 }
 
+HandcraftedSample HandcraftedSample::from_file(std::string const& file_path)
+{
+    padded_string json = padded_string::load(file_path);
+    return parse_json(json);
+}
+
+HandcraftedSample HandcraftedSample::from_string(std::string const& json_str)
+{
+    padded_string json(json_str);
+    return parse_json(json);
 }
 
 HandcraftedSample HandcraftedSample::parse_json(padded_string const& json)
 {
     ondemand::parser parser;
-    ondemand::document doc = parser.iterate(json);
+    ondemand::document value = parser.iterate(json);
 
     HandcraftedSample obj;
-    obj.name = json::require<std::string>(doc, "name");
-    obj.sku = json::require<std::vector<std::string>>(doc, "sku");
-    obj.price = json::require<double>(doc, "price");
-    obj.bill_to = parse_destination(doc["billTo"].get_object());
-    obj.ship_to = parse_destination(doc["shipTo"].get_object());
+    obj.name = require<std::string>(value, "name");
+    obj.sku = require<std::vector<std::string>>(value, "sku");
+    obj.price = require<double>(value, "price");
+    obj.ship_to = require<Destination>(value, "shipTo");
+    obj.bill_to = require<Destination>(value, "billTo");
     return obj;
 }
 
-HandcraftedSample::Destination HandcraftedSample::parse_destination(simdjson_result<ondemand::object> doc)
-{
-    Destination obj;
-    obj.name = json::require<std::string>(doc, "name");
-    obj.state = json::require<std::string>(doc, "state");
-    obj.zip = json::optional<std::string>(doc, "zip");
-    return obj;
-}

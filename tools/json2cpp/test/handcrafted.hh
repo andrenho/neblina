@@ -27,7 +27,6 @@ public:
 
 private:
     static HandcraftedSample parse_json(simdjson::padded_string const& json);
-    static Destination parse_destination(simdjson::simdjson_result<simdjson::ondemand::object> doc);
 };
 
 #endif //SAMPLE_HH
