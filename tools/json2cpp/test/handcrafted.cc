@@ -13,7 +13,7 @@ template<typename T>
 concept NotVector = !IsVector<T>;
 
 template <typename T>
-static T extract_value(auto&& value)
+T extract_value(dom::element const& value)
 {
     if constexpr(std::is_same_v<T, std::string>)
         return std::string(value.get_string().take_value());
@@ -26,28 +26,18 @@ static T extract_value(auto&& value)
     throw std::runtime_error("JSON parsing not implemented for this type.");
 }
 
-template <>
-static HandcraftedSample::Destination extract_value(auto&& value)
-{
-    HandcraftedSample::Destination obj;
-    obj.name = require<std::string>(value, "name");
-    obj.state = require<std::string>(value, "state");
-    obj.zip = optional<std::string>(value, "zip");
-    return obj;
-}
-
 
 template <NotVector T>
-static std::optional<T> optional(auto&& doc, const char* field)
+std::optional<T> optional(dom::element const& doc, const char* field)
 {
     auto value = doc[field];
     if (value.error())
         return {};
-    return extract_value<T>(value);
+    return extract_value<T>(value.value());
 }
 
 template <IsVector T>
-static std::optional<T> optional(auto&& doc, const char* field)
+std::optional<T> optional(dom::element const& doc, const char* field)
 {
     auto value = doc[field];
     if (value.error())
@@ -60,13 +50,24 @@ static std::optional<T> optional(auto&& doc, const char* field)
 }
 
 template <typename T>
-static T require(auto&& doc, const char* field)
+T require(dom::element const& doc, const char* field)
 {
     auto opt = optional<T>(doc, field);
     if (!opt)
         throw std::runtime_error(std::string("Mandatory field '") + field + "not found in JSON.");
     return opt.value();
 }
+
+template <>
+HandcraftedSample::Destination extract_value(dom::element const& value)
+{
+    HandcraftedSample::Destination obj;
+    obj.name = require<std::string>(value, "name");
+    obj.state = require<std::string>(value, "state");
+    obj.zip = optional<std::string>(value, "zip");
+    return obj;
+}
+
 
 HandcraftedSample HandcraftedSample::from_file(std::string const& file_path)
 {
@@ -82,8 +83,8 @@ HandcraftedSample HandcraftedSample::from_string(std::string const& json_str)
 
 HandcraftedSample HandcraftedSample::parse_json(padded_string const& json)
 {
-    ondemand::parser parser;
-    ondemand::document value = parser.iterate(json);
+    dom::parser parser;
+    dom::element value = parser.parse(json);
 
     HandcraftedSample obj;
     obj.name = require<std::string>(value, "name");
