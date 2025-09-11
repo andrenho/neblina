@@ -14,3 +14,7 @@ Basic services
 
 HTTP
 ----
+-[ ] Static
+-[ ] Web application
+-[ ] Cookies
+-[ ] HTTPS
