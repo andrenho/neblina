@@ -8,8 +8,8 @@
 
 class TCPServerText : public TCPServer {
 public:
-    TCPServerText(struct Arguments const& args, uint16_t port, bool open_to_world=false, size_t buffer_sz=256, char separator='\r')
-        : TCPServer(args, port, open_to_world, buffer_sz), separator_(separator)
+    TCPServerText(struct Arguments const& args, uint16_t port, bool open_to_world=false, size_t buffer_sz=256, std::string const& separator="\r\n")
+        : TCPServer(args, port, open_to_world, buffer_sz), separator_(separator), sep_len_(separator.size())
     {
         buffer_.reserve(buffer_sz);
     }
@@ -19,8 +19,9 @@ protected:
     void new_data_available(std::vector<uint8_t> const& data, int fd) override;
 
 private:
-    std::vector<char> buffer_;
-    const char separator_;
+    std::string       buffer_;
+    const std::string separator_;
+    const size_t      sep_len_;
 };
 
 #endif //TCP_SERVER_TEXT_HH

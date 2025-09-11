@@ -1,6 +1,7 @@
 {
   "services": [
     "parrot_char",
-    "parrot_text"
+    "parrot_text",
+    "http11"
   ]
 }

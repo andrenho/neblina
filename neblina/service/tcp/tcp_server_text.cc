@@ -3,10 +3,11 @@
 void TCPServerText::new_data_available(std::vector<uint8_t> const& data, int fd)
 {
     for (uint8_t byte: data) {
-        if (byte != separator_) {
-            buffer_.push_back(byte);
-        } else {
-            new_data_available(std::string(buffer_.data(), buffer_.data() + buffer_.size()), fd);
+        buffer_ += (char) byte;
+        size_t buf_len = buffer_.size();
+        if (buf_len >= sep_len_ && buffer_.substr(buf_len - sep_len_, sep_len_) == separator_) {
+            buffer_ = buffer_.substr(0, buf_len - sep_len_);
+            new_data_available(buffer_, fd);
             buffer_.clear();
         }
     }
