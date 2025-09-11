@@ -1,4 +1,4 @@
-CPPFLAGS=-Wall -Wextra -I../../../contrib/simdjson
+CPPFLAGS=-Wall -Wextra -I../../../contrib/simdjson -std=c++23
 OBJ=../../../contrib/simdjson/simdjson.o handcrafted.o test.o
 
 all: test-json2cpp

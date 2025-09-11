@@ -23,17 +23,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0753c87b-42fc-4330-8b32-c770ab44186c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/contrib/simdjson/simdjson.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/contrib/simdjson/simdjson.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tools/json2cpp/test/Makefile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tools/json2cpp/test/handcrafted.cc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tools/json2cpp/test/handcrafted.hh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tools/json2cpp/test/sample-schema.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tools/json2cpp/test/sample.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tools/json2cpp/test/test.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/editor.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tools/json2cpp/test/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/tools/json2cpp/test/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tools/json2cpp/test/handcrafted.cc" beforeDir="false" afterPath="$PROJECT_DIR$/tools/json2cpp/test/handcrafted.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tools/json2cpp/test/handcrafted.hh" beforeDir="false" afterPath="$PROJECT_DIR$/tools/json2cpp/test/handcrafted.hh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tools/json2cpp/test/sample-schema.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/tools/json2cpp/test/sample-schema.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tools/json2cpp/test/sample.json" beforeDir="false" afterPath="$PROJECT_DIR$/tools/json2cpp/test/sample.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +51,12 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file:///usr/include/simdjson.h" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file:///Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/_stdlib.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file:///Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_types/_pid_t.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/contrib/simdjson/simdjson.h" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/aw98156/prj/neblina/neblina/parrot/parrot_char.hh" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/aw98156/prj/neblina/neblina/watchdog/watchdog_config.cc" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/aw98156/prj/neblina/neblina/watchdog/watchdog_config.cc" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MakefileLocalSettings">
     <option name="availableProjects">
@@ -76,27 +77,10 @@
             </list>
           </value>
         </entry>
-        <entry>
-          <key>
-            <ExternalProjectPojo>
-              <option name="name" value="neblina" />
-              <option name="path" value="$PROJECT_DIR$/tools/json2cpp" />
-            </ExternalProjectPojo>
-          </key>
-          <value>
-            <list>
-              <ExternalProjectPojo>
-                <option name="name" value="neblina" />
-                <option name="path" value="$PROJECT_DIR$/tools/json2cpp" />
-              </ExternalProjectPojo>
-            </list>
-          </value>
-        </entry>
       </map>
     </option>
     <option name="projectSyncType">
       <map>
-        <entry key="$PROJECT_DIR$/tools/json2cpp" value="RE_IMPORT" />
         <entry key="$PROJECT_DIR$/tools/json2cpp/test" value="RE_IMPORT" />
       </map>
     </option>
@@ -107,10 +91,10 @@
     <option name="minorVersion" value="1.4" />
     <option name="productBranch" value="Classic" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 6
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 6
+}</component>
   <component name="ProjectId" id="32YZWK3uzd3kjisbrsChEHnXEYL" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -127,7 +111,8 @@
     "RunOnceActivity.readMode.enableVisualFormatting": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
-    "git-widget-placeholder": "refactor"
+    "git-widget-placeholder": "refactor",
+    "node.js.selected.package.tslint": "(autodetect)"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -136,11 +121,6 @@
     </key>
   </component>
   <component name="RunManager" selected="Native Application.test-json2cpp">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="all" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="neblina" TARGET_NAME="all" CONFIG_NAME="all" version="1">
       <method v="2">
         <option name="CLION.COMPOUND.BUILD" enabled="true" />
@@ -149,6 +129,11 @@
     <configuration name="test-json2cpp" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="neblina" TARGET_NAME="test-json2cpp" CONFIG_NAME="test-json2cpp" version="1" RUN_PATH="$PROJECT_DIR$/tools/json2cpp/test/test-json2cpp">
       <method v="2">
         <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
     <configuration default="true" type="lua.app" factoryName="Lua Application">
