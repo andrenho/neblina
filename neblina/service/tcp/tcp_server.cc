@@ -149,3 +149,8 @@ void TCPServer::send_data(const char* data, int fd)
     std::vector<uint8_t> v(data, data + strlen(data));
     send_data(v, fd);
 }
+
+void TCPServer::close_connection(int fd)
+{
+    close(fd);
+}

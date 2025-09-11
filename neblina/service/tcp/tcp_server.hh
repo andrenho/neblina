@@ -19,6 +19,7 @@ protected:
     virtual void new_data_available(std::vector<uint8_t> const& data, int fd) = 0;
 
     void finalize_service() { server_running_ = true; }
+    void close_connection(int fd);
 
     static void send_data(std::vector<uint8_t> const& data, int fd);
     static void send_data(const char* data, int fd);

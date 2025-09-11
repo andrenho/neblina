@@ -1,7 +1,6 @@
 #ifndef WATCHDOG_CONFIG_HH
 #define WATCHDOG_CONFIG_HH
 
-#include <cstdint>
 #include <vector>
 #include <string>
 

@@ -1,0 +1,5 @@
+{
+  "rules": [
+    { "path": "/hello", "service": "http_hello" }
+  ]
+}

@@ -7,6 +7,7 @@ OBJ=main.o arguments.o \
 	service/tcp/tcp_server.o	\
 	service/tcp/tcp_server_text.o	\
 	http11/http_11.o		\
+	http11/http_11_config.o		\
 	watchdog/watchdog.o 		\
 	watchdog/watchdog_config.o	\
 	contrib/simdjson/simdjson.o
