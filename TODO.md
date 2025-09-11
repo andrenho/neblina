@@ -9,13 +9,14 @@ Base
 
 Basic services
 --------------
- - [ ] Parrot-Char
- - [ ] Parrot-Line
+ - [x] Parrot-Char
+ - [x] Parrot-Line
 
 HTTP
 ----
 - [ ] Static
   - [ ] Keep connection open
+  - [ ] Caching
 - [ ] Web application
 - [ ] Cookies
 - [ ] HTTPS
