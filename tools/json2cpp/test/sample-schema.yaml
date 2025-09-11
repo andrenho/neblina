@@ -1,0 +1,13 @@
+Destination:
+  name: string
+  address: string
+  city: string
+  state: string
+  zip: string*
+
+main:
+  name: string
+  sku: string[]
+  price: double
+  shipTo: Destination
+  billTo: Destination
