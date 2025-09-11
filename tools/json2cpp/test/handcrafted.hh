@@ -1,5 +1,5 @@
-#ifndef SAMPLE_HH
-#define SAMPLE_HH
+#ifndef HSAMPLE_HH
+#define HSAMPLE_HH
 
 #include <optional>
 #include <simdjson.h>

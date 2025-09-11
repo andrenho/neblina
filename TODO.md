@@ -1,6 +1,6 @@
 ### v0.1 - JSON -> C++
 
-- [ ] Application to generate C++ classes to parse JSON objects
+- [x] Application to generate C++ classes to parse JSON objects
 
 ### v0.2 - Orchestrator
 

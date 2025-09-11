@@ -1,9 +1,8 @@
 #include "handcrafted.hh"
 
-#include <simdjson.h>
 using namespace simdjson;
 
-#include "../json_support.hh"
+#include "json_support.hh"
 
 template <>
 HandcraftedSample::Destination extract_value(dom::element const& value)
@@ -15,7 +14,7 @@ HandcraftedSample::Destination extract_value(dom::element const& value)
     return obj;
 }
 
-HandcraftedSample parse_json(padded_string const& json)
+static HandcraftedSample parse_json(padded_string const& json)
 {
     dom::parser parser;
     dom::element value = parser.parse(json);

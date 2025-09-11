@@ -56,11 +56,13 @@ public:
 ''')
 
     types_already_added = { "string", "double", "int", "bool" }
+    additional_types = []
     def add_types(code, struct, level=4):
         for var in struct:
             type = struct[var]
             if type.replace('[]','').replace('*','') not in types_already_added:
                 types_already_added.add(type)
+                additional_types.append(type)
                 new_struct = [' ' * level + 'struct ' + type + ' {\n']
                 add_types(new_struct, data[type], level + 4)
                 new_struct.append(' ' * level + '};\n\n')
@@ -84,5 +86,58 @@ public:
 # source
 #
 
+def generate_fields(type):
+    r = []
+    for var in data[type]:
+        f = 'optional' if '*' in data[type][var] else 'require'
+        ctype = translate_type(data[type][var].replace('*',''))
+        ns = classname + '::' if data[type][var].replace('*','').replace('[]', '') not in  ['string', 'double', 'int', 'bool'] else ''
+        r.append(f'    obj.{to_snake_case(var)} = {f}<{ns}{ctype}>(value, "{var}");')
+    return '\n'.join(r) + "\n"
+
 with open(cpp_filename + ".cc", "w") as f:
-    pass
+    f.write(f'''#include "{cpp_filename}.hh"
+    
+using namespace simdjson;
+            
+#include "json_support.hh"
+
+''')
+
+    for type in additional_types:
+        f.write(f'''
+template <>
+{classname}::{type} extract_value(dom::element const& value)
+{{
+    {classname}::{type} obj;
+''')
+        f.write(generate_fields(type))
+        f.write(f'''    return obj;
+}}
+
+''')
+
+    f.write(f'''static {classname} parse_json(padded_string const& json)
+{{
+    dom::parser parser;
+    dom::element value = parser.parse(json);
+
+    {classname} obj;
+''')
+    f.write(generate_fields('main'))
+    f.write(f'''    return obj;
+}}
+
+{classname} {classname}::from_file(std::string const& file_path)
+{{
+    padded_string json = padded_string::load(file_path);
+    return parse_json(json);
+}}
+
+{classname} {classname}::from_string(std::string const& json_str)
+{{
+    padded_string json(json_str);
+    return parse_json(json);
+}}
+
+''')

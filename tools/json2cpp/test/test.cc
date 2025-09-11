@@ -16,4 +16,16 @@ int main()
     assert(hsample.bill_to.name == "John Smith");
     assert(hsample.ship_to.zip == "12345");
     assert(!hsample.bill_to.zip.has_value());
+
+    Sample sample = Sample::from_file("sample.json");
+
+    assert(sample.name == "John Smith");
+    assert(sample.sku.size() == 2);
+    assert(sample.sku.at(0) == "20223");
+    assert(sample.sku.at(1) == "23312");
+    assert(sample.price == 23.95);
+    assert(sample.ship_to.name == "Jane Smith");
+    assert(sample.bill_to.name == "John Smith");
+    assert(sample.ship_to.zip == "12345");
+    assert(!sample.bill_to.zip.has_value());
 }
