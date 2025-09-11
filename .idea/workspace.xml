@@ -23,8 +23,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0753c87b-42fc-4330-8b32-c770ab44186c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/tools/json2cpp/json2cpp.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tools/json2cpp/json_support.hh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tools/json2cpp/test/sample_schema.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/editor.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TODO.md" beforeDir="false" afterPath="$PROJECT_DIR$/TODO.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tools/json2cpp/test/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/tools/json2cpp/test/Makefile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tools/json2cpp/test/handcrafted.cc" beforeDir="false" afterPath="$PROJECT_DIR$/tools/json2cpp/test/handcrafted.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tools/json2cpp/test/handcrafted.hh" beforeDir="false" afterPath="$PROJECT_DIR$/tools/json2cpp/test/handcrafted.hh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tools/json2cpp/test/sample-schema.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tools/json2cpp/test/test.cc" beforeDir="false" afterPath="$PROJECT_DIR$/tools/json2cpp/test/test.cc" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,6 +109,7 @@
   "keyToString": {
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "Native Application.test-json2cpp.executor": "Run",
+    "Python.json2cpp.executor": "Run",
     "RunOnceActivity.RadMigrateCodeStyle": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.cidr.known.project.marker": "true",
@@ -107,15 +118,26 @@
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
     "git-widget-placeholder": "refactor",
-    "node.js.selected.package.tslint": "(autodetect)"
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/tools/json2cpp" />
       <recent name="$PROJECT_DIR$/tools/json2cpp/test" />
     </key>
   </component>
   <component name="RunManager" selected="Native Application.test-json2cpp">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="all" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="neblina" TARGET_NAME="all" CONFIG_NAME="all" version="1">
       <method v="2">
         <option name="CLION.COMPOUND.BUILD" enabled="true" />
@@ -126,10 +148,27 @@
         <option name="CLION.COMPOUND.BUILD" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
+    <configuration name="json2cpp" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="neblina" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tools/json2cpp" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tools/json2cpp/json2cpp.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
     </configuration>
     <configuration default="true" type="lua.app" factoryName="Lua Application">
       <option name="program" value="/usr/bin/lua" />
@@ -144,8 +183,15 @@
     <list>
       <item itemvalue="Native Application.all" />
       <item itemvalue="Native Application.test-json2cpp" />
+      <item itemvalue="Python.json2cpp" />
     </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.json2cpp" />
+      </list>
+    </recent_temporary>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="0753c87b-42fc-4330-8b32-c770ab44186c" name="Changes" comment="" />
@@ -154,6 +200,7 @@
       <option name="presentableId" value="Default" />
       <updated>1757599498888</updated>
       <workItem from="1757599501337" duration="2796000" />
+      <workItem from="1757618124616" duration="6607000" />
     </task>
     <task id="LOCAL-00001" summary=".">
       <option name="closed" value="true" />
@@ -171,8 +218,19 @@
       <option name="project" value="LOCAL" />
       <updated>1757616498193</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary=".">
+      <option name="closed" value="true" />
+      <created>1757617507126</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1757617507126</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="." />

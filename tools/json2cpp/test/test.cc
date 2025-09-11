@@ -1,4 +1,5 @@
 #include "handcrafted.hh"
+#include "sample.hh"
 
 #include <assert.h>
 

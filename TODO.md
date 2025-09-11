@@ -31,6 +31,7 @@
 
 ### v0.5 - Web Application
 
+- [ ] `json2cpp` -> write to json
 - [ ] REST interface
 - [ ] Database access
 - [ ] Tool to generate entities and DAOs
