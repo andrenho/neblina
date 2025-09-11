@@ -21,3 +21,4 @@ HTTP
 - [ ] Web application
 - [ ] Cookies
 - [ ] HTTPS
+- [ ] Basic auth
