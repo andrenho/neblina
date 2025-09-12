@@ -4,6 +4,8 @@ import sys
 import re
 import json
 
+json_types = ["string", "double", "int", "bool"]
+
 #
 # functions
 #
@@ -29,21 +31,42 @@ def translate_type(type: str):
 
 if len(sys.argv) != 3:
     print("Usage: " + sys.argv[0] + "schema.json ClassName")
-schema = sys.argv[1]
+
+schema_filename = sys.argv[1]
 classname = sys.argv[2]
 cpp_filename = to_snake_case(classname)
-uclass = classname.upper()
+upper_classname = classname.upper()
 
-with open(schema, "r") as file:
+with open(schema_filename, "r") as file:
     data = json.load(file)
 
 #
 # header
 #
 
-with open(cpp_filename + ".hh", "w") as f:
-    f.write(f'''#ifndef {uclass}_HH
-#define {uclass}_HH
+# create list of C++ types
+
+types_already_added = { "string", "double", "int", "bool" }
+additional_types = []
+def add_types(code, struct, level=4):
+    for var in struct:
+        type = struct[var]
+        if type.replace('[]','').replace('*','') not in types_already_added:
+            types_already_added.add(type)
+            additional_types.append(type)
+            new_struct = [' ' * level + 'struct ' + type + ' {\n']
+            add_types(new_struct, data[type], level + 4)
+            new_struct.append(' ' * level + '};\n\n')
+            for i in reversed(new_struct):
+                code.insert(0, i)
+        code.append(' ' * level + translate_type(struct[var]) + " " + to_snake_case(var) + ";\n")
+code = []
+add_types(code, data['main'])
+
+# HH header template
+
+header = f'''#ifndef {upper_classname}_HH
+#define {upper_classname}_HH
 
 #include <optional>
 #include <string>
@@ -53,34 +76,20 @@ with open(cpp_filename + ".hh", "w") as f:
 
 class {classname} {{
 public:
-''')
+{''.join(code)}
 
-    types_already_added = { "string", "double", "int", "bool" }
-    additional_types = []
-    def add_types(code, struct, level=4):
-        for var in struct:
-            type = struct[var]
-            if type.replace('[]','').replace('*','') not in types_already_added:
-                types_already_added.add(type)
-                additional_types.append(type)
-                new_struct = [' ' * level + 'struct ' + type + ' {\n']
-                add_types(new_struct, data[type], level + 4)
-                new_struct.append(' ' * level + '};\n\n')
-                for i in reversed(new_struct):
-                    code.insert(0, i)
-            code.append(' ' * level + translate_type(struct[var]) + " " + to_snake_case(var) + ";\n")
-
-    code = []
-    add_types(code, data['main'])
-
-    f.write(''.join(code))
-    f.write(f'''
     static {classname} from_file(std::string const& file_path);
     static {classname} from_string(std::string const& json_str);
 }};
 
-#endif //{uclass}_HH
-''')
+#endif //{upper_classname}_HH
+'''
+
+# save to file
+
+with open(cpp_filename + ".hh", "w") as f:
+    f.write(header)
+
 
 #
 # source
@@ -95,38 +104,38 @@ def generate_fields(type):
         r.append(f'    obj.{to_snake_case(var)} = {f}<{ns}{ctype}>(value, "{var}");')
     return '\n'.join(r) + "\n"
 
-with open(cpp_filename + ".cc", "w") as f:
-    f.write(f'''#include "{cpp_filename}.hh"
-    
-using namespace simdjson;
-            
-#include "json_support.hh"
+# additional types parsing function
 
-''')
-
-    for type in additional_types:
-        f.write(f'''
-template <>
+def additional_types_parsing_function(type):
+    return f'''template<>
 {classname}::{type} extract_value(dom::element const& value)
 {{
     {classname}::{type} obj;
-''')
-        f.write(generate_fields(type))
-        f.write(f'''    return obj;
-}}
+{generate_fields(type)}
+    return obj;
+}}'''
 
-''')
-
-    f.write(f'''static {classname} parse_json(padded_string const& json)
+main_parsing_function = f'''static {classname} parse_json(padded_string const& json)
 {{
     dom::parser parser;
     dom::element value = parser.parse(json);
 
     {classname} obj;
-''')
-    f.write(generate_fields('main'))
-    f.write(f'''    return obj;
-}}
+{generate_fields('main')}
+    return obj;
+}}'''
+
+# C++ source
+
+source = f'''#include "{cpp_filename}.hh"
+    
+using namespace simdjson;
+            
+#include "json_support.hh"
+
+{"\n\n".join(map(additional_types_parsing_function, additional_types))}
+{main_parsing_function}
+
 
 {classname} {classname}::from_file(std::string const& file_path)
 {{
@@ -139,5 +148,7 @@ template <>
     padded_string json(json_str);
     return parse_json(json);
 }}
+'''
 
-''')
+with open(cpp_filename + ".cc", "w") as f:
+    f.write(source)
