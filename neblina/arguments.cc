@@ -18,9 +18,10 @@ Arguments::Arguments(int argc, char* argv[])
             { "port",          required_argument, nullptr, 'P' },
             { "open-to-world", no_argument,       nullptr, 'w' },
             { "frequency",     required_argument, nullptr, 'f' },
+            { "log-color",     required_argument, nullptr, 'c' },
         };
         int idx;
-        int c = getopt_long(argc, argv, "hs:D:", long_options, &idx);
+        int c = getopt_long(argc, argv, "hs:D:P:wf:c:", long_options, &idx);
         if (c == -1)
             break;
 
@@ -31,6 +32,7 @@ Arguments::Arguments(int argc, char* argv[])
             case 'w': open_to_world = true; break;
             case 'f': frequency = std::chrono::milliseconds(strtoll(optarg, nullptr, 10)); break;
             case 's': service = optarg; break;
+            case 'c': logging_color = optarg; break;
         }
     }
 

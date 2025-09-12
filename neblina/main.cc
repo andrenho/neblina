@@ -7,6 +7,8 @@
 
 #include <iostream>
 
+#include "util/log.hh"
+
 int main(int argc, char* argv[])
 {
     args(argc, argv);
@@ -16,7 +18,6 @@ int main(int argc, char* argv[])
     register_native_services<SERVICES>(services);
 
     // find and execute service
-    std::cout << "Starting service " << args().service << "..." << std::endl;  // TODO - replace with logging
     auto const it = services.find(args().service);
 
     try {
@@ -25,10 +26,10 @@ int main(int argc, char* argv[])
             service->init();
             service->run();
         }
-        throw NonRecoverableException(args().service + " not a native service, and contributed services are not yet implemented.");
+        throw NonRecoverableException("not a native service, and contributed services are not yet implemented.");
 
     } catch (NonRecoverableException& e) {
-        std::cerr << e.what() << std::endl;
+        log("{}", e.what()); fflush(stderr);
         return NON_RECOVERABLE_RETURN_CODE;
     }
 }

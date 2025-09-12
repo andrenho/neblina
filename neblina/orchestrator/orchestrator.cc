@@ -1,12 +1,12 @@
 #include "orchestrator.hh"
 
 #include <string>
-#include <iostream>
 #include <unistd.h>
 #include <sys/wait.h>
 #include <util/exceptions/non_recoverable_exception.hh>
 using namespace std::string_literals;
 
+#include "util/log.hh"
 #include "orchestrator/orchestrator.gen.inc"
 
 void Orchestrator::init()
@@ -43,18 +43,17 @@ bool Orchestrator::service_is_running(Service& svc)
         svc.pid = {};
         svc.retry_in *= 2;
         if (WEXITSTATUS(status) == 0) {
-            std::cerr << "Service process " << svc.config.name << " has finalized successfully.\n";
+            log("Service process {} has finalized successfully.", svc.config.name);
             svc.attempts = MAX_ATTEMPTS;
         } else {
-            std::cerr << "Service process '" << svc.config.name << "' has died with status " << WEXITSTATUS(status) << ". ";
-            if (WEXITSTATUS(status) == NON_RECOVERABLE_RETURN_CODE) {
-                std::cerr << " (non-recoverable) ";
+            err("Service process {} has died with status {}{}.", svc.config.name, WEXITSTATUS(status),
+                WEXITSTATUS(status) == NON_RECOVERABLE_RETURN_CODE ? " (non-recoverable)" : "");
+            if (WEXITSTATUS(status) == NON_RECOVERABLE_RETURN_CODE)
                 svc.attempts = MAX_ATTEMPTS;
-            }
             if (svc.attempts < MAX_ATTEMPTS)
-                std::cerr << "Attempt " << svc.attempts << " in " << svc.retry_in << ".\n";
+                err("Attempt {} in {}.", svc.attempts, svc.retry_in);
             else
-                std::cerr << "Giving up.\n";
+                err("Giving up.");
         }
         return false;
     }
@@ -84,27 +83,34 @@ void Orchestrator::start_service(Service& svc)
     ++svc.attempts;
     svc.last_attempt = hr::now();
 
+    std::vector arguments = {
+        args().program_name.c_str(),
+        "-D", args().data_dir.c_str(),
+        "-s", svc.config.name.c_str(),
+    };
+
+    std::string s_port;
+    if (svc.config.port) {
+        arguments.emplace_back("-P");
+        s_port = std::to_string(*svc.config.port);
+        arguments.emplace_back(s_port.c_str());
+        if (svc.config.open_to_world && *svc.config.open_to_world)
+            arguments.emplace_back("-w");
+    }
+    if (svc.config.logging_color) {
+        arguments.emplace_back("-c");
+        arguments.emplace_back(svc.config.logging_color->c_str());
+    }
+
+    std::string pars; for (auto const& i: arguments) pars += std::string(i) + ' ';
+    arguments.emplace_back(nullptr);
+
     if (pid == 0) {   // child process
-        std::cout << "Starting service " << svc.config.name << " with pid " << getpid() << "\n";
-
-        std::vector arguments = {
-            args().program_name.c_str(),
-            "-D", args().data_dir.c_str(),
-            "-s", svc.config.name.c_str(),
-        };
-
-        if (svc.config.port) {
-            arguments.emplace_back("-P");
-            arguments.emplace_back(std::to_string(*svc.config.port).c_str());
-            if (svc.config.open_to_world && *svc.config.open_to_world)
-                arguments.emplace_back("-w");
-        }
-
-        arguments.emplace_back(nullptr);
         execvp(args().program_name.c_str(), (char* const*) arguments.data());
         throw std::runtime_error("execvp failed when starting a new service: "s + strerror(errno));
 
     } else if (pid > 0) {
+        log("Starting service {} with pid {} ({}).", svc.config.name, getpid(), pars);
         svc.pid.emplace(pid);
     } else {
         throw std::runtime_error("fork error");

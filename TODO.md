@@ -10,7 +10,8 @@
 - [x] Orchestrator
   - [x] Read config file
   - [x] Keep track of running services
-- [ ] Logging
+- [x] Logging
+- [ ] Parrot
 
 ### v0.3 - Interservice communication
 

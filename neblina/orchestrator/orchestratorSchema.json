@@ -3,7 +3,8 @@
     "name": "string",
     "port": "int*",
     "open_to_world": "bool*",
-    "frequencyMs": "int*"
+    "frequencyMs": "int*",
+    "loggingColor": "string*"
   },
   "main": {
     "services": "Service[]"

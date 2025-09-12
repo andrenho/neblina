@@ -14,6 +14,7 @@ struct Arguments {
     int               port = 0;
     bool              open_to_world = false;
     ms                frequency = 0ms;
+    std::string       logging_color = "0";
 
 private:
     static void print_help(std::string const& program_name);
