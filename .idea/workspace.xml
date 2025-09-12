@@ -27,20 +27,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0753c87b-42fc-4330-8b32-c770ab44186c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/neblina/service/service.cc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/neblina/util/embed/compressed_data.cc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/neblina/util/embed/compressed_data.hh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/neblina/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/orchestrator/orchestrator.cc" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/orchestrator/orchestrator.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/orchestrator/orchestrator.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/orchestrator/orchestrator.hh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/service/service.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/service/service.hh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tools/json2cpp/json2cpp.py" beforeDir="false" afterPath="$PROJECT_DIR$/tools/json2cpp/json2cpp.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tools/json2cpp/json_support.hh" beforeDir="false" afterPath="$PROJECT_DIR$/tools/json2cpp/json_support.hh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tools/json2cpp/test/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/tools/json2cpp/test/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tools/json2cpp/test/handcrafted.cc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tools/json2cpp/test/handcrafted.hh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tools/json2cpp/test/sample.json" beforeDir="false" afterPath="$PROJECT_DIR$/tools/json2cpp/test/sample.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tools/json2cpp/test/sample_schema.json" beforeDir="false" afterPath="$PROJECT_DIR$/tools/json2cpp/test/sample_schema.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tools/json2cpp/test/test.cc" beforeDir="false" afterPath="$PROJECT_DIR$/tools/json2cpp/test/test.cc" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -347,7 +337,15 @@
       <option name="project" value="LOCAL" />
       <updated>1757704771779</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary=".">
+      <option name="closed" value="true" />
+      <created>1757708697268</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1757708697268</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
