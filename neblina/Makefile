@@ -5,6 +5,7 @@
 OBJ=	main.o				\
 	arguments.o			\
 	orchestrator/orchestrator.o	\
+	service/service.o		\
 	service/scheduled_service.o	\
 	util/embed/embedded.o		\
 	contrib/simdjson/simdjson.o

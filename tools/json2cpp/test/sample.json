@@ -1,14 +1,28 @@
 {
-  "name": "John Smith",
-  "sku": ["20223", "23312"],
-  "price": 23.95,
-  "shipTo": {
-    "name": "Jane Smith",
-    "state": "NY",
-    "zip": "12345"
-  },
-  "billTo": {
-    "name": "John Smith",
+  "firstName": "John",
+  "lastName": "Smith",
+  "isAlive": true,
+  "age": 27,
+  "address": {
+    "streetAddress": "21 2nd Street",
+    "city": "New York",
     "state": "NY"
-  }
+  },
+  "phoneNumbers": [
+    {
+      "type": "home",
+      "number": "212 555-1234"
+    },
+    {
+      "type": "office",
+      "number": "646 555-4567",
+      "postalCode": "10021-3100"
+    }
+  ],
+  "children": [
+    "Catherine",
+    "Thomas",
+    "Trevor"
+  ],
+  "spouse": null
 }

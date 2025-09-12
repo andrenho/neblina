@@ -1,14 +1,22 @@
 {
-  "Destination": {
-    "name": "string",
-    "state": "string",
-    "zip": "string*"
-  },
   "main": {
-    "name": "string",
-    "sku": "string[]",
-    "price": "double",
-    "shipTo": "Destination",
-    "billTo": "Destination"
+    "firstName": "string",
+    "lastName": "string",
+    "isAlive": "bool",
+    "age": "int",
+    "address": "Address",
+    "phoneNumbers": "PhoneNumber[]",
+    "children": "string[]",
+    "spouse": "string*"
+  },
+  "Address": {
+    "streetAddress": "string",
+    "city": "string",
+    "state": "string"
+  },
+  "PhoneNumber": {
+    "type": "string",
+    "number": "string",
+    "postalCode": "string*"
   }
 }

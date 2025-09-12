@@ -13,12 +13,14 @@ json_types = ["string", "double", "int", "bool"]
 def to_snake_case(text):
     return re.sub(r'(?<!^)(?=[A-Z])', '_', text).lower()
 
-def translate_type(type: str):
+def translate_type(type: str, classname=""):
     new_type = None
     if type.startswith('string'):
         new_type = 'std::string'
     else:
         new_type = type.replace('[]', '').replace('*', '')
+    if classname != '' and type.replace('[]', '') not in json_types:
+        new_type = classname + "::" + new_type
     if '[]' in type:
         new_type = 'std::vector<' + new_type + '>'
     if '*' in type:
@@ -52,11 +54,12 @@ additional_types = []
 def add_types(code, struct, level=4):
     for var in struct:
         type = struct[var]
-        if type.replace('[]','').replace('*','') not in types_already_added:
-            types_already_added.add(type)
-            additional_types.append(type)
-            new_struct = [' ' * level + 'struct ' + type + ' {\n']
-            add_types(new_struct, data[type], level + 4)
+        clean_type = type.replace('[]','').replace('*','')
+        if clean_type not in types_already_added:
+            types_already_added.add(clean_type)
+            additional_types.append(clean_type)
+            new_struct = [' ' * level + 'struct ' + clean_type + ' {\n']
+            add_types(new_struct, data[clean_type], level + 4)
             new_struct.append(' ' * level + '};\n\n')
             for i in reversed(new_struct):
                 code.insert(0, i)
@@ -103,10 +106,9 @@ def generate_fields(type):
     r = []
     for var in data[type]:
         f = 'optional' if '*' in data[type][var] else 'require'
-        ctype = translate_type(data[type][var].replace('*',''))
-        ns = classname + '::' if data[type][var].replace('*','').replace('[]', '') not in  ['string', 'double', 'int', 'bool'] else ''
-        r.append(f'    obj.{to_snake_case(var)} = {f}<{ns}{ctype}>(value, "{var}");')
-    return '\n'.join(r) + "\n"
+        ctype = translate_type(data[type][var].replace('*',''), classname)
+        r.append(f'    obj.{to_snake_case(var)} = {f}<{ctype}>(value, "{var}");')
+    return '\n'.join(r)
 
 # additional types parsing function
 

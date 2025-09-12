@@ -1,31 +1,21 @@
-#include "handcrafted.hh"
 #include "sample.hh"
 
-#include <assert.h>
+#include <cassert>
 
 int main()
 {
-    HandcraftedSample hsample = HandcraftedSample::from_file("sample.json");
-
-    assert(hsample.name == "John Smith");
-    assert(hsample.sku.size() == 2);
-    assert(hsample.sku.at(0) == "20223");
-    assert(hsample.sku.at(1) == "23312");
-    assert(hsample.price == 23.95);
-    assert(hsample.ship_to.name == "Jane Smith");
-    assert(hsample.bill_to.name == "John Smith");
-    assert(hsample.ship_to.zip == "12345");
-    assert(!hsample.bill_to.zip.has_value());
-
     Sample sample = Sample::from_file("sample.json");
 
-    assert(sample.name == "John Smith");
-    assert(sample.sku.size() == 2);
-    assert(sample.sku.at(0) == "20223");
-    assert(sample.sku.at(1) == "23312");
-    assert(sample.price == 23.95);
-    assert(sample.ship_to.name == "Jane Smith");
-    assert(sample.bill_to.name == "John Smith");
-    assert(sample.ship_to.zip == "12345");
-    assert(!sample.bill_to.zip.has_value());
+    assert(sample.first_name == "John");
+    assert(sample.is_alive);
+    assert(sample.age == 27);
+    assert(sample.address.city == "New York");
+    assert(sample.phone_numbers.size() == 2);
+    assert(sample.phone_numbers.at(0).type == "home");
+    assert(!sample.phone_numbers.at(0).postal_code);
+    assert(sample.phone_numbers.at(1).postal_code);
+    assert(*sample.phone_numbers.at(1).postal_code == "10021-3100");
+    assert(sample.children.size() == 3);
+    assert(sample.children.at(1) == "Thomas");
+    assert(!sample.spouse);
 }

@@ -29,7 +29,7 @@ template <NotVector T>
 std::optional<T> optional(dom::element const& doc, const char* field)
 {
     auto value = doc[field];
-    if (value.error())
+    if (value.error() || value.is_null())
         return {};
     return extract_value<T>(value.value());
 }

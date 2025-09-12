@@ -1,6 +1,6 @@
 SIMDJSON_PATH=../../../neblina/contrib/simdjson
 CPPFLAGS=-Wall -Wextra -I$(SIMDJSON_PATH) -I.. -std=c++23 -ggdb -O0
-OBJ=$(SIMDJSON_PATH)/simdjson.o handcrafted.o test.o sample.o
+OBJ=$(SIMDJSON_PATH)/simdjson.o test.o sample.o
 
 all: test-json2cpp
 
