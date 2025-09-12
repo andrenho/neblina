@@ -2,6 +2,10 @@
 
 #include <iostream>
 
+void Orchestrator::init()
+{
+}
+
 void Orchestrator::iteration()
 {
 }

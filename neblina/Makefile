@@ -2,12 +2,17 @@
 # objects
 #
 
-OBJ=	main.o				\
-	arguments.o			\
-	orchestrator/orchestrator.o	\
-	service/scheduled_service.o	\
-	util/embed/embedded.o		\
+OBJ=	main.o				arguments.o				\
+	orchestrator/orchestrator.o	orchestrator/orchestrator_config.o	\
+	service/scheduled_service.o						\
+	util/embed/embedded.o							\
 	contrib/simdjson/simdjson.o
+
+#
+# config
+#
+
+JSON2CPP = ../tools/json2cpp/json2cpp.py
 
 #
 # flags
@@ -54,6 +59,13 @@ contrib/simdjson/simdjson.o: contrib/simdjson/simdjson.cpp
 	cat $^ | gzip | xxd -i >> $@ && \
 	echo "};" >> $@
 	echo "static size_t $(basename $(notdir $^))_uncompressed_sz = $(shell stat ${STAT_PRM} $^);" >> $@
+
+orchestrator/orchestrator.o: orchestrator/orchestrator_config.o
+
+orchestrator/orchestrator_config.o: orchestrator/orchestrator_config.cc
+
+orchestrator/orchestrator_config.cc: orchestrator/orchestratorConfigSchema.json
+	$(JSON2CPP) $^ OrchestratorConfig
 
 pedantic:
 	$(MAKE) all PEDANTIC=1

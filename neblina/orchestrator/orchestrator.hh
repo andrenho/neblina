@@ -8,6 +8,8 @@ public:
     Orchestrator()
         : ScheduledService(100ms) {}
 
+    void init() override;
+
 protected:
     void iteration() override;
 

@@ -4,6 +4,8 @@ OBJ=$(SIMDJSON_PATH)/simdjson.o handcrafted.o test.o sample.o
 
 all: test-json2cpp
 
+test.o: sample.o
+
 sample.cc: sample_schema.json ../json2cpp.py
 	../json2cpp.py sample_schema.json Sample
 

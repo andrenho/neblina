@@ -29,13 +29,14 @@ def translate_type(type: str):
 # main
 #
 
-if len(sys.argv) != 3:
-    print("Usage: " + sys.argv[0] + "schema.json ClassName")
+if len(sys.argv) != 3 and len(sys.argv) != 4:
+    print("Usage: " + sys.argv[0] + "schema.json ClassName [output_directory]")
 
 schema_filename = sys.argv[1]
 classname = sys.argv[2]
 cpp_filename = to_snake_case(classname)
 upper_classname = classname.upper()
+output_dir = sys.argv[3] + '/' if len(sys.argv) >=4 else ""
 
 with open(schema_filename, "r") as file:
     data = json.load(file)
@@ -87,7 +88,7 @@ public:
 
 # save to file
 
-with open(cpp_filename + ".hh", "w") as f:
+with open(output_dir + cpp_filename + ".hh", "w") as f:
     f.write(header)
 
 
@@ -150,5 +151,5 @@ using namespace simdjson;
 }}
 '''
 
-with open(cpp_filename + ".cc", "w") as f:
+with open(output_dir + cpp_filename + ".cc", "w") as f:
     f.write(source)
