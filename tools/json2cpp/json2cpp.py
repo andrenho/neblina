@@ -81,6 +81,9 @@ public:
 
     static {classname} from_file(std::string const& file_path);
     static {classname} from_string(std::string const& json_str);
+private:
+    {classname}() = default;
+    static {classname} parse_json(simdjson::padded_string const& json);
 }};
 
 #endif //{upper_classname}_HH
@@ -116,7 +119,7 @@ def additional_types_parsing_function(type):
     return obj;
 }}'''
 
-main_parsing_function = f'''static {classname} parse_json(padded_string const& json)
+main_parsing_function = f'''{classname} {classname}::parse_json(padded_string const& json)
 {{
     dom::parser parser;
     dom::element value = parser.parse(json);

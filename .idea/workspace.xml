@@ -27,8 +27,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0753c87b-42fc-4330-8b32-c770ab44186c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/neblina/orchestrator/orchestrator.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/editor.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/neblina/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/orchestrator/orchestrator.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/orchestrator/orchestrator.hh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/orchestrator/orchestratorConfigSchema.json" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/orchestrator/orchestratorSchema.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tools/json2cpp/json2cpp.py" beforeDir="false" afterPath="$PROJECT_DIR$/tools/json2cpp/json2cpp.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
