@@ -26,17 +26,14 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0753c87b-42fc-4330-8b32-c770ab44186c" name="Changes" comment=".">
-      <change afterPath="$PROJECT_DIR$/neblina/service/registry.hh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/editor.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="0753c87b-42fc-4330-8b32-c770ab44186c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/neblina/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/main.cc" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/main.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/arguments.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/arguments.hh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/orchestrator/orchestrator.cc" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/orchestrator/orchestrator.cc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/neblina/orchestrator/orchestrator.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/orchestrator/orchestrator.hh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/service/scheduled_service.cc" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/service/scheduled_service.cc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/neblina/service/scheduled_service.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/service/scheduled_service.hh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/service/service.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/service/service.hh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/util/chrono.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/util/chrono.hh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,6 +61,7 @@
     <setting file="file:///Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/_stdlib.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file:///Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_types/_pid_t.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/neblina/contrib/simdjson/simdjson.h" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/aw98156/prj/neblina/neblina/orchestrator/orchestrator.hh" root0="SKIP_HIGHLIGHTING" />
     <setting file="file:///opt/homebrew/Cellar/gcc/14.2.0/include/c++/14/bits/chrono.h" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MakefileLocalSettings">
@@ -112,6 +110,7 @@
   "keyToString": {
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "Native Application.neblina.executor": "Run",
+    "Native Application.pedantic.executor": "Run",
     "Native Application.test-json2cpp.executor": "Run",
     "Python.json2cpp.executor": "Run",
     "RunOnceActivity.RadMigrateCodeStyle": "true",
@@ -143,7 +142,7 @@
       <recent name="$PROJECT_DIR$/tools/json2cpp/test" />
     </key>
   </component>
-  <component name="RunManager" selected="Native Application.all">
+  <component name="RunManager" selected="Native Application.pedantic">
     <configuration name="Makefile" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="neblina" TARGET_NAME="Makefile" CONFIG_NAME="Makefile" version="1">
       <method v="2">
         <option name="CLION.COMPOUND.BUILD" enabled="true" />
@@ -164,7 +163,7 @@
         <option name="CLION.COMPOUND.BUILD" enabled="true" />
       </method>
     </configuration>
-    <configuration name="pedantic" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="neblina" TARGET_NAME="pedantic" CONFIG_NAME="pedantic" version="1">
+    <configuration name="pedantic" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="neblina" TARGET_NAME="pedantic" CONFIG_NAME="pedantic" version="1" RUN_PATH="$PROJECT_DIR$/neblina/neblina">
       <method v="2">
         <option name="CLION.COMPOUND.BUILD" enabled="true" />
       </method>
@@ -297,7 +296,15 @@
       <option name="project" value="LOCAL" />
       <updated>1757679760884</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary=".">
+      <option name="closed" value="true" />
+      <created>1757685290914</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1757685290914</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

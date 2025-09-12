@@ -8,7 +8,7 @@ struct Arguments {
 
     const std::string program_name;
     std::string       data_dir;
-    std::string       service = "watchdog";
+    std::string       service = "orchestrator";
 
 private:
     static void print_help(std::string const& program_name);

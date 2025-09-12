@@ -8,7 +8,7 @@ class ScheduledService : public Service {
 public:
     explicit ScheduledService(std::chrono::milliseconds frequency) : frequency_(frequency) {}
 
-    void run() override;
+    [[noreturn]] void run() override;
 
 protected:
     std::chrono::milliseconds frequency_;

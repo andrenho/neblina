@@ -15,7 +15,7 @@ OBJ=	main.o				\
 
 CPPFLAGS=-Wall -MMD -I.
 CXXFLAGS=-std=c++23
-LDFLAGS=-lz
+LDFLAGS=-lz -flto=auto
 
 ifdef DEV
   CPPFLAGS += -O0 -ggdb
@@ -26,8 +26,7 @@ else ifdef PEDANTIC
     CXXFLAGS += -fanalyzer -Wlogical-op -Wduplicated-cond -Wduplicated-branches
   endif
 else
-  CPPFLAGS += -O3 -ffast-math -march=native -flto -D_FORTIFY_SOURCE=2 -fstack-protector-strong -fno-common -ffunction-sections -fdata-sections
-  LDFLAGS += -flto=auto -Wl,--gc-sections
+  CPPFLAGS += -O3 -ffast-math -march=native -flto -D_FORTIFY_SOURCE=2 -fstack-protector-strong -fno-common
 endif
 
 UNAME_S := $(shell uname -s)
@@ -57,7 +56,7 @@ contrib/simdjson/simdjson.o: contrib/simdjson/simdjson.cpp
 	echo "static size_t $(basename $(notdir $^))_uncompressed_sz = $(shell stat ${STAT_PRM} $^);" >> $@
 
 pedantic:
-	$(MAKE) clean all PEDANTIC=1
+	$(MAKE) all PEDANTIC=1
 
 dev:
 	$(MAKE) all DEV=1

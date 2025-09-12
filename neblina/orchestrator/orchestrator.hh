@@ -9,7 +9,7 @@ public:
         : ScheduledService(100ms) {}
 
 protected:
-    void iteration() override {}
+    void iteration() override;
 
 public:
     static constexpr std::string_view name = "orchestrator";
