@@ -18,7 +18,7 @@ JSON2CPP = ../tools/json2cpp/json2cpp.py
 # flags
 #
 
-CPPFLAGS=-Wall -MMD -I.
+CPPFLAGS=-Wall -MMD -I. -Icontrib/simdjson
 CXXFLAGS=-std=c++23
 LDFLAGS=-lz -flto=auto
 
@@ -65,7 +65,7 @@ orchestrator/orchestrator.o: orchestrator/orchestrator_config.o
 orchestrator/orchestrator_config.o: orchestrator/orchestrator_config.cc
 
 orchestrator/orchestrator_config.cc: orchestrator/orchestratorConfigSchema.json
-	$(JSON2CPP) $^ OrchestratorConfig
+	$(JSON2CPP) $^ OrchestratorConfig orchestrator
 
 pedantic:
 	$(MAKE) all PEDANTIC=1
