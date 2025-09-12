@@ -1,16 +1,8 @@
-CPPFLAGS=-Wall -Wextra -MMD -I.
-CXXFLAGS=-std=c++23 -Weffc++
+CPPFLAGS=-Wall -Wextra -Wpedantic -Wshadow -Wformat=2 -MMD -I. -fstack-protector-strong -fno-common -D_FORTIFY_SOURCE=2
+CXXFLAGS=-std=c++23 -Weffc++ -Wnull-dereference -Wlogical-op -Wduplicated-cond -Wduplicated-branches -Wcast-align -fanalyzer
 LDFLAGS=-lz
-OBJ=main.o arguments.o \
-	util/embed/embedded.o 		\
-	service/config.o		\
-	service/tcp/tcp_server.o	\
-	service/tcp/tcp_server_text.o	\
-	http11/http_11.o		\
-	http11/http_11_config.o		\
-	watchdog/watchdog.o 		\
-	watchdog/watchdog_config.o	\
-	contrib/simdjson/simdjson.o
+OBJ=main.o				\
+    contrib/simdjson/simdjson.o		\
 
 ifdef RELEASE
   CPPFLAGS+=-O3 -ffast-math -march=native -flto

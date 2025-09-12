@@ -13,7 +13,8 @@
   <component name="CMakeRunConfigurationManager">
     <generated>
       <config projectName="neblina" targetName="all" />
-      <config projectName="neblina" targetName="test-json2cpp" />
+      <config projectName="neblina" targetName="neblina" />
+      <config projectName="neblina" targetName="release" />
     </generated>
   </component>
   <component name="CMakeSettings">
@@ -23,12 +24,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0753c87b-42fc-4330-8b32-c770ab44186c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/neblina/Makefile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/neblina/main.cc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/contrib/simdjson/simdjson.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/contrib/simdjson/simdjson.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/contrib/simdjson/simdjson.h" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/contrib/simdjson/simdjson.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tools/json2cpp/test/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/tools/json2cpp/test/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/Makefile" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,6 +38,9 @@
     <option name="formatViaClangd" value="false" />
   </component>
   <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$/neblina">
+      <ProjectState />
+    </projectState>
     <projectState path="$PROJECT_DIR$/tools/json2cpp">
       <ProjectState />
     </projectState>
@@ -76,10 +78,27 @@
             </list>
           </value>
         </entry>
+        <entry>
+          <key>
+            <ExternalProjectPojo>
+              <option name="name" value="neblina" />
+              <option name="path" value="$PROJECT_DIR$/neblina" />
+            </ExternalProjectPojo>
+          </key>
+          <value>
+            <list>
+              <ExternalProjectPojo>
+                <option name="name" value="neblina" />
+                <option name="path" value="$PROJECT_DIR$/neblina" />
+              </ExternalProjectPojo>
+            </list>
+          </value>
+        </entry>
       </map>
     </option>
     <option name="projectSyncType">
       <map>
+        <entry key="$PROJECT_DIR$/neblina" value="RE_IMPORT" />
         <entry key="$PROJECT_DIR$/tools/json2cpp/test" value="RE_IMPORT" />
       </map>
     </option>
@@ -109,6 +128,7 @@
     "RunOnceActivity.cidr.known.project.marker": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
     "git-widget-placeholder": "refactor",
@@ -117,7 +137,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
+    "settings.editor.selected.configurable": "CPPToolchains",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -131,13 +151,18 @@
       <recent name="$PROJECT_DIR$/tools/json2cpp/test" />
     </key>
   </component>
-  <component name="RunManager" selected="Native Application.test-json2cpp">
+  <component name="RunManager" selected="Native Application.all">
     <configuration name="all" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="neblina" TARGET_NAME="all" CONFIG_NAME="all" version="1">
       <method v="2">
         <option name="CLION.COMPOUND.BUILD" enabled="true" />
       </method>
     </configuration>
-    <configuration name="test-json2cpp" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="neblina" TARGET_NAME="test-json2cpp" CONFIG_NAME="test-json2cpp" version="1" RUN_PATH="$PROJECT_DIR$/tools/json2cpp/test/test-json2cpp">
+    <configuration name="neblina" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="neblina" TARGET_NAME="neblina" CONFIG_NAME="neblina" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="release" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="neblina" TARGET_NAME="release" CONFIG_NAME="release" version="1">
       <method v="2">
         <option name="CLION.COMPOUND.BUILD" enabled="true" />
       </method>
@@ -181,7 +206,8 @@
     </configuration>
     <list>
       <item itemvalue="Native Application.all" />
-      <item itemvalue="Native Application.test-json2cpp" />
+      <item itemvalue="Native Application.neblina" />
+      <item itemvalue="Native Application.release" />
       <item itemvalue="Python.json2cpp" />
     </list>
     <recent_temporary>
@@ -200,7 +226,7 @@
       <updated>1757599498888</updated>
       <workItem from="1757599501337" duration="2796000" />
       <workItem from="1757618124616" duration="8444000" />
-      <workItem from="1757675184123" duration="2110000" />
+      <workItem from="1757675184123" duration="2687000" />
     </task>
     <task id="LOCAL-00001" summary=".">
       <option name="closed" value="true" />
@@ -242,7 +268,15 @@
       <option name="project" value="LOCAL" />
       <updated>1757676835873</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary=".">
+      <option name="closed" value="true" />
+      <created>1757677367782</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1757677367782</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
