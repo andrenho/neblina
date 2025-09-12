@@ -4,6 +4,7 @@
 
 OBJ=	main.o				\
 	arguments.o			\
+	orchestrator/orchestrator.o	\
 	util/embed/embedded.o		\
 	contrib/simdjson/simdjson.o
 

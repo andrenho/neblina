@@ -6,7 +6,7 @@
 
 - [x] Create base application
 - [x] Support for embedded file
-- [ ] Config file and data dir infrastructure
+- [x] Config file and data dir infrastructure
 - [ ] Orchestrator
   - [ ] Read config file
   - [ ] Keep track of running services
