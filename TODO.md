@@ -7,9 +7,9 @@
 - [x] Create base application
 - [x] Support for embedded file
 - [x] Config file and data dir infrastructure
-- [ ] Orchestrator
-  - [ ] Read config file
-  - [ ] Keep track of running services
+- [x] Orchestrator
+  - [x] Read config file
+  - [x] Keep track of running services
 - [ ] Logging
 
 ### v0.3 - Interservice communication
