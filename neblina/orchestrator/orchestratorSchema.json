@@ -1,8 +1,9 @@
 {
   "Service": {
     "name": "string",
-    "port": "int",
-    "open_to_world": "bool*"
+    "port": "int*",
+    "open_to_world": "bool*",
+    "frequencyMs": "int*"
   },
   "main": {
     "services": "Service[]"

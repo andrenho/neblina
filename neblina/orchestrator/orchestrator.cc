@@ -86,10 +86,24 @@ void Orchestrator::start_service(Service& svc)
 
     if (pid == 0) {   // child process
         std::cout << "Starting service " << svc.config.name << " with pid " << getpid() << "\n";
-        execlp(args().program_name.c_str(), args().program_name.c_str(),
+
+        std::vector arguments = {
+            args().program_name.c_str(),
             "-D", args().data_dir.c_str(),
-            "-s", svc.config.name.c_str(), nullptr);
+            "-s", svc.config.name.c_str(),
+        };
+
+        if (svc.config.port) {
+            arguments.emplace_back("-P");
+            arguments.emplace_back(std::to_string(*svc.config.port).c_str());
+            if (svc.config.open_to_world && *svc.config.open_to_world)
+                arguments.emplace_back("-w");
+        }
+
+        arguments.emplace_back(nullptr);
+        execvp(args().program_name.c_str(), (char* const*) arguments.data());
         throw std::runtime_error("execvp failed when starting a new service: "s + strerror(errno));
+
     } else if (pid > 0) {
         svc.pid.emplace(pid);
     } else {

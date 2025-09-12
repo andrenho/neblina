@@ -3,12 +3,17 @@
 
 #include <string>
 
+#include "util/chrono.hh"
+
 struct Arguments {
     Arguments(int argc, char* argv[]);
 
     const std::string program_name;
     std::string       data_dir;
     std::string       service = "orchestrator";
+    int               port = 0;
+    bool              open_to_world = false;
+    ms                frequency = 0ms;
 
 private:
     static void print_help(std::string const& program_name);

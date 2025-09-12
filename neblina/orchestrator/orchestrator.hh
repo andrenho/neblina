@@ -3,7 +3,7 @@
 
 #include "arguments.hh"
 #include "util/chrono.hh"
-#include "service/scheduled_service.hh"
+#include "../service/scheduled/scheduled_service.hh"
 #include "orchestrator_config.hh"
 
 class Orchestrator : public ScheduledService {
@@ -20,12 +20,12 @@ private:
 
     struct Service {
         OrchestratorConfig::Service config;
-        std::optional<pid_t>        pid;
+        std::optional<pid_t>        pid {};
         size_t                      attempts = 0;
         decltype(hr::now())         last_attempt = hr::now();
         std::chrono::milliseconds   retry_in = 50ms;
     };
-    std::vector<Service> services_;
+    std::vector<Service> services_ {};
 
     void iteration() override;
 

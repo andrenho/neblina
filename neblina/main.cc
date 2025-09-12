@@ -17,11 +17,11 @@ int main(int argc, char* argv[])
 
     // find and execute service
     std::cout << "Starting service " << args().service << "..." << std::endl;  // TODO - replace with logging
-    auto it = services.find(args().service);
+    auto const it = services.find(args().service);
 
     try {
         if (it != services.end()) {
-            auto service = it->second();
+            auto const service = it->second();
             service->init();
             service->run();
         }

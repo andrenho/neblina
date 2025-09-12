@@ -12,7 +12,12 @@ Arguments::Arguments(int argc, char* argv[])
         static option long_options[] = {
             { "help",          no_argument,       nullptr, 'h' },
             { "data-dir",      required_argument, nullptr, 'D' },
+
+            // used to define services and their characteristics
             { "service",       required_argument, nullptr, 's' },
+            { "port",          required_argument, nullptr, 'P' },
+            { "open-to-world", no_argument,       nullptr, 'w' },
+            { "frequency",     required_argument, nullptr, 'f' },
         };
         int idx;
         int c = getopt_long(argc, argv, "hs:D:", long_options, &idx);
@@ -20,15 +25,12 @@ Arguments::Arguments(int argc, char* argv[])
             break;
 
         switch (c) {
-            case 'h':
-                print_help(argv[0]);
-                break;
-            case 'D':
-                data_dir = optarg;
-                break;
-            case 's':
-                service = optarg;
-                break;
+            case 'h': print_help(argv[0]); break;
+            case 'D': data_dir = optarg; break;
+            case 'P': port = (int) strtol(optarg, nullptr, 10); break;
+            case 'w': open_to_world = true; break;
+            case 'f': frequency = std::chrono::milliseconds(strtoll(optarg, nullptr, 10)); break;
+            case 's': service = optarg; break;
         }
     }
 
@@ -39,7 +41,7 @@ Arguments::Arguments(int argc, char* argv[])
 void Arguments::print_help(std::string const& program_name)
 {
     std::cout << std::format(R"(Usage: {} [OPTIONS]
-    -D, --data-dir [PATH]         Choose data dir path
+    -D, --data-dir [PATH]           Choose data dir path
 )", program_name);
     exit(0);
 }
