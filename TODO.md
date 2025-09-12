@@ -4,8 +4,8 @@
 
 ### v0.2 - Orchestrator
 
-- [ ] Create base application
-- [ ] Support for embedded file
+- [x] Create base application
+- [x] Support for embedded file
 - [ ] Config file and data dir infrastructure
 - [ ] Orchestrator
   - [ ] Read config file
