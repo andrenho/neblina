@@ -7,10 +7,18 @@
 #include <util/exceptions/non_recoverable_exception.hh>
 using namespace std::string_literals;
 
+#include "orchestrator/orchestrator.gen.inc"
+
 void Orchestrator::init()
 {
     for (auto const& s: config_.services)
         services_.push_back({ .config = s });
+}
+
+OrchestratorConfig Orchestrator::load_config_file()
+{
+    create_file_if_it_doesnt_exist(config_filename(), { orchestrator, orchestrator_uncompressed_sz, sizeof orchestrator });
+    return OrchestratorConfig::from_file(config_filename());
 }
 
 void Orchestrator::iteration()
@@ -79,7 +87,7 @@ void Orchestrator::start_service(Service& svc)
     if (pid == 0) {   // child process
         std::cout << "Starting service " << svc.config.name << " with pid " << getpid() << "\n";
         execlp(args().program_name.c_str(), args().program_name.c_str(),
-            "-C", args().program_name.c_str(),
+            "-D", args().data_dir.c_str(),
             "-s", svc.config.name.c_str(), nullptr);
         throw std::runtime_error("execvp failed when starting a new service: "s + strerror(errno));
     } else if (pid > 0) {

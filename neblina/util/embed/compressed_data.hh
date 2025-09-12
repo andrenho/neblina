@@ -6,9 +6,15 @@
 
 class CompressedData {
 public:
-    CompressedData(uint8_t const* data, size_t uncompressed_sz, size_t compressed_sz);
+    CompressedData(uint8_t const* data, size_t uncompressed_sz, size_t compressed_sz)
+        : data_(data), uncompressed_sz_(uncompressed_sz), compressed_sz_(compressed_sz) {}
 
-    std::string decode_text();
+    std::string uncompress_text() const;
+
+private:
+    uint8_t const* data_;
+    size_t uncompressed_sz_;
+    size_t compressed_sz_;
 };
 
 #endif //COMPRESSED_DATA_HH

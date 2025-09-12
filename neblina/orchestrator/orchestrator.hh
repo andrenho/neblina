@@ -9,7 +9,7 @@
 class Orchestrator : public ScheduledService {
 public:
     Orchestrator()
-        : ScheduledService(100ms), config_(OrchestratorConfig::from_file(args().data_dir + "/orchestrator.json")) {}
+        : ScheduledService(100ms), config_(load_config_file()) {}
 
     void init() override;
 
@@ -32,6 +32,9 @@ private:
     static bool service_is_running(Service& svc);
     bool service_eligible_for_retry(Service& svc);
     void start_service(Service& svc);
+
+    static OrchestratorConfig load_config_file();
+    static std::string        config_filename() { return args().data_dir + "/orchestrator.json"; };
 
     static constexpr size_t MAX_ATTEMPTS = 10;
 };

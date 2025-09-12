@@ -1,3 +1,4 @@
 *_config.cc
 *_config.hh
+*.gen.inc
 neblina
