@@ -1,3 +1,10 @@
 {
-  "main": {}
+  "Service": {
+    "name": "string",
+    "port": "int",
+    "open_to_world": "bool*"
+  },
+  "main": {
+    "services": "Service[]"
+  }
 }
