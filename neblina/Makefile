@@ -5,6 +5,7 @@
 OBJ=	main.o				\
 	arguments.o			\
 	orchestrator/orchestrator.o	\
+	service/scheduled_service.o	\
 	util/embed/embedded.o		\
 	contrib/simdjson/simdjson.o
 
@@ -20,7 +21,10 @@ ifdef DEV
   CPPFLAGS += -O0 -ggdb
 else ifdef PEDANTIC
   CPPFLAGS += -O0 -ggdb -fstack-protector-strong -fno-common -Wextra -Wpedantic -Wshadow -Wformat=2
-  CXXFLAGS += -Weffc++ -Wnull-dereference -Wlogical-op -Wduplicated-cond -Wduplicated-branches -Wcast-align -fanalyzer
+  CXXFLAGS += -Weffc++ -Wnull-dereference -Wcast-align
+  ifeq ($(CC),g++)
+    CXXFLAGS += -fanalyzer -Wlogical-op -Wduplicated-cond -Wduplicated-branches
+  endif
 else
   CPPFLAGS += -O3 -ffast-math -march=native -flto -D_FORTIFY_SOURCE=2 -fstack-protector-strong -fno-common -ffunction-sections -fdata-sections
   LDFLAGS += -flto=auto -Wl,--gc-sections

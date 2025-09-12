@@ -6,12 +6,12 @@
 
 class ScheduledService : public Service {
 public:
-    explicit ScheduledService(duration_ms frequency) : frequency_(frequency) {}
+    explicit ScheduledService(std::chrono::milliseconds frequency) : frequency_(frequency) {}
 
     void run() override;
 
 protected:
-    duration_ms frequency_;
+    std::chrono::milliseconds frequency_;
 
     virtual void iteration() = 0;
 };
