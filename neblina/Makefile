@@ -6,11 +6,11 @@ include autogen.mk
 
 OBJ=	main.o					\
 	arguments.o				\
-	services/orchestrator/orchestrator.o	\
 	service/service.o			\
 	service/tcp/tcp_server.o		\
 	service/tcp/tcp_server_text.o		\
 	service/scheduled/scheduled_service.o	\
+	services/orchestrator/orchestrator.o	\
 	util/embed/compressed_data.o		\
 	contrib/simdjson/simdjson.o
 
