@@ -6,9 +6,9 @@
 #include <cstring>
 
 #include <algorithm>
-#include <iostream>
 #include <memory>
 #include <string>
+#include <utility>
 #include <vector>
 #include <stdexcept>
 
@@ -24,8 +24,8 @@
 
 using namespace std::string_literals;
 
-TCPServer::TCPServer()
-    : Service(), listener_(get_listener_socket())
+TCPServer::TCPServer(ServiceCreateFunction f)
+    : listener_(get_listener_socket()), service_create_function_(std::move(f))
 {
 }
 
@@ -108,7 +108,7 @@ void TCPServer::run()
     }
 }
 
-void TCPServer::handle_new_connection(std::vector<pollfd>& poll_fds) const
+void TCPServer::handle_new_connection(std::vector<pollfd>& poll_fds)
 {
     sockaddr_storage remoteaddr{}; // Client address
     socklen_t addrlen = sizeof remoteaddr;
@@ -118,6 +118,7 @@ void TCPServer::handle_new_connection(std::vector<pollfd>& poll_fds) const
         throw std::runtime_error("accept error: "s + strerror(errno));
 
     poll_fds.push_back({ .fd = new_fd, .events = POLLIN, .revents = 0 });
+    connections_[new_fd] = service_create_function_(new_fd);
 }
 
 void TCPServer::handle_new_data(pollfd const& pfd, std::vector<pollfd>& poll_fds)
@@ -130,9 +131,13 @@ void TCPServer::handle_new_data(pollfd const& pfd, std::vector<pollfd>& poll_fds
         poll_fds.erase(
             std::remove_if(poll_fds.begin(), poll_fds.end(), [&](pollfd const& p) { return p.fd == pfd.fd; }),
             poll_fds.end());
+        connections_.erase(pfd.fd);
     } else {   // data received from client
         std::vector<uint8_t> data(buf.get(), buf.get() + n);
-        new_data_available(data, pfd.fd);
+        auto const& connection = connections_.at(pfd.fd);
+        connection->new_data_available(data);
+        if (connection->connection_status() == ConnectionStatus::Closed)
+            connections_.erase(pfd.fd);
     }
 }
 

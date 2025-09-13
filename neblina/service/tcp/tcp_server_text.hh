@@ -4,7 +4,7 @@
 #include <vector>
 #include <string>
 
-#include "tcp_server.hh"
+#include "../../server/tcp_server.hh"
 
 class TCPServerText : public TCPServer {
 public:

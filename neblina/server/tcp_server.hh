@@ -2,21 +2,24 @@
 #define TCP_SERVER_HH
 
 #include <cstdint>
+#include <functional>
+#include <memory>
+#include <unordered_map>
 #include <vector>
 #include <sys/poll.h>
 
-#include "service/service.hh"
+#include "../service/tcp/tcp_connection.hh"
 
-class TCPServer : public Service {
+using ServiceCreateFunction = std::function<std::unique_ptr<TCPConnection>(int)>;
+
+class TCPServer {
 public:
-    TCPServer();
-    ~TCPServer() override;
+    explicit TCPServer(ServiceCreateFunction f);
+    ~TCPServer();
 
-    void run() override;
+    void run();
 
 protected:
-    virtual void new_data_available(std::vector<uint8_t> const& data, int fd) = 0;
-
     void finalize_service() { server_running_ = true; }
     static void close_connection(int fd);
 
@@ -28,8 +31,10 @@ protected:
 private:
     int      listener_;         // socket fd
     bool     server_running_ = true;
+    ServiceCreateFunction service_create_function_;
+    std::unordered_map<int, std::unique_ptr<TCPConnection>> connections_ {};
 
-    void handle_new_connection(std::vector<pollfd>& poll_fds) const;
+    void handle_new_connection(std::vector<pollfd>& poll_fds);
     void handle_new_data(pollfd const& pfd, std::vector<pollfd>& poll_fds);
 
     static int  get_listener_socket();

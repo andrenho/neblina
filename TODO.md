@@ -12,8 +12,16 @@
   - [x] Keep track of running services
 - [x] Logging
 - [x] Parrot
+- [ ] Replace tcp_server_text.* by tcp_line_connection.*
 
-### v0.3 - Interservice communication
+### v0.3 - HTTP service
+
+- [ ] Implement HTTP service (consider usability from other connection types)
+- [ ] Create static HTTP service
+- [ ] Create basic support to WebApplication
+- [ ] Basic authentication
+
+### v0.4 - Interservice communication
 
 - [ ] Interservice communication
   - [ ] Listen on named pipes
@@ -22,13 +30,6 @@
 - [ ] Implement scheduled service
 - [ ] Load .so service
 - [ ] Compile on Windows
-
-### v0.4 - HTTP service
-
-- [ ] Implement HTTP service
-- [ ] Create static HTTP service
-- [ ] Create basic support to WebApplication
-- [ ] Basic authentication
 
 ### v0.5 - Web Application
 

@@ -3,7 +3,7 @@
 
 #include <string>
 
-#include "../util/embed/compressed_data.hh"
+#include "util/embed/compressed_data.hh"
 
 class Service {
 public:
