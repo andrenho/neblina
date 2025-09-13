@@ -1,5 +1,5 @@
 {
   "services": [
-    { "name": "parrot_char", "port": 23456, "open_to_world": false, "loggingColor": "0;32" }
+    { "name": "parrot", "port": 23456, "open_to_world": false, "loggingColor": "0;32" }
   ]
 }

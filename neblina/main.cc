@@ -1,8 +1,9 @@
-#define SERVICES Orchestrator
+#define SERVICES Orchestrator, Parrot
 
 #include "arguments.hh"
 #include "service/registry.hh"
 #include "services/orchestrator/orchestrator.hh"
+#include "services/parrot/parrot.hh"
 #include "util/exceptions/non_recoverable_exception.hh"
 
 #include <iostream>

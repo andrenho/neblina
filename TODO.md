@@ -11,7 +11,7 @@
   - [x] Read config file
   - [x] Keep track of running services
 - [x] Logging
-- [ ] Parrot
+- [x] Parrot
 
 ### v0.3 - Interservice communication
 

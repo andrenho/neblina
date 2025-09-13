@@ -11,7 +11,7 @@ void Service::create_file_if_it_doesnt_exist(std::string const& path, Compressed
         fs::create_directory(std::filesystem::path(path).parent_path());
         std::ofstream out(path, std::ios::out | std::ios::trunc);
         if (!out)
-            throw std::runtime_error("Could not create file");
+            throw std::runtime_error("Could not create file " + path);
         out << file_text;
     }
 }

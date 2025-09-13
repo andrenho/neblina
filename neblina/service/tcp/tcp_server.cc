@@ -20,6 +20,7 @@
 #include <poll.h>
 
 #include "arguments.hh"
+#include "util/log.hh"
 
 using namespace std::string_literals;
 
@@ -46,7 +47,7 @@ int TCPServer::get_listener_socket()
     int rv;
     addrinfo* servinfo;
     if ((rv = getaddrinfo(nullptr, std::to_string(args().port).c_str(), &hints, &servinfo)) != 0)
-        throw std::runtime_error(args().service + "getaddrinfo error: "s + gai_strerror(rv));
+        throw std::runtime_error("getaddrinfo error: "s + gai_strerror(rv));
 
     // loop through all the results and bind to the first we can
     addrinfo* p;
@@ -54,12 +55,12 @@ int TCPServer::get_listener_socket()
 
         // open socket
         if ((listener = socket(p->ai_family, p->ai_socktype, p->ai_protocol)) == -1)
-            throw std::runtime_error(args().service + "socket error: "s + strerror(errno));
+            throw std::runtime_error("socket error: "s + strerror(errno));
 
         // set socket as reusable
         int yes = 1;
         if (setsockopt(listener, SOL_SOCKET, SO_REUSEADDR, &yes, sizeof(int)) == -1)
-            throw std::runtime_error(args().service + "setsocket error: "s + strerror(errno));
+            throw std::runtime_error("setsocket error: "s + strerror(errno));
 
         // bind to port
         if (bind(listener, p->ai_addr, p->ai_addrlen) == -1) {
@@ -73,12 +74,12 @@ int TCPServer::get_listener_socket()
     freeaddrinfo(servinfo); // all done with this structure
 
     if (p == nullptr)
-        throw std::runtime_error(args().service + "failed to bind: "s + strerror(errno));
+        throw std::runtime_error("failed to bind: "s + strerror(errno));
 
     if (listen(listener, 10) == -1)
-        throw std::runtime_error(args().service + "setsocket error: "s + strerror(errno));
+        throw std::runtime_error("setsocket error: "s + strerror(errno));
 
-    std::cout << args().service << " :: listening in port " << args().port << ".\n";
+    log("listening in port {}", args().port);
 
     return listener;
 }
@@ -93,7 +94,7 @@ void TCPServer::run()
     while (server_running_) {
         int poll_count = poll(poll_fds.data(), poll_fds.size(), 20);
         if (poll_count == -1)
-            throw std::runtime_error(args().service + "poll error: "s + strerror(errno));
+            throw std::runtime_error("poll error: "s + strerror(errno));
 
         // Run through connections looking for data to read
         for (auto& pollfd: poll_fds) {
@@ -114,7 +115,7 @@ void TCPServer::handle_new_connection(std::vector<pollfd>& poll_fds) const
 
     int new_fd = accept(listener_, (sockaddr *) &remoteaddr, &addrlen);
     if (new_fd == -1)
-        throw std::runtime_error(args().service + "accept error: "s + strerror(errno));
+        throw std::runtime_error("accept error: "s + strerror(errno));
 
     poll_fds.push_back({ .fd = new_fd, .events = POLLIN, .revents = 0 });
 }
