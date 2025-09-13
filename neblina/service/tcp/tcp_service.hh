@@ -2,13 +2,14 @@
 #define TCP_SERVICE_HH
 
 #include "service/service.hh"
-#include "../../server/tcp_server.hh"
+#include "server/tcp_server.hh"
+#include "tcp_connection.hh"
 
-template <typename Conn>
 class TCPService : public Service {
 public:
-    TCPService() : tcp_server_([](int fd) { return std::make_unique<Conn>(fd); }) {}
+    TCPService() : tcp_server_(this) {}
 
+    virtual std::unique_ptr<TCPConnection> new_connection(int fd) const = 0;
     void run() override { tcp_server_.run(); }
 
 private:

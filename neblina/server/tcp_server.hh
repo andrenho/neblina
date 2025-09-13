@@ -10,11 +10,9 @@
 
 #include "../service/tcp/tcp_connection.hh"
 
-using ServiceCreateFunction = std::function<std::unique_ptr<TCPConnection>(int)>;
-
 class TCPServer {
 public:
-    explicit TCPServer(ServiceCreateFunction f);
+    explicit TCPServer(class TCPService* service);
     ~TCPServer();
 
     void run();
@@ -29,9 +27,9 @@ protected:
     static constexpr int BUFFER_SZ = 8 * 1024;
 
 private:
-    int      listener_;         // socket fd
-    bool     server_running_ = true;
-    ServiceCreateFunction service_create_function_;
+    int            listener_;         // socket fd
+    bool           server_running_ = true;
+    TCPService*    service_;
     std::unordered_map<int, std::unique_ptr<TCPConnection>> connections_ {};
 
     void handle_new_connection(std::vector<pollfd>& poll_fds);

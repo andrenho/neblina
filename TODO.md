@@ -12,7 +12,13 @@
   - [x] Keep track of running services
 - [x] Logging
 - [x] Parrot
+- [x] Eliminate templates from connection
 - [ ] Replace tcp_server_text.* by tcp_line_connection.*
+
+- [ ] Pass parameters as custom parameters
+- [ ] Combine multiple services in one (?)
+- [ ] Create named pipe / socket / shared memory connection
+- [ ] Listen local/world
 
 ### v0.3 - HTTP service
 

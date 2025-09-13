@@ -20,12 +20,13 @@
 #include <poll.h>
 
 #include "arguments.hh"
+#include "service/tcp/tcp_service.hh"
 #include "util/log.hh"
 
 using namespace std::string_literals;
 
-TCPServer::TCPServer(ServiceCreateFunction f)
-    : listener_(get_listener_socket()), service_create_function_(std::move(f))
+TCPServer::TCPServer(TCPService* service)
+    : listener_(get_listener_socket()), service_(service)
 {
 }
 
@@ -118,7 +119,7 @@ void TCPServer::handle_new_connection(std::vector<pollfd>& poll_fds)
         throw std::runtime_error("accept error: "s + strerror(errno));
 
     poll_fds.push_back({ .fd = new_fd, .events = POLLIN, .revents = 0 });
-    connections_[new_fd] = service_create_function_(new_fd);
+    connections_[new_fd] = service_->new_connection(new_fd);
 }
 
 void TCPServer::handle_new_data(pollfd const& pfd, std::vector<pollfd>& poll_fds)

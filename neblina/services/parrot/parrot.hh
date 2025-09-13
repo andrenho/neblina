@@ -5,10 +5,9 @@
 #include "service/tcp/tcp_service.hh"
 
 class ParrotConnection final : public TCPConnection {
-protected:
+public:
     using TCPConnection::TCPConnection;
 
-public:
     void new_data_available(std::vector<uint8_t> const& data) override
     {
         send_data(data);
@@ -23,8 +22,10 @@ public:
 
 };
 
-class Parrot final : public TCPService<ParrotConnection> {
+class Parrot final : public TCPService {
 public:
+    std::unique_ptr<TCPConnection> new_connection(int fd) const override { return std::make_unique<ParrotConnection>(fd); }
+
     static constexpr std::string_view name = "parrot";
 };
 

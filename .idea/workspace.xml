@@ -27,22 +27,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0753c87b-42fc-4330-8b32-c770ab44186c" name="Changes" comment=".">
-      <change afterPath="$PROJECT_DIR$/neblina/service/tcp/tcp_connection.cc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/neblina/service/tcp/tcp_connection.hh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/neblina/service/tcp/tcp_service.hh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TODO.md" beforeDir="false" afterPath="$PROJECT_DIR$/TODO.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/main.cc" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/main.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/service/http/http.cc" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/http/http.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/service/http/http.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/http/http.hh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/service/registry.hh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/service/service.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/service/service.hh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/service/tcp/tcp_server.cc" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/server/tcp_server.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/service/tcp/tcp_server.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/server/tcp_server.hh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/service/tcp/tcp_server_text.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/service/tcp/tcp_server_text.hh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/server/tcp_server.cc" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/server/tcp_server.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/server/tcp_server.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/server/tcp_server.hh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/service/tcp/tcp_service.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/service/tcp/tcp_service.hh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/neblina/services/parrot/parrot.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/parrot/parrot.hh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/util/log.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/util/log.hh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -294,7 +284,7 @@
       <workItem from="1757695206187" duration="661000" />
       <workItem from="1757713030070" duration="3077000" />
       <workItem from="1757716254619" duration="8032000" />
-      <workItem from="1757765604337" duration="702000" />
+      <workItem from="1757765604337" duration="2178000" />
     </task>
     <task id="LOCAL-00001" summary=".">
       <option name="closed" value="true" />
@@ -456,7 +446,15 @@
       <option name="project" value="LOCAL" />
       <updated>1757728630523</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary=".">
+      <option name="closed" value="true" />
+      <created>1757766359689</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1757766359689</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
