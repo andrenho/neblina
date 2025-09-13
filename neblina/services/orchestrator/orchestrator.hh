@@ -3,7 +3,7 @@
 
 #include "arguments.hh"
 #include "util/chrono.hh"
-#include "../service/scheduled/scheduled_service.hh"
+#include "service/scheduled/scheduled_service.hh"
 #include "orchestrator_config.hh"
 
 class Orchestrator : public ScheduledService {

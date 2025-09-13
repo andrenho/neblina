@@ -7,7 +7,7 @@
 using namespace std::string_literals;
 
 #include "util/log.hh"
-#include "orchestrator/orchestrator.gen.inc"
+#include "orchestrator.gen.inc"
 
 void Orchestrator::init()
 {
