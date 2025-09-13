@@ -13,7 +13,7 @@
 - [x] Logging
 - [x] Parrot
 - [x] Eliminate templates from connection
-- [ ] Replace tcp_server_text.* by tcp_line_connection.*
+- [x] Replace tcp_server_text.* by tcp_line_connection.*
 
 - [ ] Pass parameters as custom parameters
 - [ ] Combine multiple services in one (?)

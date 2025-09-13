@@ -1,13 +1,13 @@
-#include "tcp_server_text.hh"
+#include "tcp_connection_text.hh"
 
-void TCPServerText::new_data_available(std::vector<uint8_t> const& data, int fd)
+void TCPConnectionText::new_data_available(std::vector<uint8_t> const& data)
 {
     for (uint8_t byte: data) {
         buffer_ += (char) byte;
         size_t buf_len = buffer_.size();
         if (buf_len >= sep_len_ && buffer_.substr(buf_len - sep_len_, sep_len_) == separator_) {
             buffer_ = buffer_.substr(0, buf_len - sep_len_);
-            new_data_available(buffer_, fd);
+            new_data_available(buffer_);
             buffer_.clear();
         }
     }

@@ -9,6 +9,7 @@ OBJ=	main.o					\
 	service/service.o			\
 	server/tcp_server.o			\
 	service/tcp/tcp_connection.o		\
+	service/tcp/tcp_connection_text.o	\
 	service/scheduled/scheduled_service.o	\
 	services/orchestrator/orchestrator.o	\
 	util/embed/compressed_data.o		\

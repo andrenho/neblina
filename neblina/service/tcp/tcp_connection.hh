@@ -23,13 +23,12 @@ public:
     [[nodiscard]] ConnectionStatus connection_status() const { return connection_status_; }
 
 protected:
+    int fd_;
+    ConnectionStatus connection_status_ = ConnectionStatus::Open;
+
     void send_data(std::vector<uint8_t> const& data) { send_data(data.data(), data.size()); }
     void send_data(std::string_view data) { send_data(reinterpret_cast<uint8_t const*>(data.data()), data.size()); }
     void send_data(uint8_t const* data, size_t sz);
-
-private:
-    int fd_;
-    ConnectionStatus connection_status_ = ConnectionStatus::Open;
 };
 
 

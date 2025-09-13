@@ -1,24 +1,18 @@
 #ifndef PARROT_TEXT_HH
 #define PARROT_TEXT_HH
 
-#include "service/tcp/tcp_connection.hh"
+#include "service/tcp/tcp_connection_text.hh"
 #include "service/tcp/tcp_service.hh"
 
-class ParrotConnection final : public TCPConnection {
+class ParrotConnection final : public TCPConnectionText {
 public:
-    using TCPConnection::TCPConnection;
+    using TCPConnectionText::TCPConnectionText;
 
-    void new_data_available(std::vector<uint8_t> const& data) override
+    void new_data_available(std::string_view text) override
     {
-        send_data(data);
+        send_data(text);
+        send_data("\r\n");
     }
-
-    /*
-    void new_data_available(std::string const& text) override
-    {
-        send_data(text + "\r\n");
-    }
-    */
 
 };
 

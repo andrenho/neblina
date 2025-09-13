@@ -7,6 +7,7 @@
     <option name="/Default/Housekeeping/FeatureSuggestion/FeatureSuggestionManager/DisabledSuggesters/=SwitchToGoToActionSuggester/@EntryIndexedValue" value="true" type="bool" />
     <option name="/Default/Housekeeping/GlobalSettingsUpgraded/IsUpgraded/@EntryValue" value="true" type="bool" />
     <option name="/Default/Housekeeping/LiveTemplatesHousekeeping/HotspotSessionHintIsShown/@EntryValue" value="true" type="bool" />
+    <option name="/Default/Housekeeping/OptionsDialog/SelectedPageId/@EntryValue" value="CppTypeNameHintsOptions" type="string" />
   </component>
   <component name="CMakeProjectFlavorService">
     <option name="flavorId" value="CMakePlainProjectFlavor" />
@@ -28,10 +29,10 @@
   <component name="ChangeListManager">
     <list default="true" id="0753c87b-42fc-4330-8b32-c770ab44186c" name="Changes" comment=".">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TODO.md" beforeDir="false" afterPath="$PROJECT_DIR$/TODO.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/server/tcp_server.cc" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/server/tcp_server.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/server/tcp_server.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/server/tcp_server.hh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/service/tcp/tcp_service.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/service/tcp/tcp_service.hh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/service/tcp/tcp_connection.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/service/tcp/tcp_connection.hh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/service/tcp/tcp_server_text.cc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/service/tcp/tcp_server_text.hh" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/neblina/services/parrot/parrot.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/parrot/parrot.hh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -152,32 +153,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;Native Application.dev.executor&quot;: &quot;Run&quot;,
-    &quot;Native Application.neblina.executor&quot;: &quot;Run&quot;,
-    &quot;Native Application.pedantic.executor&quot;: &quot;Run&quot;,
-    &quot;Native Application.test-json2cpp.executor&quot;: &quot;Run&quot;,
-    &quot;Python.json2cpp.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.RadMigrateCodeStyle&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;multiconn&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/andre/prj/neblina/neblina/services/parrot&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;CPPToolchains&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Native Application.dev.executor": "Run",
+    "Native Application.neblina.executor": "Run",
+    "Native Application.pedantic.executor": "Run",
+    "Native Application.test-json2cpp.executor": "Run",
+    "Python.json2cpp.executor": "Run",
+    "RunOnceActivity.RadMigrateCodeStyle": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "git-widget-placeholder": "multiconn",
+    "last_opened_file_path": "/home/andre/prj/neblina/neblina/services/parrot",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "project.scopes",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/neblina/services/parrot" />
@@ -185,11 +186,11 @@
       <recent name="$PROJECT_DIR$/neblina" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/neblina/service/tcp" />
       <recent name="$PROJECT_DIR$/neblina/services" />
       <recent name="$PROJECT_DIR$/neblina/server" />
       <recent name="$PROJECT_DIR$/neblina/util" />
       <recent name="$PROJECT_DIR$/neblina/service/scheduled" />
-      <recent name="$PROJECT_DIR$/neblina" />
     </key>
   </component>
   <component name="RunManager" selected="Native Application.dev">
@@ -284,7 +285,7 @@
       <workItem from="1757695206187" duration="661000" />
       <workItem from="1757713030070" duration="3077000" />
       <workItem from="1757716254619" duration="8032000" />
-      <workItem from="1757765604337" duration="2178000" />
+      <workItem from="1757765604337" duration="3054000" />
     </task>
     <task id="LOCAL-00001" summary=".">
       <option name="closed" value="true" />
@@ -454,7 +455,15 @@
       <option name="project" value="LOCAL" />
       <updated>1757766359689</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary=".">
+      <option name="closed" value="true" />
+      <created>1757803964037</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1757803964037</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
