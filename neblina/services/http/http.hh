@@ -14,14 +14,14 @@ public:
     void init() override;
 
     std::unique_ptr<TCPConnection> new_connection(int fd) const override {
-        return std::make_unique<HttpConnection>(fd);
+        return std::make_unique<HttpConnection>(fd, config_);
     }
 
 private:
     HttpConfig config_;
 
-    static HttpConfig load_config_file();
-    static std::string      config_filename() { return config_dir() + "/http.json"; };
+    static HttpConfig   load_config_file();
+    static std::string  config_filename() { return config_dir() + "/http.json"; };
 };
 
 #endif //HTTP_HH

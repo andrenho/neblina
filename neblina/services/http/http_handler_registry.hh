@@ -15,7 +15,7 @@ public:
         handlers_[T::name] = std::make_unique<T>();
     }
 
-    static HttpRequestHandler& at(std::string const& name) { return *handlers_.at(name).get(); }
+    static HttpRequestHandler* at(std::string const& name) { return handlers_.at(name).get(); }
 
 private:
     static std::unordered_map<std::string, std::unique_ptr<HttpRequestHandler>> handlers_;
