@@ -12,7 +12,7 @@ void HttpRequest::operator<<(std::string_view data)
             process_start_line(data);
             break;
         case RequestStage::Headers:
-            if (data == "\r\n")
+            if (data.empty())
                 headers_end();
             else
                 process_header(data);
@@ -55,7 +55,7 @@ void HttpRequest::process_header(std::string_view data)
     std::string key = std::string(data.substr(0, sep_idx));
     std::ranges::transform(key, key.begin(), ::toupper);
 
-    auto const f = data.find_first_not_of(' ', sep_idx);
+    auto const f = data.find_first_not_of(' ', sep_idx + 1);
     if (f == std::string::npos)
         throw BadRequest();
     std::string value = std::string(data.substr(f, data.size() - 2));
@@ -79,6 +79,7 @@ void HttpRequest::headers_end()
 void HttpRequest::process_body(std::string_view data)
 {
     body_ += data;
+    body_ += "\r\n";
     if (body_.size() >= content_length_)
         request_stage_ = RequestStage::Done;
 }
