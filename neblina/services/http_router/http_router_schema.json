@@ -1,0 +1,9 @@
+{
+  "Route": {
+    "path": "string",
+    "handler": "string"
+  },
+  "main": {
+    "routes": "Route[]"
+  }
+}
