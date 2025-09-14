@@ -18,7 +18,7 @@
 
 ### v0.3 - HTTP service
 
-- [ ] Implement HTTP service (consider usability from other connection types)
+- [x] Implement HTTP service (consider usability from other connection types)
 - [ ] Create static HTTP service
 - [ ] Create basic support to WebApplication
 - [ ] Basic authentication
