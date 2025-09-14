@@ -1,11 +1,11 @@
-#ifndef HTTP_ROUTER_CONNECTION_HH
-#define HTTP_ROUTER_CONNECTION_HH
+#ifndef HTTP_CONNECTION_HH
+#define HTTP_CONNECTION_HH
 
 #include "http_request_handler.hh"
 #include "service/tcp/tcp_connection_text.hh"
-#include "util/http/http_request.hh"
+#include "types/http_request.hh"
 
-class HttpRouterConnection final : public TCPConnectionText {
+class HttpConnection final : public TCPConnectionText {
 public:
     using TCPConnectionText::TCPConnectionText;
 

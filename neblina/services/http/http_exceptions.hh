@@ -3,7 +3,7 @@
 
 #include <stdexcept>
 
-#include "../../util/http/http_response.hh"
+#include "types/http_response.hh"
 
 struct HttpException : std::runtime_error {
     explicit HttpException(int status_code) : std::runtime_error(HttpResponse::http_reason_phrase((status_code))), status_code(status_code) {}

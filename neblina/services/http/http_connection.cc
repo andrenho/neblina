@@ -1,10 +1,10 @@
-#include "http_router_connection.hh"
+#include "http_connection.hh"
 
 #include "http_exceptions.hh"
-#include "util/http/http_response.hh"
+#include "types/http_response.hh"
 #include "http_request_handler.hh"
 
-void HttpRouterConnection::new_data_available(std::string_view data)
+void HttpConnection::new_data_available(std::string_view data)
 {
     try {
         current_http_request << data;
@@ -17,7 +17,7 @@ void HttpRouterConnection::new_data_available(std::string_view data)
     }
 }
 
-void HttpRouterConnection::parse_request(HttpRequest request)
+void HttpConnection::parse_request(HttpRequest request)
 {
     URLParameters url_parameters;
     QueryParameters query_parameters;
@@ -39,7 +39,7 @@ void HttpRouterConnection::parse_request(HttpRequest request)
     }
 }
 
-HttpRequestHandler& HttpRouterConnection::find_request_handler(HttpRequest const& request, URLParameters const& url_parameters, QueryParameters const& query_parameters)
+HttpRequestHandler& HttpConnection::find_request_handler(HttpRequest const& request, URLParameters const& url_parameters, QueryParameters const& query_parameters)
 {
     return default_request_handler;
 }

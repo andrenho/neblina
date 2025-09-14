@@ -12,12 +12,13 @@ OBJ=	main.o						\
 	service/tcp/tcp_connection_text.o		\
 	service/scheduled/scheduled_service.o		\
 	services/orchestrator/orchestrator.o		\
-	services/http_router/http_router.o		\
-	services/http_router/http_router_connection.o	\
+	services/http/http.o				\
+	services/http/http_connection.o			\
+	services/http/http_handler_registry.o		\
+	services/http/types/http_request.o		\
+	services/http/types/http_headers.o		\
+	services/http/types/http_response.o		\
 	util/embed/compressed_data.o			\
-	util/http/http_request.o			\
-	util/http/http_headers.o			\
-	util/http/http_response.o			\
 	contrib/simdjson/simdjson.o
 
 STATIC_LIBS=/usr/lib/libz.a
@@ -64,16 +65,16 @@ endif
 #
 
 # JSON/C++ files: schema_file, output_dir, output_filename (without extension), ClassName, dependencies
-$(call json2cpp,orchestrator-schema.json,services/orchestrator,orchestrator_config,OrchestratorConfig,\
+$(call json2cpp,orchestratorSchema.json,services/orchestrator,orchestrator_config,OrchestratorConfig,\
 services/orchestrator/orchestrator.o main.o)
 
-$(call json2cpp,http_router_schema.json,services/http_router,http_router_config,HttpRouterConfig,\
-services/http_router/http_router.o main.o)
+$(call json2cpp,httpSchema.json,services/http,http_config,HttpConfig,\
+services/http/http.o main.o)
 
 # embedded files
 services/orchestrator/orchestrator.o: services/orchestrator/orchestrator.gen.inc
 
-services/http_router/http_router.o: services/http_router/http_router.gen.inc
+services/http/http.o: services/http/http.gen.inc
 
 #
 # rules

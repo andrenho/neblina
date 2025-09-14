@@ -5,7 +5,7 @@
 #include <algorithm>
 #include <sstream>
 
-#include "services/http_router/http_exceptions.hh"
+#include "services/http/http_exceptions.hh"
 
 void HttpRequest::operator<<(std::string_view data)
 {

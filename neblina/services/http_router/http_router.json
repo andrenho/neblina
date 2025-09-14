@@ -1,5 +1,0 @@
-{
-  "routes": [
-    { "path": "/(.*)", "handler": "it-works" }
-  ]
-}

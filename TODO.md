@@ -19,8 +19,10 @@
 ### v0.3 - HTTP service
 
 - [x] Implement HTTP service (consider usability from other connection types)
+- [x] Create basic support to WebApplication
+  - [ ] Health request handler
 - [ ] Create static HTTP service
-- [ ] Create basic support to WebApplication
+  - [ ] It works
 - [ ] Extra HTTP stuff
   - [ ] Require Host request (otherwise 400)
   - [ ] Automatic error according to request type

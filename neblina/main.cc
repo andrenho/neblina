@@ -1,9 +1,9 @@
-#define SERVICES Orchestrator, Parrot, HttpRouter
+#define SERVICES Orchestrator, Parrot, Http
 
 #include "arguments.hh"
 #include "services/orchestrator/orchestrator.hh"
 #include "services/parrot/parrot.hh"
-#include "services/http_router/http_router.hh"
+#include "services/http/http.hh"
 #include "util/exceptions/non_recoverable_exception.hh"
 
 #include "util/log.hh"
