@@ -19,10 +19,6 @@ public:
 
 protected:
     void finalize_service() { server_running_ = true; }
-    static void close_connection(int fd);
-
-    static void send_data(std::vector<uint8_t> const& data, int fd);
-    static void send_data(const char* data, int fd);
 
     static constexpr int BUFFER_SZ = 8 * 1024;
 

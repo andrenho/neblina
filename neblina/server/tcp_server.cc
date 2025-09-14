@@ -144,24 +144,3 @@ void TCPServer::handle_new_data(pollfd const& pfd, std::vector<pollfd>& poll_fds
     }
 }
 
-void TCPServer::send_data(std::vector<uint8_t> const& data, int fd)
-{
-    size_t pos = 0;
-    while (pos < data.size()) {
-        int n = send(fd, &data.data()[pos], data.size() - pos, 0);
-        if (n < 0)
-            throw std::runtime_error("Error sending data: "s + strerror(errno));
-        pos += n;
-    }
-}
-
-void TCPServer::send_data(const char* data, int fd)
-{
-    std::vector<uint8_t> v(data, data + strlen(data));
-    send_data(v, fd);
-}
-
-void TCPServer::close_connection(int fd)
-{
-    close(fd);
-}
