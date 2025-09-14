@@ -8,12 +8,12 @@
 
 class Orchestrator : public ScheduledService {
 public:
+    SERVICE_NAME = "orchestrator";
+
     Orchestrator()
         : ScheduledService(100ms), config_(load_config_file()) {}
 
     void init() override;
-
-    static constexpr std::string_view name = "orchestrator";
 
 private:
     OrchestratorConfig config_;

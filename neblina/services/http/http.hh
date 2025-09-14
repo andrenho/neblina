@@ -1,16 +1,27 @@
 #ifndef HTTP_HH
 #define HTTP_HH
-#include "../tcp/tcp_server_text.hh"
 
-class Http : public TCPServerText {
+#include "service/tcp/tcp_connection_text.hh"
+#include "service/tcp/tcp_service.hh"
+#include "util/http/http_request.hh"
+
+class HttpConnection final : public TCPConnectionText {
 public:
-    static constexpr std::string_view name = "http";
+    using TCPConnectionText::TCPConnectionText;
 
-protected:
-    void new_data_available(std::string const& text, int fd) override;
+    void new_data_available(std::string_view data) override;
 
 private:
-    static void it_works(int fd);
+    HttpRequest current_http_request;
+};
+
+class Http final : public TCPService {
+public:
+    SERVICE_NAME = "http";
+
+    std::unique_ptr<TCPConnection> new_connection(int fd) const override {
+        return std::make_unique<HttpConnection>(fd);
+    }
 };
 
 #endif //HTTP_HH

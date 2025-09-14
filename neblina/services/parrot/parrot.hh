@@ -18,9 +18,9 @@ public:
 
 class Parrot final : public TCPService {
 public:
-    std::unique_ptr<TCPConnection> new_connection(int fd) const override { return std::make_unique<ParrotConnection>(fd); }
+    SERVICE_NAME = "parrot";
 
-    static constexpr std::string_view name = "parrot";
+    std::unique_ptr<TCPConnection> new_connection(int fd) const override { return std::make_unique<ParrotConnection>(fd); }
 };
 
 #endif //PARROT_TEXT_HH

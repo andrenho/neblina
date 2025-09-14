@@ -45,9 +45,11 @@ int TCPServer::get_listener_socket()
     hints.ai_socktype = SOCK_STREAM;    // TCP
     hints.ai_flags = AI_PASSIVE;        // use my IP
 
+    const char* listen_to = args().open_to_world ? nullptr : "localhost";
+
     int rv;
     addrinfo* servinfo;
-    if ((rv = getaddrinfo(nullptr, std::to_string(args().port).c_str(), &hints, &servinfo)) != 0)
+    if ((rv = getaddrinfo(listen_to, std::to_string(args().port).c_str(), &hints, &servinfo)) != 0)
         throw std::runtime_error("getaddrinfo error: "s + gai_strerror(rv));
 
     // loop through all the results and bind to the first we can

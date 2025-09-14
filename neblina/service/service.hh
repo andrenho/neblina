@@ -5,6 +5,8 @@
 
 #include "util/embed/compressed_data.hh"
 
+#define SERVICE_NAME static constexpr std::string_view name
+
 class Service {
 public:
     virtual ~Service() = default;

@@ -14,11 +14,7 @@
 - [x] Parrot
 - [x] Eliminate templates from connection
 - [x] Replace tcp_server_text.* by tcp_line_connection.*
-
-- [ ] Pass parameters as custom parameters
-- [ ] Combine multiple services in one (?)
-- [ ] Create named pipe / socket / shared memory connection
-- [ ] Listen local/world
+- [x] Listen local/world
 
 ### v0.3 - HTTP service
 
@@ -71,3 +67,10 @@
 - [ ] Password manager
 - [ ] Note taking
 - [ ] Notepad
+
+### ???
+
+- [ ] Pass parameters as custom parameters
+- [ ] Combine multiple services in one (?)
+- [ ] Create named pipe / socket / shared memory connection
+
