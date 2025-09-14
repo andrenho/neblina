@@ -35,7 +35,6 @@ void HttpRequest::process_start_line(std::string_view data)
     if (iss >> extra)
         throw BadRequest();
 
-    std::ranges::transform(method, method.begin(), ::toupper);
     method_ = translate_method(method);
     if (method_ == Method::Undefined)
         throw BadRequest();
@@ -53,7 +52,6 @@ void HttpRequest::process_header(std::string_view data)
         throw BadRequest();
 
     std::string key = std::string(data.substr(0, sep_idx));
-    std::ranges::transform(key, key.begin(), ::toupper);
 
     auto const f = data.find_first_not_of(' ', sep_idx + 1);
     if (f == std::string::npos)
@@ -65,14 +63,14 @@ void HttpRequest::process_header(std::string_view data)
 
 void HttpRequest::headers_end()
 {
-    if (headers_.contains("CONTENT-LENGTH")) {
+    if (headers_.contains("Content-Length")) {
         request_stage_ = RequestStage::Body;
-        content_length_ = strtoll(headers_.at("CONTENT-LENGTH").c_str(), nullptr, 10);
+        content_length_ = strtoll(headers_.at("Content-Length").c_str(), nullptr, 10);
     } else {
         request_stage_ = RequestStage::Done;
     }
 
-    if (headers_.contains("TRANSFER-ENCODING"))
+    if (headers_.contains("Transfer-Encoding"))
         throw NotSupportedYet("Transfer-Encoding header");
 }
 

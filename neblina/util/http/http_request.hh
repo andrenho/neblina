@@ -5,7 +5,7 @@
 #include <stdexcept>
 #include <string>
 
-using HttpHeaders = std::unordered_map<std::string, std::string>;
+#include "http_headers.hh"
 
 class HttpRequest {
 public:
@@ -32,7 +32,7 @@ private:
     std::string resource_ = "/";
     HttpHeaders headers_;
     std::string body_;
-    size_t      content_length_;
+    size_t      content_length_ = 0;
 
     void process_start_line(std::string_view data);
     void process_header(std::string_view data);

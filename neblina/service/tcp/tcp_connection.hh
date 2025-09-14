@@ -22,6 +22,8 @@ public:
 
     [[nodiscard]] ConnectionStatus connection_status() const { return connection_status_; }
 
+    void close_connection();
+
 protected:
     int fd_;
     ConnectionStatus connection_status_ = ConnectionStatus::Open;

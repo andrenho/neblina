@@ -13,6 +13,8 @@ public:
 
 private:
     HttpRequest current_http_request;
+
+    void parse_request(HttpRequest request);
 };
 
 class Http final : public TCPService {
