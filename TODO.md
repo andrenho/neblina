@@ -21,10 +21,24 @@
 - [x] Implement HTTP service (consider usability from other connection types)
 - [ ] Create static HTTP service
 - [ ] Create basic support to WebApplication
+- [ ] Extra HTTP stuff
+  - [ ] Require Host request (otherwise 400)
+  - [ ] Automatic error according to request type
+  - [ ] OPTIONS
+  - [ ] TRACE, CONNECT
+  - [ ] Persistent connections (check Connection header)
+  - [ ] Transfer-Encoding (chunks)
+  - [ ] Conditional requests: If-Modified-Since, If-None-Match, ETag, Last-Modified
+  - [ ] If a client sends Expect: 100-continue, the server must either respond 100 Continue or a final status code.
+  - [ ] forward/ignore hop-by-hop headers if proxying
+  - [ ] Pipelining (?)
+  - [ ] Transfer encoding: gzip, deflate
+  - [ ] Redirection 300
 - [ ] Basic authentication
 
 Extra:
 - [x] Move config file to "/config"
+- [ ] Rename http_router to http
 
 ### v0.4 - Interservice communication
 

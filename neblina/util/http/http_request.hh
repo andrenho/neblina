@@ -19,11 +19,6 @@ public:
     [[nodiscard]] std::string body()     const { return body_; }
     [[nodiscard]] bool        complete() const { return request_stage_ == RequestStage::Done; }
 
-    class BadRequest             final : public std::exception {};  // 400
-    class DataAfterBody          final : public std::exception {};  // 413 (?)
-    class UnsupportedHttpVersion final : public std::exception {};  // 505
-    class NotSupportedYet        final : public std::runtime_error { using std::runtime_error::runtime_error; };
-
 private:
     enum class RequestStage { StartLine, Headers, Body, Done };
     RequestStage request_stage_ = RequestStage::StartLine;

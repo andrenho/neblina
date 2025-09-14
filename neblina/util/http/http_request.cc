@@ -5,6 +5,8 @@
 #include <algorithm>
 #include <sstream>
 
+#include "services/http_router/http_exceptions.hh"
+
 void HttpRequest::operator<<(std::string_view data)
 {
     switch (request_stage_) {
@@ -21,7 +23,7 @@ void HttpRequest::operator<<(std::string_view data)
             process_body(data);
             break;
         case RequestStage::Done:
-            throw DataAfterBody();
+            throw ContentTooLargeException();
     }
 }
 
@@ -31,16 +33,16 @@ void HttpRequest::process_start_line(std::string_view data)
     std::string        method, version, extra;
 
     if (!(iss >> method >> resource_ >> version))
-        throw BadRequest();
+        throw BadRequestException();
     if (iss >> extra)
-        throw BadRequest();
+        throw BadRequestException();
 
     method_ = translate_method(method);
     if (method_ == Method::Undefined)
-        throw BadRequest();
+        throw BadRequestException();
 
     if (version != "HTTP/1.1")
-        throw UnsupportedHttpVersion();
+        throw HttpVersionNotSupportedException();
 
     request_stage_ = RequestStage::Headers;
 }
@@ -49,13 +51,13 @@ void HttpRequest::process_header(std::string_view data)
 {
     auto const sep_idx = data.find(':');
     if (sep_idx == std::string::npos)
-        throw BadRequest();
+        throw BadRequestException();
 
     std::string key = std::string(data.substr(0, sep_idx));
 
     auto const f = data.find_first_not_of(' ', sep_idx + 1);
     if (f == std::string::npos)
-        throw BadRequest();
+        throw BadRequestException();
     std::string value = std::string(data.substr(f, data.size() - 2));
 
     headers_[key] = value;
@@ -71,7 +73,7 @@ void HttpRequest::headers_end()
     }
 
     if (headers_.contains("Transfer-Encoding"))
-        throw NotSupportedYet("Transfer-Encoding header");
+        throw NotImplementedException("Transfer-Encoding header");
 }
 
 void HttpRequest::process_body(std::string_view data)

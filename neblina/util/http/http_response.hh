@@ -6,6 +6,7 @@
 #include "http_headers.hh"
 
 struct HttpResponse {
+    HttpResponse() = default;
     explicit HttpResponse(int status_code);
     HttpResponse(int status_code, std::string message);
 
@@ -15,8 +16,7 @@ struct HttpResponse {
 
     std::string to_string() const;
 
-private:
-    static std::string http_reason_phrase(int code);
+    [[nodiscard]] static std::string http_reason_phrase(int code);
 };
 
 #endif //HTTP_RESPONSE_HH
