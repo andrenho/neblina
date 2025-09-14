@@ -23,6 +23,9 @@
 - [ ] Create basic support to WebApplication
 - [ ] Basic authentication
 
+Extra:
+- [x] Move config file to "/config"
+
 ### v0.4 - Interservice communication
 
 - [ ] Interservice communication

@@ -5,7 +5,7 @@
 #include "service/tcp/tcp_service.hh"
 #include "util/http/http_request.hh"
 
-class HttpConnection final : public TCPConnectionText {
+class HttpRouterConnection final : public TCPConnectionText {
 public:
     using TCPConnectionText::TCPConnectionText;
 
@@ -17,12 +17,12 @@ private:
     void parse_request(HttpRequest request);
 };
 
-class Http final : public TCPService {
+class HttpRouter final : public TCPService {
 public:
-    SERVICE_NAME = "http";
+    SERVICE_NAME = "http-router";
 
     std::unique_ptr<TCPConnection> new_connection(int fd) const override {
-        return std::make_unique<HttpConnection>(fd);
+        return std::make_unique<HttpRouterConnection>(fd);
     }
 };
 

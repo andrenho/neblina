@@ -1,8 +1,8 @@
-#include "http.hh"
+#include "http_router.hh"
 
 #include "util/http/http_response.hh"
 
-void HttpConnection::new_data_available(std::string_view data)
+void HttpRouterConnection::new_data_available(std::string_view data)
 {
     try {
         current_http_request << data;
@@ -24,7 +24,7 @@ void HttpConnection::new_data_available(std::string_view data)
         parse_request(current_http_request);
 }
 
-void HttpConnection::parse_request(HttpRequest request)
+void HttpRouterConnection::parse_request(HttpRequest request)
 {
     // TODO
 }

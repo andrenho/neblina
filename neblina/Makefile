@@ -12,7 +12,7 @@ OBJ=	main.o					\
 	service/tcp/tcp_connection_text.o	\
 	service/scheduled/scheduled_service.o	\
 	services/orchestrator/orchestrator.o	\
-	services/http/http.o			\
+	services/http_router/http_router.o	\
 	util/embed/compressed_data.o		\
 	util/http/http_request.o		\
 	util/http/http_headers.o		\
