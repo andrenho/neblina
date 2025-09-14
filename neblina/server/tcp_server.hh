@@ -12,7 +12,7 @@
 
 class TCPServer {
 public:
-    explicit TCPServer(class TCPService* service);
+    explicit TCPServer(class TCPService const* service);
     ~TCPServer();
 
     void run();
@@ -23,9 +23,9 @@ protected:
     static constexpr int BUFFER_SZ = 8 * 1024;
 
 private:
-    int            listener_;         // socket fd
-    bool           server_running_ = true;
-    TCPService*    service_;
+    int               listener_;         // socket fd
+    bool              server_running_ = true;
+    TCPService const* service_;
     std::unordered_map<int, std::unique_ptr<TCPConnection>> connections_ {};
 
     void handle_new_connection(std::vector<pollfd>& poll_fds);

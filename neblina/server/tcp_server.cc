@@ -25,7 +25,7 @@
 
 using namespace std::string_literals;
 
-TCPServer::TCPServer(TCPService* service)
+TCPServer::TCPServer(TCPService const* service)
     : listener_(get_listener_socket()), service_(service)
 {
 }
