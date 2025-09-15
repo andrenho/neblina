@@ -28,7 +28,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0753c87b-42fc-4330-8b32-c770ab44186c" name="Changes" comment=".">
-      <change beforePath="$PROJECT_DIR$/neblina/services/http/http_connection.cc" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/http/http_connection.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TODO.md" beforeDir="false" afterPath="$PROJECT_DIR$/TODO.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -321,7 +321,7 @@
       <workItem from="1757853145796" duration="6725000" />
       <workItem from="1757870871188" duration="5085000" />
       <workItem from="1757889052452" duration="3364000" />
-      <workItem from="1757897655903" duration="21000" />
+      <workItem from="1757897655903" duration="71000" />
     </task>
     <task id="LOCAL-00001" summary=".">
       <option name="closed" value="true" />

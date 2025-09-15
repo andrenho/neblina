@@ -20,8 +20,8 @@
 
 - [x] Implement HTTP service (consider usability from other connection types)
 - [x] Create basic support to WebApplication
-  - [ ] Health request handler
-  - [ ] Keep working on matching
+  - [x] Health request handler
+  - [x] Keep working on matching
 - [ ] Create static HTTP service
   - [ ] It works
 - [ ] Extra HTTP stuff
