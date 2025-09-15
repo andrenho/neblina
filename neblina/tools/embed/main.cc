@@ -16,6 +16,9 @@ int main(int argc, char* argv[])
     fwrite(comp.data(), comp.size(), 1, f);
     fclose(f);
 
+    auto un = gz::uncompress(comp);
+
+
     /*
     // parse arguments
     if (argc != 3) {

@@ -57,9 +57,58 @@ std::vector<uint8_t> compress(std::vector<uint8_t> const& data)
     throw std::runtime_error("Error compressing binary");
 }
 
-std::vector<uint8_t> uncompress(std::vector<uint8_t> const& compressed_data)
+std::vector<uint8_t> uncompress(std::vector<uint8_t> const& compressed)
 {
+    if (compressed.size() < 18)
+        throw std::runtime_error("Invalid gzip: too short");
 
+    // --- Step 1: parse header ---
+    if (!(compressed[0] == 0x1f && compressed[1] == 0x8b && compressed[2] == 0x08))
+        throw std::runtime_error("Invalid gzip: bad magic/header");
+
+    // Our compressor always wrote: ID1 ID2 CM FLG MTIME(4) XFL OS
+    // so header is always 10 bytes.
+    size_t header_size = 10;
+    size_t footer_size = 8;
+
+    // --- Step 2: prepare for inflate ---
+    mz_stream stream;
+    memset(&stream, 0, sizeof(stream));
+
+    stream.next_in = (unsigned char*)&compressed[header_size];
+    stream.avail_in = (mz_uint32)(compressed.size() - header_size - footer_size);
+
+    // Guess decompressed size from ISIZE in footer:
+    uLong isize =
+        (compressed[compressed.size()-4]) |
+        (compressed[compressed.size()-3] << 8) |
+        (compressed[compressed.size()-2] << 16) |
+        (compressed[compressed.size()-1] << 24);
+
+    std::vector<uint8_t> out;
+    out.resize(isize);
+
+    stream.next_out = out.data();
+    stream.avail_out = (mz_uint32)out.size();
+
+    int result = mz_inflateInit2(&stream, -MZ_DEFAULT_WINDOW_BITS);
+    // negative = raw DEFLATE (no zlib/gzip header)
+
+    if (result != MZ_OK)
+        throw std::runtime_error("inflateInit failed");
+
+    result = mz_inflate(&stream, MZ_FINISH);
+    if (result != MZ_STREAM_END) {
+        mz_inflateEnd(&stream);
+        throw std::runtime_error("inflate failed");
+    }
+
+    mz_inflateEnd(&stream);
+
+    if (out.size() != isize)
+        throw std::runtime_error("Size mismatch");
+
+    return out;
 }
 
 }
