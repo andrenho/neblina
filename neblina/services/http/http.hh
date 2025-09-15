@@ -4,6 +4,7 @@
 #include "service/tcp/tcp_service.hh"
 #include "http_config.hh"
 #include "http_connection.hh"
+#include "arguments.hh"
 
 class Http final : public TCPService {
 public:
@@ -21,7 +22,7 @@ private:
     HttpConfig config_;
 
     static HttpConfig   load_config_file();
-    static std::string  config_filename() { return config_dir() + "/http.json"; };
+    static std::string  config_filename() { return args().config_dir() + "/http.json"; };
 };
 
 #endif //HTTP_HH

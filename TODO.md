@@ -22,13 +22,15 @@
 - [x] Create basic support to WebApplication
   - [x] Health request handler
   - [x] Keep working on matching
-- [ ] Create static HTTP service
+- [x] Create static HTTP service
   - [x] HTTP not closing connection (?)
-- [ ] Static website using files
+  - [x] index.html
+- [x] Static website using files
 - [ ] Static website using compressed files
   - [ ] New compression scheme - use gzip
   - [ ] Allow adding full directories in the compression
   - [ ] Respond with gzip
+  - [ ] Create initialization procedure (It works, config files, etc)
 - [ ] Extra HTTP stuff
   - [ ] Require Host request (otherwise 400)
   - [ ] Automatic error according to request type

@@ -16,6 +16,8 @@ struct Arguments {
     ms                frequency = 0ms;
     std::string       logging_color = "0";
 
+    [[nodiscard]] std::string config_dir() const { return data_dir + "/config"; }
+
 private:
     static void print_help(std::string const& program_name);
 };

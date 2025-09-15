@@ -34,7 +34,7 @@ private:
     void start_service(Service& svc);
 
     static OrchestratorConfig load_config_file();
-    static std::string        config_filename() { return config_dir() + "/orchestrator.json"; };
+    static std::string        config_filename() { return args().config_dir() + "/orchestrator.json"; };
 
     static constexpr size_t MAX_ATTEMPTS = 10;
 };

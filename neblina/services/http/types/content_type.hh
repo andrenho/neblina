@@ -21,6 +21,37 @@ struct ContentType {
     static constexpr std::string_view PDF   = "application/pdf";
     static constexpr std::string_view ZIP   = "application/zip";
     static constexpr std::string_view OCTET = "application/octet-stream";
+
+    static constexpr std::string_view best_content_type(std::string_view extension)
+    {
+        if (extension == ".htm" || extension == ".html")
+            return HTML;
+        if (extension == ".txt" || extension == ".text")
+            return PLAIN;
+        if (extension == ".css")
+            return CSS;
+        if (extension == ".js")
+            return JS;
+        if (extension == ".json")
+            return JSON;
+        if (extension == ".xml")
+            return XML;
+        if (extension == ".png")
+            return PNG;
+        if (extension == ".jpg" || extension == ".jpeg")
+            return JPEG;
+        if (extension == ".gif")
+            return GIF;
+        if (extension == ".webp")
+            return WEBP;
+        if (extension == ".svg")
+            return SVG;
+        if (extension == ".pdf")
+            return PDF;
+        if (extension == ".zip")
+            return ZIP;
+        return OCTET;
+    }
 };
 
 #endif //CONTENT_TYPE_HH

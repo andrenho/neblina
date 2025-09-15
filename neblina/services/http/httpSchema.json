@@ -1,7 +1,8 @@
 {
   "Route": {
     "path": "string",
-    "handler": "string"
+    "handler": "string*",
+    "serveStaticDir": "string*"
   },
   "main": {
     "routes": "Route[]"

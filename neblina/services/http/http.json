@@ -1,5 +1,6 @@
 {
   "routes": [
-    { "path": "/health", "handler": "health-reqhandler" }
+    { "path": "/health", "handler": "health-reqhandler" },
+    { "path": "/(.*)", "serveStaticDir": "www" }
   ]
 }

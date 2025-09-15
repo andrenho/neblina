@@ -27,12 +27,23 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0753c87b-42fc-4330-8b32-c770ab44186c" name="Changes" comment=".">
-      <change afterPath="$PROJECT_DIR$/neblina/services/http/handlers/not_found_request_handler.hh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="0753c87b-42fc-4330-8b32-c770ab44186c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/neblina/services/http/handlers/static_dir_request_handler.cc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/neblina/services/http/handlers/static_dir_request_handler.hh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/neblina/services/http/handlers/static_request_handler.cc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/neblina/services/http/handlers/static_request_handler.hh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TODO.md" beforeDir="false" afterPath="$PROJECT_DIR$/TODO.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/arguments.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/arguments.hh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/service/service.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/service/service.hh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/services/http/http.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/http/http.hh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/services/http/http.json" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/http/http.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/services/http/httpSchema.json" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/http/httpSchema.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/services/http/http_connection.cc" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/http/http_connection.cc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/neblina/services/http/http_connection.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/http/http_connection.hh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/services/http/types/content_type.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/http/types/content_type.hh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/services/orchestrator/orchestrator.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/orchestrator/orchestrator.hh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,11 +74,18 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file:///Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/_stdlib.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file:///Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/ios" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file:///Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/string" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file:///Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_types/_pid_t.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/neblina/contrib/simdjson/simdjson.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/neblina/contrib/simdjson/simdjson.h" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/neblina/services/http/http_connection.cc" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///Users/aw98156/prj/neblina/neblina/services/http/types/http_headers.cc" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/aw98156/prj/neblina/neblina/services/http/types/http_response.cc" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/neblina/services/orchestrator/orchestrator.cc" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/neblina/tools/embed/main.c" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file:///opt/homebrew/Cellar/gcc/14.2.0/include/c++/14/bits/chrono.h" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MakefileLocalSettings">
     <option name="availableProjects">
@@ -115,7 +133,7 @@
   "keyToString": {
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "Native Application.dev.executor": "Debug",
-    "Native Application.http.executor": "Run",
+    "Native Application.http.executor": "Debug",
     "Native Application.neblina.executor": "Run",
     "Native Application.pedantic.executor": "Run",
     "Native Application.test-json2cpp.executor": "Run",
@@ -564,7 +582,15 @@
       <option name="project" value="LOCAL" />
       <updated>1757945126703</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary=".">
+      <option name="closed" value="true" />
+      <created>1757949936697</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1757949936697</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -582,11 +608,6 @@
           <url>file://$PROJECT_DIR$/neblina/tools/json2cpp/test/sample.cc</url>
           <line>38</line>
           <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/neblina/services/http/http_connection.cc</url>
-          <line>43</line>
-          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

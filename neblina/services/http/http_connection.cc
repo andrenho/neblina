@@ -10,14 +10,25 @@
 HttpConnection::HttpConnection(int fd, HttpConfig const& config)
         : TCPConnectionText(fd)
 {
+    // create list of request handers
+
     for (auto const& rt: config.routes) {
         try {
-            routes_.emplace_back(Route {
-                .regex = std::regex(rt.path),
-                .handler = HttpHandlerRegistry::at(rt.handler),
-            });
+            HttpRequestHandler* handler = nullptr;
+            if (rt.handler) {
+                handler = HttpHandlerRegistry::at(*rt.handler);
+            } else if (rt.serve_static_dir) {
+                static_dir_request_handlers_[*rt.serve_static_dir] = std::make_unique<StaticDirRequestHandler>(*rt.serve_static_dir);
+                handler = static_dir_request_handlers_.at(*rt.serve_static_dir).get();
+            }
+            if (handler) {
+                routes_.emplace_back(Route {
+                    .regex = std::regex(rt.path),
+                    .handler = handler,
+                });
+            }
         } catch (std::out_of_range&) {
-            throw std::runtime_error(std::format("A handler for '{}' has not been loaded.", rt.handler));
+            throw std::runtime_error(std::format("Handler '{}' is not available.", *rt.handler));
         } catch (std::regex_error&) {
             throw std::runtime_error(std::format("Path '{}' is not a valid regex expression.", rt.path));
         }

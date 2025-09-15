@@ -17,8 +17,6 @@ public:
 
 protected:
     static void create_file_if_it_doesnt_exist(std::string const& path, CompressedData const& data);
-
-    static std::string config_dir() { return args().data_dir + "/config"; }
 };
 
 #endif //SERVICE_HH
