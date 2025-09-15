@@ -26,5 +26,5 @@ json2cpp = $(eval $(call json2cpp-macro,$(1),$(2),$(3),$(4),$(5)))
 # generate embedded files
 #
 
-%.gen.inc: %.json
-	$(EMBED) $^ $(basename $(notdir $^)) > $@
+%.gen.inc: %.json $(EMBED)
+	$(EMBED) $< $(basename $(notdir $<)) > $@
