@@ -1,11 +1,22 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdint.h>
+#include <cstdio>
+#include <cstdlib>
+#include <cstdint>
+#include <vector>
 
 #include <miniz.h>
 
+#include "../../file/gz.hh"
+
 int main(int argc, char* argv[])
 {
+    std::vector<uint8_t> data { 'H','e','l','l','o' };
+    auto comp = gz::compress(data);
+
+    /*
+    FILE* f = fopen("test.txt.gz", "wb");
+    fwrite(comp.data(), comp.size(), 1, f);
+    fclose(f);
+
     // parse arguments
     if (argc != 3) {
         fprintf(stderr, "Usage: %s INPUTFILE BASENAME", argv[0]);
@@ -22,13 +33,13 @@ int main(int argc, char* argv[])
     fseek(f, 0, SEEK_SET);
 
     // read contents
-    char* contents = calloc(1, fsize + 1);
+    char* contents = (char *) calloc(1, fsize + 1);
     fread(contents, fsize, 1, f);
     fclose(f);
 
     // Allocate buffers to hold compressed and uncompressed data.
     mz_ulong compressed_len = compressBound(fsize);
-    uint8_t* compressed = malloc(compressed_len);
+    uint8_t* compressed = (uint8_t *) malloc(compressed_len);
 
     // Compress the string.
     int cmp_status = compress(compressed, &compressed_len, (const unsigned char *) contents, fsize);
@@ -49,5 +60,5 @@ int main(int argc, char* argv[])
     printf("\n};\n\n");
     printf("static size_t %s_compressed_sz = %zu;\n", basename, compressed_len);
     printf("static size_t %s_uncompressed_sz = %zu;\n", basename, fsize);
-
+    */
 }

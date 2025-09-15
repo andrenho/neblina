@@ -2,8 +2,8 @@ CPPFLAGS=-Wall -Wextra -g -O0 -I../../contrib/miniz
 
 all: embed
 
-embed: main.o ../../contrib/miniz/miniz.o
-	gcc -o $@ $^
+embed: main.o ../../contrib/miniz/miniz.o ../../file/gz.o
+	g++ -o $@ $^
 
-clear:
+clean:
 	rm -f embed main.o ../../contrib/miniz/miniz.o
