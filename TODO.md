@@ -24,7 +24,11 @@
   - [x] Keep working on matching
 - [ ] Create static HTTP service
   - [x] HTTP not closing connection (?)
-  - [ ] It works
+- [ ] Static website using files
+- [ ] Static website using compressed files
+  - [ ] New compression scheme - use gzip
+  - [ ] Allow adding full directories in the compression
+  - [ ] Respond with gzip
 - [ ] Extra HTTP stuff
   - [ ] Require Host request (otherwise 400)
   - [ ] Automatic error according to request type

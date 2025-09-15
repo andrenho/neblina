@@ -6,6 +6,7 @@
 
 #include "http_config.hh"
 #include "http_request_handler.hh"
+#include "handlers/not_found_request_handler.hh"
 #include "service/tcp/tcp_connection_text.hh"
 #include "types/http_request.hh"
 
@@ -22,8 +23,8 @@ private:
     };
     std::vector<Route> routes_;
 
-    HttpRequest        current_http_request;
-    HttpRequestHandler default_request_handler;
+    HttpRequest            current_http_request;
+    NotFoundRequestHandler default_request_handler;
 
     HttpRequestHandler& find_request_handler(HttpRequest const& request, URLParameters& url_parameters, QueryParameters& query_parameters);
 
