@@ -1,13 +1,10 @@
 #include "http_response.hh"
 
-#include "util/chrono.hh"
-
 #include <format>
 
 HttpResponse::HttpResponse(int status_code)
     : status_code(status_code)
 {
-    headers["Date"] = std::format("Date: {:%a, %d %b %Y %H:%M:%S} GMT", std::chrono::floor<std::chrono::seconds>(hr::now()));
     headers["Server"] = "neblina";
 }
 

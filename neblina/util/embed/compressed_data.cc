@@ -1,7 +1,7 @@
 #include "compressed_data.hh"
 
 #include <stdexcept>
-#include <zlib.h>
+#include <miniz.h>
 
 #include <string>
 using namespace std::string_literals;

@@ -2,7 +2,10 @@
 
 #include <algorithm>
 #include <cctype>
+#include <format>
 #include <ranges>
+
+#include "util/chrono.hh"
 
 static std::string to_upper(std::string const& key)
 {
@@ -49,13 +52,20 @@ bool HttpHeaders::contains(std::string const& key) const
 
 std::string HttpHeaders::to_string(size_t with_content_length) const
 {
+    // headers
     std::string str;
     for (auto const& kv: headers_) {
-        if (with_content_length != 0 && kv.first == "CONTENT-LENGTH")
+        if (with_content_length != 0 && (kv.first == "CONTENT-LENGTH" || kv.first == "DATE"))
             continue;
         str += to_header_case(kv.first) + ": " + kv.second + "\r\n";
     }
+
+    // Content-Length
     if (with_content_length != 0)
         str += "Content-Length: " + std::to_string(with_content_length) + "\r\n";
+
+    // Date
+    auto now_in_seconds = std::chrono::floor<std::chrono::seconds>(std::chrono::system_clock::now());
+    str += std::format("Date: {:%a, %d %b %Y %H:%M:%S} GMT", now_in_seconds);
     return str;
 }
