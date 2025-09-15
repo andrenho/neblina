@@ -66,6 +66,6 @@ std::string HttpHeaders::to_string(size_t with_content_length) const
 
     // Date
     auto now_in_seconds = std::chrono::floor<std::chrono::seconds>(std::chrono::system_clock::now());
-    str += std::format("Date: {:%a, %d %b %Y %H:%M:%S} GMT", now_in_seconds);
+    str += std::format("Date: {:%a, %d %b %Y %H:%M:%S} GMT\r\n", now_in_seconds);
     return str;
 }

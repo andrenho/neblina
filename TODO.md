@@ -23,7 +23,7 @@
   - [x] Health request handler
   - [x] Keep working on matching
 - [ ] Create static HTTP service
-  - [ ] HTTP not closing connection (?)
+  - [x] HTTP not closing connection (?)
   - [ ] It works
 - [ ] Extra HTTP stuff
   - [ ] Require Host request (otherwise 400)
