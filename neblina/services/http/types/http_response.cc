@@ -11,12 +11,19 @@ HttpResponse::HttpResponse(int status_code)
     headers["Server"] = "neblina";
 }
 
-HttpResponse::HttpResponse(int status_code, std::string message)
+HttpResponse::HttpResponse(int status_code, std::string_view content_type, std::string const& message)
     : HttpResponse(status_code)
 {
+    headers["Content-Type"] = content_type;
+    body = message;
+}
+
+HttpResponse HttpResponse::error_response_html(int status_code, std::string const& message)
+{
     std::string reason = http_reason_phrase(status_code);
-    body = std::format("<html><head><title>{} {}</title></head><body><h1>{} {}</h1><p>{}</p></body></html>",
-        status_code, reason, status_code, reason, message);
+    return HttpResponse(status_code, ContentType::HTML,
+    std::format("<html><head><title>{} {}</title></head><body><h1>{} {}</h1><p>{}</p></body></html>",
+            status_code, reason, status_code, reason, message));
 }
 
 std::string HttpResponse::http_reason_phrase(int code) {

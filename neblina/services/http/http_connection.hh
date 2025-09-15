@@ -25,10 +25,10 @@ private:
     HttpRequest        current_http_request;
     HttpRequestHandler default_request_handler;
 
-    HttpRequestHandler& find_request_handler(HttpRequest const& request, URLParameters const& url_parameters, QueryParameters const& query_parameters);
+    HttpRequestHandler& find_request_handler(HttpRequest const& request, URLParameters& url_parameters, QueryParameters& query_parameters);
 
     void parse_request(HttpRequest request);
 };
 
 
-#endif //HTTP_ROUTER_CONNECTION_HH
+#endif //HTTP_CONNECTION_HH

@@ -32,7 +32,7 @@ void HttpConnection::new_data_available(std::string_view data)
         if (current_http_request.complete())
             parse_request(current_http_request);
     } catch (HttpException& e) {
-        send_data(HttpResponse(e.status_code, e.what()).to_string());
+        send_data(HttpResponse::error_response_html(e.status_code, e.what()).to_string());
         close_connection();
     }
 }
@@ -56,19 +56,26 @@ void HttpConnection::parse_request(HttpRequest request)
         case HttpRequest::Method::Connect:   throw MethodNotAllowedException();
         case HttpRequest::Method::Undefined: throw InternalServerErrorException();
     }
+
+    send_data(response.to_string());
 }
 
-HttpRequestHandler& HttpConnection::find_request_handler(HttpRequest const& request, URLParameters const& url_parameters, QueryParameters const& query_parameters)
+HttpRequestHandler& HttpConnection::find_request_handler(HttpRequest const& request, URLParameters& url_parameters, QueryParameters& query_parameters)
 {
     std::string resource = request.resource();
     std::string params;
-    if (size_t i = resource.find('?') == std::string::npos) {
-        params = resource.substr(0, i - 1);
+    if (size_t i = resource.find('?') != std::string::npos) {
+        params = resource.substr(i + 1);
         resource = resource.substr(0, i - 1);
     }
 
     for (auto const& route: routes_) {
-        // TODO
+        std::smatch m;
+        if (std::regex_match(resource, m, route.regex)) {
+            url_parameters.reserve(m.size());
+            std::transform(m.begin() + 1, m.end(), std::back_inserter(url_parameters), [](const auto& m) { return m.str(); });
+            return *route.handler;
+        }
     }
 
     return default_request_handler;

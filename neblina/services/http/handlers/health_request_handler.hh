@@ -6,6 +6,11 @@
 class HealthRequestHandler : public HttpRequestHandler {
 public:
     REQUEST_HANDLER_NAME = "health-reqhandler";
+
+    HttpResponse get(HttpRequest const& request, URLParameters const& url_parameters, QueryParameters const& query_parameters) const override
+    {
+        return HttpResponse(200, ContentType::PLAIN, "Success\r\n");
+    }
 };
 
 #endif //HEALTH_REQUEST_HANDLER_HH
