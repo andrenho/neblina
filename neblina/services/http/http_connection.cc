@@ -29,8 +29,10 @@ void HttpConnection::new_data_available(std::string_view data)
     try {
         current_http_request << data;
 
-        if (current_http_request.complete())
+        if (current_http_request.complete()) {
             parse_request(current_http_request);
+            current_http_request = {};
+        }
     } catch (HttpException& e) {
         send_data(HttpResponse::error_response_html(e.status_code, e.what()).to_string());
         close_connection();
