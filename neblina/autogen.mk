@@ -1,3 +1,9 @@
+JSON2CPP = tools/json2cpp/json2cpp.py
+EMBED = tools/embed/embed
+
+$(EMBED):
+	$(MAKE) -C tools/embed
+
 #
 # generate C++ classes for JSON mapping
 #
@@ -21,10 +27,4 @@ json2cpp = $(eval $(call json2cpp-macro,$(1),$(2),$(3),$(4),$(5)))
 #
 
 %.gen.inc: %.json
-	echo "#include <stdint.h>" > $@ && \
-	echo "#include <stddef.h>" >> $@ && \
-	echo "static const uint8_t $(basename $(notdir $^))[] = {" >> $@ && \
-	cat $^ | gzip | xxd -i >> $@ && \
-	echo "};" >> $@
-	echo "static size_t $(basename $(notdir $^))_uncompressed_sz = $(shell stat ${STAT_PRM} $^);" >> $@
-
+	$(EMBED) $^ $(basename $(notdir $^)) > $@

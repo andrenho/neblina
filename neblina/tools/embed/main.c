@@ -40,7 +40,7 @@ int main(int argc, char* argv[])
     // output the compressed string
     printf("#include <stdint.h>\n");
     printf("#include <stddef.h>\n\n");
-    printf("static size_t %s[] = {\n", basename);
+    printf("static uint8_t const %s[] = {\n", basename);
     for (size_t i = 0; i < compressed_len; ++i) {
         if (i % 16 == 0) printf("    ");
         printf("0x%02x, ", compressed[i]);
