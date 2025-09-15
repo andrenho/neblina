@@ -12,11 +12,11 @@ int main(int argc, char* argv[])
     std::vector<uint8_t> data { 'H','e','l','l','o' };
     auto comp = gz::compress(data);
 
-    /*
     FILE* f = fopen("test.txt.gz", "wb");
     fwrite(comp.data(), comp.size(), 1, f);
     fclose(f);
 
+    /*
     // parse arguments
     if (argc != 3) {
         fprintf(stderr, "Usage: %s INPUTFILE BASENAME", argv[0]);
