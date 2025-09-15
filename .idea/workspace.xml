@@ -15,10 +15,8 @@
   <component name="CMakeRunConfigurationManager">
     <generated>
       <config projectName="neblina" targetName="all" />
-      <config projectName="neblina" targetName="neblina" />
-      <config projectName="neblina" targetName="pedantic" />
-      <config projectName="neblina" targetName="dev" />
-      <config projectName="neblina" targetName="Makefile" />
+      <config projectName="neblina" targetName="clear" />
+      <config projectName="neblina" targetName="embed" />
     </generated>
   </component>
   <component name="CMakeSettings">
@@ -28,14 +26,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0753c87b-42fc-4330-8b32-c770ab44186c" name="Changes" comment=".">
-      <change afterPath="$PROJECT_DIR$/neblina/contrib/miniz/miniz.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/neblina/contrib/miniz/miniz.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/neblina/tools/embed/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/neblina/tools/embed/Makefile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/neblina/tools/embed/main.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/editor.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/services/http/types/http_headers.cc" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/http/types/http_headers.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/services/http/types/http_response.cc" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/http/types/http_response.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/util/embed/compressed_data.cc" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/util/embed/compressed_data.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tools/json2cpp/json2cpp.py" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/tools/json2cpp/json2cpp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tools/json2cpp/json_support.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/tools/json2cpp/json_support.hh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tools/json2cpp/test/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/tools/json2cpp/test/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tools/json2cpp/test/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/tools/json2cpp/test/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tools/json2cpp/test/sample.json" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/tools/json2cpp/test/sample.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tools/json2cpp/test/sample_schema.json" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/tools/json2cpp/test/sample_schema.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tools/json2cpp/test/test.cc" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/tools/json2cpp/test/test.cc" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,6 +52,12 @@
     <projectState path="$PROJECT_DIR$/neblina">
       <ProjectState />
     </projectState>
+    <projectState path="$PROJECT_DIR$/neblina/tools/embed">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/tools/embed">
+      <ProjectState />
+    </projectState>
     <projectState path="$PROJECT_DIR$/tools/json2cpp">
       <ProjectState />
     </projectState>
@@ -60,14 +69,11 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file:///Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/_stdlib.h" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file:///Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_types/_pid_t.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/neblina/contrib/simdjson/simdjson.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/neblina/contrib/simdjson/simdjson.h" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/neblina/services/http/http_connection.cc" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock:///Users/aw98156/prj/neblina/neblina/services/http/types/http_response.cc" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/neblina/services/orchestrator/orchestrator.cc" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file:///opt/homebrew/Cellar/gcc/14.2.0/include/c++/14/bits/chrono.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/neblina/tools/embed/main.c" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MakefileLocalSettings">
     <option name="availableProjects">
@@ -88,11 +94,45 @@
             </list>
           </value>
         </entry>
+        <entry>
+          <key>
+            <ExternalProjectPojo>
+              <option name="name" value="neblina" />
+              <option name="path" value="$PROJECT_DIR$/tools/embed" />
+            </ExternalProjectPojo>
+          </key>
+          <value>
+            <list>
+              <ExternalProjectPojo>
+                <option name="name" value="neblina" />
+                <option name="path" value="$PROJECT_DIR$/tools/embed" />
+              </ExternalProjectPojo>
+            </list>
+          </value>
+        </entry>
+        <entry>
+          <key>
+            <ExternalProjectPojo>
+              <option name="name" value="neblina" />
+              <option name="path" value="$PROJECT_DIR$/neblina/tools/embed" />
+            </ExternalProjectPojo>
+          </key>
+          <value>
+            <list>
+              <ExternalProjectPojo>
+                <option name="name" value="neblina" />
+                <option name="path" value="$PROJECT_DIR$/neblina/tools/embed" />
+              </ExternalProjectPojo>
+            </list>
+          </value>
+        </entry>
       </map>
     </option>
     <option name="projectSyncType">
       <map>
         <entry key="$PROJECT_DIR$/neblina" value="RE_IMPORT" />
+        <entry key="$PROJECT_DIR$/neblina/tools/embed" value="RE_IMPORT" />
+        <entry key="$PROJECT_DIR$/tools/embed" value="RE_IMPORT" />
       </map>
     </option>
   </component>
@@ -111,33 +151,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;Native Application.dev.executor&quot;: &quot;Debug&quot;,
-    &quot;Native Application.http.executor&quot;: &quot;Run&quot;,
-    &quot;Native Application.neblina.executor&quot;: &quot;Run&quot;,
-    &quot;Native Application.pedantic.executor&quot;: &quot;Run&quot;,
-    &quot;Native Application.test-json2cpp.executor&quot;: &quot;Run&quot;,
-    &quot;Python.json2cpp.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.RadMigrateCodeStyle&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/andre/prj/neblina/neblina/services/parrot&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.fileTypes&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Native Application.dev.executor": "Debug",
+    "Native Application.http.executor": "Run",
+    "Native Application.neblina.executor": "Run",
+    "Native Application.pedantic.executor": "Run",
+    "Native Application.test-json2cpp.executor": "Run",
+    "Python.json2cpp.executor": "Run",
+    "RunOnceActivity.RadMigrateCodeStyle": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "git-widget-placeholder": "miniz",
+    "last_opened_file_path": "/home/andre/prj/neblina/neblina/services/parrot",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.fileTypes",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/neblina/services/parrot" />
@@ -145,22 +185,17 @@
       <recent name="$PROJECT_DIR$/neblina" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/neblina" />
       <recent name="$PROJECT_DIR$/neblina/contrib/miniz" />
       <recent name="$PROJECT_DIR$/neblina/services/http/types" />
       <recent name="$PROJECT_DIR$/.tmp" />
       <recent name="$PROJECT_DIR$/neblina/service/tcp" />
-      <recent name="$PROJECT_DIR$/neblina/services" />
     </key>
   </component>
-  <component name="RunManager" selected="Native Application.dev">
+  <component name="RunManager" selected="Native Application.all">
     <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
         <option name="CLION.EXTERNAL.BUILD" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Makefile" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="neblina" TARGET_NAME="Makefile" CONFIG_NAME="Makefile" version="1">
-      <method v="2">
-        <option name="CLION.COMPOUND.BUILD" enabled="true" />
       </method>
     </configuration>
     <configuration name="all" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="neblina" TARGET_NAME="all" CONFIG_NAME="all" version="1">
@@ -168,22 +203,17 @@
         <option name="CLION.COMPOUND.BUILD" enabled="true" />
       </method>
     </configuration>
-    <configuration name="dev" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="neblina" TARGET_NAME="dev" CONFIG_NAME="dev" version="1" RUN_PATH="$PROJECT_DIR$/neblina/neblina">
+    <configuration name="clear" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="neblina" TARGET_NAME="clear" CONFIG_NAME="clear" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="embed" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="neblina" TARGET_NAME="embed" CONFIG_NAME="embed" version="1">
       <method v="2">
         <option name="CLION.COMPOUND.BUILD" enabled="true" />
       </method>
     </configuration>
     <configuration name="http" type="CLionNativeAppRunConfigurationType" PROGRAM_PARAMS="-s http -P 8080" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="neblina" TARGET_NAME="dev" CONFIG_NAME="dev" version="1" RUN_PATH="$PROJECT_DIR$/neblina/neblina">
-      <method v="2">
-        <option name="CLION.COMPOUND.BUILD" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="neblina" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="neblina" TARGET_NAME="neblina" CONFIG_NAME="neblina" version="1">
-      <method v="2">
-        <option name="CLION.COMPOUND.BUILD" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="pedantic" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="neblina" TARGET_NAME="pedantic" CONFIG_NAME="pedantic" version="1">
       <method v="2">
         <option name="CLION.COMPOUND.BUILD" enabled="true" />
       </method>
@@ -222,11 +252,9 @@
     </configuration>
     <list>
       <item itemvalue="Native Application.all" />
-      <item itemvalue="Native Application.dev" />
+      <item itemvalue="Native Application.clear" />
+      <item itemvalue="Native Application.embed" />
       <item itemvalue="Native Application.http" />
-      <item itemvalue="Native Application.Makefile" />
-      <item itemvalue="Native Application.neblina" />
-      <item itemvalue="Native Application.pedantic" />
       <item itemvalue="Python.json2cpp" />
     </list>
     <recent_temporary>
@@ -553,7 +581,7 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/tools/json2cpp/test/sample.cc</url>
+          <url>file://$PROJECT_DIR$/neblina/tools/json2cpp/test/sample.cc</url>
           <line>38</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
