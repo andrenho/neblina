@@ -36,7 +36,6 @@ std::vector<uint8_t> gzip(std::vector<uint8_t> const& data)
         result = mz_deflate(&stream, MZ_FINISH);
         if(result == MZ_STREAM_END)
         {
-            std::ofstream some_file("test.txt.gz");
             compressed.resize(stream.total_out + 10);
             uLong crc = mz_crc32(MZ_CRC32_INIT, (mz_uint8*) (data.data()),
                                  data.size());
