@@ -5,6 +5,7 @@
 #include <unordered_map>
 #include <utility>
 #include <string>
+#include <vector>
 
 class HttpHeaders {
 public:
@@ -14,6 +15,10 @@ public:
     bool contains(std::string const& key) const;
 
     std::string to_string(size_t with_content_length=0) const;
+
+    [[nodiscard]] std::string connection() const { auto h = at("Connection"); if (h) return *h; else return ""; }
+    [[nodiscard]] std::string content_type() const { auto h = at("Content-Type"); if (h) return *h; else return ""; }
+    [[nodiscard]] bool accept_encoding(std::string const& encoding) const;
 
 private:
     std::unordered_map<std::string, std::string> headers_;

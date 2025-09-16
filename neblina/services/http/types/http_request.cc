@@ -60,7 +60,10 @@ void HttpRequest::process_header(std::string_view data)
         throw BadRequestException();
     std::string value = std::string(data.substr(f, data.size() - 2));
 
-    headers_[key] = value;
+    if (headers_.contains(key))
+        headers_[key] = *headers_.at(key) + ", " + value;
+    else
+        headers_[key] = value;
 }
 
 void HttpRequest::headers_end()

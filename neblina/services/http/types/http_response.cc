@@ -1,6 +1,10 @@
 #include "http_response.hh"
 
 #include <format>
+#include <string>
+#include <vector>
+
+#include "file/gz.hh"
 
 HttpResponse::HttpResponse(int status_code)
     : status_code(status_code)
@@ -106,4 +110,23 @@ std::string HttpResponse::to_string() const
     return "HTTP/1.1 " + std::to_string(status_code) + " " + http_reason_phrase(status_code) + "\r\n"
         + headers.to_string(body.size()) + "\r\n"
         + body;
+}
+
+void HttpResponse::compress()
+{
+    static std::vector<std::string_view> compressable = {
+        ContentType::HTML,
+        ContentType::TXT,
+        ContentType::JS,
+        ContentType::JSON,
+        ContentType::CSS,
+        ContentType::BIN,
+        ContentType::BMP
+    };
+
+    if (std::find(compressable.begin(), compressable.end(), headers.content_type()) != compressable.end()) {
+        auto zip = gz::gzip({ body.begin(), body.end() });
+        body = { zip.begin(), zip.end() };
+        headers["Content-Encoding"] = "gzip";
+    }
 }

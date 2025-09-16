@@ -29,7 +29,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0753c87b-42fc-4330-8b32-c770ab44186c" name="Changes" comment=".">
-      <change beforePath="$PROJECT_DIR$/neblina/file/gz.cc" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/file/gz.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TODO.md" beforeDir="false" afterPath="$PROJECT_DIR$/TODO.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/services/http/http_connection.cc" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/http/http_connection.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/services/http/http_connection.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/http/http_connection.hh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/services/http/types/http_headers.cc" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/http/types/http_headers.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/services/http/types/http_headers.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/http/types/http_headers.hh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/services/http/types/http_request.cc" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/http/types/http_request.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/services/http/types/http_response.cc" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/http/types/http_response.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/services/http/types/http_response.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/http/types/http_response.hh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/util/string.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/util/string.hh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -387,15 +396,7 @@
       <workItem from="1757958259354" duration="753000" />
       <workItem from="1758025588147" duration="1848000" />
       <workItem from="1758028315174" duration="6819000" />
-      <workItem from="1758047825249" duration="2933000" />
-    </task>
-    <task id="LOCAL-00001" summary=".">
-      <option name="closed" value="true" />
-      <created>1757615875600</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1757615875600</updated>
+      <workItem from="1758047825249" duration="4579000" />
     </task>
     <task id="LOCAL-00002" summary=".">
       <option name="closed" value="true" />
@@ -781,7 +782,15 @@
       <option name="project" value="LOCAL" />
       <updated>1758056339310</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary=".">
+      <option name="closed" value="true" />
+      <created>1758056387129</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1758056387130</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -804,11 +813,6 @@
           <url>file://$PROJECT_DIR$/neblina/file/fileset.cc</url>
           <line>14</line>
           <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/neblina/file/gz.cc</url>
-          <line>60</line>
-          <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

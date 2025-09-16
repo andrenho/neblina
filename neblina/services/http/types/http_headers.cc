@@ -67,3 +67,8 @@ std::string HttpHeaders::to_string(size_t with_content_length) const
     str += std::format("Date: {:%a, %d %b %Y %H:%M:%S} GMT\r\n", now_in_seconds);
     return str;
 }
+
+bool HttpHeaders::accept_encoding(std::string const& encoding) const
+{
+    return at("Accept-Encoding") && at("Accept-Encoding")->find(encoding) != npos;
+}

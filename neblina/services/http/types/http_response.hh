@@ -15,6 +15,8 @@ struct HttpResponse {
     HttpHeaders headers;
     std::string body;
 
+    void compress();
+
     std::string to_string() const;
 
     static HttpResponse error_response_html(int status_code, std::string const& message);

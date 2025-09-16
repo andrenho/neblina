@@ -34,8 +34,8 @@
   - [x] Require Host request (otherwise 400)
   - [x] Automatic error according to request type
   - [x] Persistent connections (check Connection header)
+  - [x] Transfer encoding: gzip, deflate
   - [ ] Redirects
-  - [ ] Transfer encoding: gzip, deflate
   - [ ] Conditional requests: If-Modified-Since, If-None-Match, ETag, Last-Modified
 - [ ] Basic authentication
 

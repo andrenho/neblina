@@ -31,7 +31,7 @@ private:
 
     HttpRequestHandler& find_request_handler(HttpRequest const& request, URLParameters& url_parameters, QueryParameters& query_parameters);
 
-    void parse_request(HttpRequest request);
+    void parse_request(const HttpRequest& request);
 };
 
 

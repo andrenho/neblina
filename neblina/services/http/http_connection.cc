@@ -51,7 +51,7 @@ void HttpConnection::new_data_available(std::string_view data)
     }
 }
 
-void HttpConnection::parse_request(HttpRequest request)
+void HttpConnection::parse_request(HttpRequest const& request)
 {
     if (!request.headers().contains("Host"))
         throw BadRequestException();
@@ -67,17 +67,18 @@ void HttpConnection::parse_request(HttpRequest request)
         case HttpRequest::Method::Put:       response = request_handler.put(request, url_parameters, query_parameters); break;
         case HttpRequest::Method::Delete:    response = request_handler.delete_(request, url_parameters, query_parameters); break;
         case HttpRequest::Method::Patch:     response = request_handler.patch(request, url_parameters, query_parameters); break;
-        case HttpRequest::Method::Options:   throw NotImplementedException();
         case HttpRequest::Method::Head:      response = request_handler.head(request, url_parameters, query_parameters); break;
+        case HttpRequest::Method::Options:   throw NotImplementedException();
         case HttpRequest::Method::Trace:     throw NotImplementedException();
         case HttpRequest::Method::Connect:   throw NotImplementedException();
         case HttpRequest::Method::Undefined: throw InternalServerErrorException();
     }
 
+    if (request.headers().accept_encoding("gzip"))
+        response.compress();
     send_data(response.to_string());
 
-    auto close_conn = request.headers().at("Connection");
-    if (close_conn && to_lower(*close_conn) == "close")
+    if (request.headers().connection() == "close")
         close_connection();
 }
 
