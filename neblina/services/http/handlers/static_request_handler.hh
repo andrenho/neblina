@@ -1,6 +1,7 @@
 #ifndef STATIC_REQUEST_HANDLER_HH
 #define STATIC_REQUEST_HANDLER_HH
 
+#include <optional>
 #include "../http_request_handler.hh"
 
 class StaticRequestHandler : public HttpRequestHandler {

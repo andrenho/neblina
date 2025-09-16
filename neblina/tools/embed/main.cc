@@ -1,3 +1,4 @@
+#include <assert.h>
 #include <cstdio>
 #include <cstdlib>
 #include <cstdint>
@@ -34,6 +35,9 @@ static void generate_file(std::string const& filename)
         std::cout << "File::compressed((uint8_t const[]) { ";
         cout_binary(compressed);
         std::cout << std::format("}}, {}, {})", compressed.size(), contents.size());
+
+        // test decompression
+        assert(gz::gunzip(compressed) == contents);
     } else {
         std::cout << "File::uncompressed((uint8_t const[]) { ";
         cout_binary(contents);
@@ -73,7 +77,16 @@ int main(int argc, char* argv[])
 )", ubase, ubase);
 
     if (directory) {
-
+        std::cout << std::format("inline const FileSet {} = {{\n", basename);
+        fs::path dir(inputfile);
+        for (auto const& entry: fs::recursive_directory_iterator(dir)) {
+            if (entry.is_regular_file() && !entry.path().filename().string().starts_with(".")) {
+                std::cout << std::format("    {{ \"{}\", ", fs::relative(entry.path(), dir).string());
+                generate_file(entry.path());
+                std::cout << "},\n";
+            }
+        }
+        std::cout << "};\n";
     } else {
         std::cout << std::format("inline const File {} = ", basename);
         generate_file(inputfile);
@@ -81,41 +94,4 @@ int main(int argc, char* argv[])
     }
 
     std::cout << std::format("\n#endif // {}_HH\n", basename);
-
-    /*
-    // open file and get the size
-    FILE* f = fopen(inputfile, "rb");
-    fseek(f, 0, SEEK_END);
-    long fsize = ftell(f);
-    fseek(f, 0, SEEK_SET);
-
-    // read contents
-    char* contents = (char *) calloc(1, fsize + 1);
-    fread(contents, fsize, 1, f);
-    fclose(f);
-
-    // Allocate buffers to hold compressed and uncompressed data.
-    mz_ulong compressed_len = compressBound(fsize);
-    uint8_t* compressed = (uint8_t *) malloc(compressed_len);
-
-    // Compress the string.
-    int cmp_status = compress(compressed, &compressed_len, (const unsigned char *) contents, fsize);
-    if (cmp_status != Z_OK) {
-        fprintf(stderr, "compress() failed!\n");
-        return EXIT_FAILURE;
-    }
-
-    // output the compressed string
-    printf("#include <stdint.h>\n");
-    printf("#include <stddef.h>\n\n");
-    printf("static uint8_t const %s[] = {\n", basename);
-    for (size_t i = 0; i < compressed_len; ++i) {
-        if (i % 16 == 0) printf("    ");
-        printf("0x%02x, ", compressed[i]);
-        if (i % 16 == 15) printf("\n");
-    }
-    printf("\n};\n\n");
-    printf("static size_t %s_compressed_sz = %zu;\n", basename, compressed_len);
-    printf("static size_t %s_uncompressed_sz = %zu;\n", basename, fsize);
-    */
 }

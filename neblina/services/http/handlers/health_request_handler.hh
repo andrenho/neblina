@@ -9,7 +9,7 @@ public:
 
     HttpResponse get(HttpRequest const& request, URLParameters const& url_parameters, QueryParameters const& query_parameters) const override
     {
-        return HttpResponse(200, ContentType::PLAIN, "Success\r\n");
+        return HttpResponse(200, ContentType::TXT, "Success\r\n");
     }
 };
 

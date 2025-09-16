@@ -8,6 +8,7 @@ namespace gz {
 
 std::vector<uint8_t> gzip(std::vector<uint8_t> const& uncompressed_data);
 std::vector<uint8_t> gunzip(std::vector<uint8_t> const& compressed_data);
+std::vector<uint8_t> gunzip(uint8_t const* data, size_t sz);
 
 }
 

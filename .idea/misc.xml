@@ -10,17 +10,17 @@
   <component name="MakefileSettings">
     <option name="linkedExternalProjectsSettings">
       <MakefileProjectSettings>
-        <option name="externalProjectPath" value="$PROJECT_DIR$/neblina/tools/embed" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/neblina" />
         <option name="modules">
           <set>
-            <option value="$PROJECT_DIR$/neblina/tools/embed" />
+            <option value="$PROJECT_DIR$/neblina" />
           </set>
         </option>
         <option name="version" value="2" />
       </MakefileProjectSettings>
     </option>
   </component>
-  <component name="MakefileWorkspace" PROJECT_DIR="$PROJECT_DIR$/neblina/tools/embed">
+  <component name="MakefileWorkspace" PROJECT_DIR="$PROJECT_DIR$/neblina">
     <contentRoot DIR="$PROJECT_DIR$" />
   </component>
 </project>

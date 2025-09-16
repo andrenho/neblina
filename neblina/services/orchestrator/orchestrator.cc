@@ -7,7 +7,6 @@
 using namespace std::string_literals;
 
 #include "util/log.hh"
-#include "orchestrator.gen.inc"
 
 void Orchestrator::init()
 {
@@ -17,7 +16,6 @@ void Orchestrator::init()
 
 OrchestratorConfig Orchestrator::load_config_file()
 {
-    create_file_if_it_doesnt_exist(config_filename(), { orchestrator, orchestrator_uncompressed_sz, sizeof orchestrator });
     return OrchestratorConfig::from_file(config_filename());
 }
 

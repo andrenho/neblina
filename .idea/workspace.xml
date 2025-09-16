@@ -15,7 +15,11 @@
   <component name="CMakeRunConfigurationManager">
     <generated>
       <config projectName="neblina" targetName="all" />
-      <config projectName="neblina" targetName="embed" />
+      <config projectName="neblina" targetName="init" />
+      <config projectName="neblina" targetName="neblina" />
+      <config projectName="neblina" targetName="pedantic" />
+      <config projectName="neblina" targetName="dev" />
+      <config projectName="neblina" targetName="Makefile" />
     </generated>
   </component>
   <component name="CMakeSettings">
@@ -25,13 +29,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0753c87b-42fc-4330-8b32-c770ab44186c" name="Changes" comment=".">
-      <change afterPath="$PROJECT_DIR$/neblina/file/whole_file.cc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/neblina/file/whole_file.hh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/neblina/README.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/neblina/file/fileset.cc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/neblina/init/www/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/neblina/util/filesystem.hh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TODO.md" beforeDir="false" afterPath="$PROJECT_DIR$/TODO.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/file/fileset.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/file/fileset.hh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/neblina/file/gz.cc" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/file/gz.cc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/neblina/file/gz.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/file/gz.hh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/services/http/types/content_type.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/http/types/content_type.hh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/tools/embed/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/tools/embed/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/main.cc" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/main.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/services/http/handlers/health_request_handler.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/http/handlers/health_request_handler.hh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/services/http/handlers/static_request_handler.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/http/handlers/static_request_handler.hh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/services/http/http.cc" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/http/http.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/services/http/http.json" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/init/config/http.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/services/orchestrator/orchestrator.cc" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/orchestrator/orchestrator.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/services/orchestrator/orchestrator.json" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/init/config/orchestrator.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/neblina/tools/embed/main.cc" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/tools/embed/main.cc" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -102,35 +117,6 @@
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/neblina/contrib/simdjson/simdjson.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/neblina/contrib/simdjson/simdjson.h" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/neblina/services/http/http_connection.cc" root0="FORCE_HIGHLIGHTING" />
@@ -156,28 +142,11 @@
             </list>
           </value>
         </entry>
-        <entry>
-          <key>
-            <ExternalProjectPojo>
-              <option name="name" value="neblina" />
-              <option name="path" value="$PROJECT_DIR$/neblina/tools/embed" />
-            </ExternalProjectPojo>
-          </key>
-          <value>
-            <list>
-              <ExternalProjectPojo>
-                <option name="name" value="neblina" />
-                <option name="path" value="$PROJECT_DIR$/neblina/tools/embed" />
-              </ExternalProjectPojo>
-            </list>
-          </value>
-        </entry>
       </map>
     </option>
     <option name="projectSyncType">
       <map>
         <entry key="$PROJECT_DIR$/neblina" value="RE_IMPORT" />
-        <entry key="$PROJECT_DIR$/neblina/tools/embed" value="RE_IMPORT" />
       </map>
     </option>
   </component>
@@ -196,34 +165,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Native Application.dev.executor": "Debug",
-    "Native Application.embed.executor": "Debug",
-    "Native Application.http.executor": "Debug",
-    "Native Application.neblina.executor": "Run",
-    "Native Application.pedantic.executor": "Run",
-    "Native Application.test-json2cpp.executor": "Run",
-    "Python.json2cpp.executor": "Run",
-    "RunOnceActivity.RadMigrateCodeStyle": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.readMode.enableVisualFormatting": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "cf.first.check.clang-format": "false",
-    "cidr.known.project.marker": "true",
-    "git-widget-placeholder": "file-management",
-    "last_opened_file_path": "/home/andre/prj/neblina/neblina/services/parrot",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.fileTypes",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Native Application.dev.executor&quot;: &quot;Debug&quot;,
+    &quot;Native Application.embed.executor&quot;: &quot;Debug&quot;,
+    &quot;Native Application.http.executor&quot;: &quot;Debug&quot;,
+    &quot;Native Application.neblina (dev).executor&quot;: &quot;Debug&quot;,
+    &quot;Native Application.neblina.executor&quot;: &quot;Debug&quot;,
+    &quot;Native Application.pedantic.executor&quot;: &quot;Run&quot;,
+    &quot;Native Application.test-json2cpp.executor&quot;: &quot;Run&quot;,
+    &quot;Python.json2cpp.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.RadMigrateCodeStyle&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;file-management&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/andre/prj/neblina/neblina/services/parrot&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.fileTypes&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/neblina/services/parrot" />
@@ -231,17 +201,17 @@
       <recent name="$PROJECT_DIR$/neblina" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/neblina/init/config" />
       <recent name="$PROJECT_DIR$/neblina" />
       <recent name="$PROJECT_DIR$/neblina/contrib/miniz" />
       <recent name="$PROJECT_DIR$/neblina/services/http/types" />
       <recent name="$PROJECT_DIR$/.tmp" />
-      <recent name="$PROJECT_DIR$/neblina/service/tcp" />
     </key>
   </component>
-  <component name="RunManager" selected="Native Application.embed">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+  <component name="RunManager" selected="Native Application.neblina (dev)">
+    <configuration name="Makefile" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="neblina" TARGET_NAME="Makefile" CONFIG_NAME="Makefile" version="1">
       <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
       </method>
     </configuration>
     <configuration name="all" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="neblina" TARGET_NAME="all" CONFIG_NAME="all" version="1">
@@ -249,12 +219,27 @@
         <option name="CLION.COMPOUND.BUILD" enabled="true" />
       </method>
     </configuration>
-    <configuration name="embed" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="neblina" TARGET_NAME="embed" CONFIG_NAME="embed" version="1" RUN_PATH="$PROJECT_DIR$/neblina/tools/embed/embed">
+    <configuration name="http" type="CLionNativeAppRunConfigurationType" PROGRAM_PARAMS="-s http -P 8080" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="neblina" TARGET_NAME="dev" CONFIG_NAME="dev" version="1" RUN_PATH="$PROJECT_DIR$/neblina/neblina">
       <method v="2">
         <option name="CLION.COMPOUND.BUILD" enabled="true" />
       </method>
     </configuration>
-    <configuration name="http" type="CLionNativeAppRunConfigurationType" PROGRAM_PARAMS="-s http -P 8080" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="neblina" TARGET_NAME="dev" CONFIG_NAME="dev" version="1" RUN_PATH="$PROJECT_DIR$/neblina/neblina">
+    <configuration name="init" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="neblina" TARGET_NAME="init" CONFIG_NAME="init" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="neblina (dev)" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="neblina" TARGET_NAME="dev" CONFIG_NAME="dev" version="1" RUN_PATH="$PROJECT_DIR$/neblina/neblina">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="neblina" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="neblina" TARGET_NAME="neblina" CONFIG_NAME="neblina" version="1" RUN_PATH="$PROJECT_DIR$/neblina/neblina">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="pedantic" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="neblina" TARGET_NAME="pedantic" CONFIG_NAME="pedantic" version="1">
       <method v="2">
         <option name="CLION.COMPOUND.BUILD" enabled="true" />
       </method>
@@ -293,7 +278,11 @@
     </configuration>
     <list>
       <item itemvalue="Native Application.all" />
-      <item itemvalue="Native Application.embed" />
+      <item itemvalue="Native Application.init" />
+      <item itemvalue="Native Application.Makefile" />
+      <item itemvalue="Native Application.neblina" />
+      <item itemvalue="Native Application.neblina (dev)" />
+      <item itemvalue="Native Application.pedantic" />
       <item itemvalue="Native Application.http" />
       <item itemvalue="Python.json2cpp" />
     </list>
@@ -326,6 +315,8 @@
       <workItem from="1757889052452" duration="3364000" />
       <workItem from="1757897655903" duration="71000" />
       <workItem from="1757958259354" duration="753000" />
+      <workItem from="1758025588147" duration="1848000" />
+      <workItem from="1758028315174" duration="3293000" />
     </task>
     <task id="LOCAL-00001" summary=".">
       <option name="closed" value="true" />
@@ -679,7 +670,15 @@
       <option name="project" value="LOCAL" />
       <updated>1757970387509</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary=".">
+      <option name="closed" value="true" />
+      <created>1757986559426</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1757986559426</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

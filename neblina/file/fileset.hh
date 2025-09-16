@@ -17,4 +17,6 @@ struct File {
 
 using FileSet = std::unordered_map<std::string, File>;
 
+void deploy_fileset(FileSet const& fileset, std::string const& directory);
+
 #endif //FILESET_HH

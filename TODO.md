@@ -48,7 +48,8 @@
 
 Extra:
 - [x] Move config file to "/config"
-- [ ] Rename http_router to http
+- [x] Rename http_router to http
+- [ ] Reorganize directories
 
 ### v0.4 - Interservice communication
 

@@ -111,4 +111,9 @@ std::vector<uint8_t> gunzip(std::vector<uint8_t> const& compressed)
     return out;
 }
 
+std::vector<uint8_t> gunzip(uint8_t const* data, size_t sz)
+{
+    return gunzip(std::vector<uint8_t>(data, data + sz));
+}
+
 }
