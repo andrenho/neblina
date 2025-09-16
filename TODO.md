@@ -41,6 +41,7 @@
 Extra:
 - [x] Move config file to "/config"
 - [x] Rename http_router to http
+- [ ] Code review
 
 ### v0.4 - Interservice communication
 
