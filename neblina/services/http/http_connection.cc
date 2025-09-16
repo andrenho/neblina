@@ -76,6 +76,7 @@ void HttpConnection::parse_request(HttpRequest const& request)
 
     if (request.headers().accept_encoding("gzip"))
         response.compress();
+
     send_data(response.to_string());
 
     if (request.headers().connection() == "close")

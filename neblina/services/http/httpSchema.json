@@ -2,7 +2,8 @@
   "Route": {
     "path": "string",
     "handler": "string*",
-    "serveStaticDir": "string*"
+    "serveStaticDir": "string*",
+    "redirect": "string*"
   },
   "main": {
     "routes": "Route[]"

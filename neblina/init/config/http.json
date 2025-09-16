@@ -1,6 +1,7 @@
 {
   "routes": [
     { "path": "/health", "handler": "health-reqhandler" },
+    { "path": "/google", "redirect": "https://www.google.com" },
     { "path": "/(.*)", "serveStaticDir": "www" }
   ]
 }

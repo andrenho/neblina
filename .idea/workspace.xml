@@ -30,15 +30,9 @@
   <component name="ChangeListManager">
     <list default="true" id="0753c87b-42fc-4330-8b32-c770ab44186c" name="Changes" comment=".">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TODO.md" beforeDir="false" afterPath="$PROJECT_DIR$/TODO.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/init/config/http.json" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/init/config/http.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/services/http/httpSchema.json" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/http/httpSchema.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/neblina/services/http/http_connection.cc" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/http/http_connection.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/services/http/http_connection.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/http/http_connection.hh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/services/http/types/http_headers.cc" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/http/types/http_headers.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/services/http/types/http_headers.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/http/types/http_headers.hh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/services/http/types/http_request.cc" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/http/types/http_request.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/services/http/types/http_response.cc" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/http/types/http_response.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/services/http/types/http_response.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/http/types/http_response.hh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/util/string.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/util/string.hh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -396,15 +390,7 @@
       <workItem from="1757958259354" duration="753000" />
       <workItem from="1758025588147" duration="1848000" />
       <workItem from="1758028315174" duration="6819000" />
-      <workItem from="1758047825249" duration="4579000" />
-    </task>
-    <task id="LOCAL-00002" summary=".">
-      <option name="closed" value="true" />
-      <created>1757616498193</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1757616498193</updated>
+      <workItem from="1758047825249" duration="4700000" />
     </task>
     <task id="LOCAL-00003" summary=".">
       <option name="closed" value="true" />
@@ -790,7 +776,15 @@
       <option name="project" value="LOCAL" />
       <updated>1758056387130</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary=".">
+      <option name="closed" value="true" />
+      <created>1758058030281</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1758058030281</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
