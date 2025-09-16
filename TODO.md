@@ -26,11 +26,10 @@
   - [x] HTTP not closing connection (?)
   - [x] index.html
 - [x] Static website using files
-- [ ] Static website using compressed files
-  - [ ] New compression scheme - use gzip
-  - [ ] Allow adding full directories in the compression
-  - [ ] Respond with gzip
-  - [ ] Create initialization procedure (It works, config files, etc)
+- [x] Static website using compressed files
+  - [x] New compression scheme - use gzip
+  - [x] Allow adding full directories in the compression
+  - [x] Create initialization procedure (It works, config files, etc)
 - [ ] Extra HTTP stuff
   - [ ] Require Host request (otherwise 400)
   - [ ] Automatic error according to request type

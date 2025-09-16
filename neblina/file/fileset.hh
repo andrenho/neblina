@@ -12,7 +12,7 @@ struct File {
     bool           is_compressed;
 
     static File uncompressed(uint8_t const* contents, size_t sz) { return { contents, 0, sz, false }; }
-    static File compressed(uint8_t const* contents, size_t sz, size_t usz) { return { contents, usz, sz, true }; }
+    static File compressed(uint8_t const* contents, size_t sz, size_t usz) { return { contents, sz, usz, true }; }
 };
 
 using FileSet = std::unordered_map<std::string, File>;

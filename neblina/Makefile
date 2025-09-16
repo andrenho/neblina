@@ -40,7 +40,7 @@ CXXFLAGS=-std=c++23
 LDFLAGS=-flto=auto
 
 ifdef DEV
-  CPPFLAGS += -O0 -ggdb
+  CPPFLAGS += -O0 -ggdb -fno-inline-functions
 else ifdef PEDANTIC
   CPPFLAGS += -O0 -ggdb -fstack-protector-strong -fno-common -Wextra -Wpedantic -Wshadow -Wformat=2
   CXXFLAGS += -Weffc++ -Wnull-dereference -Wcast-align
