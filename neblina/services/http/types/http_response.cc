@@ -27,6 +27,14 @@ HttpResponse HttpResponse::error_response_html(int status_code, std::string cons
             status_code, reason, status_code, reason, message));
 }
 
+HttpResponse HttpResponse::redirect_response(std::string const& new_location)
+{
+    HttpResponse response(301, ContentType::TXT, "Moved Permanently. Redirecting to " + new_location);
+    response.headers["Cache-Control"] = "max-age=2592000,public";
+    response.headers["Location"] = new_location;
+    return response;
+}
+
 std::string HttpResponse::http_reason_phrase(int code) {
     switch (code) {
         // 1xx Informational

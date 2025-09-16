@@ -21,15 +21,14 @@ public:
 private:
     struct Route {
         std::regex regex;
-        HttpRequestHandler* handler;
+        std::unique_ptr<HttpRequestHandler> handler;
     };
     std::vector<Route> routes_;
 
     HttpRequest            current_http_request;
     NotFoundRequestHandler default_request_handler;
-    std::unordered_map<std::string, std::unique_ptr<StaticDirRequestHandler>> static_dir_request_handlers_;
 
-    HttpRequestHandler& find_request_handler(HttpRequest const& request, URLParameters& url_parameters, QueryParameters& query_parameters);
+    HttpRequestHandler* find_request_handler(HttpRequest const& request, URLParameters& url_parameters, QueryParameters& query_parameters);
 
     void parse_request(const HttpRequest& request);
 };

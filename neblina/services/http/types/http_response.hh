@@ -20,6 +20,7 @@ struct HttpResponse {
     std::string to_string() const;
 
     static HttpResponse error_response_html(int status_code, std::string const& message);
+    static HttpResponse redirect_response(std::string const& new_location);
 
     [[nodiscard]] static std::string http_reason_phrase(int code);
 };

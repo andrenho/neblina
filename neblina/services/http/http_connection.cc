@@ -6,26 +6,28 @@
 #include "http_handler_registry.hh"
 #include "types/http_response.hh"
 #include "http_request_handler.hh"
+#include "handlers/redirect_request_handler.hh"
 #include "util/string.hh"
 
 HttpConnection::HttpConnection(int fd, HttpConfig const& config)
         : TCPConnectionText(fd)
 {
-    // create list of request handers
+    // create list of request handers (TODO - move to HTTP so it's not recreated every time)
 
     for (auto const& rt: config.routes) {
         try {
-            HttpRequestHandler* handler = nullptr;
+            std::unique_ptr<HttpRequestHandler> handler;
             if (rt.handler) {
-                handler = HttpHandlerRegistry::at(*rt.handler);
+                handler = HttpHandlerRegistry::create_unique_ptr(*rt.handler);
             } else if (rt.serve_static_dir) {
-                static_dir_request_handlers_[*rt.serve_static_dir] = std::make_unique<StaticDirRequestHandler>(*rt.serve_static_dir);
-                handler = static_dir_request_handlers_.at(*rt.serve_static_dir).get();
+                handler = std::make_unique<StaticDirRequestHandler>(*rt.serve_static_dir);
+            } else if (rt.redirect) {
+                handler = std::make_unique<RedirectRequestHandler>(*rt.redirect);
             }
             if (handler) {
                 routes_.emplace_back(Route {
                     .regex = std::regex(rt.path),
-                    .handler = handler,
+                    .handler = std::move(handler),
                 });
             }
         } catch (std::out_of_range&) {
@@ -58,16 +60,16 @@ void HttpConnection::parse_request(HttpRequest const& request)
 
     URLParameters url_parameters;
     QueryParameters query_parameters;
-    HttpRequestHandler& request_handler = find_request_handler(request, url_parameters, query_parameters);
+    HttpRequestHandler* request_handler = find_request_handler(request, url_parameters, query_parameters);
 
     HttpResponse response;
     switch (request.method()) {
-        case HttpRequest::Method::Get:       response = request_handler.get(request, url_parameters, query_parameters); break;
-        case HttpRequest::Method::Post:      response = request_handler.post(request, url_parameters, query_parameters); break;
-        case HttpRequest::Method::Put:       response = request_handler.put(request, url_parameters, query_parameters); break;
-        case HttpRequest::Method::Delete:    response = request_handler.delete_(request, url_parameters, query_parameters); break;
-        case HttpRequest::Method::Patch:     response = request_handler.patch(request, url_parameters, query_parameters); break;
-        case HttpRequest::Method::Head:      response = request_handler.head(request, url_parameters, query_parameters); break;
+        case HttpRequest::Method::Get:       response = request_handler->get(request, url_parameters, query_parameters); break;
+        case HttpRequest::Method::Post:      response = request_handler->post(request, url_parameters, query_parameters); break;
+        case HttpRequest::Method::Put:       response = request_handler->put(request, url_parameters, query_parameters); break;
+        case HttpRequest::Method::Delete:    response = request_handler->delete_(request, url_parameters, query_parameters); break;
+        case HttpRequest::Method::Patch:     response = request_handler->patch(request, url_parameters, query_parameters); break;
+        case HttpRequest::Method::Head:      response = request_handler->head(request, url_parameters, query_parameters); break;
         case HttpRequest::Method::Options:   throw NotImplementedException();
         case HttpRequest::Method::Trace:     throw NotImplementedException();
         case HttpRequest::Method::Connect:   throw NotImplementedException();
@@ -83,7 +85,7 @@ void HttpConnection::parse_request(HttpRequest const& request)
         close_connection();
 }
 
-HttpRequestHandler& HttpConnection::find_request_handler(HttpRequest const& request, URLParameters& url_parameters, QueryParameters& query_parameters)
+HttpRequestHandler* HttpConnection::find_request_handler(HttpRequest const& request, URLParameters& url_parameters, QueryParameters& query_parameters)
 {
     std::string resource = request.resource();
     std::string params;
@@ -97,9 +99,9 @@ HttpRequestHandler& HttpConnection::find_request_handler(HttpRequest const& requ
         if (std::regex_match(resource, m, route.regex)) {
             url_parameters.reserve(m.size());
             std::transform(m.begin() + 1, m.end(), std::back_inserter(url_parameters), [](const auto& m) { return m.str(); });
-            return *route.handler;
+            return route.handler.get();
         }
     }
 
-    return default_request_handler;
+    return &default_request_handler;
 }

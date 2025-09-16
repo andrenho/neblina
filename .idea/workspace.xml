@@ -4,6 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="BackendCodeEditorMiscSettings">
+    <option name="/Default/Environment/UserInterface/HierarchyView/ViewStyle/@EntryValue" value="SuperTypes" type="string" />
     <option name="/Default/Housekeeping/FeatureSuggestion/FeatureSuggestionManager/DisabledSuggesters/=SwitchToGoToActionSuggester/@EntryIndexedValue" value="true" type="bool" />
     <option name="/Default/Housekeeping/GlobalSettingsUpgraded/IsUpgraded/@EntryValue" value="true" type="bool" />
     <option name="/Default/Housekeeping/LiveTemplatesHousekeeping/HotspotSessionHintIsShown/@EntryValue" value="true" type="bool" />
@@ -29,10 +30,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0753c87b-42fc-4330-8b32-c770ab44186c" name="Changes" comment=".">
+      <change afterPath="$PROJECT_DIR$/neblina/services/http/handlers/redirect_request_handler.hh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/init/config/http.json" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/init/config/http.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/services/http/httpSchema.json" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/http/httpSchema.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/neblina/services/http/http_connection.cc" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/http/http_connection.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/services/http/http_connection.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/http/http_connection.hh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/services/http/http_handler_registry.cc" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/http/http_handler_registry.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/services/http/http_handler_registry.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/http/http_handler_registry.hh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/services/http/types/http_response.cc" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/http/types/http_response.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/services/http/types/http_response.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/http/types/http_response.hh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -312,11 +317,6 @@
         <option name="CLION.COMPOUND.BUILD" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="json2cpp" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="neblina" />
       <option name="ENV_FILES" value="" />
@@ -390,15 +390,8 @@
       <workItem from="1757958259354" duration="753000" />
       <workItem from="1758025588147" duration="1848000" />
       <workItem from="1758028315174" duration="6819000" />
-      <workItem from="1758047825249" duration="4700000" />
-    </task>
-    <task id="LOCAL-00003" summary=".">
-      <option name="closed" value="true" />
-      <created>1757617507126</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1757617507126</updated>
+      <workItem from="1758047825249" duration="5167000" />
+      <workItem from="1758058652050" duration="468000" />
     </task>
     <task id="LOCAL-00004" summary=".">
       <option name="closed" value="true" />
@@ -784,7 +777,15 @@
       <option name="project" value="LOCAL" />
       <updated>1758058030281</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary=".">
+      <option name="closed" value="true" />
+      <created>1758058262084</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1758058262084</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
