@@ -35,9 +35,8 @@
   - [x] Automatic error according to request type
   - [x] Persistent connections (check Connection header)
   - [x] Transfer encoding: gzip, deflate
-  - [ ] Redirects
+  - [x] Redirects
   - [ ] Conditional requests: If-Modified-Since, If-None-Match, ETag, Last-Modified
-- [ ] Basic authentication
 
 Extra:
 - [x] Move config file to "/config"
@@ -50,6 +49,7 @@ Extra:
   - [ ] Small HTTP service for processing messages
 - [ ] Implement TCP service
 - [ ] Implement scheduled service
+- [ ] Basic authentication
 - [ ] Load .so service
 - [ ] Compile on Windows
 - [ ] Increase log quality

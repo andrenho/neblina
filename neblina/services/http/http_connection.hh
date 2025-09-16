@@ -1,32 +1,25 @@
 #ifndef HTTP_CONNECTION_HH
 #define HTTP_CONNECTION_HH
 
-#include <unordered_map>
-#include <regex>
 #include <vector>
 
 #include "http_config.hh"
 #include "http_request_handler.hh"
+#include "http_routes.hh"
 #include "handlers/not_found_request_handler.hh"
-#include "handlers/static_dir_request_handler.hh"
 #include "service/tcp/tcp_connection_text.hh"
 #include "types/http_request.hh"
 
 class HttpConnection final : public TCPConnectionText {
 public:
-    HttpConnection(int fd, HttpConfig const& config);
+    HttpConnection(int fd, std::vector<HttpRoute> const& routes) : TCPConnectionText(fd), routes_(routes) {}
 
     void new_data_available(std::string_view data) override;
 
 private:
-    struct Route {
-        std::regex regex;
-        std::unique_ptr<HttpRequestHandler> handler;
-    };
-    std::vector<Route> routes_;
-
-    HttpRequest            current_http_request;
-    NotFoundRequestHandler default_request_handler;
+    std::vector<HttpRoute> const& routes_;
+    HttpRequest                   current_http_request;
+    NotFoundRequestHandler        default_request_handler;
 
     HttpRequestHandler* find_request_handler(HttpRequest const& request, URLParameters& url_parameters, QueryParameters& query_parameters);
 

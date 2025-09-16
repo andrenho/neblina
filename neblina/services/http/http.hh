@@ -5,6 +5,7 @@
 #include "http_config.hh"
 #include "http_connection.hh"
 #include "arguments.hh"
+#include "http_routes.hh"
 
 class Http final : public TCPService {
 public:
@@ -15,11 +16,12 @@ public:
     void init() override;
 
     std::unique_ptr<TCPConnection> new_connection(int fd) const override {
-        return std::make_unique<HttpConnection>(fd, config_);
+        return std::make_unique<HttpConnection>(fd, routes_);
     }
 
 private:
     HttpConfig config_;
+    std::vector<HttpRoute> routes_;
 
     static HttpConfig   load_config_file();
     static std::string  config_filename() { return args().config_dir() + "/http.json"; };

@@ -9,35 +9,6 @@
 #include "handlers/redirect_request_handler.hh"
 #include "util/string.hh"
 
-HttpConnection::HttpConnection(int fd, HttpConfig const& config)
-        : TCPConnectionText(fd)
-{
-    // create list of request handers (TODO - move to HTTP so it's not recreated every time)
-
-    for (auto const& rt: config.routes) {
-        try {
-            std::unique_ptr<HttpRequestHandler> handler;
-            if (rt.handler) {
-                handler = HttpHandlerRegistry::create_unique_ptr(*rt.handler);
-            } else if (rt.serve_static_dir) {
-                handler = std::make_unique<StaticDirRequestHandler>(*rt.serve_static_dir);
-            } else if (rt.redirect) {
-                handler = std::make_unique<RedirectRequestHandler>(*rt.redirect);
-            }
-            if (handler) {
-                routes_.emplace_back(Route {
-                    .regex = std::regex(rt.path),
-                    .handler = std::move(handler),
-                });
-            }
-        } catch (std::out_of_range&) {
-            throw std::runtime_error(std::format("Handler '{}' is not available.", *rt.handler));
-        } catch (std::regex_error&) {
-            throw std::runtime_error(std::format("Path '{}' is not a valid regex expression.", rt.path));
-        }
-    }
-}
-
 void HttpConnection::new_data_available(std::string_view data)
 {
     try {
