@@ -29,17 +29,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0753c87b-42fc-4330-8b32-c770ab44186c" name="Changes" comment=".">
-      <change afterPath="$PROJECT_DIR$/neblina/util/string.cc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/neblina/util/string.hh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.tmp/example.hh" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/TODO.md" beforeDir="false" afterPath="$PROJECT_DIR$/TODO.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/services/http/http_connection.cc" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/http/http_connection.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/services/http/types/http_headers.cc" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/http/types/http_headers.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/services/http/types/http_headers.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/http/types/http_headers.hh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/services/http/types/http_request.cc" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/http/types/http_request.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/tools/embed/main.cc" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/tools/embed/main.cc" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -397,7 +388,7 @@
       <workItem from="1757958259354" duration="753000" />
       <workItem from="1758025588147" duration="1848000" />
       <workItem from="1758028315174" duration="6819000" />
-      <workItem from="1758047825249" duration="939000" />
+      <workItem from="1758047825249" duration="2882000" />
     </task>
     <task id="LOCAL-00001" summary=".">
       <option name="closed" value="true" />
@@ -775,7 +766,15 @@
       <option name="project" value="LOCAL" />
       <updated>1758040459126</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary=".">
+      <option name="closed" value="true" />
+      <created>1758048800638</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1758048800638</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

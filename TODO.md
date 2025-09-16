@@ -34,19 +34,14 @@
   - [x] Require Host request (otherwise 400)
   - [x] Automatic error according to request type
   - [x] Persistent connections (check Connection header)
-  - [ ] Transfer-Encoding (chunks)
-  - [ ] Conditional requests: If-Modified-Since, If-None-Match, ETag, Last-Modified
-  - [ ] If a client sends Expect: 100-continue, the server must either respond 100 Continue or a final status code.
-  - [ ] forward/ignore hop-by-hop headers if proxying
-  - [ ] Pipelining (?)
+  - [ ] Redirects
   - [ ] Transfer encoding: gzip, deflate
-  - [ ] Redirection 300
+  - [ ] Conditional requests: If-Modified-Since, If-None-Match, ETag, Last-Modified
 - [ ] Basic authentication
 
 Extra:
 - [x] Move config file to "/config"
 - [x] Rename http_router to http
-- [ ] Reorganize directories
 
 ### v0.4 - Interservice communication
 
@@ -68,11 +63,16 @@ Extra:
 - [ ] Create sample "guestbook" service as .so
 - [ ] CORS
   - [ ] OPTIONS
+- [ ] If a client sends Expect: 100-continue, the server must either respond 100 Continue or a final status code.
+- [ ] Proxy
 
 ### v0.6 - HTTPS
 
 - [ ] HTTPS support
 - [ ] CONNECT
+- [ ] forward/ignore hop-by-hop headers if proxying
+- [ ] HTTP-to-HTTPS
+  - [ ] Redirection 301
 
 ### v0.7 - Authentication
 
@@ -96,6 +96,9 @@ Extra:
 - [ ] Password manager
 - [ ] Note taking
 - [ ] Notepad
+
+### v0.11 - Advanced web server
+- [ ] Transfer-Encoding (chunks)
 
 ### ???
 
