@@ -1,14 +1,15 @@
 #ifndef HTTP_HEADERS_HH
 #define HTTP_HEADERS_HH
 
+#include <optional>
 #include <unordered_map>
 #include <utility>
 #include <string>
 
 class HttpHeaders {
 public:
-    std::string& operator[](std::string const& key);
-    std::string const& at(std::string const& key) const;
+    std::string&               operator[](std::string const& key);
+    std::optional<std::string> at(std::string const& key) const;
 
     bool contains(std::string const& key) const;
 

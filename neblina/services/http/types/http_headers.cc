@@ -6,13 +6,7 @@
 #include <ranges>
 
 #include "util/chrono.hh"
-
-static std::string to_upper(std::string const& key)
-{
-    std::string up = key;
-    std::ranges::transform(up, up.begin(), ::toupper);
-    return up;
-}
+#include "util/string.hh"
 
 static std::string to_header_case(std::string_view input) {
     std::string result;
@@ -40,9 +34,13 @@ std::string& HttpHeaders::operator[](std::string const& key)
     return headers_[to_upper(key)];
 }
 
-std::string const& HttpHeaders::at(std::string const& key) const
+std::optional<std::string> HttpHeaders::at(std::string const& key) const
 {
-    return headers_.at(to_upper(key));
+    auto it = headers_.find(to_upper(key));
+    if (it != headers_.end())
+        return std::string(it->second);
+    else
+        return {};
 }
 
 bool HttpHeaders::contains(std::string const& key) const

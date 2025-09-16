@@ -31,11 +31,9 @@
   - [x] Allow adding full directories in the compression
   - [x] Create initialization procedure (It works, config files, etc)
 - [ ] Extra HTTP stuff
-  - [ ] Require Host request (otherwise 400)
-  - [ ] Automatic error according to request type
-  - [ ] OPTIONS
-  - [ ] TRACE, CONNECT
-  - [ ] Persistent connections (check Connection header)
+  - [x] Require Host request (otherwise 400)
+  - [x] Automatic error according to request type
+  - [x] Persistent connections (check Connection header)
   - [ ] Transfer-Encoding (chunks)
   - [ ] Conditional requests: If-Modified-Since, If-None-Match, ETag, Last-Modified
   - [ ] If a client sends Expect: 100-continue, the server must either respond 100 Continue or a final status code.
@@ -59,6 +57,7 @@ Extra:
 - [ ] Implement scheduled service
 - [ ] Load .so service
 - [ ] Compile on Windows
+- [ ] Increase log quality
 
 ### v0.5 - Web Application
 
@@ -67,10 +66,13 @@ Extra:
 - [ ] Database access
 - [ ] Tool to generate entities and DAOs
 - [ ] Create sample "guestbook" service as .so
+- [ ] CORS
+  - [ ] OPTIONS
 
 ### v0.6 - HTTPS
 
 - [ ] HTTPS support
+- [ ] CONNECT
 
 ### v0.7 - Authentication
 

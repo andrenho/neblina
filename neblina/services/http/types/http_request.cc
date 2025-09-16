@@ -67,7 +67,7 @@ void HttpRequest::headers_end()
 {
     if (headers_.contains("Content-Length")) {
         request_stage_ = RequestStage::Body;
-        content_length_ = strtoll(headers_.at("Content-Length").c_str(), nullptr, 10);
+        content_length_ = strtoll(headers_.at("Content-Length")->c_str(), nullptr, 10);
     } else {
         request_stage_ = RequestStage::Done;
     }

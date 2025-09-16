@@ -26,6 +26,7 @@ OBJ=	main.o							\
 	services/http/handlers/static_request_handler.o		\
 	services/http/handlers/static_dir_request_handler.o	\
 	util/embed/compressed_data.o				\
+	util/string.o						\
 	contrib/simdjson/simdjson.o				\
 	contrib/miniz/miniz.o
 

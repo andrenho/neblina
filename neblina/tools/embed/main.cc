@@ -8,6 +8,8 @@
 #include <iostream>
 #include <string>
 #include <vector>
+
+#include "../../util/string.hh"
 namespace fs = std::filesystem;
 
 #include "../../file/gz.hh"
@@ -65,8 +67,7 @@ int main(int argc, char* argv[])
         basename = argv[2];
     }
 
-    std::string ubase = basename;
-    std::transform(ubase.begin(), ubase.end(), ubase.begin(), ::toupper);
+    std::string ubase = to_upper(basename);
 
     std::cout << std::format(R"(
 #ifndef {}_HH
