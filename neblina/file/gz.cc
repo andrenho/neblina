@@ -7,7 +7,7 @@
 
 namespace gz {
 
-std::vector<uint8_t> compress(std::vector<uint8_t> const& data)
+std::vector<uint8_t> gzip(std::vector<uint8_t> const& data)
 {
     std::vector<uint8_t> compressed;
     unsigned long compressed_sz = data.size()*2+18;
@@ -57,7 +57,7 @@ std::vector<uint8_t> compress(std::vector<uint8_t> const& data)
     throw std::runtime_error("Error compressing binary");
 }
 
-std::vector<uint8_t> uncompress(std::vector<uint8_t> const& compressed)
+std::vector<uint8_t> gunzip(std::vector<uint8_t> const& compressed)
 {
     if (compressed.size() < 18)
         throw std::runtime_error("Invalid gzip: too short");

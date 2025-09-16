@@ -4,53 +4,159 @@
 #include <string_view>
 
 struct ContentType {
-    static constexpr std::string_view HTML  = "text/html";
-    static constexpr std::string_view PLAIN = "text/plain";
+    // MIME type constants
+    static constexpr std::string_view AAC   = "audio/aac";
+    static constexpr std::string_view ABW   = "application/x-abiword";
+    static constexpr std::string_view ARC   = "application/x-freearc";
+    static constexpr std::string_view AVIF  = "image/avif";
+    static constexpr std::string_view AVI   = "video/x-msvideo";
+    static constexpr std::string_view AZW   = "application/vnd.amazon.ebook";
+    static constexpr std::string_view BIN   = "application/octet-stream";
+    static constexpr std::string_view BMP   = "image/bmp";
+    static constexpr std::string_view BZ    = "application/x-bzip";
+    static constexpr std::string_view BZ2   = "application/x-bzip2";
+    static constexpr std::string_view CDA   = "application/x-cdf";
+    static constexpr std::string_view CSH   = "application/x-csh";
     static constexpr std::string_view CSS   = "text/css";
-    static constexpr std::string_view JS    = "application/javascript";
-
-    static constexpr std::string_view JSON  = "application/json";
-    static constexpr std::string_view XML   = "application/xml";
-
-    static constexpr std::string_view PNG   = "image/png";
-    static constexpr std::string_view JPEG  = "image/jpeg";
+    static constexpr std::string_view CSV   = "text/csv";
+    static constexpr std::string_view DOC   = "application/msword";
+    static constexpr std::string_view DOCX  = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+    static constexpr std::string_view EOT   = "application/vnd.ms-fontobject";
+    static constexpr std::string_view EPUB  = "application/epub+zip";
+    static constexpr std::string_view GZ    = "application/gzip";
     static constexpr std::string_view GIF   = "image/gif";
-    static constexpr std::string_view WEBP  = "image/webp";
-    static constexpr std::string_view SVG   = "image/svg+xml";
-
+    static constexpr std::string_view HTM   = "text/html";
+    static constexpr std::string_view HTML  = "text/html";
+    static constexpr std::string_view ICO   = "image/vnd.microsoft.icon";
+    static constexpr std::string_view ICS   = "text/calendar";
+    static constexpr std::string_view JAR   = "application/java-archive";
+    static constexpr std::string_view JPEG  = "image/jpeg";
+    static constexpr std::string_view JPG   = "image/jpeg";
+    static constexpr std::string_view JS    = "text/javascript";
+    static constexpr std::string_view JSON  = "application/json";
+    static constexpr std::string_view JSONLD= "application/ld+json";
+    static constexpr std::string_view MID   = "audio/midi";
+    static constexpr std::string_view MIDI  = "audio/midi";
+    static constexpr std::string_view MJS   = "text/javascript";
+    static constexpr std::string_view MP3   = "audio/mpeg";
+    static constexpr std::string_view MP4   = "video/mp4";
+    static constexpr std::string_view MPEG  = "video/mpeg";
+    static constexpr std::string_view MPKG  = "application/vnd.apple.installer+xml";
+    static constexpr std::string_view ODP   = "application/vnd.oasis.opendocument.presentation";
+    static constexpr std::string_view ODS   = "application/vnd.oasis.opendocument.spreadsheet";
+    static constexpr std::string_view ODT   = "application/vnd.oasis.opendocument.text";
+    static constexpr std::string_view OGA   = "audio/ogg";
+    static constexpr std::string_view OGV   = "video/ogg";
+    static constexpr std::string_view OGX   = "application/ogg";
+    static constexpr std::string_view OPUS  = "audio/opus";
+    static constexpr std::string_view OTF   = "font/otf";
+    static constexpr std::string_view PNG   = "image/png";
     static constexpr std::string_view PDF   = "application/pdf";
+    static constexpr std::string_view PHP   = "application/x-httpd-php";
+    static constexpr std::string_view PPT   = "application/vnd.ms-powerpoint";
+    static constexpr std::string_view PPTX  = "application/vnd.openxmlformats-officedocument.presentationml.presentation";
+    static constexpr std::string_view RAR   = "application/vnd.rar";
+    static constexpr std::string_view RTF   = "application/rtf";
+    static constexpr std::string_view SH    = "application/x-sh";
+    static constexpr std::string_view SVG   = "image/svg+xml";
+    static constexpr std::string_view TAR   = "application/x-tar";
+    static constexpr std::string_view TIF   = "image/tiff";
+    static constexpr std::string_view TIFF  = "image/tiff";
+    static constexpr std::string_view TS    = "video/mp2t";
+    static constexpr std::string_view TTF   = "font/ttf";
+    static constexpr std::string_view TXT   = "text/plain";
+    static constexpr std::string_view VSD   = "application/vnd.visio";
+    static constexpr std::string_view WAV   = "audio/wav";
+    static constexpr std::string_view WEBA  = "audio/webm";
+    static constexpr std::string_view WEBM  = "video/webm";
+    static constexpr std::string_view WEBP  = "image/webp";
+    static constexpr std::string_view WOFF  = "font/woff";
+    static constexpr std::string_view WOFF2 = "font/woff2";
+    static constexpr std::string_view XHTML = "application/xhtml+xml";
+    static constexpr std::string_view XLS   = "application/vnd.ms-excel";
+    static constexpr std::string_view XLSX  = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+    static constexpr std::string_view XML   = "application/xml";
+    static constexpr std::string_view XUL   = "application/vnd.mozilla.xul+xml";
     static constexpr std::string_view ZIP   = "application/zip";
-    static constexpr std::string_view OCTET = "application/octet-stream";
+    static constexpr std::string_view _3GP  = "video/3gpp";
+    static constexpr std::string_view _3G2  = "video/3gpp2";
+    static constexpr std::string_view _7Z   = "application/x-7z-compressed";
 
-    static constexpr std::string_view best_content_type(std::string_view extension)
-    {
-        if (extension == ".htm" || extension == ".html")
-            return HTML;
-        if (extension == ".txt" || extension == ".text")
-            return PLAIN;
-        if (extension == ".css")
-            return CSS;
-        if (extension == ".js")
-            return JS;
-        if (extension == ".json")
-            return JSON;
-        if (extension == ".xml")
-            return XML;
-        if (extension == ".png")
-            return PNG;
-        if (extension == ".jpg" || extension == ".jpeg")
-            return JPEG;
-        if (extension == ".gif")
-            return GIF;
-        if (extension == ".webp")
-            return WEBP;
-        if (extension == ".svg")
-            return SVG;
-        if (extension == ".pdf")
-            return PDF;
-        if (extension == ".zip")
-            return ZIP;
-        return OCTET;
+    // Mapping from extension to MIME type
+    static constexpr std::string_view best_content_type(std::string_view ext) {
+        if (ext == ".aac") return AAC;
+        if (ext == ".abw") return ABW;
+        if (ext == ".arc") return ARC;
+        if (ext == ".avif") return AVIF;
+        if (ext == ".avi") return AVI;
+        if (ext == ".azw") return AZW;
+        if (ext == ".bin") return BIN;
+        if (ext == ".bmp") return BMP;
+        if (ext == ".bz") return BZ;
+        if (ext == ".bz2") return BZ2;
+        if (ext == ".cda") return CDA;
+        if (ext == ".csh") return CSH;
+        if (ext == ".css") return CSS;
+        if (ext == ".csv") return CSV;
+        if (ext == ".doc") return DOC;
+        if (ext == ".docx") return DOCX;
+        if (ext == ".eot") return EOT;
+        if (ext == ".epub") return EPUB;
+        if (ext == ".gz") return GZ;
+        if (ext == ".gif") return GIF;
+        if (ext == ".htm" || ext == ".html") return HTML;
+        if (ext == ".ico") return ICO;
+        if (ext == ".ics") return ICS;
+        if (ext == ".jar") return JAR;
+        if (ext == ".jpeg" || ext == ".jpg") return JPEG;
+        if (ext == ".js") return JS;
+        if (ext == ".json") return JSON;
+        if (ext == ".jsonld") return JSONLD;
+        if (ext == ".mid" || ext == ".midi") return MID;
+        if (ext == ".mjs") return MJS;
+        if (ext == ".mp3") return MP3;
+        if (ext == ".mp4") return MP4;
+        if (ext == ".mpeg") return MPEG;
+        if (ext == ".mpkg") return MPKG;
+        if (ext == ".odp") return ODP;
+        if (ext == ".ods") return ODS;
+        if (ext == ".odt") return ODT;
+        if (ext == ".oga") return OGA;
+        if (ext == ".ogv") return OGV;
+        if (ext == ".ogx") return OGX;
+        if (ext == ".opus") return OPUS;
+        if (ext == ".otf") return OTF;
+        if (ext == ".png") return PNG;
+        if (ext == ".pdf") return PDF;
+        if (ext == ".php") return PHP;
+        if (ext == ".ppt") return PPT;
+        if (ext == ".pptx") return PPTX;
+        if (ext == ".rar") return RAR;
+        if (ext == ".rtf") return RTF;
+        if (ext == ".sh") return SH;
+        if (ext == ".svg") return SVG;
+        if (ext == ".tar") return TAR;
+        if (ext == ".tif" || ext == ".tiff") return TIFF;
+        if (ext == ".ts") return TS;
+        if (ext == ".ttf") return TTF;
+        if (ext == ".txt") return TXT;
+        if (ext == ".vsd") return VSD;
+        if (ext == ".wav") return WAV;
+        if (ext == ".weba") return WEBA;
+        if (ext == ".webm") return WEBM;
+        if (ext == ".webp") return WEBP;
+        if (ext == ".woff") return WOFF;
+        if (ext == ".woff2") return WOFF2;
+        if (ext == ".xhtml") return XHTML;
+        if (ext == ".xls") return XLS;
+        if (ext == ".xlsx") return XLSX;
+        if (ext == ".xml") return XML;
+        if (ext == ".xul") return XUL;
+        if (ext == ".zip") return ZIP;
+        if (ext == ".3gp") return _3GP;
+        if (ext == ".3g2") return _3G2;
+        if (ext == ".7z") return _7Z;
+        return BIN; // fallback
     }
 };
 
