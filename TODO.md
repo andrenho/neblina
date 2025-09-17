@@ -51,6 +51,7 @@ Extra:
   - [ ] Website
   - [ ] Test gzip
   - [ ] ETag
+  - [ ] Orchestrator
 - [ ] "active" in orchestrator
 - [ ] Windows version (basic), Mac version
 - [ ] Code review

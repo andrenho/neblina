@@ -1,15 +1,31 @@
 #include "orchestrator.hh"
 
+#include <csignal>
+#include <sys/wait.h>
+
 #include <string>
 #include <unistd.h>
-#include <sys/wait.h>
-#include <util/exceptions/non_recoverable_exception.hh>
 using namespace std::string_literals;
 
 #include "util/log.hh"
+#include "util/exceptions/non_recoverable_exception.hh"
+
+static std::vector<pid_t> children_ {};  // used to kill children
+
+void terminate_children(int signum)
+{
+    printf("Terminated.\n");
+    for (pid_t child: children_)
+        kill(child, SIGKILL);
+    exit(EXIT_FAILURE);
+}
 
 void Orchestrator::init()
 {
+    // ensure children are killed
+    signal(SIGTERM, terminate_children);
+    signal(SIGINT, terminate_children);
+
     for (auto const& s: config_.services)
         services_.push_back({ .config = s });
 }
@@ -39,6 +55,7 @@ bool Orchestrator::service_is_running(Service& svc)
     pid_t done = waitpid(*svc.pid, &status, WNOHANG);
     if (done == *svc.pid) {
         svc.pid = {};
+        children_.erase(std::remove(children_.begin(), children_.end(), done), children_.end());
         svc.retry_in *= 2;
         if (WEXITSTATUS(status) == 0) {
             log("Service process {} has finalized successfully.", svc.config.name);
@@ -110,6 +127,7 @@ void Orchestrator::start_service(Service& svc)
     } else if (pid > 0) {
         log("Starting service {} with pid {} ({}).", svc.config.name, getpid(), pars);
         svc.pid.emplace(pid);
+        setpgid(pid, getpid());
     } else {
         throw std::runtime_error("fork error");
     }

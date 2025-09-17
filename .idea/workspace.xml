@@ -30,11 +30,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0753c87b-42fc-4330-8b32-c770ab44186c" name="Changes" comment=".">
-      <change afterPath="$PROJECT_DIR$/tests/neblina/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/neblina/neblinax.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/neblina/web.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/editor.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/neblina.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/neblina.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TODO.md" beforeDir="false" afterPath="$PROJECT_DIR$/TODO.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/services/orchestrator/orchestrator.cc" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/orchestrator/orchestrator.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/tools/embed/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/tools/embed/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/neblina/neblinax.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/neblina/neblinax.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/neblina/web.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/neblina/web.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -246,6 +249,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Native Application.all.executor": "Debug",
     "Native Application.dev.executor": "Debug",
     "Native Application.embed.executor": "Debug",
     "Native Application.http.executor": "Debug",
@@ -253,6 +257,8 @@
     "Native Application.neblina.executor": "Debug",
     "Native Application.pedantic.executor": "Run",
     "Native Application.test-json2cpp.executor": "Run",
+    "Python tests.Python tests for web.SimpleWebRequest.executor": "Run",
+    "Python tests.Python tests for web.executor": "Run",
     "Python tests.Python tests in web.py.executor": "Run",
     "Python.json2cpp.executor": "Run",
     "RunOnceActivity.RadMigrateCodeStyle": "true",
@@ -269,7 +275,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.fileTypes",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -287,13 +293,18 @@
       <recent name="$PROJECT_DIR$/neblina/services/http/types" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.Python tests in web.py">
+  <component name="RunManager" selected="Native Application.all">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Makefile" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="neblina" TARGET_NAME="Makefile" CONFIG_NAME="Makefile" version="1">
       <method v="2">
         <option name="CLION.COMPOUND.BUILD" enabled="true" />
       </method>
     </configuration>
-    <configuration name="all" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="neblina" TARGET_NAME="all" CONFIG_NAME="all" version="1">
+    <configuration name="all" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="neblina" TARGET_NAME="all" CONFIG_NAME="all" version="1" RUN_PATH="$PROJECT_DIR$/neblina/neblina">
       <method v="2">
         <option name="CLION.COMPOUND.BUILD" enabled="true" />
       </method>
@@ -355,6 +366,21 @@
       <option name="showConsole" value="true" />
       <method v="2" />
     </configuration>
+    <configuration name="Python tests for web" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="neblina" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests/neblina" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;web&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
     <configuration name="Python tests in web.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="neblina" />
       <option name="ENV_FILES" value="" />
@@ -379,10 +405,12 @@
       <item itemvalue="Native Application.pedantic" />
       <item itemvalue="Native Application.http" />
       <item itemvalue="Python.json2cpp" />
+      <item itemvalue="Python tests.Python tests for web" />
       <item itemvalue="Python tests.Python tests in web.py" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.Python tests for web" />
         <item itemvalue="Python tests.Python tests in web.py" />
         <item itemvalue="Python.json2cpp" />
       </list>

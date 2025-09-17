@@ -12,8 +12,9 @@ class SimpleWebRequest(unittest.TestCase):
         self.process = neblinax.start()
 
     def tearDown(self):
-        pass
         neblinax.kill(self.process)
 
     def test_something(self):
-        self.assertEqual(True, True)  # add assertion here
+        r = requests.get("http://localhost:8080/health")
+        print(r.headers)
+        print(r.text)

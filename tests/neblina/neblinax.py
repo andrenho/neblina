@@ -1,7 +1,12 @@
 import subprocess
+import time
+
 
 def start():
-    return subprocess.Popen("./neblina", cwd="../neblina")
+    p = subprocess.Popen("./neblina", cwd="../../neblina")
+    time.sleep(0.5)
+    return p
+
 
 def kill(process):
     process.kill()
