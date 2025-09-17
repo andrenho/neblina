@@ -10,24 +10,11 @@ using namespace std::string_literals;
 #include "util/log.hh"
 #include "util/exceptions/non_recoverable_exception.hh"
 
-static std::vector<pid_t> children_ {};  // used to kill children
-
-void terminate_children(int signum)
-{
-    printf("Terminated.\n");
-    for (pid_t child: children_)
-        kill(child, SIGKILL);
-    exit(EXIT_FAILURE);
-}
-
 void Orchestrator::init()
 {
-    // ensure children are killed
-    signal(SIGTERM, terminate_children);
-    signal(SIGINT, terminate_children);
-
     for (auto const& s: config_.services)
-        services_.push_back({ .config = s });
+        if (s.active)
+            services_.push_back({ .config = s });
 }
 
 OrchestratorConfig Orchestrator::load_config_file()
@@ -55,21 +42,16 @@ bool Orchestrator::service_is_running(Service& svc)
     pid_t done = waitpid(*svc.pid, &status, WNOHANG);
     if (done == *svc.pid) {
         svc.pid = {};
-        children_.erase(std::remove(children_.begin(), children_.end(), done), children_.end());
         svc.retry_in *= 2;
-        if (WEXITSTATUS(status) == 0) {
-            log("Service process {} has finalized successfully.", svc.config.name);
+        // TODO - reset attemps if last attempt was a while ago
+        err("Service process {} has died with status {}{}.", svc.config.name, WEXITSTATUS(status),
+            WEXITSTATUS(status) == NON_RECOVERABLE_RETURN_CODE ? " (non-recoverable)" : "");
+        if (WEXITSTATUS(status) == NON_RECOVERABLE_RETURN_CODE)
             svc.attempts = MAX_ATTEMPTS;
-        } else {
-            err("Service process {} has died with status {}{}.", svc.config.name, WEXITSTATUS(status),
-                WEXITSTATUS(status) == NON_RECOVERABLE_RETURN_CODE ? " (non-recoverable)" : "");
-            if (WEXITSTATUS(status) == NON_RECOVERABLE_RETURN_CODE)
-                svc.attempts = MAX_ATTEMPTS;
-            if (svc.attempts < MAX_ATTEMPTS)
-                err("Attempt {} in {}.", svc.attempts, svc.retry_in);
-            else
-                err("Giving up.");
-        }
+        if (svc.attempts < MAX_ATTEMPTS)
+            err("Attempt {} in {}.", svc.attempts, svc.retry_in);
+        else
+            err("Giving up.");
         return false;
     }
 

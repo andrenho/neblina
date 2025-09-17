@@ -20,7 +20,7 @@ int find_and_execute(std::string const& service_name)
         try {
             service.init();
             service.run();
-            throw NonRecoverableException("not a native service, and contributed services are not yet implemented.");
+            return EXIT_FAILURE;
 
         } catch (NonRecoverableException& e) {
             log("{}", e.what()); fflush(stderr);

@@ -87,14 +87,14 @@ int TCPServer::get_listener_socket()
     return listener;
 }
 
-void TCPServer::run()
+void TCPServer::run(std::function<bool()> shoud_exit)
 {
     std::vector<pollfd> poll_fds(1);
 
     poll_fds.at(0).fd = listener_;
     poll_fds.at(0).events = POLLIN;
 
-    while (server_running_) {
+    while (!shoud_exit()) {
         int poll_count = poll(poll_fds.data(), poll_fds.size(), 20);
         if (poll_count == -1)
             throw std::runtime_error("poll error: "s + strerror(errno));

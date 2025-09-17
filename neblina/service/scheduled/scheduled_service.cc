@@ -6,7 +6,7 @@ void ScheduledService::run()
 {
     auto last_execution = hr::now() - frequency_;
 
-    for (;;) {
+    while (!should_exit()) {
         auto current_time = hr::now();
         auto next_execution = last_execution + frequency_;
         if (current_time >= next_execution) {

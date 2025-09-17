@@ -10,7 +10,7 @@ public:
     TCPService() : tcp_server_(this) {}
 
     virtual std::unique_ptr<TCPConnection> new_connection(int fd) const = 0;
-    void run() override { tcp_server_.run(); }
+    void run() override { tcp_server_.run([this]() { return should_exit(); }); }
 
 private:
     TCPServer tcp_server_;

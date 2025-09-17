@@ -4,7 +4,8 @@
     "port": "int*",
     "open_to_world": "bool*",
     "frequencyMs": "int*",
-    "loggingColor": "string*"
+    "loggingColor": "string*",
+    "active": "bool"
   },
   "main": {
     "services": "Service[]"

@@ -7,6 +7,7 @@
 #include <unordered_map>
 #include <vector>
 #include <sys/poll.h>
+#include <functional>
 
 #include "../service/tcp/tcp_connection.hh"
 
@@ -15,7 +16,7 @@ public:
     explicit TCPServer(class TCPService const* service);
     ~TCPServer();
 
-    void run();
+    void run(std::function<bool()> shoud_exit);
 
 protected:
     void finalize_service() { server_running_ = true; }
