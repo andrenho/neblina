@@ -36,13 +36,25 @@
   - [x] Persistent connections (check Connection header)
   - [x] Transfer encoding: gzip, deflate
   - [x] Redirects
-  - [x] Conditional requests: If-Modified-Since, If-None-Match, ETag, Last-Modified
+  - [x] Conditional requests: If-None-Match, ETag
 
 Extra:
 - [x] Move config file to "/config"
 - [x] Rename http_router to http
-- [ ] Code review
+
+### v0.3a - Code improvement
+
 - [ ] Tests
+  - [ ] Start application
+  - [ ] Simple request (health check)
+  - [ ] Redirect
+  - [ ] Website
+  - [ ] Test gzip
+  - [ ] ETag
+- [ ] "active" in orchestrator
+- [ ] Windows version (basic), Mac version
+- [ ] Code review
+- [ ] Improve logging (use operating system? external library?)
 
 ### v0.4 - HTTPS
 
@@ -52,7 +64,24 @@ Extra:
 - [ ] HTTP-to-HTTPS
   - [ ] Redirection 301
 
-### v0.5 - Web Application
+### v0.5 - Other services
+
+- [ ] FTP
+- [ ] SFTP
+- [ ] XMPP
+- [ ] NNTP
+- [ ] Gopher (as a .so)
+
+### v0.6 - Initial release
+
+- [ ] Webpage
+- [ ] Code review
+- [ ] Add version number
+- [ ] Make install
+- [ ] Prepare for release
+- [ ] Run tests on github
+
+### v0.7 - Web Application
 
 - [ ] `json2cpp`
   - [ ] Improve
@@ -67,30 +96,19 @@ Extra:
 - [ ] If a client sends Expect: 100-continue, the server must either respond 100 Continue or a final status code.
 - [ ] Proxy
 
-
-### v0.6 - Authentication
+### v0.8 - Authentication
 
 - [ ] Basic auth
 - [ ] OAuth2 support
 - [ ] Web tool to manage users
 
-### v0.7 - Config tool
+### v0.9 - Config tool
 
 - [ ] Web tool for config
 - [ ] Ask for password and configuration when using for the first time
 - [ ] Initial setup
 
-### v0.8 - Other services
-
-- [ ] FTP
-- [ ] SFTP
-- [ ] XMPP
-- [ ] NNTP
-- [ ] Gopher (as a .so)
-- [ ] Config tools
-- [ ] Add version number
-
-### v0.9 - Advanced web applications
+### v0.10 - Advanced web applications
 
 - [ ] Password manager
 - [ ] Note taking
@@ -98,9 +116,12 @@ Extra:
 - [ ] Blog
 - [ ] Social network
 
-### v0.10 - Advanced web server
+### v0.11 - Advanced web server
 - [ ] Transfer-Encoding (chunks)
 - [ ] Streaming
+- [ ] Caching: If-Modified-Since, Last-Modified
+- [ ] Support everything in the RFCs
+- [ ] Dock app on Windows, Linux
 
 ### ???
 
