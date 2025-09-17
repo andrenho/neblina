@@ -30,13 +30,13 @@
   - [x] New compression scheme - use gzip
   - [x] Allow adding full directories in the compression
   - [x] Create initialization procedure (It works, config files, etc)
-- [ ] Extra HTTP stuff
+- [x] Extra HTTP stuff
   - [x] Require Host request (otherwise 400)
   - [x] Automatic error according to request type
   - [x] Persistent connections (check Connection header)
   - [x] Transfer encoding: gzip, deflate
   - [x] Redirects
-  - [ ] Conditional requests: If-Modified-Since, If-None-Match, ETag, Last-Modified
+  - [x] Conditional requests: If-Modified-Since, If-None-Match, ETag, Last-Modified
 
 Extra:
 - [x] Move config file to "/config"
