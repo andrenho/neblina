@@ -44,15 +44,14 @@ Extra:
 
 ### v0.3a - Code improvement
 
-- [ ] Tests
+- [x] Tests
   - [x] Start application
   - [x] Simple request (health check)
-  - [ ] Redirect
-  - [ ] Website
-  - [ ] Test gzip
-  - [ ] ETag
-  - [ ] Orchestrator
-- [ ] "active" in orchestrator
+  - [x] Redirect
+  - [x] Website
+  - [x] ETag
+  - [x] Orchestrator
+- [x] "active" in orchestrator
 - [ ] Windows version (basic), Mac version
 - [ ] Code review
 - [ ] Improve logging (use operating system? external library?)
