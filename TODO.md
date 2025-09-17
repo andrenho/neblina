@@ -42,22 +42,22 @@ Extra:
 - [x] Move config file to "/config"
 - [x] Rename http_router to http
 - [ ] Code review
+- [ ] Tests
 
-### v0.4 - Interservice communication
+### v0.4 - HTTPS
 
-- [ ] Interservice communication
-  - [ ] Listen on named pipes
-  - [ ] Small HTTP service for processing messages
-- [ ] Implement TCP service
-- [ ] Implement scheduled service
-- [ ] Basic authentication
-- [ ] Load .so service
-- [ ] Compile on Windows
-- [ ] Increase log quality
+- [ ] HTTPS support
+- [ ] CONNECT
+- [ ] forward/ignore hop-by-hop headers if proxying
+- [ ] HTTP-to-HTTPS
+  - [ ] Redirection 301
 
 ### v0.5 - Web Application
 
-- [ ] `json2cpp` -> write to json
+- [ ] `json2cpp`
+  - [ ] Improve
+  - [ ] Add tests
+  - [ ] Add unordered_map
 - [ ] REST interface
 - [ ] Database access
 - [ ] Tool to generate entities and DAOs
@@ -67,18 +67,18 @@ Extra:
 - [ ] If a client sends Expect: 100-continue, the server must either respond 100 Continue or a final status code.
 - [ ] Proxy
 
-### v0.6 - HTTPS
 
-- [ ] HTTPS support
-- [ ] CONNECT
-- [ ] forward/ignore hop-by-hop headers if proxying
-- [ ] HTTP-to-HTTPS
-  - [ ] Redirection 301
+### v0.6 - Authentication
 
-### v0.7 - Authentication
-
+- [ ] Basic auth
 - [ ] OAuth2 support
 - [ ] Web tool to manage users
+
+### v0.7 - Config tool
+
+- [ ] Web tool for config
+- [ ] Ask for password and configuration when using for the first time
+- [ ] Initial setup
 
 ### v0.8 - Other services
 
@@ -86,13 +86,11 @@ Extra:
 - [ ] SFTP
 - [ ] XMPP
 - [ ] NNTP
-- [ ] Gopher
+- [ ] Gopher (as a .so)
+- [ ] Config tools
+- [ ] Add version number
 
-### v0.9 - First execution
-
-- [ ] Ask for password and configuration when using for the first time
-
-### v0.10 - Advanced web applications
+### v0.9 - Advanced web applications
 
 - [ ] Password manager
 - [ ] Note taking
@@ -100,8 +98,9 @@ Extra:
 - [ ] Blog
 - [ ] Social network
 
-### v0.11 - Advanced web server
+### v0.10 - Advanced web server
 - [ ] Transfer-Encoding (chunks)
+- [ ] Streaming
 
 ### ???
 
