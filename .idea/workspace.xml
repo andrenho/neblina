@@ -31,11 +31,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0753c87b-42fc-4330-8b32-c770ab44186c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/tests/test_orchestrator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/neblina.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/neblina.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TODO.md" beforeDir="false" afterPath="$PROJECT_DIR$/TODO.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/neblinax.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/neblinax.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_health_check.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_http_service.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,8 +63,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Unit Test" />
         <option value="Python Script" />
+        <option value="Python Unit Test" />
       </list>
     </option>
   </component>
@@ -137,13 +135,14 @@
     "Native Application.dev.executor": "Debug",
     "Native Application.embed.executor": "Debug",
     "Native Application.http.executor": "Debug",
-    "Native Application.neblina (dev).executor": "Debug",
+    "Native Application.neblina (dev).executor": "Run",
     "Native Application.neblina.executor": "Debug",
     "Native Application.pedantic.executor": "Run",
     "Native Application.test-json2cpp.executor": "Run",
     "Python tests.Python tests for test_health_check.HealthCheck.executor": "Run",
     "Python tests.Python tests for test_http_service.TestHttpService.executor": "Run",
     "Python tests.Python tests for test_http_service.TestHttpService.test_redirect.executor": "Run",
+    "Python tests.Python tests for test_orchestrator.MyTestCase.test_kill_parent.executor": "Run",
     "Python tests.Python tests for test_simple_requests.SimpleRequests.executor": "Run",
     "Python tests.Python tests for test_simple_requests.SimpleRequests.test_redirect.executor": "Run",
     "Python tests.Python tests for tests.neblina.health_check.HealthCheck.executor": "Run",
@@ -185,12 +184,7 @@
       <recent name="$PROJECT_DIR$/neblina/services/http/types" />
     </key>
   </component>
-  <component name="RunManager" selected="Native Application.neblina (dev)">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Python tests.Python tests for tests.test_orchestrator.TestOrchestrator.test_kill_parent">
     <configuration name="Makefile" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="neblina" TARGET_NAME="Makefile" CONFIG_NAME="Makefile" version="1">
       <method v="2">
         <option name="CLION.COMPOUND.BUILD" enabled="true" />
@@ -229,6 +223,11 @@
     <configuration name="test" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="neblina" TARGET_NAME="test" CONFIG_NAME="test" version="1">
       <method v="2">
         <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
     <configuration default="true" type="lua.app" factoryName="Lua Application">
@@ -271,36 +270,6 @@
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for tests.neblina.health_check" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
-      <module name="neblina" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests/neblina" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;tests.neblina.health_check&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Python tests for tests.test_http_service.TestHttpService" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
-      <module name="neblina" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;tests.test_http_service.TestHttpService&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
     <configuration name="Python tests for tests.test_http_service.TestHttpService.test_redirect" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="neblina" />
       <option name="ENV_FILES" value="" />
@@ -313,6 +282,21 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
       <option name="_new_target" value="&quot;tests.test_http_service.TestHttpService.test_redirect&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for tests.test_orchestrator.TestOrchestrator.test_kill_parent" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="neblina" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;tests.test_orchestrator.TestOrchestrator.test_kill_parent&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
@@ -340,19 +324,19 @@
       <item itemvalue="Native Application.pedantic" />
       <item itemvalue="Native Application.test" />
       <item itemvalue="Native Application.http" />
+      <item itemvalue="Python tests.Python tests for tests.test_orchestrator.TestOrchestrator.test_kill_parent" />
+      <item itemvalue="Python tests.Python tests for tests.test_simple_requests.HttpServiceTest" />
       <item itemvalue="Python tests.Python tests for test_http_service.TestHttpService" />
       <item itemvalue="Python tests.Python tests for test_http_service.TestHttpService.test_redirect" />
-      <item itemvalue="Python tests.Python tests for tests.test_http_service.TestHttpService" />
       <item itemvalue="Python tests.Python tests for tests.test_http_service.TestHttpService.test_redirect" />
-      <item itemvalue="Python tests.Python tests for tests.neblina.health_check" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.Python tests for tests.test_orchestrator.TestOrchestrator.test_kill_parent" />
         <item itemvalue="Python tests.Python tests for test_http_service.TestHttpService" />
         <item itemvalue="Python tests.Python tests for test_http_service.TestHttpService.test_redirect" />
         <item itemvalue="Python tests.Python tests for tests.test_http_service.TestHttpService.test_redirect" />
         <item itemvalue="Python tests.Python tests for tests.test_simple_requests.HttpServiceTest" />
-        <item itemvalue="Python tests.Python tests for tests.test_http_service.TestHttpService" />
       </list>
     </recent_temporary>
   </component>
