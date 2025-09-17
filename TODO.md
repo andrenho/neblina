@@ -97,6 +97,8 @@ Extra:
 - [ ] Password manager
 - [ ] Note taking
 - [ ] Notepad
+- [ ] Blog
+- [ ] Social network
 
 ### v0.11 - Advanced web server
 - [ ] Transfer-Encoding (chunks)

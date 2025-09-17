@@ -3,6 +3,7 @@
 #include <cstdlib>
 #include <cstdint>
 #include <cctype>
+#include <ctime>
 
 #include <filesystem>
 #include <iostream>
@@ -32,23 +33,27 @@ static void generate_file(std::string const& filename)
         for (uint8_t v: contents) std::cout << std::format("{:#x}, ", v);
     };
 
+    std::string etag = std::to_string(rand());
+
     if (compress) {
         auto compressed = gz::gzip(contents);
         std::cout << "File::compressed((uint8_t const[]) { ";
         cout_binary(compressed);
-        std::cout << std::format("}}, {}, {})", compressed.size(), contents.size());
+        std::cout << std::format("}}, {}, {}, \"{}\")", compressed.size(), contents.size(), etag);
 
         // test decompression
         assert(gz::gunzip(compressed) == contents);
     } else {
         std::cout << "File::uncompressed((uint8_t const[]) { ";
         cout_binary(contents);
-        std::cout << std::format("}}, {})", contents.size());
+        std::cout << std::format("}}, {}, \"{}\")", contents.size(), etag);
     }
 }
 
 int main(int argc, char* argv[])
 {
+    srand(time(nullptr));
+
     // parse arguments
     if (argc != 3 && argc != 4) {
         fprintf(stderr, "Usage: %s [-d] INPUTFILE BASENAME", argv[0]);

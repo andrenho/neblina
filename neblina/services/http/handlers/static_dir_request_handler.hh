@@ -8,7 +8,7 @@ public:
     explicit StaticDirRequestHandler(std::string const& dir_name) : dir_name_(dir_name) {}
 
 protected:
-    [[nodiscard]] std::optional<std::string> file_contents(const std::vector<std::string>& file_path) const override;
+    HttpResponse file_contents(const std::vector<std::string>& file_path, std::string const& cached_etag) const override;
 
 private:
     std::string dir_name_;

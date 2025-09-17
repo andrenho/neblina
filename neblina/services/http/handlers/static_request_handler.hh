@@ -10,7 +10,7 @@ public:
         const QueryParameters& query_parameters) const override;
 
 protected:
-    [[nodiscard]] virtual std::optional<std::string> file_contents(std::vector<std::string> const& file_path) const = 0;
+    [[nodiscard]] virtual HttpResponse file_contents(std::vector<std::string> const& file_path, std::string const& cached_etag) const = 0;
 };
 
 #endif //STATIC_REQUEST_HANDLER_HH

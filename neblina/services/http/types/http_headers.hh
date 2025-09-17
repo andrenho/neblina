@@ -18,6 +18,7 @@ public:
 
     [[nodiscard]] std::string connection() const { auto h = at("Connection"); if (h) return *h; else return ""; }
     [[nodiscard]] std::string content_type() const { auto h = at("Content-Type"); if (h) return *h; else return ""; }
+    [[nodiscard]] std::string if_none_match() const { auto h = at("If-None-Match"); if (h) return *h; else return ""; }
     [[nodiscard]] bool accept_encoding(std::string const& encoding) const;
 
 private:

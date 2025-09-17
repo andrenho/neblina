@@ -29,16 +29,7 @@ HttpResponse StaticRequestHandler::get(const HttpRequest& request, const URLPara
     }
     file_path.emplace_back(resource);
 
-    // find extension
-    j = resource.find('.');
-    std::string extension;
-    if (j != std::string::npos)
-        extension = resource.substr(j);
-
     // load file, or return 404
-    auto contents = file_contents(file_path);
-    if (contents)
-        return HttpResponse(200, ContentType::best_content_type(extension), *contents);
-    else
-        throw NotFoundException();
+    std::string cached_etag = request.headers().if_none_match();
+    return file_contents(file_path, cached_etag);
 }
