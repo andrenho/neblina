@@ -45,8 +45,8 @@ Extra:
 ### v0.3a - Code improvement
 
 - [ ] Tests
-  - [ ] Start application
-  - [ ] Simple request (health check)
+  - [x] Start application
+  - [x] Simple request (health check)
   - [ ] Redirect
   - [ ] Website
   - [ ] Test gzip

@@ -88,6 +88,7 @@ pedantic:
 
 dev:
 	$(MAKE) all DEV=1
+	cd ../tests && python3 -m unittest
 
 neblina: $(OBJ)
 	g++ -o $@ $^ $(LDFLAGS)
