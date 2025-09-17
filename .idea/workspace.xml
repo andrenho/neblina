@@ -30,18 +30,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0753c87b-42fc-4330-8b32-c770ab44186c" name="Changes" comment=".">
+      <change afterPath="$PROJECT_DIR$/tests/init/config/http.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/init/config/orchestrator.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/init/www/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/editor.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/neblina.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/neblina.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/init/config/orchestrator.json" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/init/config/orchestrator.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/main.cc" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/main.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/server/tcp_server.cc" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/server/tcp_server.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/server/tcp_server.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/server/tcp_server.hh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/service/scheduled/scheduled_service.cc" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/service/scheduled/scheduled_service.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/service/scheduled/scheduled_service.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/service/scheduled/scheduled_service.hh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/service/service.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/service/service.hh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/service/tcp/tcp_service.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/service/tcp/tcp_service.hh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/services/orchestrator/orchestrator.cc" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/orchestrator/orchestrator.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/services/orchestrator/orchestratorSchema.json" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/orchestrator/orchestratorSchema.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/json_support.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/json_support.hh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/tools/json2cpp/json_support.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/tools/json2cpp/json_support.hh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/neblina/neblinax.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/neblina/neblinax.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,7 +136,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Native Application.all.executor": "Debug",
+    "Native Application.all.executor": "Run",
     "Native Application.dev.executor": "Debug",
     "Native Application.embed.executor": "Debug",
     "Native Application.http.executor": "Debug",
@@ -160,7 +157,7 @@
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "/home/andre/prj/neblina/neblina/services/parrot",
+    "last_opened_file_path": "/Users/aw98156/prj/neblina/tests",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
@@ -171,6 +168,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/tests" />
       <recent name="$PROJECT_DIR$/neblina/services/parrot" />
       <recent name="$PROJECT_DIR$/neblina/service" />
       <recent name="$PROJECT_DIR$/neblina" />
@@ -183,7 +181,7 @@
       <recent name="$PROJECT_DIR$/neblina/services/http/types" />
     </key>
   </component>
-  <component name="RunManager" selected="Native Application.neblina (dev)">
+  <component name="RunManager" selected="Python tests.Python tests for web.SimpleWebRequest">
     <configuration name="Makefile" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="neblina" TARGET_NAME="Makefile" CONFIG_NAME="Makefile" version="1">
       <method v="2">
         <option name="CLION.COMPOUND.BUILD" enabled="true" />
@@ -217,11 +215,6 @@
     <configuration name="pedantic" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="neblina" TARGET_NAME="pedantic" CONFIG_NAME="pedantic" version="1">
       <method v="2">
         <option name="CLION.COMPOUND.BUILD" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
     <configuration name="json2cpp" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
@@ -271,6 +264,21 @@
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
+    <configuration name="Python tests for web.SimpleWebRequest" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="neblina" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests/neblina" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;web.SimpleWebRequest&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
     <configuration name="Python tests in web.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="neblina" />
       <option name="ENV_FILES" value="" />
@@ -295,11 +303,13 @@
       <item itemvalue="Native Application.pedantic" />
       <item itemvalue="Native Application.http" />
       <item itemvalue="Python.json2cpp" />
+      <item itemvalue="Python tests.Python tests for web.SimpleWebRequest" />
       <item itemvalue="Python tests.Python tests for web" />
       <item itemvalue="Python tests.Python tests in web.py" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.Python tests for web.SimpleWebRequest" />
         <item itemvalue="Python tests.Python tests for web" />
         <item itemvalue="Python tests.Python tests in web.py" />
         <item itemvalue="Python.json2cpp" />

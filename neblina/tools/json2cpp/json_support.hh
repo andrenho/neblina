@@ -52,7 +52,7 @@ T require(dom::element const& doc, const char* field)
 {
     auto opt = optional<T>(doc, field);
     if (!opt)
-        throw std::runtime_error(std::string("Mandatory field '") + field + "not found in JSON.");
+        throw std::runtime_error(std::string("Mandatory field '") + field + "' not found in JSON.");
     return opt.value();
 }
 
