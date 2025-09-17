@@ -20,6 +20,7 @@
       <config projectName="neblina" targetName="neblina" />
       <config projectName="neblina" targetName="pedantic" />
       <config projectName="neblina" targetName="dev" />
+      <config projectName="neblina" targetName="test" />
       <config projectName="neblina" targetName="Makefile" />
     </generated>
   </component>
@@ -29,16 +30,13 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0753c87b-42fc-4330-8b32-c770ab44186c" name="Changes" comment=".">
-      <change afterPath="$PROJECT_DIR$/tests/init/config/http.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/init/config/orchestrator.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/init/www/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/editor.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/neblina.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/neblina.iml" afterDir="false" />
+    <list default="true" id="0753c87b-42fc-4330-8b32-c770ab44186c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/json_support.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/json_support.hh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/tools/json2cpp/json_support.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/tools/json2cpp/json_support.hh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/neblina/neblinax.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/neblina/neblinax.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/init/config/orchestrator.json" beforeDir="false" afterPath="$PROJECT_DIR$/tests/init/config/orchestrator.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/neblina/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/neblina/neblinax.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/neblina/web.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -181,7 +179,12 @@
       <recent name="$PROJECT_DIR$/neblina/services/http/types" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.Python tests for web.SimpleWebRequest">
+  <component name="RunManager" selected="Python tests.Python tests for test_health_check.HealthCheck">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Makefile" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="neblina" TARGET_NAME="Makefile" CONFIG_NAME="Makefile" version="1">
       <method v="2">
         <option name="CLION.COMPOUND.BUILD" enabled="true" />
@@ -213,6 +216,11 @@
       </method>
     </configuration>
     <configuration name="pedantic" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="neblina" TARGET_NAME="pedantic" CONFIG_NAME="pedantic" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="test" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="neblina" TARGET_NAME="test" CONFIG_NAME="test" version="1">
       <method v="2">
         <option name="CLION.COMPOUND.BUILD" enabled="true" />
       </method>
@@ -249,37 +257,7 @@
       <option name="showConsole" value="true" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for web" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
-      <module name="neblina" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests/neblina" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;web&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Python tests for web.SimpleWebRequest" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
-      <module name="neblina" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests/neblina" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;web.SimpleWebRequest&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Python tests in web.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for test_health_check.HealthCheck" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="neblina" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -290,7 +268,52 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/tests/neblina/web.py&quot;" />
+      <option name="_new_target" value="&quot;test_health_check.HealthCheck&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for tests.neblina.health_check" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="neblina" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests/neblina" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;tests.neblina.health_check&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for tests.neblina.health_check.HealthCheck" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="neblina" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests/neblina" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;tests.neblina.health_check.HealthCheck&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests in health_check.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="neblina" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/tests/neblina/health_check.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
@@ -301,17 +324,20 @@
       <item itemvalue="Native Application.neblina" />
       <item itemvalue="Native Application.neblina (dev)" />
       <item itemvalue="Native Application.pedantic" />
+      <item itemvalue="Native Application.test" />
       <item itemvalue="Native Application.http" />
       <item itemvalue="Python.json2cpp" />
-      <item itemvalue="Python tests.Python tests for web.SimpleWebRequest" />
-      <item itemvalue="Python tests.Python tests for web" />
-      <item itemvalue="Python tests.Python tests in web.py" />
+      <item itemvalue="Python tests.Python tests for test_health_check.HealthCheck" />
+      <item itemvalue="Python tests.Python tests for tests.neblina.health_check.HealthCheck" />
+      <item itemvalue="Python tests.Python tests for tests.neblina.health_check" />
+      <item itemvalue="Python tests.Python tests in health_check.py" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.Python tests for web.SimpleWebRequest" />
-        <item itemvalue="Python tests.Python tests for web" />
-        <item itemvalue="Python tests.Python tests in web.py" />
+        <item itemvalue="Python tests.Python tests for test_health_check.HealthCheck" />
+        <item itemvalue="Python tests.Python tests for tests.neblina.health_check.HealthCheck" />
+        <item itemvalue="Python tests.Python tests for tests.neblina.health_check" />
+        <item itemvalue="Python tests.Python tests in health_check.py" />
         <item itemvalue="Python.json2cpp" />
       </list>
     </recent_temporary>
@@ -344,14 +370,6 @@
       <workItem from="1758047825249" duration="5167000" />
       <workItem from="1758058652050" duration="10321000" />
       <workItem from="1758132706818" duration="2285000" />
-    </task>
-    <task id="LOCAL-00011" summary=".">
-      <option name="closed" value="true" />
-      <created>1757704771779</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1757704771779</updated>
     </task>
     <task id="LOCAL-00012" summary=".">
       <option name="closed" value="true" />
@@ -737,7 +755,15 @@
       <option name="project" value="LOCAL" />
       <updated>1758122480048</updated>
     </task>
-    <option name="localTasksCounter" value="60" />
+    <task id="LOCAL-00060" summary=".">
+      <option name="closed" value="true" />
+      <created>1758135823805</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1758135823805</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
