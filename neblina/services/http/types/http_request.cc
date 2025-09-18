@@ -5,7 +5,7 @@
 #include <algorithm>
 #include <sstream>
 
-#include "services/http/http_exceptions.hh"
+#include "http_exceptions.hh"
 
 void HttpRequest::operator<<(std::string_view data)
 {
@@ -87,7 +87,7 @@ void HttpRequest::process_body(std::string_view data)
         request_stage_ = RequestStage::Done;
 }
 
-HttpRequest::Method HttpRequest::translate_method(std::string const& method) const
+HttpRequest::Method HttpRequest::translate_method(std::string const& method)
 {
     if (method == "GET")     return Method::Get;
     if (method == "HEAD")    return Method::Head;

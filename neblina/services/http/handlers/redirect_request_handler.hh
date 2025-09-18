@@ -1,7 +1,7 @@
 #ifndef REDIRECT_REQUEST_HANDLER_HH
 #define REDIRECT_REQUEST_HANDLER_HH
 
-#include "../http_request_handler.hh"
+#include "../handler/http_request_handler.hh"
 
 class RedirectRequestHandler : public HttpRequestHandler {
 public:

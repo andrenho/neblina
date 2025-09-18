@@ -1,7 +1,7 @@
 #ifndef HEALTH_REQUEST_HANDLER_HH
 #define HEALTH_REQUEST_HANDLER_HH
 
-#include "../http_request_handler.hh"
+#include "../handler/http_request_handler.hh"
 
 class HealthRequestHandler : public HttpRequestHandler {
 public:

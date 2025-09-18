@@ -1,7 +1,7 @@
 #ifndef NOT_FOUND_REQUEST_HANDLER_HH
 #define NOT_FOUND_REQUEST_HANDLER_HH
 
-#include "../http_request_handler.hh"
+#include "../handler/http_request_handler.hh"
 
 class NotFoundRequestHandler : public HttpRequestHandler {
 public:

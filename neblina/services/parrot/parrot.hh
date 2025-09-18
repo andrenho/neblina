@@ -1,7 +1,7 @@
 #ifndef PARROT_TEXT_HH
 #define PARROT_TEXT_HH
 
-#include "../../tcp/tcp_connection_line.hh"
+#include "tcp/tcp_connection_line.hh"
 #include "service/tcp/tcp_service.hh"
 
 class ParrotConnection final : public TCPConnectionLineByLine {

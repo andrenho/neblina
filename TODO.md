@@ -52,9 +52,8 @@ Extra:
   - [x] ETag
   - [x] Orchestrator
 - [x] "active" in orchestrator
-- [ ] Improve logging
+- [x] Code review
 - [ ] Windows version (basic), Mac version
-- [ ] Code review
 - [ ] Improve logging (use operating system? external library?)
 
 ### v0.4 - HTTPS
@@ -88,6 +87,7 @@ Extra:
   - [ ] Improve
   - [ ] Add tests
   - [ ] Add unordered_map
+- [ ] Parse QueryParameters on HttpConnection::find_request_handler
 - [ ] REST interface
 - [ ] Database access
 - [ ] Tool to generate entities and DAOs
@@ -111,6 +111,7 @@ Extra:
 
 ### v0.10 - Advanced web applications
 
+- [ ] Markdown webpage
 - [ ] Password manager
 - [ ] Note taking
 - [ ] Notepad

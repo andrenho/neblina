@@ -11,18 +11,18 @@ struct HttpResponse {
     explicit HttpResponse(int status_code);
     HttpResponse(int status_code, std::string_view content_type, std::string const& message);
 
+    static HttpResponse error_response_html(int status_code, std::string const& message);
+    static HttpResponse redirect_response(std::string const& new_location);
+
     int         status_code;
     HttpHeaders headers;
     std::string body;
 
     void compress();
 
-    std::string to_string() const;
+    [[nodiscard]] std::string to_string() const;
 
-    static HttpResponse error_response_html(int status_code, std::string const& message);
-    static HttpResponse redirect_response(std::string const& new_location);
-
-    [[nodiscard]] static std::string http_reason_phrase(int code);
+    static std::string http_reason_phrase(int code);
 };
 
 #endif //HTTP_RESPONSE_HH

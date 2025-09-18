@@ -1,5 +1,3 @@
-#define SERVICES Orchestrator, Parrot, Http
-
 #include <filesystem>
 namespace fs = std::filesystem;
 
@@ -16,6 +14,9 @@ namespace fs = std::filesystem;
 #include "init.gen.inc"
 
 #define SERVICE_NOT_FOUND 300
+
+// edit this list to add a new native service
+#define SERVICES Orchestrator, Parrot, Http
 
 template <typename T>
 int find_and_execute(std::string const& service_name)

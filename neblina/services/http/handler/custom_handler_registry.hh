@@ -10,15 +10,21 @@
 
 class HttpHandlerRegistry {
 public:
-    template <typename T>
+    template <typename... Ts>
     static void add_to_registry()
     {
-        handlers_[T::name] = []() { return std::make_unique<T>(); };
+        (add_item_to_registry<Ts>(), ...);
     }
 
     static std::unique_ptr<HttpRequestHandler> create_unique_ptr(std::string const& name) { return handlers_.at(name)(); }
 
 private:
+    template <typename T>
+    static void add_item_to_registry()
+    {
+        handlers_[T::name] = []() { return std::make_unique<T>(); };
+    }
+
     static std::unordered_map<std::string, std::function<std::unique_ptr<HttpRequestHandler>()>> handlers_;
 };
 

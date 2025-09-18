@@ -2,16 +2,15 @@
 
 #include <regex>
 
-#include "http_exceptions.hh"
-#include "http_handler_registry.hh"
+#include "handler/custom_handler_registry.hh"
+#include "handler/http_request_handler.hh"
 #include "types/http_response.hh"
-#include "http_request_handler.hh"
-#include "handlers/redirect_request_handler.hh"
-#include "util/string.hh"
+#include "types/http_exceptions.hh"
 
 void HttpConnection::new_data_available(std::string_view data)
 {
     try {
+        // keep reading data until we receive a complete request
         current_http_request << data;
 
         if (current_http_request.complete()) {
@@ -26,13 +25,16 @@ void HttpConnection::new_data_available(std::string_view data)
 
 void HttpConnection::parse_request(HttpRequest const& request)
 {
+    // reject request if it doesn't have the "Host" header
     if (!request.headers().contains("Host"))
         throw BadRequestException();
 
+    // find request handler
     URLParameters url_parameters;
     QueryParameters query_parameters;
     HttpRequestHandler* request_handler = find_request_handler(request, url_parameters, query_parameters);
 
+    // execute handler for specific method
     HttpResponse response;
     switch (request.method()) {
         case HttpRequest::Method::Get:       response = request_handler->get(request, url_parameters, query_parameters); break;
@@ -47,17 +49,21 @@ void HttpConnection::parse_request(HttpRequest const& request)
         case HttpRequest::Method::Undefined: throw InternalServerErrorException();
     }
 
-    if (request.headers().accept_encoding("gzip"))
+    // compress the response, if the client accepts gzip
+    if (request.headers().accepts_encoding("gzip"))
         response.compress();
 
+    // send the response to the client
     send_data(response.to_string());
 
+    // if client had asked to close the connection, close it
     if (request.headers().connection() == "close")
         close_connection();
 }
 
 HttpRequestHandler* HttpConnection::find_request_handler(HttpRequest const& request, URLParameters& url_parameters, QueryParameters& query_parameters)
 {
+    // parse URI
     std::string resource = request.resource();
     std::string params;
     if (size_t i = resource.find('?') != std::string::npos) {
@@ -65,6 +71,9 @@ HttpRequestHandler* HttpConnection::find_request_handler(HttpRequest const& requ
         resource = resource.substr(0, i - 1);
     }
 
+    // TODO - parse query parameters
+
+    // find request handler based on the route
     for (auto const& route: routes_) {
         std::smatch m;
         if (std::regex_match(resource, m, route.regex)) {
@@ -74,5 +83,6 @@ HttpRequestHandler* HttpConnection::find_request_handler(HttpRequest const& requ
         }
     }
 
+    // if request handler is not found, return a request handler that always returns 404
     return &default_request_handler;
 }

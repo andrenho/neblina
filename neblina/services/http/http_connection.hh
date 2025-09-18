@@ -4,10 +4,10 @@
 #include <vector>
 
 #include "http_config.hh"
-#include "http_request_handler.hh"
-#include "http_routes.hh"
+#include "handler/http_request_handler.hh"
+#include "handler/http_routes.hh"
 #include "handlers/not_found_request_handler.hh"
-#include "../../tcp/tcp_connection_line.hh"
+#include "tcp/tcp_connection_line.hh"
 #include "types/http_request.hh"
 
 class HttpConnection final : public TCPConnectionLineByLine {

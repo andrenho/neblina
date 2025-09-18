@@ -19,10 +19,10 @@ OBJ=	main.o							\
 	services/orchestrator/orchestrator.o			\
 	services/http/http.o					\
 	services/http/http_connection.o				\
-	services/http/http_handler_registry.o			\
 	services/http/types/http_request.o			\
 	services/http/types/http_headers.o			\
 	services/http/types/http_response.o			\
+	services/http/handler/custom_handler_registry.o		\
 	services/http/handlers/static_request_handler.o		\
 	services/http/handlers/static_dir_request_handler.o	\
 	util/string.o						\

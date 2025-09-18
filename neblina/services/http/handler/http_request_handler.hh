@@ -5,9 +5,9 @@
 #include <string>
 #include <vector>
 
-#include "http_exceptions.hh"
-#include "types/http_request.hh"
-#include "types/http_response.hh"
+#include "../types/http_exceptions.hh"
+#include "../types/http_request.hh"
+#include "../types/http_response.hh"
 
 using QueryParameters = std::unordered_map<std::string, std::string>;
 using URLParameters = std::vector<std::string>;

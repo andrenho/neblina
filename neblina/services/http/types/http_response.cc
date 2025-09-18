@@ -35,7 +35,8 @@ HttpResponse HttpResponse::redirect_response(std::string const& new_location)
     return response;
 }
 
-std::string HttpResponse::http_reason_phrase(int code) {
+std::string HttpResponse::http_reason_phrase(int code)
+{
     switch (code) {
         // 1xx Informational
         case 100: return "Continue";

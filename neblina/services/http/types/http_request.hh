@@ -1,8 +1,6 @@
 #ifndef HTTP_REQUEST_HH
 #define HTTP_REQUEST_HH
 
-#include <unordered_map>
-#include <stdexcept>
 #include <string>
 
 #include "http_headers.hh"
@@ -34,7 +32,7 @@ private:
     void headers_end();
     void process_body(std::string_view data);
 
-    [[nodiscard]] Method translate_method(std::string const& method) const;
+    [[nodiscard]] static Method translate_method(std::string const& method);
 };
 
 #endif //HTTP_REQUEST_HH

@@ -1,6 +1,5 @@
 #include "http_headers.hh"
 
-#include <algorithm>
 #include <cctype>
 #include <format>
 #include <ranges>
@@ -68,7 +67,7 @@ std::string HttpHeaders::to_string(size_t with_content_length) const
     return str;
 }
 
-bool HttpHeaders::accept_encoding(std::string const& encoding) const
+bool HttpHeaders::accepts_encoding(std::string const& encoding) const
 {
     return at("Accept-Encoding") && at("Accept-Encoding")->find(encoding) != npos;
 }
