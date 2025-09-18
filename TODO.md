@@ -53,8 +53,7 @@ Extra:
   - [x] Orchestrator
 - [x] "active" in orchestrator
 - [x] Code review
-- [ ] Windows version (basic), Mac version
-- [ ] Improve logging (use operating system? external library?)
+- [x] Windows version (basic), Mac version
 
 ### v0.4 - HTTPS
 

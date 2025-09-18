@@ -33,28 +33,6 @@
     <list default="true" id="0753c87b-42fc-4330-8b32-c770ab44186c" name="Changes" comment=".">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TODO.md" beforeDir="false" afterPath="$PROJECT_DIR$/TODO.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/main.cc" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/main.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/services/http/handlers/health_request_handler.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/http/handlers/health_request_handler.hh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/services/http/handlers/not_found_request_handler.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/http/handlers/not_found_request_handler.hh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/services/http/handlers/redirect_request_handler.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/http/handlers/redirect_request_handler.hh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/services/http/handlers/static_request_handler.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/http/handlers/static_request_handler.hh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/services/http/http.cc" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/http/http.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/services/http/http.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/http/http.hh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/services/http/http_connection.cc" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/http/http_connection.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/services/http/http_connection.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/http/http_connection.hh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/services/http/http_exceptions.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/http/types/http_exceptions.hh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/services/http/http_handler_registry.cc" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/http/handler/custom_handler_registry.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/services/http/http_handler_registry.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/http/handler/custom_handler_registry.hh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/services/http/http_request_handler.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/http/handler/http_request_handler.hh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/services/http/http_routes.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/http/handler/http_routes.hh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/services/http/types/http_headers.cc" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/http/types/http_headers.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/services/http/types/http_headers.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/http/types/http_headers.hh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/services/http/types/http_request.cc" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/http/types/http_request.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/services/http/types/http_request.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/http/types/http_request.hh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/services/http/types/http_response.cc" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/http/types/http_response.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/services/http/types/http_response.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/http/types/http_response.hh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/services/parrot/parrot.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/parrot/parrot.hh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -287,11 +265,6 @@
     </key>
   </component>
   <component name="RunManager" selected="Native Application.neblina (dev)">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Makefile" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="neblina" TARGET_NAME="Makefile" CONFIG_NAME="Makefile" version="1">
       <method v="2">
         <option name="CLION.COMPOUND.BUILD" enabled="true" />
@@ -474,15 +447,8 @@
       <workItem from="1758198600996" duration="6000000" />
       <workItem from="1758205108088" duration="4637000" />
       <workItem from="1758218244149" duration="897000" />
-      <workItem from="1758219185920" duration="2281000" />
-    </task>
-    <task id="LOCAL-00020" summary=".">
-      <option name="closed" value="true" />
-      <created>1757728630523</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1757728630523</updated>
+      <workItem from="1758219185920" duration="3002000" />
+      <workItem from="1758226983959" duration="2281000" />
     </task>
     <task id="LOCAL-00021" summary=".">
       <option name="closed" value="true" />
@@ -868,7 +834,15 @@
       <option name="project" value="LOCAL" />
       <updated>1758218880534</updated>
     </task>
-    <option name="localTasksCounter" value="69" />
+    <task id="LOCAL-00069" summary=".">
+      <option name="closed" value="true" />
+      <created>1758221962623</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1758221962624</updated>
+    </task>
+    <option name="localTasksCounter" value="70" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
