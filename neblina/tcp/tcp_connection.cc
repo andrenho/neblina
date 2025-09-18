@@ -1,4 +1,4 @@
-#include "tcp_connection.hh"
+#include "tcp/tcp_connection.hh"
 
 #include <cstring>
 #include <unistd.h>
@@ -21,6 +21,7 @@ void TCPConnection::send_data(uint8_t const* data, size_t sz)
 
 void TCPConnection::close_connection()
 {
+    DBG("connection to socket {} closed by the server", fd_);
     close(fd_);
     connection_status_ = ConnectionStatus::Closed;
 }

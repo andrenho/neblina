@@ -12,9 +12,9 @@ OBJ=	main.o							\
 	file/gz.o						\
 	file/whole_file.o					\
 	service/service.o					\
-	server/tcp_server.o					\
-	service/tcp/tcp_connection.o				\
-	service/tcp/tcp_connection_text.o			\
+	tcp/tcp_server.o					\
+	tcp/tcp_connection.o					\
+	tcp/tcp_connection_line.o				\
 	service/scheduled/scheduled_service.o			\
 	services/orchestrator/orchestrator.o			\
 	services/http/http.o					\

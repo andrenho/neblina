@@ -35,6 +35,7 @@ private:
     static bool     service_is_running(Service& svc);
 
     static constexpr size_t MAX_ATTEMPTS = 10;
+    static constexpr auto   RESET_ATTEMPTS_IN = 5s;
 };
 
 #endif //ORCHESTRATOR_HH

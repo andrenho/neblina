@@ -1,12 +1,13 @@
 #ifndef TCP_CONNECTION_BY_LINE_HH
 #define TCP_CONNECTION_BY_LINE_HH
+
 #include <string>
 
 #include "tcp_connection.hh"
 
-class TCPConnectionText : public TCPConnection {
+class TCPConnectionLineByLine : public TCPConnection {
 public:
-    explicit TCPConnectionText(int fd, std::string const& separator="\r\n")
+    explicit TCPConnectionLineByLine(int fd, std::string const& separator="\r\n")
         : TCPConnection(fd), separator_(separator), sep_len_(separator.size())
     {
         buffer_.reserve(16 * 1024);

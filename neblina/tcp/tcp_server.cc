@@ -21,7 +21,7 @@
 
 #include "arguments.hh"
 #include "service/tcp/tcp_service.hh"
-#include "service/tcp/tcp_connection.hh"
+#include "tcp_connection.hh"
 #include "util/log.hh"
 
 using namespace std::string_literals;
@@ -86,6 +86,7 @@ int TCPServer::get_listener_socket()
         throw std::runtime_error(ERR_PRX + "setsocket error: "s + strerror(errno));
 
     LOG("listening in port {}", args().port);
+    DBG("with fd {}", listener);
 
     return listener;
 }
@@ -112,6 +113,8 @@ void TCPServer::run(std::function<bool()> const& shoud_exit)
             }
         }
     }
+
+    DBG("TCP server turned off");
 }
 
 void TCPServer::handle_new_connection(std::vector<pollfd>& poll_fds)
@@ -122,6 +125,12 @@ void TCPServer::handle_new_connection(std::vector<pollfd>& poll_fds)
     int new_fd = accept(socket_fd_, (sockaddr *) &remoteaddr, &addrlen);
     if (new_fd == -1)
         throw std::runtime_error(ERR_PRX + "accept error: "s + strerror(errno));
+
+    char hoststr[NI_MAXHOST] = "Unknown";
+    char portstr[NI_MAXSERV] = "0";
+
+    getnameinfo((sockaddr const*)(&remoteaddr), addrlen, hoststr, sizeof(hoststr), portstr, sizeof(portstr), NI_NUMERICHOST | NI_NUMERICSERV);
+    DBG("New connection from {}:{} as fd {}", hoststr, portstr, new_fd);
 
     poll_fds.push_back({ .fd = new_fd, .events = POLLIN, .revents = 0 });
     connections_[new_fd] = service_->new_connection(new_fd);
@@ -134,6 +143,7 @@ void TCPServer::handle_new_data(pollfd const& pfd, std::vector<pollfd>& poll_fds
 
     if (n <= 0) {  // error or connection closed by client
         close(pfd.fd);
+        DBG("connection from fd {} closed by the client ({})", pfd.fd, strerror((int) n));
         std::ranges::remove_if(poll_fds, [&](pollfd const& p) { return p.fd == pfd.fd; }),
         connections_.erase(pfd.fd);
     } else {   // data received from client

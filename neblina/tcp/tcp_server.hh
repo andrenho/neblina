@@ -8,7 +8,6 @@
 #include <unordered_map>
 #include <vector>
 
-
 class TCPServer {
 public:
     explicit TCPServer(class TCPService const* service);

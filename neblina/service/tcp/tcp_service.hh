@@ -2,8 +2,8 @@
 #define TCP_SERVICE_HH
 
 #include "service/service.hh"
-#include "server/tcp_server.hh"
-#include "tcp_connection.hh"
+#include "tcp/tcp_server.hh"
+#include "../../tcp/tcp_connection.hh"
 
 class TCPService : public Service {
 public:

@@ -21,6 +21,8 @@ void Orchestrator::iteration()
     for (auto& svc: services_) {
         if (!service_is_running(svc) && service_eligible_for_retry(svc))
             start_service(svc);
+        if (hr::now() - svc.last_attempt > RESET_ATTEMPTS_IN)
+            svc.attempts = 0;
     }
     std::this_thread::sleep_for(100ms);
 }
@@ -35,7 +37,6 @@ bool Orchestrator::service_is_running(Service& svc)
     if (done == *svc.pid) {
         svc.pid = {};
         svc.retry_in *= 2;
-        // TODO - reset attempts if last attempt was a while ago
         ERR("Service process '{}' has died with status {}{}.", svc.config.name, WEXITSTATUS(status),
             WEXITSTATUS(status) == NON_RECOVERABLE_RETURN_CODE ? " (non-recoverable)" : "");
         if (WEXITSTATUS(status) == NON_RECOVERABLE_RETURN_CODE)

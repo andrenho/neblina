@@ -1,12 +1,12 @@
 #ifndef PARROT_TEXT_HH
 #define PARROT_TEXT_HH
 
-#include "service/tcp/tcp_connection_text.hh"
+#include "../../tcp/tcp_connection_line.hh"
 #include "service/tcp/tcp_service.hh"
 
-class ParrotConnection final : public TCPConnectionText {
+class ParrotConnection final : public TCPConnectionLineByLine {
 public:
-    using TCPConnectionText::TCPConnectionText;
+    using TCPConnectionLineByLine::TCPConnectionLineByLine;
 
     void new_data_available(std::string_view text) override
     {

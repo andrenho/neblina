@@ -5,6 +5,7 @@ namespace fs = std::filesystem;
 
 #include "arguments.hh"
 #include "file/fileset.hh"
+#include "util/log.hh"
 #include "util/exceptions/non_recoverable_exception.hh"
 
 // native services

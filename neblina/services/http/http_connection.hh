@@ -7,12 +7,12 @@
 #include "http_request_handler.hh"
 #include "http_routes.hh"
 #include "handlers/not_found_request_handler.hh"
-#include "service/tcp/tcp_connection_text.hh"
+#include "../../tcp/tcp_connection_line.hh"
 #include "types/http_request.hh"
 
-class HttpConnection final : public TCPConnectionText {
+class HttpConnection final : public TCPConnectionLineByLine {
 public:
-    HttpConnection(int fd, std::vector<HttpRoute> const& routes) : TCPConnectionText(fd), routes_(routes) {}
+    HttpConnection(int fd, std::vector<HttpRoute> const& routes) : TCPConnectionLineByLine(fd), routes_(routes) {}
 
     void new_data_available(std::string_view data) override;
 

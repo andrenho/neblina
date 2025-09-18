@@ -1,7 +1,7 @@
 #ifndef SCHEDULED_SERVICE_HH
 #define SCHEDULED_SERVICE_HH
 
-#include "../service.hh"
+#include "service/service.hh"
 #include "util/chrono.hh"
 
 class ScheduledService : public Service {

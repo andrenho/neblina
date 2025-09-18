@@ -1,6 +1,6 @@
-#include "tcp_connection_text.hh"
+#include "tcp/tcp_connection_line.hh"
 
-void TCPConnectionText::new_data_available(std::vector<uint8_t> const& data)
+void TCPConnectionLineByLine::new_data_available(std::vector<uint8_t> const& data)
 {
     for (uint8_t byte: data) {
         buffer_ += (char) byte;
