@@ -52,6 +52,7 @@ Extra:
   - [x] ETag
   - [x] Orchestrator
 - [x] "active" in orchestrator
+- [ ] Improve logging
 - [ ] Windows version (basic), Mac version
 - [ ] Code review
 - [ ] Improve logging (use operating system? external library?)

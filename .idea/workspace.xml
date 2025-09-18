@@ -31,27 +31,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0753c87b-42fc-4330-8b32-c770ab44186c" name="Changes" comment=".">
-      <change beforePath="$PROJECT_DIR$/.idea/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/editor.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/arguments.cc" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/arguments.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/arguments.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/arguments.hh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/autogen.mk" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/autogen.mk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/file/fileset.cc" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/file/fileset.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/file/fileset.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/file/fileset.hh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/file/gz.cc" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/file/gz.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/file/whole_file.cc" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/file/whole_file.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/file/whole_file.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/file/whole_file.hh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/main.cc" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/main.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TODO.md" beforeDir="false" afterPath="$PROJECT_DIR$/TODO.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/neblina/server/tcp_server.cc" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/server/tcp_server.cc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/neblina/server/tcp_server.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/server/tcp_server.hh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/service/service.cc" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/service/service.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/service/service.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/service/service.hh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/services/http/handlers/static_dir_request_handler.cc" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/http/handlers/static_dir_request_handler.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/services/orchestrator/orchestrator.cc" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/orchestrator/orchestrator.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/util/embed/compressed_data.cc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/util/embed/compressed_data.hh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/util/log.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/util/log.hh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -390,23 +373,7 @@
       <workItem from="1758058652050" duration="10321000" />
       <workItem from="1758132706818" duration="2285000" />
       <workItem from="1758142891116" duration="2778000" />
-      <workItem from="1758198600996" duration="2468000" />
-    </task>
-    <task id="LOCAL-00015" summary=".">
-      <option name="closed" value="true" />
-      <created>1757713815031</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1757713815031</updated>
-    </task>
-    <task id="LOCAL-00016" summary=".">
-      <option name="closed" value="true" />
-      <created>1757716520436</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1757716520436</updated>
+      <workItem from="1758198600996" duration="3501000" />
     </task>
     <task id="LOCAL-00017" summary=".">
       <option name="closed" value="true" />
@@ -784,7 +751,23 @@
       <option name="project" value="LOCAL" />
       <updated>1758143341103</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary=".">
+      <option name="closed" value="true" />
+      <created>1758201550032</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1758201550032</updated>
+    </task>
+    <task id="LOCAL-00065" summary=".">
+      <option name="closed" value="true" />
+      <created>1758201573249</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1758201573249</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
