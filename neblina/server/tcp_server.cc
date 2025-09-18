@@ -21,6 +21,7 @@
 
 #include "arguments.hh"
 #include "service/tcp/tcp_service.hh"
+#include "service/tcp/tcp_connection.hh"
 #include "util/log.hh"
 
 using namespace std::string_literals;

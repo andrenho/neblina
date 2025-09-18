@@ -5,12 +5,14 @@
 #include <string>
 #include <vector>
 
+#include "util/filesystem.hh"
+
 namespace whole_file {
 
-std::vector<uint8_t> read_bytes(const std::string& path);
-std::string          read_string(const std::string& path);
-void                 write(const std::string& path, const std::vector<uint8_t>& data);
-void                 write(const std::string& path, const std::string& data);
+std::vector<uint8_t> read_bytes(fs::path const& path);
+std::string          read_string(fs::path const& path);
+void                 write(fs::path const& path, std::vector<uint8_t> const& data);
+void                 write(fs::path const& path, std::string const& data);
 
 }
 

@@ -4,19 +4,20 @@
 #include <string>
 
 #include "util/chrono.hh"
+#include "util/filesystem.hh"
 
 struct Arguments {
     Arguments(int argc, char* argv[]);
 
-    const std::string program_name;
-    std::string       data_dir;
+    const fs::path    program_name;
+    fs::path          data_dir;
     std::string       service = "orchestrator";
     int               port = 0;
     bool              open_to_world = false;
-    ms                frequency = 0ms;
+    ms                frequency = 1s;
     std::string       logging_color = "0";
 
-    [[nodiscard]] std::string config_dir() const { return data_dir + "/config"; }
+    [[nodiscard]] std::string config_dir() const { return data_dir/"config"; }
 
 private:
     static void print_help(std::string const& program_name);

@@ -31,8 +31,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0753c87b-42fc-4330-8b32-c770ab44186c" name="Changes" comment=".">
+      <change beforePath="$PROJECT_DIR$/.idea/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/editor.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TODO.md" beforeDir="false" afterPath="$PROJECT_DIR$/TODO.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/arguments.cc" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/arguments.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/arguments.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/arguments.hh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/autogen.mk" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/autogen.mk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/file/fileset.cc" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/file/fileset.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/file/fileset.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/file/fileset.hh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/file/gz.cc" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/file/gz.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/file/whole_file.cc" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/file/whole_file.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/file/whole_file.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/file/whole_file.hh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/main.cc" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/main.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/server/tcp_server.cc" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/server/tcp_server.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/server/tcp_server.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/server/tcp_server.hh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/service/service.cc" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/service/service.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/service/service.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/service/service.hh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/services/http/handlers/static_dir_request_handler.cc" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/http/handlers/static_dir_request_handler.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/services/orchestrator/orchestrator.cc" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/orchestrator/orchestrator.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/util/embed/compressed_data.cc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/util/embed/compressed_data.hh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/util/log.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/util/log.hh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -187,6 +206,11 @@
     </key>
   </component>
   <component name="RunManager" selected="Native Application.neblina (dev)">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Makefile" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="neblina" TARGET_NAME="Makefile" CONFIG_NAME="Makefile" version="1">
       <method v="2">
         <option name="CLION.COMPOUND.BUILD" enabled="true" />
@@ -365,15 +389,8 @@
       <workItem from="1758047825249" duration="5167000" />
       <workItem from="1758058652050" duration="10321000" />
       <workItem from="1758132706818" duration="2285000" />
-      <workItem from="1758142891116" duration="445000" />
-    </task>
-    <task id="LOCAL-00014" summary=".">
-      <option name="closed" value="true" />
-      <created>1757713801443</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1757713801443</updated>
+      <workItem from="1758142891116" duration="2778000" />
+      <workItem from="1758198600996" duration="2468000" />
     </task>
     <task id="LOCAL-00015" summary=".">
       <option name="closed" value="true" />
@@ -759,7 +776,15 @@
       <option name="project" value="LOCAL" />
       <updated>1758142730543</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary=".">
+      <option name="closed" value="true" />
+      <created>1758143341101</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1758143341103</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -788,11 +813,6 @@
           <url>file://$PROJECT_DIR$/neblina/tools/json2cpp/test/sample.cc</url>
           <line>38</line>
           <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/neblina/file/fileset.cc</url>
-          <line>14</line>
-          <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

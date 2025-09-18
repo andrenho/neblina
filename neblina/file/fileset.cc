@@ -5,14 +5,18 @@
 #include "whole_file.hh"
 #include "util/filesystem.hh"
 
-void deploy_fileset(FileSet const& fileset, std::string const& directory)
+void deploy_file(File const& file, fs::path const& path)
 {
-    for (auto const& kv: fileset) {
-        auto path = fs::path(args().data_dir + "/" + kv.first);
-        fs::create_directories(path.parent_path());
+    fs::create_directories(path.parent_path());
 
-        File const& f = kv.second;
-        std::vector<uint8_t> contents = f.is_compressed ? gz::gunzip(f.contents, f.compressed_sz) : std::vector<uint8_t> { f.contents, f.contents + f.uncompressed_sz };
-        whole_file::write(path, contents);
-    }
+    std::vector<uint8_t> contents = file.is_compressed
+        ? gz::gunzip(file.contents, file.compressed_sz)
+        : std::vector<uint8_t> { file.contents, file.contents + file.uncompressed_sz };
+    whole_file::write(path, contents);
+}
+
+void deploy_fileset(FileSet const& fileset, fs::path const& directory)
+{
+    for (auto const& kv: fileset)
+        deploy_file(kv.second, directory / kv.first);
 }

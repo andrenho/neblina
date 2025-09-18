@@ -44,14 +44,14 @@ bool Orchestrator::service_is_running(Service& svc)
         svc.pid = {};
         svc.retry_in *= 2;
         // TODO - reset attemps if last attempt was a while ago
-        err("Service process {} has died with status {}{}.", svc.config.name, WEXITSTATUS(status),
+        err("Service process '{}' has died with status {}{}.", svc.config.name, WEXITSTATUS(status),
             WEXITSTATUS(status) == NON_RECOVERABLE_RETURN_CODE ? " (non-recoverable)" : "");
         if (WEXITSTATUS(status) == NON_RECOVERABLE_RETURN_CODE)
             svc.attempts = MAX_ATTEMPTS;
         if (svc.attempts < MAX_ATTEMPTS)
-            err("Attempt {} in {}.", svc.attempts, svc.retry_in);
+            err("Attempt {} in {} ({}).", svc.attempts, svc.retry_in, svc.config.name);
         else
-            err("Giving up.");
+            err("Giving up on '{}'.", svc.config.name);
         return false;
     }
 

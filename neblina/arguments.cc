@@ -2,6 +2,8 @@
 
 #include <getopt.h>
 #include <iostream>
+
+#include "util/exceptions/non_recoverable_exception.hh"
 using namespace std::string_literals;
 
 Arguments::Arguments(int argc, char* argv[])
@@ -33,11 +35,12 @@ Arguments::Arguments(int argc, char* argv[])
             case 'f': frequency = std::chrono::milliseconds(strtoll(optarg, nullptr, 10)); break;
             case 's': service = optarg; break;
             case 'c': logging_color = optarg; break;
+            default: throw NonRecoverableException("Unexpected error while parsing arguments");
         }
     }
 
     if (optind < argc)
-        throw std::runtime_error("Argument "s + argv[optind] + " not supported.");
+        throw NonRecoverableException("Argument "s + argv[optind] + " not supported.");
 }
 
 void Arguments::print_help(std::string const& program_name)

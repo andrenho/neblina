@@ -22,9 +22,3 @@ OBJ += $(2)/$(3).o
 endef
 json2cpp = $(eval $(call json2cpp-macro,$(1),$(2),$(3),$(4),$(5)))
 
-#
-# generate embedded files
-#
-
-%.gen.inc: %.json $(EMBED)
-	$(EMBED) $< $(basename $(notdir $<)) > $@

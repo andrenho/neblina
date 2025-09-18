@@ -1,22 +1,20 @@
 #ifndef TCP_SERVER_HH
 #define TCP_SERVER_HH
 
-#include <cstdint>
+#include <sys/poll.h>
+
 #include <functional>
 #include <memory>
 #include <unordered_map>
 #include <vector>
-#include <sys/poll.h>
-#include <functional>
 
-#include "../service/tcp/tcp_connection.hh"
 
 class TCPServer {
 public:
     explicit TCPServer(class TCPService const* service);
     ~TCPServer();
 
-    void run(std::function<bool()> shoud_exit);
+    void run(std::function<bool()> should_exit);
 
 protected:
     void finalize_service() { server_running_ = true; }
@@ -27,7 +25,7 @@ private:
     int               listener_;         // socket fd
     bool              server_running_ = true;
     TCPService const* service_;
-    std::unordered_map<int, std::unique_ptr<TCPConnection>> connections_ {};
+    std::unordered_map<int, std::unique_ptr<class TCPConnection>> connections_ {};
 
     void handle_new_connection(std::vector<pollfd>& poll_fds);
     void handle_new_data(pollfd const& pfd, std::vector<pollfd>& poll_fds);

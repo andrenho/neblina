@@ -25,7 +25,6 @@ OBJ=	main.o							\
 	services/http/types/http_response.o			\
 	services/http/handlers/static_request_handler.o		\
 	services/http/handlers/static_dir_request_handler.o	\
-	util/embed/compressed_data.o				\
 	util/string.o						\
 	contrib/simdjson/simdjson.o				\
 	contrib/miniz/miniz.o
@@ -71,6 +70,7 @@ $(call json2cpp,httpSchema.json,services/http,http_config,HttpConfig,\
 services/http/http.o main.o)
 
 # embedded files
+
 init.gen.inc: init $(EMBED)
 	$(EMBED) -d $< $(basename $(notdir $<)) > $@
 
@@ -83,12 +83,14 @@ main.o: init.gen.inc
 contrib/simdjson/simdjson.o: contrib/simdjson/simdjson.cpp
 	g++ -c -I. -O3 -ffast-math -march=native -flto -o $@ $^     # compile without warnings or deep checks
 
+contrib/simdjson/miniz.o: contrib/miniz/miniz.c
+	g++ -c -I. -O3 -ffast-math -march=native -flto -o $@ $^     # compile without warnings or deep checks
+
 pedantic:
 	$(MAKE) all PEDANTIC=1
 
 dev:
 	$(MAKE) all DEV=1
-	cd ../tests && python3 -m unittest
 
 neblina: $(OBJ)
 	g++ -o $@ $^ $(LDFLAGS)

@@ -1,11 +1,9 @@
 #ifndef SERVICE_HH
 #define SERVICE_HH
 
-#include <string>
 #include <unistd.h>
 
-#include "util/embed/compressed_data.hh"
-#include "arguments.hh"
+#include "file/fileset.hh"
 
 #define SERVICE_NAME static constexpr std::string_view name
 
@@ -17,9 +15,9 @@ public:
     virtual void run() = 0;
 
 protected:
-    static void create_file_if_it_doesnt_exist(std::string const& path, CompressedData const& data);
+    static void create_file_if_it_doesnt_exist(std::filesystem::path const& path, File const& file);
 
-    bool should_exit() const { return getppid() == 1; }
+    [[nodiscard]] static bool should_exit() { return getppid() == 1; }
 };
 
 #endif //SERVICE_HH

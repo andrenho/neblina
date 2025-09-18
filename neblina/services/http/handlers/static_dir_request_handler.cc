@@ -8,7 +8,7 @@
 HttpResponse StaticDirRequestHandler::file_contents(std::vector<std::string> const& file_path, std::string const& cached_etag) const
 {
     // create file path
-    std::string path = args().data_dir + "/" + dir_name_;
+    std::string path = args().data_dir / dir_name_;
     for (std::string const& p: file_path)
         path += "/" + p;
 
