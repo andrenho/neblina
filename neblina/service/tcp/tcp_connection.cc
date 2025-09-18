@@ -12,7 +12,7 @@ void TCPConnection::send_data(uint8_t const* data, size_t sz)
     while (pos < sz) {
         ssize_t const n = send(fd_, &data[pos], sz - pos, 0);
         if (n < 0) {
-            err("Error sending data: {}", strerror(errno));
+            ERR("Error sending data: {}", strerror(errno));
             connection_status_ = ConnectionStatus::Closed;
         }
         pos += n;

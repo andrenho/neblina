@@ -14,6 +14,7 @@ Arguments::Arguments(int argc, char* argv[])
         static option long_options[] = {
             { "help",          no_argument,       nullptr, 'h' },
             { "data-dir",      required_argument, nullptr, 'D' },
+            { "verbose",       no_argument,       nullptr, 'v' },
 
             // used to define services and their characteristics
             { "service",       required_argument, nullptr, 's' },
@@ -23,7 +24,7 @@ Arguments::Arguments(int argc, char* argv[])
             { "log-color",     required_argument, nullptr, 'c' },
         };
         int idx;
-        int c = getopt_long(argc, argv, "hs:D:P:wf:c:", long_options, &idx);
+        int c = getopt_long(argc, argv, "hs:D:P:wf:c:v", long_options, &idx);
         if (c == -1)
             break;
 
@@ -35,6 +36,7 @@ Arguments::Arguments(int argc, char* argv[])
             case 'f': frequency = std::chrono::milliseconds(strtoll(optarg, nullptr, 10)); break;
             case 's': service = optarg; break;
             case 'c': logging_color = optarg; break;
+            case 'v': verbose = true; break;
             default: throw NonRecoverableException("Unexpected error while parsing arguments");
         }
     }
@@ -47,6 +49,7 @@ void Arguments::print_help(std::string const& program_name)
 {
     std::cout << std::format(R"(Usage: {} [OPTIONS]
     -D, --data-dir [PATH]           Choose data dir path
+    -v, --verbose                   Verbose mode (for debugging)
 )", program_name);
     exit(0);
 }

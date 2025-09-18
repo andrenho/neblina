@@ -16,8 +16,9 @@ struct Arguments {
     bool              open_to_world = false;
     ms                frequency = 1s;
     std::string       logging_color = "0";
+    bool              verbose = false;
 
-    [[nodiscard]] std::string config_dir() const { return data_dir/"config"; }
+    [[nodiscard]] fs::path config_dir() const { return data_dir / "config"; }
 
 private:
     static void print_help(std::string const& program_name);

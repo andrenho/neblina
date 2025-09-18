@@ -10,12 +10,19 @@
 #include "arguments.hh"
 
 template <typename... Args>
-void log(std::format_string<Args...> fmt, Args&&... a) {
-    std::cout << "\e[" + args().logging_color + "m" + args().service + ": " + std::format(fmt, std::forward<Args>(a)...) + "\e[0m\n";
+void DBG(std::format_string<Args...> fmt, Args&&... a) {
+    if (!args().verbose)
+        return;
+    std::cout << std::format("\e[{}m{:16}: ", args().logging_color, args().service) + std::format(fmt, std::forward<Args>(a)...) + "\e[0m\n";
 }
 
 template <typename... Args>
-void err(std::format_string<Args...> fmt, Args&&... a) {
+void LOG(std::format_string<Args...> fmt, Args&&... a) {
+    std::cout << std::format("\e[{}m{:16}: ", args().logging_color, args().service) + std::format(fmt, std::forward<Args>(a)...) + "\e[0m\n";
+}
+
+template <typename... Args>
+void ERR(std::format_string<Args...> fmt, Args&&... a) {
     std::cerr << args().service + ": " + std::format(fmt, std::forward<Args>(a)...) + "\n";
 }
 

@@ -85,7 +85,7 @@ int TCPServer::get_listener_socket()
     if (listen(listener, 10) == -1)
         throw std::runtime_error(ERR_PRX + "setsocket error: "s + strerror(errno));
 
-    log("listening in port {}", args().port);
+    LOG("listening in port {}", args().port);
 
     return listener;
 }
@@ -134,9 +134,7 @@ void TCPServer::handle_new_data(pollfd const& pfd, std::vector<pollfd>& poll_fds
 
     if (n <= 0) {  // error or connection closed by client
         close(pfd.fd);
-        poll_fds.erase(
-            std::remove_if(poll_fds.begin(), poll_fds.end(), [&](pollfd const& p) { return p.fd == pfd.fd; }),
-            poll_fds.end());
+        std::ranges::remove_if(poll_fds, [&](pollfd const& p) { return p.fd == pfd.fd; }),
         connections_.erase(pfd.fd);
     } else {   // data received from client
         std::vector<uint8_t> data(buf.get(), buf.get() + n);

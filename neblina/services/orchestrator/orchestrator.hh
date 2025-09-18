@@ -11,7 +11,7 @@ public:
     SERVICE_NAME = "orchestrator";
 
     Orchestrator()
-        : ScheduledService(100ms), config_(load_config_file()) {}
+        : ScheduledService(100ms), config_(OrchestratorConfig::from_file(config_filename())) {}
 
     void init() override;
 
@@ -28,13 +28,11 @@ private:
     std::vector<Service> services_ {};
 
     void iteration() override;
+    bool service_eligible_for_retry(Service const& svc);
 
-    static bool service_is_running(Service& svc);
-    bool service_eligible_for_retry(Service& svc);
-    void start_service(Service& svc);
-
-    static OrchestratorConfig load_config_file();
-    static std::string        config_filename() { return args().config_dir() + "/orchestrator.json"; };
+    static fs::path config_filename() { return args().config_dir() / "orchestrator.json"; };
+    static void     start_service(Service& svc);
+    static bool     service_is_running(Service& svc);
 
     static constexpr size_t MAX_ATTEMPTS = 10;
 };

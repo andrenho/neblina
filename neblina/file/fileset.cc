@@ -4,6 +4,7 @@
 #include "gz.hh"
 #include "whole_file.hh"
 #include "util/filesystem.hh"
+#include "util/log.hh"
 
 void deploy_file(File const& file, fs::path const& path)
 {
@@ -13,6 +14,8 @@ void deploy_file(File const& file, fs::path const& path)
         ? gz::gunzip(file.contents, file.compressed_sz)
         : std::vector<uint8_t> { file.contents, file.contents + file.uncompressed_sz };
     whole_file::write(path, contents);
+
+    DBG("File deployed to {}", path.string());
 }
 
 void deploy_fileset(FileSet const& fileset, fs::path const& directory)

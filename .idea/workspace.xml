@@ -32,9 +32,16 @@
   <component name="ChangeListManager">
     <list default="true" id="0753c87b-42fc-4330-8b32-c770ab44186c" name="Changes" comment=".">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TODO.md" beforeDir="false" afterPath="$PROJECT_DIR$/TODO.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/arguments.cc" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/arguments.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/arguments.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/arguments.hh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/file/fileset.cc" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/file/fileset.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/main.cc" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/main.cc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/neblina/server/tcp_server.cc" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/server/tcp_server.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neblina/server/tcp_server.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/server/tcp_server.hh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/service/tcp/tcp_connection.cc" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/service/tcp/tcp_connection.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/services/http/http.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/http/http.hh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/services/orchestrator/orchestrator.cc" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/orchestrator/orchestrator.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/services/orchestrator/orchestrator.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/services/orchestrator/orchestrator.hh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neblina/util/log.hh" beforeDir="false" afterPath="$PROJECT_DIR$/neblina/util/log.hh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,6 +80,84 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
@@ -129,50 +214,50 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;Native Application.all.executor&quot;: &quot;Run&quot;,
-    &quot;Native Application.dev.executor&quot;: &quot;Debug&quot;,
-    &quot;Native Application.embed.executor&quot;: &quot;Debug&quot;,
-    &quot;Native Application.http.executor&quot;: &quot;Debug&quot;,
-    &quot;Native Application.neblina (dev).executor&quot;: &quot;Run&quot;,
-    &quot;Native Application.neblina.executor&quot;: &quot;Debug&quot;,
-    &quot;Native Application.pedantic.executor&quot;: &quot;Run&quot;,
-    &quot;Native Application.test-json2cpp.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test_health_check.HealthCheck.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test_http_service.TestHttpService.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test_http_service.TestHttpService.test_redirect.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test_orchestrator.MyTestCase.test_kill_parent.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test_orchestrator.TestOrchestrator.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test_orchestrator.TestOrchestrator.test_child.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test_simple_requests.SimpleRequests.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test_simple_requests.SimpleRequests.test_redirect.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for tests.neblina.health_check.HealthCheck.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for tests.test_orchestrator.TestOrchestrator.test_kill_parent.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for tests.test_simple_requests.SimpleRequests.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for web.SimpleWebRequest.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for web.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests in web.py.executor&quot;: &quot;Run&quot;,
-    &quot;Python.json2cpp.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.RadMigrateCodeStyle&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/aw98156/prj/neblina/tests&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Native Application.all.executor": "Run",
+    "Native Application.dev.executor": "Debug",
+    "Native Application.embed.executor": "Debug",
+    "Native Application.http.executor": "Run",
+    "Native Application.neblina (dev).executor": "Run",
+    "Native Application.neblina.executor": "Debug",
+    "Native Application.pedantic.executor": "Run",
+    "Native Application.test-json2cpp.executor": "Run",
+    "Python tests.Python tests for test_health_check.HealthCheck.executor": "Run",
+    "Python tests.Python tests for test_http_service.TestHttpService.executor": "Run",
+    "Python tests.Python tests for test_http_service.TestHttpService.test_redirect.executor": "Run",
+    "Python tests.Python tests for test_orchestrator.MyTestCase.test_kill_parent.executor": "Run",
+    "Python tests.Python tests for test_orchestrator.TestOrchestrator.executor": "Run",
+    "Python tests.Python tests for test_orchestrator.TestOrchestrator.test_child.executor": "Run",
+    "Python tests.Python tests for test_simple_requests.SimpleRequests.executor": "Run",
+    "Python tests.Python tests for test_simple_requests.SimpleRequests.test_redirect.executor": "Run",
+    "Python tests.Python tests for tests.neblina.health_check.HealthCheck.executor": "Run",
+    "Python tests.Python tests for tests.test_orchestrator.TestOrchestrator.test_kill_parent.executor": "Run",
+    "Python tests.Python tests for tests.test_simple_requests.SimpleRequests.executor": "Run",
+    "Python tests.Python tests for web.SimpleWebRequest.executor": "Run",
+    "Python tests.Python tests for web.executor": "Run",
+    "Python tests.Python tests in web.py.executor": "Run",
+    "Python.json2cpp.executor": "Run",
+    "RunOnceActivity.RadMigrateCodeStyle": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "/Users/aw98156/prj/neblina/tests",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/tests" />
@@ -188,12 +273,7 @@
       <recent name="$PROJECT_DIR$/neblina/services/http/types" />
     </key>
   </component>
-  <component name="RunManager" selected="Native Application.neblina (dev)">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Native Application.test">
     <configuration name="Makefile" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="neblina" TARGET_NAME="Makefile" CONFIG_NAME="Makefile" version="1">
       <method v="2">
         <option name="CLION.COMPOUND.BUILD" enabled="true" />
@@ -214,7 +294,7 @@
         <option name="CLION.COMPOUND.BUILD" enabled="true" />
       </method>
     </configuration>
-    <configuration name="neblina (dev)" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="neblina" TARGET_NAME="dev" CONFIG_NAME="dev" version="1" RUN_PATH="$PROJECT_DIR$/neblina/neblina">
+    <configuration name="neblina (dev)" type="CLionNativeAppRunConfigurationType" PROGRAM_PARAMS="-v" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="neblina" TARGET_NAME="dev" CONFIG_NAME="dev" version="1" RUN_PATH="$PROJECT_DIR$/neblina/neblina">
       <method v="2">
         <option name="CLION.COMPOUND.BUILD" enabled="true" />
       </method>
@@ -373,15 +453,8 @@
       <workItem from="1758058652050" duration="10321000" />
       <workItem from="1758132706818" duration="2285000" />
       <workItem from="1758142891116" duration="2778000" />
-      <workItem from="1758198600996" duration="3501000" />
-    </task>
-    <task id="LOCAL-00017" summary=".">
-      <option name="closed" value="true" />
-      <created>1757721681658</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1757721681658</updated>
+      <workItem from="1758198600996" duration="6000000" />
+      <workItem from="1758205108088" duration="574000" />
     </task>
     <task id="LOCAL-00018" summary=".">
       <option name="closed" value="true" />
@@ -767,7 +840,15 @@
       <option name="project" value="LOCAL" />
       <updated>1758201573249</updated>
     </task>
-    <option name="localTasksCounter" value="66" />
+    <task id="LOCAL-00066" summary=".">
+      <option name="closed" value="true" />
+      <created>1758202592929</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1758202592929</updated>
+    </task>
+    <option name="localTasksCounter" value="67" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -796,6 +877,11 @@
           <url>file://$PROJECT_DIR$/neblina/tools/json2cpp/test/sample.cc</url>
           <line>38</line>
           <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/neblina/services/http/http.cc</url>
+          <line>43</line>
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

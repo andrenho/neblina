@@ -23,8 +23,8 @@ private:
     HttpConfig config_;
     std::vector<HttpRoute> routes_;
 
-    static HttpConfig   load_config_file();
-    static std::string  config_filename() { return args().config_dir() + "/http.json"; };
+    static HttpConfig load_config_file();
+    static fs::path   config_filename() { return args().config_dir() / "http.json"; };
 };
 
 #endif //HTTP_HH

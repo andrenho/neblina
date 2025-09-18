@@ -3,11 +3,10 @@
 #include <csignal>
 #include <sys/wait.h>
 
-#include <string>
 #include <unistd.h>
-using namespace std::string_literals;
 
 #include "util/log.hh"
+#include "util/string.hh"
 #include "util/exceptions/non_recoverable_exception.hh"
 
 void Orchestrator::init()
@@ -17,20 +16,13 @@ void Orchestrator::init()
             services_.push_back({ .config = s });
 }
 
-OrchestratorConfig Orchestrator::load_config_file()
-{
-    return OrchestratorConfig::from_file(config_filename());
-}
-
 void Orchestrator::iteration()
 {
-    for (;;) {
-        for (auto& svc: services_) {
-            if (!service_is_running(svc) && service_eligible_for_retry(svc))
-                start_service(svc);
-        }
-        std::this_thread::sleep_for(100ms);
+    for (auto& svc: services_) {
+        if (!service_is_running(svc) && service_eligible_for_retry(svc))
+            start_service(svc);
     }
+    std::this_thread::sleep_for(100ms);
 }
 
 bool Orchestrator::service_is_running(Service& svc)
@@ -43,27 +35,25 @@ bool Orchestrator::service_is_running(Service& svc)
     if (done == *svc.pid) {
         svc.pid = {};
         svc.retry_in *= 2;
-        // TODO - reset attemps if last attempt was a while ago
-        err("Service process '{}' has died with status {}{}.", svc.config.name, WEXITSTATUS(status),
+        // TODO - reset attempts if last attempt was a while ago
+        ERR("Service process '{}' has died with status {}{}.", svc.config.name, WEXITSTATUS(status),
             WEXITSTATUS(status) == NON_RECOVERABLE_RETURN_CODE ? " (non-recoverable)" : "");
         if (WEXITSTATUS(status) == NON_RECOVERABLE_RETURN_CODE)
             svc.attempts = MAX_ATTEMPTS;
         if (svc.attempts < MAX_ATTEMPTS)
-            err("Attempt {} in {} ({}).", svc.attempts, svc.retry_in, svc.config.name);
+            ERR("Attempt {} in {} ({}).", svc.attempts, svc.retry_in, svc.config.name);
         else
-            err("Giving up on '{}'.", svc.config.name);
+            ERR("Giving up on '{}'.", svc.config.name);
         return false;
     }
 
     return true;
 }
 
-bool Orchestrator::service_eligible_for_retry(Service& svc)
+bool Orchestrator::service_eligible_for_retry(Service const& svc)
 {
     if (svc.attempts >= MAX_ATTEMPTS) {
-        services_.erase(
-            std::remove_if(services_.begin(), services_.end(), [&](Service const& s) { return s.config.name == svc.config.name; }),
-            services_.end());
+        std::erase_if(services_, [&](Service const& s) { return s.config.name == svc.config.name; });
         return false;
     }
 
@@ -93,6 +83,8 @@ void Orchestrator::start_service(Service& svc)
         arguments.emplace_back(s_port.c_str());
         if (svc.config.open_to_world && *svc.config.open_to_world)
             arguments.emplace_back("-w");
+        if (args().verbose)
+            arguments.emplace_back("-v");
     }
     if (svc.config.logging_color) {
         arguments.emplace_back("-c");
@@ -107,7 +99,8 @@ void Orchestrator::start_service(Service& svc)
         throw std::runtime_error("execvp failed when starting a new service: "s + strerror(errno));
 
     } else if (pid > 0) {
-        log("Starting service {} with pid {} ({}).", svc.config.name, getpid(), pars);
+        LOG("Starting service {} with pid {}", svc.config.name, getpid());
+        DBG("(command line: {})", pars);
         svc.pid.emplace(pid);
         setpgid(pid, getpid());
     } else {

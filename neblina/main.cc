@@ -29,7 +29,7 @@ int find_and_execute(std::string const& service_name)
 
         } catch (NonRecoverableException& e) {
             // This exception means it's no use to retry (ex. a wrong configuration file).
-            log("{}", e.what()); fflush(stderr);
+            LOG("{}", e.what()); fflush(stderr);
             return NON_RECOVERABLE_RETURN_CODE;
         }
     }
@@ -52,8 +52,9 @@ int main(int argc, char* argv[])
     if (!fs::exists(args().data_dir)) {
         try {
             deploy_fileset(init, args().data_dir);
+            LOG("New fileset deployed to {}", args().data_dir.string());
         } catch (std::exception& e) {
-            err("There was an error trying to deploy the initial file configuration: {}", e.what());
+            ERR("There was an error trying to deploy the initial file configuration: {}", e.what());
             return EXIT_FAILURE;
         }
     }
@@ -61,7 +62,7 @@ int main(int argc, char* argv[])
     // execute service
     int r = find_and_execute_service<SERVICES>(args().service);
     if (r == SERVICE_NOT_FOUND) {
-        err("Service {} was not found.", args().service);
+        ERR("Service {} was not found.", args().service);
         return NON_RECOVERABLE_RETURN_CODE;
     }
     return r;
