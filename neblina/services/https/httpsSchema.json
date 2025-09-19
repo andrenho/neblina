@@ -1,0 +1,6 @@
+{
+  "main": {
+    "publicKey": "string",
+    "privateKey": "string"
+  }
+}

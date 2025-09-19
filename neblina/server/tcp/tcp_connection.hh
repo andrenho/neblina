@@ -23,7 +23,6 @@ protected:
     int fd_;
     ConnectionStatus connection_status_ = ConnectionStatus::Open;
 
-private:
     static constexpr int BUFFER_SZ = 8 * 1024;
 };
 

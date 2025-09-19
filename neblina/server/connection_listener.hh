@@ -10,7 +10,7 @@ enum class ConnectionStatus { Open, Closed };
 class IConnectionListener {
 public:
     IConnectionListener() = default;
-    IConnectionListener(std::string const& separator)
+    explicit IConnectionListener(std::string const& separator)
         : separator_(separator), sep_len_(separator_.size()) { buffer_.reserve(16 * 1024); }
 
     virtual ~IConnectionListener() = default;

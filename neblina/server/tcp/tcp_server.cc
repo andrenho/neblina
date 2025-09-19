@@ -138,7 +138,7 @@ std::unique_ptr<TCPConnection> TCPServer::new_connection(int fd) const
 
 void TCPServer::handle_new_data(pollfd const& pfd, std::vector<pollfd>& poll_fds)
 {
-    ConnectionStatus status = connections_[pfd.fd]->handle_new_data();
+    ConnectionStatus status = connections_.at(pfd.fd)->handle_new_data();
     if (status == ConnectionStatus::Closed) {
         DBG("connection from fd {} closed by the client ({})", pfd.fd, strerror(errno));
         close(pfd.fd);
