@@ -5,7 +5,11 @@
 
 class Session : public IConnectionListener {
 public:
-    explicit Session(Connection* connection) : connection_(connection) {
+    explicit Session(Connection* connection, std::string const& separator) : IConnectionListener(separator), connection_(connection) {
+        connection_->set_listener(this);
+    }
+
+    explicit Session(Connection* connection) : IConnectionListener(), connection_(connection) {
         connection_->set_listener(this);
     }
 

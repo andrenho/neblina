@@ -7,9 +7,10 @@
 
 class ParrotSession final : public Session {
 public:
-    using Session::Session;
+    explicit ParrotSession(Connection* connection)
+        : Session(connection, "\r\n") {}
 
-    ConnectionStatus new_data_available(std::vector<uint8_t> const& data) override {
+    ConnectionStatus new_line(std::string_view data) override {
         send_data(data);
         send_data("\r\n");
         return ConnectionStatus::Open;

@@ -4,13 +4,7 @@
 #include <cstdint>
 #include <vector>
 
-enum class ConnectionStatus { Open, Closed };
-
-class IConnectionListener {
-public:
-    virtual ~IConnectionListener() = default;
-    virtual ConnectionStatus new_data_available(std::vector<uint8_t> const& data) = 0;
-};
+#include "connection_listener.hh"
 
 class Connection {
 public:

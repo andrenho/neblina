@@ -11,6 +11,7 @@ OBJ=	main.o							\
 	file/fileset.o						\
 	file/gz.o						\
 	file/whole_file.o					\
+	server/connection_listener.o				\
 	server/tcp/tcp_server.o					\
 	server/tcp/tcp_connection.o				\
 	service/service.o					\
