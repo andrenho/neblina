@@ -7,14 +7,14 @@
 #include "handler/http_request_handler.hh"
 #include "handler/http_routes.hh"
 #include "handlers/not_found_request_handler.hh"
-#include "../../server/tcp/tcp_connection_line.hh"
+#include "service/communication/session.hh"
 #include "types/http_request.hh"
 
-class HttpConnection final : public TCPConnectionLineByLine {
+class HttpSession final : public Session {
 public:
-    HttpConnection(int fd, std::vector<HttpRoute> const& routes) : TCPConnectionLineByLine(fd), routes_(routes) {}
+    HttpSession(Connection* connection, std::vector<HttpRoute> const& routes) : Session(connection), routes_(routes) {}
 
-    void new_data_available(std::string_view data) override;
+    ConnectionStatus new_line(std::string_view data) override;
 
 private:
     std::vector<HttpRoute> const& routes_;
@@ -23,7 +23,7 @@ private:
 
     HttpRequestHandler* find_request_handler(HttpRequest const& request, URLParameters& url_parameters, QueryParameters& query_parameters);
 
-    void parse_request(const HttpRequest& request);
+    ConnectionStatus parse_request(const HttpRequest& request);
 };
 
 

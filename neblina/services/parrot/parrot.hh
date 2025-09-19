@@ -17,11 +17,17 @@ public:
     }
 };
 
-class Parrot final : public CommunicationService<ParrotSession> {
+class Parrot final : public CommunicationService {
 public:
-    explicit Parrot() : CommunicationService(std::make_unique<TCPServer>()) {}
-
     SERVICE_NAME = "parrot";
+
+    Parrot() : CommunicationService(std::make_unique<TCPServer>()) {}
+
+    void new_connection(Connection* connection) override { sessions_.emplace(connection, std::make_unique<ParrotSession>(connection) ); }
+    void connection_closed(Connection* connection) override { sessions_.erase(connection); }
+
+private:
+    std::unordered_map<Connection*, std::unique_ptr<ParrotSession>> sessions_;
 };
 
 #endif //PARROT_TEXT_HH

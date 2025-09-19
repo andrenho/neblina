@@ -1,4 +1,4 @@
-#include "http_connection.hh"
+#include "http_session.hh"
 
 #include <regex>
 
@@ -7,23 +7,27 @@
 #include "types/http_response.hh"
 #include "types/http_exceptions.hh"
 
-void HttpConnection::new_data_available(std::string_view data)
+ConnectionStatus HttpSession::new_line(std::string_view data)
 {
+    ConnectionStatus r = ConnectionStatus::Open;
+
     try {
         // keep reading data until we receive a complete request
         current_http_request << data;
 
         if (current_http_request.complete()) {
-            parse_request(current_http_request);
+            r = parse_request(current_http_request);
             current_http_request = {};
         }
     } catch (HttpException& e) {
         send_data(HttpResponse::error_response_html(e.status_code, e.what()).to_string());
-        close_connection();
+        r = ConnectionStatus::Closed;
     }
+
+    return r;
 }
 
-void HttpConnection::parse_request(HttpRequest const& request)
+ConnectionStatus HttpSession::parse_request(HttpRequest const& request)
 {
     // reject request if it doesn't have the "Host" header
     if (!request.headers().contains("Host"))
@@ -58,10 +62,12 @@ void HttpConnection::parse_request(HttpRequest const& request)
 
     // if client had asked to close the connection, close it
     if (request.headers().connection() == "close")
-        close_connection();
+        return ConnectionStatus::Closed;
+
+    return ConnectionStatus::Open;
 }
 
-HttpRequestHandler* HttpConnection::find_request_handler(HttpRequest const& request, URLParameters& url_parameters, QueryParameters& query_parameters)
+HttpRequestHandler* HttpSession::find_request_handler(HttpRequest const& request, URLParameters& url_parameters, QueryParameters& query_parameters)
 {
     // parse URI
     std::string resource = request.resource();

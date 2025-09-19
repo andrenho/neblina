@@ -9,9 +9,16 @@
 // edit this list to add a new native service
 #define HANDLERS HealthRequestHandler
 
+Http::Http()
+    : CommunicationService(std::make_unique<TCPServer>()),
+      config_(HttpConfig::from_file(config_filename()))
+{
+}
+
 void Http::init()
 {
     CommunicationService::init();
+
     HttpHandlerRegistry::add_to_registry<HealthRequestHandler>();
 
     // create list of HTTP request handlers
@@ -44,4 +51,9 @@ void Http::init()
             throw std::runtime_error(std::format("Path '{}' is not a valid regex expression.", rt.path));
         }
     }
+}
+
+void Http::new_connection(Connection* connection)
+{
+    sessions_.emplace(connection, HttpSession { connection, routes_ });
 }
