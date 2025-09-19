@@ -10,8 +10,9 @@ public:
     using Session::Session;
 
     ConnectionStatus new_data_available(std::vector<uint8_t> const& data) override {
-        DBG("New data");
-        return ConnectionStatus::Closed;
+        send_data(data);
+        send_data("\r\n");
+        return ConnectionStatus::Open;
     }
 };
 

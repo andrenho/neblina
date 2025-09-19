@@ -9,6 +9,9 @@ public:
         connection_->set_listener(this);
     }
 
+    template <typename T>
+    void send_data(T&& args...) { connection_->send_data(std::forward<T>(args)); }
+
 private:
     Connection* connection_;
 };
