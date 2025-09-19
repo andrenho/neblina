@@ -11,7 +11,7 @@
 
 void Http::init()
 {
-    TCPService::init();
+    CommunicationService::init();
     HttpHandlerRegistry::add_to_registry<HealthRequestHandler>();
 
     // create list of HTTP request handlers

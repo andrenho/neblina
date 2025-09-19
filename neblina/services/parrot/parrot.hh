@@ -1,26 +1,25 @@
 #ifndef PARROT_TEXT_HH
 #define PARROT_TEXT_HH
 
-#include "tcp/tcp_connection_line.hh"
-#include "service/tcp/tcp_service.hh"
+#include "server/tcp/tcp_server.hh"
+#include "service/communication/communication_service.hh"
+#include "service/communication/session.hh"
 
-class ParrotConnection final : public TCPConnectionLineByLine {
+class ParrotSession final : public Session {
 public:
-    using TCPConnectionLineByLine::TCPConnectionLineByLine;
+    using Session::Session;
 
-    void new_data_available(std::string_view text) override
-    {
-        send_data(text);
-        send_data("\r\n");
+    ConnectionStatus new_data_available(std::vector<uint8_t> const& data) override {
+        DBG("New data");
+        return ConnectionStatus::Closed;
     }
-
 };
 
-class Parrot final : public TCPService {
+class Parrot final : public CommunicationService<ParrotSession> {
 public:
-    SERVICE_NAME = "parrot";
+    explicit Parrot() : CommunicationService(std::make_unique<TCPServer>()) {}
 
-    std::unique_ptr<TCPConnection> new_connection(int fd) const override { return std::make_unique<ParrotConnection>(fd); }
+    SERVICE_NAME = "parrot";
 };
 
 #endif //PARROT_TEXT_HH

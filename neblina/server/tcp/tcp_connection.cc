@@ -1,6 +1,8 @@
-#include "tcp/tcp_connection.hh"
+#include "tcp_connection.hh"
 
+#include <cerrno>
 #include <cstring>
+#include <memory>
 #include <unistd.h>
 #include <sys/socket.h>
 
@@ -24,4 +26,20 @@ void TCPConnection::close_connection()
     DBG("connection to socket {} closed by the server", fd_);
     close(fd_);
     connection_status_ = ConnectionStatus::Closed;
+}
+
+ConnectionStatus TCPConnection::handle_new_data()
+{
+    std::unique_ptr<char[]> buf(new char[BUFFER_SZ]);
+    ssize_t n = recv(fd_, buf.get(), BUFFER_SZ, 0);
+
+    if (n <= 0) {  // error or connection closed by client
+        connection_status_ = ConnectionStatus::Closed;
+    } else {       // data received from client
+        std::vector<uint8_t> data(buf.get(), buf.get() + n);
+        if (listener_)
+            connection_status_ = listener_->new_data_available(data);
+    }
+
+    return connection_status_;
 }

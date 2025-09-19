@@ -1,13 +1,13 @@
 #ifndef HTTP_HH
 #define HTTP_HH
 
-#include "service/tcp/tcp_service.hh"
+#include "service/communication/communication_service.hh"
 #include "http_config.hh"
 #include "http_connection.hh"
 #include "arguments.hh"
 #include "handler/http_routes.hh"
 
-class Http final : public TCPService {
+class Http final : public CommunicationService {
 public:
     SERVICE_NAME = "http";
 

@@ -7,7 +7,7 @@
 #include "handler/http_request_handler.hh"
 #include "handler/http_routes.hh"
 #include "handlers/not_found_request_handler.hh"
-#include "tcp/tcp_connection_line.hh"
+#include "../../server/tcp/tcp_connection_line.hh"
 #include "types/http_request.hh"
 
 class HttpConnection final : public TCPConnectionLineByLine {

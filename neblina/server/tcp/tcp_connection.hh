@@ -1,21 +1,19 @@
-#ifndef CONNECTION_HH
-#define CONNECTION_HH
+#ifndef TCP_CONNECTION_HH
+#define TCP_CONNECTION_HH
 
 #include <cstdint>
 
 #include <string_view>
 #include <vector>
 
-enum class ConnectionStatus { Open, Closed };
+#include "../connection.hh"
 
-class TCPConnection {
+class TCPConnection : public Connection {
 public:
     explicit TCPConnection(int fd) : fd_(fd) {}
-    virtual ~TCPConnection() = default;
 
     void close_connection();
-
-    virtual void new_data_available(std::vector<uint8_t> const& data) = 0;
+    virtual ConnectionStatus handle_new_data();
 
     [[nodiscard]] ConnectionStatus connection_status() const { return connection_status_; }
 
@@ -26,7 +24,10 @@ protected:
     void send_data(std::vector<uint8_t> const& data) { send_data(data.data(), data.size()); }
     void send_data(std::string_view data)            { send_data((uint8_t const*) data.data(), data.size()); }
     void send_data(uint8_t const* data, size_t sz);
+
+private:
+    static constexpr int BUFFER_SZ = 8 * 1024;
 };
 
 
-#endif //CONNECTION_HH
+#endif //TCP_CONNECTION_HH
