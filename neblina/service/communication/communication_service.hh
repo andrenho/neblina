@@ -11,6 +11,7 @@ public:
     explicit CommunicationService(std::unique_ptr<Server> server) : server_(std::move(server)) {
         server_->set_listener(this);
     }
+
     void run() override {
         while (!should_exit())
             server_->iteration();

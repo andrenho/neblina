@@ -27,6 +27,7 @@ OBJ=	main.o							\
 	services/http/handler/custom_handler_registry.o		\
 	services/http/handlers/static_request_handler.o		\
 	services/http/handlers/static_dir_request_handler.o	\
+	services/https/https.o					\
 	util/string.o						\
 	contrib/simdjson/simdjson.o				\
 	contrib/miniz/miniz.o

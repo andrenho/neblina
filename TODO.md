@@ -60,6 +60,7 @@ Extra:
 - [ ] HTTPS support
 - [ ] CONNECT
 - [ ] forward/ignore hop-by-hop headers if proxying
+- [ ] Serve from 443
 - [ ] HTTP-to-HTTPS
   - [ ] Redirection 301
 
