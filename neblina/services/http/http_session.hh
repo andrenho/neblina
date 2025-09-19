@@ -12,7 +12,8 @@
 
 class HttpSession final : public Session {
 public:
-    HttpSession(Connection* connection, std::vector<HttpRoute> const& routes) : Session(connection), routes_(routes) {}
+    HttpSession(Connection* connection, std::vector<HttpRoute> const& routes)
+        : Session(connection, "\r\n"), routes_(routes) {}
 
     ConnectionStatus new_line(std::string_view data) override;
 
