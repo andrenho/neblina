@@ -9,14 +9,14 @@ namespace fs = std::filesystem;
 // native services
 #include "services/orchestrator/orchestrator.hh"
 #include "services/parrot/parrot.hh"
-// #include "services/http/http.hh"
+#include "services/http/http.hh"
 
 #include "init.gen.inc"
 
 #define SERVICE_NOT_FOUND 300
 
 // edit this list to add a new native service
-#define SERVICES Orchestrator, Parrot// , Http
+#define SERVICES Orchestrator, Parrot, Http
 
 template <typename T>
 int find_and_execute(std::string const& service_name)

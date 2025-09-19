@@ -52,8 +52,3 @@ void Http::init()
         }
     }
 }
-
-void Http::new_connection(Connection* connection)
-{
-    sessions_.emplace(connection, HttpSession { connection, routes_ });
-}
