@@ -69,8 +69,8 @@ Extra:
 - [x] CONNECT
 - [x] forward/ignore hop-by-hop headers if proxying
 - [x] Serve from 443
-- [ ] HTTP-to-HTTPS
-  - [ ] Redirection 301
+- [x] HTTP-to-HTTPS
+  - [x] Redirection 301
 
 ### v0.4a - reorganize config
 
