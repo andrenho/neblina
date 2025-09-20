@@ -8,6 +8,8 @@
 class HttpHeaders {
 public:
     std::string& operator[](std::string const& key);
+    void remove(std::string const& key);
+
     [[nodiscard]] std::optional<std::string> at(std::string const& key) const;
 
     [[nodiscard]] std::string to_string(size_t with_content_length=0) const;

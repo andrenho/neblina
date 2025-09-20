@@ -4,12 +4,9 @@
 #include "services/http/types/http_exceptions.hh"
 #include "util/string.hh"
 
-HttpResponse http_client_request(HttpRequest const& request, int port)
+HttpResponse http_client_request(std::string const& location, int port, HttpRequest const& request)
 {
-    if (!request.headers.contains("Host"))
-        throw BadRequestException();
-
-    TCPClient client(*request.headers.at("Host"), port);
+    TCPClient client(location, port);
     client.send(request.to_string());
     size_t content_length = 0;
     std::string str_response;
@@ -19,10 +16,9 @@ HttpResponse http_client_request(HttpRequest const& request, int port)
         if (to_upper(line).starts_with("CONTENT-LENGTH"))
             content_length = std::stoull(line.substr(line.find(':') + 1));
         if (line.empty()) {
-            if (content_length > 0) {
+            if (content_length > 0)
                 str_response += client.recv(content_length);
-                break;
-            }
+            break;
         }
     }
 

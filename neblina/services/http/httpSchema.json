@@ -4,7 +4,8 @@
     "handler": "string*",
     "serveStaticDir": "string*",
     "redirect": "string*",
-    "proxy": "string*"
+    "proxyHost": "string*",
+    "proxyPort": "int*"
   },
   "main": {
     "routes": "Route[]"

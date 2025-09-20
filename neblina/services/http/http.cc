@@ -6,6 +6,7 @@
 #include "handlers/proxy_request_handler.hh"
 #include "handlers/redirect_request_handler.hh"
 #include "handlers/static_dir_request_handler.hh"
+#include "util/exceptions/non_recoverable_exception.hh"
 
 // edit this list to add a new native service
 #define HANDLERS HealthRequestHandler
@@ -39,9 +40,11 @@ void Http::init()
                 // it's a redirect handler - it always responds with 301
                 handler = std::make_unique<RedirectRequestHandler>(*rt.redirect);
 
-            } else if (rt.redirect) {
+            } else if (rt.proxy_host) {
                 // it's a proxy handers - proxies to the next server
-                handler = std::make_unique<ProxyRequestHander>(*rt.proxy);
+                if (!rt.proxy_port)
+                    throw NonRecoverableException("If proxyHost is used, then proxyPort is mandatory");
+                handler = std::make_unique<ProxyRequestHander>(*rt.proxy_host, *rt.proxy_port);
             }
 
             if (handler) {

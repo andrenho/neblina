@@ -27,7 +27,7 @@ HttpResponse HttpResponse::from_string(std::string const& str)
     auto lines = split(str, "\r\n");
 
     auto line0 = split(lines.at(0), " ");
-    if (line0.size() != 3)
+    if (line0.size() < 3)
         throw std::runtime_error("Malformed request");
     //if (line0.at(0) != "HTTP/1.1")
     //    throw std::runtime_error("Unsupported HTTP version");

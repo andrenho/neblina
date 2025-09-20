@@ -33,6 +33,11 @@ std::string& HttpHeaders::operator[](std::string const& key)
     return headers_[to_upper(key)];
 }
 
+void HttpHeaders::remove(std::string const& key)
+{
+    headers_.erase(to_upper(key));
+}
+
 std::optional<std::string> HttpHeaders::at(std::string const& key) const
 {
     auto it = headers_.find(to_upper(key));

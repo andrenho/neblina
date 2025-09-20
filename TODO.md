@@ -58,8 +58,12 @@ Extra:
 ### v0.4 - HTTPS
 
 - [ ] HTTPS support
-- [ ] Create proxy
-  - [ ] Create TCP client
+- [x] Create proxy
+  - [x] Create TCP client
+  - [x] Remove current path
+  - [x] Capture exception when calling TCP client
+  - [ ] Add originator IP
+  - [ ] When removing part of path, handle redirection 304
 - [ ] CONNECT
 - [ ] forward/ignore hop-by-hop headers if proxying
 - [ ] Serve from 443

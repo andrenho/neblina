@@ -83,7 +83,7 @@ HttpRequestHandler* HttpSession::find_request_handler(HttpRequest const& request
     for (auto const& route: routes_) {
         std::smatch m;
         if (std::regex_match(resource, m, route.regex)) {
-            url_parameters.reserve(m.size());
+            url_parameters.reserve(m.size() - 1);
             std::transform(m.begin() + 1, m.end(), std::back_inserter(url_parameters), [](const auto& m) { return m.str(); });
             return route.handler.get();
         }

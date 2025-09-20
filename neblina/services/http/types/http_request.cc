@@ -30,15 +30,15 @@ void HttpRequest::operator<<(std::string_view data)
 void HttpRequest::process_start_line(std::string_view data)
 {
     std::istringstream iss(data.data());
-    std::string        method, version, extra;
+    std::string        smethod, version, extra;
 
-    if (!(iss >> method >> resource >> version))
+    if (!(iss >> smethod >> resource >> version))
         throw BadRequestException();
     if (iss >> extra)
         throw BadRequestException();
 
-    Method m = translate_method(method);
-    if (m == Method::Undefined)
+    method = translate_method(smethod);
+    if (method == Method::Undefined)
         throw BadRequestException();
 
     if (version != "HTTP/1.1")
