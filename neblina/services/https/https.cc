@@ -12,5 +12,5 @@ Https::Https()
       )),
      config_(HttpsConfig::from_file(config_filename()))
 {
-    routes_.emplace_back(std::regex("/(.*)"), std::make_unique<ProxyRequestHander>("https", "localhost", config_.proxy_port));
+    routes_.emplace_back(std::regex("(.*)"), std::make_unique<ProxyRequestHander>("https", "localhost", config_.proxy_port));
 }

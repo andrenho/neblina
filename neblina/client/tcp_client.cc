@@ -8,11 +8,12 @@
 #include <netinet/in.h>
 #include <sys/socket.h>
 #include <arpa/inet.h>
+#include <fcntl.h>
 
 #include "util/log.hh"
 #include "util/string.hh"
 
-static const std::string ERR_PRX = "TCP client error: ";
+static const std::string ERR_PRX = "TCP client: ";
 
 static void *get_in_addr(struct sockaddr *sa)
 {
@@ -59,6 +60,9 @@ TCPClient::TCPClient(std::string const& destination, int port)
     inet_ntop(p->ai_family, get_in_addr(p->ai_addr), s, sizeof s);
     LOG("{}connected to {}", ERR_PRX, std::string(s));
 
+    int flags = fcntl(fd_, F_GETFL, 0);
+    fcntl(fd_, F_SETFL, flags | O_NONBLOCK);
+
     freeaddrinfo(servinfo);
 }
 
@@ -80,10 +84,14 @@ std::string TCPClient::recv(size_t nbytes)
         std::string r = buffer_;
         buffer_.clear();
         return buffer_;
-    } else if (n < 0) {
+    } else if (n < 0 && errno != EAGAIN && errno != EWOULDBLOCK) {
         close(fd_);
         connection_closed_ = true;
         throw std::runtime_error(ERR_PRX + "error reading data: " + strerror(errno));
+    } else if (n < 0) {
+        std::string r = buffer_;
+        buffer_.clear();
+        return r;
     } else {
         std::string r = buffer_ + std::string(buf, buf + n);
         buffer_.clear();

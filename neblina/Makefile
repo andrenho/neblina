@@ -102,6 +102,7 @@ dev:
 
 neblina: $(OBJ)
 	g++ -o $@ $^ $(LDFLAGS)
+	sudo setcap cap_net_bind_service=ep ./$@
 
 test: neblina
 	cd ../tests && python3 -m unittest

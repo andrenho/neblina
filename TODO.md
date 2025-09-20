@@ -53,7 +53,6 @@ Extra:
   - [x] Orchestrator
 - [x] "active" in orchestrator
 - [x] Code review
-- [ ] Windows version (basic), Mac version
 
 ### v0.4 - HTTPS
 
@@ -64,7 +63,7 @@ Extra:
   - [x] Capture exception when calling TCP client
   - [x] When removing part of path, handle redirection 304
   - [x] Add originator IP
-- [ ] HTTPS proxy
+- [x] HTTPS proxy
 - [ ] CONNECT
 - [ ] forward/ignore hop-by-hop headers if proxying
 - [ ] Serve from 443
@@ -75,6 +74,7 @@ Extra:
 
 - [ ] valgrind (finalize connection)
 - [ ] Single config file
+- [ ] Windows version (basic), Mac version
 
 ### v0.5 - Other services
 

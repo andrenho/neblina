@@ -39,7 +39,7 @@ ConnectionStatus HttpSession::parse_request(HttpRequest&& request)
     QueryParameters query_parameters;
     HttpRequestHandler* request_handler = find_request_handler(request, url_parameters, query_parameters);
 
-    request.headers["X-Real-IP"] = ((TCPConnection *) connection_)->host();
+    request.headers["X-Origin"] = ((TCPConnection *) connection_)->host() + ":" + ((TCPConnection *) connection_)->port();
 
     // execute handler for specific method
     HttpResponse response;

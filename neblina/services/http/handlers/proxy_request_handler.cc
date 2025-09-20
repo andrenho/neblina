@@ -23,10 +23,10 @@ HttpResponse ProxyRequestHander::forward_request(HttpRequest request, URLParamet
     request.headers.remove("Trailer");
 
     request.headers["Forwarded"] = std::format("for={}; proto={}, host={}",
-        request.headers.at("X-Real-IP").value_or("127.0.0.1"),
+        request.headers.at("X-Origin").value_or("127.0.0.1"),
         protocol_,
         request.headers.at("Host").value_or("unknown"));
-    request.headers["Host"] = destination_;
+    request.headers["Host"] = destination_ + ":" + std::to_string(port_);
 
     try {
         // call server

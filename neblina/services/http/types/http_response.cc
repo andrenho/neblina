@@ -50,6 +50,11 @@ HttpResponse HttpResponse::from_string(std::string const& str)
     if (i != std::string::npos)
         r.body = str.substr(i + 4);
 
+    if (r.headers.at("Content-Encoding").value_or("") == "gzip") {
+        auto ee = gz::gunzip({ r.body.data(), r.body.data() + r.body.size() });
+        r.body = { ee.begin(), ee.end() };
+    }
+
     return r;
 }
 
