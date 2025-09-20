@@ -66,9 +66,9 @@ Extra:
 - [x] HTTPS proxy
 - [x] Bug: connection failing when connecting on 8080
   - Connections not being closed
-- [ ] CONNECT
-- [ ] forward/ignore hop-by-hop headers if proxying
-- [ ] Serve from 443
+- [x] CONNECT
+- [x] forward/ignore hop-by-hop headers if proxying
+- [x] Serve from 443
 - [ ] HTTP-to-HTTPS
   - [ ] Redirection 301
 
@@ -131,6 +131,7 @@ Extra:
 - [ ] Notepad
 - [ ] Blog
 - [ ] Social network
+- [ ] Photo/video app
 
 ### v0.11 - Advanced web server
 - [ ] Transfer-Encoding (chunks)
