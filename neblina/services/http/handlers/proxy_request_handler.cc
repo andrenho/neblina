@@ -28,8 +28,6 @@ HttpResponse ProxyRequestHander::forward_request(HttpRequest request, URLParamet
         request.headers.at("Host").value_or("unknown"));
     request.headers["Host"] = destination_;
 
-    // TODO - Forwarded: for=203.0.113.42; proto=https; host=example.com
-
     try {
         // call server
         HttpResponse r = http_client_request(destination_, port_, request);
