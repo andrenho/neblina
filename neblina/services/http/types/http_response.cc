@@ -5,6 +5,7 @@
 #include <vector>
 
 #include "file/gz.hh"
+#include "util/string.hh"
 
 HttpResponse::HttpResponse(int status_code)
     : status_code(status_code)
@@ -17,6 +18,39 @@ HttpResponse::HttpResponse(int status_code, std::string_view content_type, std::
 {
     headers["Content-Type"] = content_type;
     body = message;
+}
+
+HttpResponse HttpResponse::from_string(std::string const& str)
+{
+    HttpResponse r;
+
+    auto lines = split(str, "\r\n");
+
+    auto line0 = split(lines.at(0), " ");
+    if (line0.size() != 3)
+        throw std::runtime_error("Malformed request");
+    //if (line0.at(0) != "HTTP/1.1")
+    //    throw std::runtime_error("Unsupported HTTP version");
+    r.status_code = std::stoi(line0.at(1));
+
+    for (size_t ln = 1; !lines.at(ln).empty(); ++ln) {
+        size_t i = lines.at(ln).find(':');
+        if (i == std::string::npos)
+            throw std::runtime_error("Malformed request");
+        std::string key = lines.at(ln).substr(0, i);
+        while (key.at(key.size() - 1) == ' ')
+            key = key.substr(0, key.size() - 1);
+        std::string value = lines.at(ln).substr(i + 1);
+        while (value.at(0) == ' ')
+            value = value.substr(1);
+        r.headers[key] = value;
+    }
+
+    size_t i = str.find("\r\n\r\n");
+    if (i != std::string::npos)
+        r.body = str.substr(i + 4);
+
+    return r;
 }
 
 HttpResponse HttpResponse::error_response_html(int status_code, std::string const& message)

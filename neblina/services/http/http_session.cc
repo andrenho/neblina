@@ -30,7 +30,7 @@ ConnectionStatus HttpSession::new_line(std::string_view data)
 ConnectionStatus HttpSession::parse_request(HttpRequest const& request)
 {
     // reject request if it doesn't have the "Host" header
-    if (!request.headers().contains("Host"))
+    if (!request.headers.contains("Host"))
         throw BadRequestException();
 
     // find request handler
@@ -40,7 +40,7 @@ ConnectionStatus HttpSession::parse_request(HttpRequest const& request)
 
     // execute handler for specific method
     HttpResponse response;
-    switch (request.method()) {
+    switch (request.method) {
         case HttpRequest::Method::Get:       response = request_handler->get(request, url_parameters, query_parameters); break;
         case HttpRequest::Method::Post:      response = request_handler->post(request, url_parameters, query_parameters); break;
         case HttpRequest::Method::Put:       response = request_handler->put(request, url_parameters, query_parameters); break;
@@ -54,14 +54,14 @@ ConnectionStatus HttpSession::parse_request(HttpRequest const& request)
     }
 
     // compress the response, if the client accepts gzip
-    if (request.headers().accepts_encoding("gzip"))
+    if (request.headers.accepts_encoding("gzip"))
         response.compress();
 
     // send the response to the client
     send_data(response.to_string());
 
     // if client had asked to close the connection, close it
-    if (request.headers().connection() == "close")
+    if (request.headers.connection() == "close")
         return ConnectionStatus::Closed;
 
     return ConnectionStatus::Open;
@@ -70,7 +70,7 @@ ConnectionStatus HttpSession::parse_request(HttpRequest const& request)
 HttpRequestHandler* HttpSession::find_request_handler(HttpRequest const& request, URLParameters& url_parameters, QueryParameters& query_parameters)
 {
     // parse URI
-    std::string resource = request.resource();
+    std::string resource = request.resource;
     std::string params;
     if (size_t i = resource.find('?') != std::string::npos) {
         params = resource.substr(i + 1);

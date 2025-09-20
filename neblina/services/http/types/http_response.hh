@@ -11,6 +11,8 @@ struct HttpResponse {
     explicit HttpResponse(int status_code);
     HttpResponse(int status_code, std::string_view content_type, std::string const& message);
 
+    static HttpResponse from_string(std::string const& str);
+
     static HttpResponse error_response_html(int status_code, std::string const& message);
     static HttpResponse redirect_response(std::string const& new_location);
 

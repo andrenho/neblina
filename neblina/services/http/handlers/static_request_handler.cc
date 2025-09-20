@@ -4,7 +4,7 @@ HttpResponse StaticRequestHandler::get(const HttpRequest& request, const URLPara
     const QueryParameters& query_parameters) const
 {
     // remove query parameters from resource
-    std::string resource = request.resource();
+    std::string resource = request.resource;
     size_t j = resource.find('?');
     if (j != std::string::npos)
         resource = resource.substr(0, j-1);
@@ -30,6 +30,6 @@ HttpResponse StaticRequestHandler::get(const HttpRequest& request, const URLPara
     file_path.emplace_back(resource);
 
     // load file, or return 404
-    std::string cached_etag = request.headers().if_none_match();
+    std::string cached_etag = request.headers.if_none_match();
     return file_contents(file_path, cached_etag);
 }

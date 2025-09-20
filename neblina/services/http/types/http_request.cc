@@ -32,13 +32,13 @@ void HttpRequest::process_start_line(std::string_view data)
     std::istringstream iss(data.data());
     std::string        method, version, extra;
 
-    if (!(iss >> method >> resource_ >> version))
+    if (!(iss >> method >> resource >> version))
         throw BadRequestException();
     if (iss >> extra)
         throw BadRequestException();
 
-    method_ = translate_method(method);
-    if (method_ == Method::Undefined)
+    Method m = translate_method(method);
+    if (m == Method::Undefined)
         throw BadRequestException();
 
     if (version != "HTTP/1.1")
@@ -60,30 +60,30 @@ void HttpRequest::process_header(std::string_view data)
         throw BadRequestException();
     std::string value = std::string(data.substr(f, data.size() - 2));
 
-    if (headers_.contains(key))
-        headers_[key] = *headers_.at(key) + ", " + value;
+    if (headers.contains(key))
+        headers[key] = *headers.at(key) + ", " + value;
     else
-        headers_[key] = value;
+        headers[key] = value;
 }
 
 void HttpRequest::headers_end()
 {
-    if (headers_.contains("Content-Length")) {
+    if (headers.contains("Content-Length")) {
         request_stage_ = RequestStage::Body;
-        content_length_ = strtoll(headers_.at("Content-Length")->c_str(), nullptr, 10);
+        content_length_ = strtoll(headers.at("Content-Length")->c_str(), nullptr, 10);
     } else {
         request_stage_ = RequestStage::Done;
     }
 
-    if (headers_.contains("Transfer-Encoding"))
+    if (headers.contains("Transfer-Encoding"))
         throw NotImplementedException("Transfer-Encoding header");
 }
 
 void HttpRequest::process_body(std::string_view data)
 {
-    body_ += data;
-    body_ += "\r\n";
-    if (body_.size() >= content_length_)
+    body += data;
+    body += "\r\n";
+    if (body.size() >= content_length_)
         request_stage_ = RequestStage::Done;
 }
 
@@ -98,5 +98,26 @@ HttpRequest::Method HttpRequest::translate_method(std::string const& method)
     if (method == "OPTIONS") return Method::Options;
     if (method == "TRACE")   return Method::Trace;
     if (method == "PATCH")   return Method::Patch;
-    return Method::Undefined;
+    throw MethodNotAllowedException();
+}
+
+std::string HttpRequest::translate_method(Method method)
+{
+    if (method == Method::Get)     return "GET";
+    if (method == Method::Head)    return "HEAD";
+    if (method == Method::Post)    return "POST";
+    if (method == Method::Put)     return "PUT";
+    if (method == Method::Delete)  return "DELETE";
+    if (method == Method::Connect) return "CONNECT";
+    if (method == Method::Options) return "OPTIONS";
+    if (method == Method::Trace)   return "TRACE";
+    if (method == Method::Patch)   return "PATCH";
+    throw MethodNotAllowedException();
+}
+
+std::string HttpRequest::to_string() const
+{
+    return translate_method(method) + " " + resource + " HTTP/1.1\r\n"
+        + headers.to_string(body.size()) + "\r\n"
+        + body;
 }

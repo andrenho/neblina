@@ -47,6 +47,8 @@ int find_and_execute_service(std::string const& service_name)
     return (find_and_execute<Ts>(service_name), ...);
 }
 
+#include "client/http_client.hh"
+
 int main(int argc, char* argv[])
 {
     // read and parse command-line arguments
