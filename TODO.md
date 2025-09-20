@@ -58,11 +58,18 @@ Extra:
 ### v0.4 - HTTPS
 
 - [ ] HTTPS support
+- [ ] Create proxy
+  - [ ] Create TCP client
 - [ ] CONNECT
 - [ ] forward/ignore hop-by-hop headers if proxying
 - [ ] Serve from 443
 - [ ] HTTP-to-HTTPS
   - [ ] Redirection 301
+
+### v0.4a - reorganize config
+
+- [ ] valgrind (finalize connection)
+- [ ] Single config file
 
 ### v0.5 - Other services
 

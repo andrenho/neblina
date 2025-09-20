@@ -3,6 +3,7 @@
 #include "handler/custom_handler_registry.hh"
 
 #include "handlers/health_request_handler.hh"
+#include "handlers/proxy_request_handler.hh"
 #include "handlers/redirect_request_handler.hh"
 #include "handlers/static_dir_request_handler.hh"
 
@@ -37,6 +38,10 @@ void Http::init()
             } else if (rt.redirect) {
                 // it's a redirect handler - it always responds with 301
                 handler = std::make_unique<RedirectRequestHandler>(*rt.redirect);
+
+            } else if (rt.redirect) {
+                // it's a proxy handers - proxies to the next server
+                handler = std::make_unique<ProxyRequestHander>(*rt.proxy);
             }
 
             if (handler) {

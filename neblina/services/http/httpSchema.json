@@ -3,7 +3,8 @@
     "path": "string",
     "handler": "string*",
     "serveStaticDir": "string*",
-    "redirect": "string*"
+    "redirect": "string*",
+    "proxy": "string*"
   },
   "main": {
     "routes": "Route[]"
