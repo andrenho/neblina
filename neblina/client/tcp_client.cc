@@ -66,6 +66,11 @@ TCPClient::TCPClient(std::string const& destination, int port)
     freeaddrinfo(servinfo);
 }
 
+TCPClient::~TCPClient()
+{
+    close(fd_);
+}
+
 std::string TCPClient::recv(size_t nbytes)
 {
     // all characters are in buffer

@@ -64,6 +64,8 @@ Extra:
   - [x] When removing part of path, handle redirection 304
   - [x] Add originator IP
 - [x] HTTPS proxy
+- [x] Bug: connection failing when connecting on 8080
+  - Connections not being closed
 - [ ] CONNECT
 - [ ] forward/ignore hop-by-hop headers if proxying
 - [ ] Serve from 443
@@ -135,6 +137,7 @@ Extra:
 - [ ] Streaming
 - [ ] Caching: If-Modified-Since, Last-Modified
 - [ ] Support everything in the RFCs
+- [ ] Control the time that the connection is open, close it after a while
 - [ ] Dock app on Windows, Linux
 
 ### ???

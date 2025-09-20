@@ -6,6 +6,7 @@
 class TCPClient {
 public:
     TCPClient(std::string const& destination, int port);
+    ~TCPClient();
 
     std::string recv(size_t nbytes);
     std::string recv_line(std::string const& separator="\r\n");
