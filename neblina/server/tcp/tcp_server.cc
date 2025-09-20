@@ -143,8 +143,9 @@ void TCPServer::handle_new_data(pollfd const& pfd, std::vector<pollfd>& poll_fds
         DBG("connection from fd {} closed by the client ({})", pfd.fd, strerror(errno));
         close(pfd.fd);
         if (listener_)
-            listener_->new_connection(connections_.at(pfd.fd).get());
-        std::ranges::remove_if(poll_fds, [&](pollfd const& p) { return p.fd == pfd.fd; }),
+            listener_->connection_closed(connections_.at(pfd.fd).get());
+        auto e = std::ranges::remove_if(poll_fds, [&](pollfd const& p) { return p.fd == pfd.fd; });
+        poll_fds.erase(e.begin(), e.end());
         connections_.erase(pfd.fd);
     }
 }
