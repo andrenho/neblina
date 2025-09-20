@@ -63,7 +63,7 @@ Extra:
   - [x] Remove current path
   - [x] Capture exception when calling TCP client
   - [x] When removing part of path, handle redirection 304
-  - [ ] Add originator IP
+  - [x] Add originator IP
 - [ ] HTTPS proxy
 - [ ] CONNECT
 - [ ] forward/ignore hop-by-hop headers if proxying

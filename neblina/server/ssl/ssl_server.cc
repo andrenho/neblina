@@ -32,7 +32,7 @@ SSLServer::~SSLServer()
     SSL_CTX_free(ctx_);
 }
 
-std::unique_ptr<TCPConnection> SSLServer::new_connection(int fd) const
+std::unique_ptr<TCPConnection> SSLServer::new_connection(int fd, std::string const& host, std::string const& port) const
 {
-    return std::make_unique<SSLConnection>(fd, ctx_);
+    return std::make_unique<SSLConnection>(fd, host, port, ctx_);
 }

@@ -24,7 +24,7 @@ private:
 
     HttpRequestHandler* find_request_handler(HttpRequest const& request, URLParameters& url_parameters, QueryParameters& query_parameters);
 
-    ConnectionStatus parse_request(const HttpRequest& request);
+    ConnectionStatus parse_request(HttpRequest&& request);
 };
 
 

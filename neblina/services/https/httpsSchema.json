@@ -1,6 +1,7 @@
 {
   "main": {
     "publicKey": "string",
-    "privateKey": "string"
+    "privateKey": "string",
+    "proxyPort": "int"
   }
 }

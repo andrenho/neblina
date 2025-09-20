@@ -7,7 +7,7 @@
 
 class SSLConnection : public TCPConnection {
 public:
-    explicit SSLConnection(int fd, SSL_CTX* ctx);
+    SSLConnection(int fd, std::string const& host, std::string const& port, SSL_CTX* ctx);
     ~SSLConnection() override;
 
     ConnectionStatus handle_new_data() override;

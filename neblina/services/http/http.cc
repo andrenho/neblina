@@ -44,7 +44,7 @@ void Http::init()
                 // it's a proxy handers - proxies to the next server
                 if (!rt.proxy_port)
                     throw NonRecoverableException("If proxyHost is used, then proxyPort is mandatory");
-                handler = std::make_unique<ProxyRequestHander>(*rt.proxy_host, *rt.proxy_port);
+                handler = std::make_unique<ProxyRequestHander>("http", *rt.proxy_host, *rt.proxy_port);
             }
 
             if (handler) {

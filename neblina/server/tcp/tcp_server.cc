@@ -126,14 +126,14 @@ void TCPServer::handle_new_connection(std::vector<pollfd>& poll_fds)
     DBG("New connection from {}:{} as fd {}", hoststr, portstr, new_fd);
 
     poll_fds.push_back({ .fd = new_fd, .events = POLLIN, .revents = 0 });
-    connections_[new_fd] = new_connection(new_fd);
+    connections_[new_fd] = new_connection(new_fd, hoststr, portstr);
     if (listener_)
         listener_->new_connection(connections_.at(new_fd).get());
 }
 
-std::unique_ptr<TCPConnection> TCPServer::new_connection(int fd) const
+std::unique_ptr<TCPConnection> TCPServer::new_connection(int fd, std::string const& host, std::string const& port) const
 {
-    return std::make_unique<TCPConnection>(fd);
+    return std::make_unique<TCPConnection>(fd, host, port);
 }
 
 void TCPServer::handle_new_data(pollfd const& pfd, std::vector<pollfd>& poll_fds)

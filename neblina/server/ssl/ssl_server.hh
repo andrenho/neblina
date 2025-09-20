@@ -9,10 +9,10 @@
 class SSLServer : public TCPServer {
 public:
     SSLServer(fs::path const& public_key, fs::path const& private_key);
-    ~SSLServer();
+    ~SSLServer() override;
 
 protected:
-    std::unique_ptr<TCPConnection> new_connection(int fd) const override;
+    std::unique_ptr<TCPConnection> new_connection(int fd, std::string const& host, std::string const& port) const override;
 
 private:
     SSL_CTX* ctx_ = nullptr;

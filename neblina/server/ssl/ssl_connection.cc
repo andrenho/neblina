@@ -7,8 +7,8 @@
 
 #include "util/log.hh"
 
-SSLConnection::SSLConnection(int fd, SSL_CTX* ctx)
-    : TCPConnection(fd), ssl_(SSL_new(ctx))
+SSLConnection::SSLConnection(int fd, std::string const& host, std::string const& port, SSL_CTX* ctx)
+    : TCPConnection(fd, host, port), ssl_(SSL_new(ctx))
 {
     SSL_set_fd(ssl_, fd);
     if (SSL_accept(ssl_) <= 0) {

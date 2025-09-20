@@ -1,8 +1,10 @@
 #include "proxy_request_handler.hh"
 
+#include <format>
+
 #include "client/http_client.hh"
 
-HttpResponse ProxyRequestHander::forward_request(std::string const& method, HttpRequest request, URLParameters const& url_parameters) const
+HttpResponse ProxyRequestHander::forward_request(HttpRequest request, URLParameters const& url_parameters) const
 {
     // recreate resource
     std::string original_resource = request.resource;
@@ -19,6 +21,12 @@ HttpResponse ProxyRequestHander::forward_request(std::string const& method, Http
     request.headers.remove("Upgrade");
     request.headers.remove("TE");
     request.headers.remove("Trailer");
+
+    request.headers["Forwarded"] = std::format("for={}; proto={}, host={}",
+        request.headers.at("X-Real-IP").value_or("127.0.0.1"),
+        protocol_,
+        request.headers.at("Host").value_or("unknown"));
+    request.headers["Host"] = destination_;
 
     // TODO - Forwarded: for=203.0.113.42; proto=https; host=example.com
 

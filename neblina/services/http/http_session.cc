@@ -4,6 +4,7 @@
 
 #include "handler/custom_handler_registry.hh"
 #include "handler/http_request_handler.hh"
+#include "server/tcp/tcp_connection.hh"
 #include "types/http_response.hh"
 #include "types/http_exceptions.hh"
 
@@ -16,7 +17,7 @@ ConnectionStatus HttpSession::new_line(std::string_view data)
         current_http_request << data;
 
         if (current_http_request.complete()) {
-            r = parse_request(current_http_request);
+            r = parse_request(std::move(current_http_request));
             current_http_request = {};
         }
     } catch (HttpException& e) {
@@ -27,7 +28,7 @@ ConnectionStatus HttpSession::new_line(std::string_view data)
     return r;
 }
 
-ConnectionStatus HttpSession::parse_request(HttpRequest const& request)
+ConnectionStatus HttpSession::parse_request(HttpRequest&& request)
 {
     // reject request if it doesn't have the "Host" header
     if (!request.headers.contains("Host"))
@@ -37,6 +38,8 @@ ConnectionStatus HttpSession::parse_request(HttpRequest const& request)
     URLParameters url_parameters;
     QueryParameters query_parameters;
     HttpRequestHandler* request_handler = find_request_handler(request, url_parameters, query_parameters);
+
+    request.headers["X-Real-IP"] = ((TCPConnection *) connection_)->host();
 
     // execute handler for specific method
     HttpResponse response;

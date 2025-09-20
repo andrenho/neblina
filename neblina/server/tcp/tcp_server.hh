@@ -19,7 +19,7 @@ public:
     void iteration() override;
 
 protected:
-    virtual std::unique_ptr<TCPConnection> new_connection(int fd) const;
+    virtual std::unique_ptr<TCPConnection> new_connection(int fd, std::string const& host, std::string const& port) const;
 
 private:
     int                 socket_fd_;        // socket fd

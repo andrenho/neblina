@@ -16,7 +16,7 @@ public:
     template <typename T>
     void send_data(T&& args...) { connection_->send_data(std::forward<T>(args)); }
 
-private:
+protected:
     Connection* connection_;
 };
 
