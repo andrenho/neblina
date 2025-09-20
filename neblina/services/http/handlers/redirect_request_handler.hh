@@ -5,36 +5,44 @@
 
 class RedirectRequestHandler : public HttpRequestHandler {
 public:
-    RedirectRequestHandler(std::string const& new_location) : new_location_(new_location) {}
+    explicit RedirectRequestHandler(std::string const& new_location) : new_location_(new_location) {}
 
-    HttpResponse get(HttpRequest const& request, URLParameters const& url_parameters,
+    [[nodiscard]] HttpResponse get(HttpRequest const& request, URLParameters const& url_parameters,
         QueryParameters const& query_parameters) const override
     {
-        return HttpResponse::redirect_response(new_location_);
+        return redirect_response(url_parameters);
     }
 
     HttpResponse post(HttpRequest const& request, URLParameters const& url_parameters,
         QueryParameters const& query_parameters) override
     {
-        return HttpResponse::redirect_response(new_location_);
+        return redirect_response(url_parameters);
     }
 
     HttpResponse patch(HttpRequest const& request, URLParameters const& url_parameters,
         QueryParameters const& query_parameters) override
     {
-        return HttpResponse::redirect_response(new_location_);
+        return redirect_response(url_parameters);
     }
 
     HttpResponse put(HttpRequest const& request, URLParameters const& url_parameters,
         QueryParameters const& query_parameters) override
     {
-        return HttpResponse::redirect_response(new_location_);
+        return redirect_response(url_parameters);
     }
 
     HttpResponse delete_(HttpRequest const& request, URLParameters const& url_parameters,
-        QueryParameters const& query_parameters) override
+                         QueryParameters const& query_parameters) override
     {
-        return HttpResponse::redirect_response(new_location_);
+        return redirect_response(url_parameters);
+    }
+
+    [[nodiscard]] HttpResponse redirect_response(URLParameters const& url_parameters) const
+    {
+        if (!url_parameters.empty())
+            return HttpResponse::redirect_response(new_location_ + url_parameters.at(0));
+        else
+            return HttpResponse::redirect_response(new_location_);
     }
 
 private:

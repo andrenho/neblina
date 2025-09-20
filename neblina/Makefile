@@ -55,7 +55,7 @@ else ifdef PEDANTIC
   endif
 else
   CPPFLAGS += -O3 -ffast-math -march=native -flto -D_FORTIFY_SOURCE=2 -fstack-protector-strong -fno-common
-  LDFLAGS=-flto=auto
+  LDFLAGS+=-flto=auto
 endif
 
 UNAME_S := $(shell uname -s)
@@ -102,6 +102,9 @@ dev:
 
 neblina: $(OBJ)
 	g++ -o $@ $^ $(LDFLAGS)
+ifndef DEV
+	strip $@
+endif
 	sudo setcap cap_net_bind_service=ep ./$@
 
 test: neblina
