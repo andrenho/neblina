@@ -133,6 +133,7 @@ Extra:
 - [ ] Blog
 - [ ] Social network
 - [ ] Photo/video app
+- [ ] Podcast
 
 ### v0.11 - Advanced web server
 - [ ] Run connection/ session in threads
