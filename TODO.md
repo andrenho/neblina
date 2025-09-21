@@ -135,6 +135,7 @@ Extra:
 - [ ] Photo/video app
 
 ### v0.11 - Advanced web server
+- [ ] Run connection/ session in threads
 - [ ] Transfer-Encoding (chunks)
 - [ ] Streaming
 - [ ] Caching: If-Modified-Since, Last-Modified
