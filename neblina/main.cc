@@ -32,7 +32,7 @@ int find_and_execute(std::string const& service_name)
             // Run the service. In case of failure the orchestrator will restart the service.
             service.init();
             service.run();
-            return EXIT_FAILURE;
+            return EXIT_SUCCESS;
 
         } catch (NonRecoverableException& e) {
             // This exception means it's no use to retry (ex. a wrong configuration file).
@@ -40,7 +40,7 @@ int find_and_execute(std::string const& service_name)
             return NON_RECOVERABLE_RETURN_CODE;
         }
     } else {
-        return EXIT_SUCCESS;
+        return SERVICE_NOT_FOUND;
     }
 }
 
