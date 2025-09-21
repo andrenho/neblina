@@ -74,6 +74,7 @@ Extra:
 
 ### v0.4a - reorganize config
 
+- [ ] What if the service is not found?
 - [ ] valgrind (finalize connection)
 - [ ] Single config file
 - [ ] Windows version (basic), Mac version

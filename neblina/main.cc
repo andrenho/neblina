@@ -1,9 +1,9 @@
-#include <filesystem>
-namespace fs = std::filesystem;
+#include <csignal>
 
 #include "arguments.hh"
 #include "file/fileset.hh"
 #include "util/log.hh"
+#include "util/filesystem.hh"
 #include "util/exceptions/non_recoverable_exception.hh"
 
 // native services
@@ -21,6 +21,8 @@ namespace fs = std::filesystem;
 // edit this list to add a new native service
 #define SERVICES Orchestrator, Parrot, SParrot, Http, Https, HttpToHttps
 
+bool termination_requested = false;   // signal controller - when it becomes `true` the program will exit gracefully
+
 template <typename T>
 int find_and_execute(std::string const& service_name)
 {
@@ -37,9 +39,9 @@ int find_and_execute(std::string const& service_name)
             LOG("{}", e.what()); fflush(stderr);
             return NON_RECOVERABLE_RETURN_CODE;
         }
+    } else {
+        return EXIT_SUCCESS;
     }
-
-    return SERVICE_NOT_FOUND;
 }
 
 template <typename... Ts>
@@ -48,10 +50,21 @@ int find_and_execute_service(std::string const& service_name)
     return (find_and_execute<Ts>(service_name), ...);
 }
 
-#include "client/http_client.hh"
+void handle_sigint(int signum)
+{
+    (void) signum;
+    termination_requested = true;
+}
 
 int main(int argc, char* argv[])
 {
+    // signal to catch CTRL+C and exit gracefully
+    struct sigaction sa{};
+    sa.sa_handler = handle_sigint;
+    sigemptyset(&sa.sa_mask);
+    sa.sa_flags = 0;
+    sigaction(SIGINT, &sa, nullptr);
+
     // read and parse command-line arguments
     args(argc, argv);
 

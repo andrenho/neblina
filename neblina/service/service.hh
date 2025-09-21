@@ -7,6 +7,8 @@
 
 #define SERVICE_NAME static constexpr std::string_view name
 
+extern bool termination_requested;
+
 class Service {
 public:
     virtual ~Service() = default;
@@ -17,7 +19,7 @@ public:
 protected:
     static void create_file_if_it_doesnt_exist(std::filesystem::path const& path, File const& file);
 
-    [[nodiscard]] static bool should_exit() { return getppid() == 1; }
+    [[nodiscard]] static bool should_exit() { return getppid() == 1 || termination_requested; }
 };
 
 #endif //SERVICE_HH

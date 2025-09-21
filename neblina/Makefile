@@ -54,7 +54,7 @@ else ifdef PEDANTIC
     CXXFLAGS += -fanalyzer -Wlogical-op -Wduplicated-cond -Wduplicated-branches
   endif
 else
-  CPPFLAGS += -O3 -ffast-math -march=native -flto -D_FORTIFY_SOURCE=2 -fstack-protector-strong -fno-common
+  CPPFLAGS += -Os -ffast-math -march=native -flto -D_FORTIFY_SOURCE=2 -fstack-protector-strong -fno-common
   LDFLAGS+=-flto=auto
 endif
 

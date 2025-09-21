@@ -96,8 +96,11 @@ int TCPServer::get_listener_socket()
 void TCPServer::iteration()
 {
     int poll_count = poll(poll_fds.data(), poll_fds.size(), 20);
-    if (poll_count == -1)
+    if (poll_count == -1) {
+        if (errno == EINTR)
+            return;
         throw std::runtime_error(ERR_PRX + "poll error: "s + strerror(errno));
+    }
 
     // Run through connections looking for data to read
     for (auto& pollfd: poll_fds) {
