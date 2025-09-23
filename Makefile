@@ -45,7 +45,7 @@ neblina.exe: $(OBJ)
 	link /nologo $(LDFLAGS) /OUT:$@ $(OBJ)
 
 embed.exe: tools\embed\embed.obj src\file\whole_file.obj src\file\gz.obj src\contrib\miniz\miniz.obj
-	link /nologo /OUT:$@ $^
+	link /nologo /OUT:$@ $**
 
 test: neblina.exe
 	python -m unittest discover ..\tests
