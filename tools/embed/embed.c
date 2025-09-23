@@ -91,7 +91,7 @@ static void generate_file(const char* basepath, const char* path, char* out_name
 static size_t generate_dir(const char* basepath, const char* path, char** files, size_t count)
 {
     char searchPath[MAX_FILENAME];
-    snprintf(searchPath, sizeof(searchPath), "%s\\*", path);
+    snprintf(searchPath, sizeof(searchPath), "%s/*", path);
 
     WIN32_FIND_DATAA ffd;
     HANDLE hFind = FindFirstFileA(searchPath, &ffd);
@@ -105,15 +105,15 @@ static size_t generate_dir(const char* basepath, const char* path, char** files,
             continue;
 
         char fpath[MAX_FILENAME];
-        snprintf(fpath, sizeof(fpath), "%s\\%s", path, ffd.cFileName);
+        snprintf(fpath, sizeof(fpath), "%s/%s", path, ffd.cFileName);
 
         if (ffd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) {
             // Recurse into subdir
-            count = generate_dir(basepath, fpath, files, count);
+            count = generate_dir(path, fpath, files, count);
         } else {
             // Treat as a regular file
             char* outname = calloc(1, MAX_FILENAME);
-            generate_file(&fpath[strlen(basepath) + 1], fpath, outname);
+            generate_file(&path[strlen(basepath) + 1], fpath, outname);
             files[count++] = outname;
         }
     } while (FindNextFileA(hFind, &ffd));
