@@ -13,7 +13,7 @@ OBJ = src/main.o \
 # flags
 # 
 
-CFLAGS=-std=c99 -D__STDC_WANT_LIB_EXT2__=1
+CFLAGS=-std=c17 -D__STDC_WANT_LIB_EXT2__=1
 CPPFLAGS=-MMD -I. -Isrc -isystem src/contrib/miniz
 
 ifdef DEV

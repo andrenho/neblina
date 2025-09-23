@@ -27,13 +27,16 @@ CPPFLAGS_CONTRIB = /nologo /MD /I. /O2 /GL
 #
 # Targets
 #
+
+.SUFFIXES: .c .obj
+
 all: neblina.exe
 
 src\contrib\miniz\miniz.obj: src\contrib\miniz\miniz.c
 	cl /c $(CPPFLAGS_CONTRIB) /Fo$@ $**
 
-{src\}.c{src\}.obj:
-	cl /c $(CPPFLAGS) /Fo$@ $**
+.c.obj:
+	cl /c $(CPPFLAGS) /Fo$@ $<
 
 neblina.exe: $(OBJ)
 	link /nologo $(LDFLAGS) /OUT:$@ $(OBJ)
