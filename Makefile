@@ -45,7 +45,7 @@ test: neblina.exe
 	python -m unittest discover ..\tests
 
 dev:
-	nmake /f Makefile.msvc all DEV=1
+	nmake all DEV=1
 
 clean:
 	-del /Q $(OBJ) neblina.exe
