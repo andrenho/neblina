@@ -15,15 +15,16 @@ OBJ = src/main.o \
 
 CFLAGS=-std=c17 -D__STDC_WANT_LIB_EXT2__=1
 CPPFLAGS=-MMD -I. -Isrc -isystem src/contrib/miniz
+LDFLAGS=-flto=auto
 
 ifdef DEV
-  CPPFLAGS += -O0 -ggdb -fno-inline-functions -fstack-protector-strong -fno-common -Wextra -Wpedantic -Wshadow -Wformat=2 -Wcast-align
+  CPPFLAGS += -O0 -ggdb -fno-inline-functions -fstack-protector-strong -fno-common -Wextra -Wpedantic -Wshadow -Wformat=2 -Wcast-align -Wno-strict-prototypes
   ifeq ($(CC),g++)
     CPPFLAGS += -fanalyzer -Wlogical-op -Wduplicated-cond -Wduplicated-branches
   endif
 else
   CPPFLAGS += -Os -ffast-math -march=native -flto -D_FORTIFY_SOURCE=2 -fstack-protector-strong -fno-common
-  LDFLAGS += -flto=auto -s
+  LDFLAGS += -s
 endif
 
 CPPFLAGS_CONTRIB = -I. -O3 -ffast-math -march=native -flto
