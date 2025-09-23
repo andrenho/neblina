@@ -21,5 +21,6 @@ int main(int argc, char* argv[])
     // read and parse command-line arguments
     args_parse(argc, argv);
 
+    args_free();
     return EXIT_SUCCESS;
 }

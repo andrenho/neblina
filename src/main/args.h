@@ -4,13 +4,15 @@
 #include <stdbool.h>
 
 typedef struct {
-    const char* program_name;
-    const char* data_dir;
-    const char* service;
-    bool        verbose;
+    char* program_name;
+    char* data_dir;
+    char* service;
+    char* logging_color;
+    bool  verbose;
 } Arguments;
 
 void args_parse(int argc, char* argv[]);
+void args_free();
 
 extern Arguments args;
 

@@ -5,7 +5,8 @@ all: neblina
 # 
 
 OBJ = src/main.o \
-      src/main/args.o
+      src/main/args.o src/main/error.o \
+      src/file/whole_file.o
 
 #
 # flags
@@ -41,7 +42,7 @@ test: neblina
 leaks: all
 	$(if $(SERVICE),,$(error Variable SERVICE must be defined))
 	sudo setcap -r ./neblina || true
-	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --suppressions=valgrind.supp ./neblina -s $(SERVICE) -P 5551 -v
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --suppressions=valgrind.supp ./neblina -s $(SERVICE) -v
 
 dev:
 	$(MAKE) all DEV=1
