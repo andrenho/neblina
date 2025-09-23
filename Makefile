@@ -8,6 +8,8 @@ OBJ = src/main.o \
       src/main/args.o src/main/error.o \
       src/file/whole_file.o
 
+UNAME_S := $(shell uname -s)
+
 #
 # flags
 #
@@ -34,15 +36,21 @@ contrib/simdjson/miniz.o: contrib/miniz/miniz.c
 
 neblina: $(OBJ)
 	$(CC) -o $@ $^ $(LDFLAGS)
+ifeq ($(UNAME_S),Linux)
 	sudo setcap cap_net_bind_service=ep ./$@
+endif
 
 test: neblina
 	cd ../tests && python3 -m unittest
 
 leaks: all
+ifeq ($(UNAME_S),Linux)
 	$(if $(SERVICE),,$(error Variable SERVICE must be defined))
 	sudo setcap -r ./neblina || true
 	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --suppressions=valgrind.supp ./neblina -s $(SERVICE) -v
+else
+	$(error Checking for leaks only supported on Linux.)
+endif
 
 dev:
 	$(MAKE) all DEV=1
