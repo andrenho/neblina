@@ -1,3 +1,4 @@
+all: neblina.exe
 
 # 
 # Objects
@@ -25,6 +26,12 @@ CPPFLAGS_CONTRIB = /nologo /MD /I. /O2 /GL
 # auto-generated files
 #
 
+init.gen.inc: embed.exe
+	embed -d src\init > $@
+
+src\main.obj: init.gen.inc
+
+INTERMEDIATE = init.gen.inc
 
 
 #
@@ -33,7 +40,6 @@ CPPFLAGS_CONTRIB = /nologo /MD /I. /O2 /GL
 
 .SUFFIXES: .c .obj
 
-all: neblina.exe
 
 src\contrib\miniz\miniz.obj: src\contrib\miniz\miniz.c
 	cl /c $(CPPFLAGS_CONTRIB) /Fo$@ $**
@@ -44,7 +50,7 @@ src\contrib\miniz\miniz.obj: src\contrib\miniz\miniz.c
 neblina.exe: $(OBJ)
 	link /nologo $(LDFLAGS) /OUT:$@ $(OBJ)
 
-embed.exe: tools\embed\embed.obj src\file\whole_file.obj src\file\gz.obj src\contrib\miniz\miniz.obj src\main\err.obj
+embed.exe: tools\embed\embed.obj src\file\whole_file.obj src\file\gz.obj src\contrib\miniz\miniz.obj src\main\error.obj
 	link /nologo /OUT:$@ $**
 
 test: neblina.exe
@@ -54,5 +60,6 @@ dev:
 	nmake all DEV=1
 
 clean:
-	-del /Q $(OBJ) neblina.exe
+	del neblina.exe $(INTERMEDIATE)
+	cmd /V:ON /C "set P=$(OBJ) & del !P:/=\!"
 
