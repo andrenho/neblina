@@ -1,6 +1,18 @@
 all: neblina
 
 #
+# OS-specific
+#
+
+ifeq ($(OS),Windows_NT)
+  include mk/windows.mk
+  UNAME_S := Windows
+else
+  include mk/posix.mk
+  UNAME_S := $(shell uname -s)
+endif
+
+#
 # objects
 # 
 
@@ -9,31 +21,12 @@ OBJ = src/main.o \
       src/file/whole_file.o \
       src/contrib/miniz/miniz.o
 
-UNAME_S := $(shell uname -s)
-
-#
-# flags
-#
-
-CFLAGS=-std=c23
-CPPFLAGS=-MMD -I. -Isrc -isystem src/contrib/miniz
-
-ifdef DEV
-  CPPFLAGS += -O0 -ggdb -fno-inline-functions -fstack-protector-strong -fno-common -Wextra -Wpedantic -Wshadow -Wformat=2 -Wcast-align
-  ifeq ($(CC),g++)
-    CPPFLAGS += -fanalyzer -Wlogical-op -Wduplicated-cond -Wduplicated-branches
-  endif
-else
-  CPPFLAGS += -Os -ffast-math -march=native -flto -D_FORTIFY_SOURCE=2 -fstack-protector-strong -fno-common
-  LDFLAGS += -flto=auto -s
-endif
-
 # 
 # targets
 # 
 
 src/contrib/miniz/miniz.o: src/contrib/miniz/miniz.c
-	$(CC) -c -I. -O3 -ffast-math -march=native -flto -o $@ $^     # compile without warnings or deep checks
+	$(CC) -c $(CPPFLAGS_CONTRIB) -o $@ $^     # compile without warnings or deep checks
 
 neblina: $(OBJ)
 	$(CC) -o $@ $^ $(LDFLAGS)
@@ -61,7 +54,7 @@ bear:
 	bear -- make
 
 clean:
-	rm -f $(OBJ) $(OBJ:.o=.d) neblina
+	$(RM) $(OBJ) $(OBJ:.o=.d) neblina
 
 -include $(OBJ:.o=.d)
 
