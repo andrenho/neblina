@@ -28,34 +28,42 @@ void args_parse(int argc, char* argv[])
         .verbose = false,
     };
 
-    while (true) {
-        static struct option long_options[] = {
-            { "help",          no_argument,       NULL, 'h' },
-            { "data-dir",      required_argument, NULL, 'D' },
-            { "verbose",       no_argument,       NULL, 'v' },
+    typedef enum { CNONE, DATA_DIR, SERVICE, LOG_COLOR } Context;
+    Context context = CNONE;
 
-            // used to define services and their characteristics
-            { "service",       required_argument, NULL, 's' },
-            { "log-color",     required_argument, NULL, 'c' },
-        };
-        int idx;
-        int c = getopt_long(argc, argv, "hs:D:P:wf:c:v", long_options, &idx);
-        if (c == -1)
-            break;
-
-        switch (c) {
-            case 'h': print_help(); break;
-            case 'D': args.data_dir = strdup(optarg); break;
-            case 's': args.service = strdup(optarg); break;
-            case 'c': args.logging_color = optarg; break;
-            case 'v': args.verbose = true; break;
-            case '?': break;
-            default: err_non_recoverable("Unexpected error while parsing arguments");
+    for (int i = 1; i < argc; ++i) {
+        switch (context) {
+            case CNONE:
+                if (strcmp(argv[i], "-D") == 0)
+                    context = DATA_DIR;
+                else if (strcmp(argv[i], "-s") == 0)
+                    context = SERVICE;
+                else if (strcmp(argv[i], "-c") == 0)
+                    context = LOG_COLOR;
+                else if (strcmp(argv[i], "-h") == 0)
+                    print_help();
+                else if (strcmp(argv[i], "-v") == 0)
+                    args.verbose = true;
+                else
+                    err_non_recoverable("Argument %s not supported", argv[i]);
+                break;
+            case DATA_DIR:
+                args.data_dir = strdup(argv[i]);
+                context = CNONE;
+                continue;
+            case SERVICE:
+                args.service = strdup(argv[i]);
+                context = CNONE;
+                continue;
+            case LOG_COLOR:
+                args.logging_color = strdup(argv[i]);
+                context = CNONE;
+                continue;
         }
     }
 
-    if (optind < argc)
-        err_non_recoverable("Argument %s not supported.", argv[optind]);
+    if (context != CNONE)
+        err_non_recoverable("Missing argument");
 
     if (!args.data_dir) {
         args.data_dir = malloc(1024);
