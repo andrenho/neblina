@@ -1,18 +1,6 @@
 all: neblina
 
 #
-# OS-specific
-#
-
-ifeq ($(OS),Windows_NT)
-  include mk/windows.mk
-  UNAME_S := Windows
-else
-  include mk/posix.mk
-  UNAME_S := $(shell uname -s)
-endif
-
-#
 # objects
 # 
 
@@ -20,6 +8,25 @@ OBJ = src/main.o \
       src/main/args.o src/main/error.o \
       src/file/whole_file.o \
       src/contrib/miniz/miniz.o
+
+#
+# flags
+# 
+
+CFLAGS=-std=c23
+CPPFLAGS=-MMD -I. -Isrc -isystem src/contrib/miniz
+
+ifdef DEV
+  CPPFLAGS += -O0 -ggdb -fno-inline-functions -fstack-protector-strong -fno-common -Wextra -Wpedantic -Wshadow -Wformat=2 -Wcast-align
+  ifeq ($(CC),g++)
+    CPPFLAGS += -fanalyzer -Wlogical-op -Wduplicated-cond -Wduplicated-branches
+  endif
+else
+  CPPFLAGS += -Os -ffast-math -march=native -flto -D_FORTIFY_SOURCE=2 -fstack-protector-strong -fno-common
+  LDFLAGS += -flto=auto -s
+endif
+
+CPPFLAGS_CONTRIB = -I. -O3 -ffast-math -march=native -flto
 
 # 
 # targets
@@ -54,7 +61,7 @@ bear:
 	bear -- make
 
 clean:
-	$(RM) $(OBJ) $(OBJ:.o=.d) neblina
+	rm -f $(OBJ) $(OBJ:.o=.d) neblina
 
 -include $(OBJ:.o=.d)
 
