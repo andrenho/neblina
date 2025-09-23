@@ -28,13 +28,13 @@ uint8_t* whole_file_read(const char* path, size_t* sz_out)
 
 bool whole_file_write(const char* path, uint8_t const* data, size_t sz)
 {
-    FILE* f = fopen(path, "rb");
+    FILE* f = fopen(path, "wb");
     if (!f)
         return false;
 
     size_t pos = 0;
     do {
-        int n = fwrite(data, sz, 1, f);
+        unsigned long n = fwrite(&data[pos], 1, sz - pos, f);
         pos += n;
     } while (pos < sz);
 

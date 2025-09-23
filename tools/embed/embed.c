@@ -71,7 +71,7 @@ static void generate_file(const char* basepath, const char* path, char* out_name
     printf("static NFile %s = {\n", out_name);
 	printf("    .name = \"%s/%s\",\n", basepath, basename);
 	printf("    .contents = (uint8_t const[]) {\n");
-    for (size_t i = 0; i < file_sz; ++i) {
+    for (size_t i = 0; i < (cmp_sz ? cmp_sz : file_sz); ++i) {
         if ((i % 16) == 0) printf("        ");
         printf("0x%02X, ", data[i]);
         if ((i % 16) == 15) printf("\n");

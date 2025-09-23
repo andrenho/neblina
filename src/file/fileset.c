@@ -57,13 +57,14 @@ bool deploy_file(NFile const* file, const char* path)
     char filename[8128]; snprintf(filename, sizeof filename, "%s/%s", path, file->name);
     char filepath[8128]; strcpy(filepath, filename); strrchr(filepath, '/')[0] = '\0';
 
-    if (mkdir_recursive(filepath) != 0)
-        THROW_ERRNO
+    mkdir_recursive(filepath);
 
     uint8_t* data = (uint8_t *) file->contents;
     size_t sz = file->uncompressed_sz;
     if (file->compressed_sz != 0) {
-        data = gunzip(data, sz, &sz);
+        size_t usz;
+        data = gunzip(data, file->compressed_sz, &usz);
+        sz = usz;
         if (!data)
             THROW_PROPAGATE
     }
