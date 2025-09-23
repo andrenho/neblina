@@ -69,8 +69,6 @@ void args_parse(int argc, char* argv[])
         snprintf(args.data_dir, 1024, "%s/neblina", getenv("HOME"));
         args.data_dir = realloc(args.data_dir, strlen(args.data_dir) + 1);
     }
-    if (!args.service)
-        args.service = strdup("orchestrator");
     if (!args.logging_color)
         args.logging_color = strdup("0;30");
 }

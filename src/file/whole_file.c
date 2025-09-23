@@ -26,7 +26,7 @@ uint8_t* whole_file_read(const char* path, size_t* sz_out)
     return buffer;
 }
 
-bool while_file_write(const char* path, uint8_t const* data, size_t sz)
+bool whole_file_write(const char* path, uint8_t const* data, size_t sz)
 {
     FILE* f = fopen(path, "rb");
     if (!f)

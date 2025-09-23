@@ -6,8 +6,11 @@
 
 #include "main/args.h"
 #include "file/gz.h"
+#include "file/fileset.h"
+#include "util/logs.h"
 
 #include "init.gen.inc"
+#include "main/error.h"
 
 bool termination_requested = false;
 
@@ -25,6 +28,14 @@ int main(int argc, char* argv[])
 
     // read and parse command-line arguments
     args_parse(argc, argv);
+
+    // create initial directory setup
+    if (!file_exists(args.data_dir) && !args.service) {
+        if (!deploy_fileset(&fileset, args.data_dir)) {
+            ERR("There was an error trying to deploy the initial file configuration: %s", last_error);
+            return EXIT_FAILURE;
+        }
+    }
 
     args_free();
     return EXIT_SUCCESS;

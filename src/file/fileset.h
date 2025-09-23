@@ -1,6 +1,7 @@
 #ifndef FILESET_HH
 #define FILESET_HH
 
+#include <stdbool.h>
 #include <stdint.h>
 #include <stddef.h>
 
@@ -17,7 +18,8 @@ typedef struct {
     size_t        n_files;
 } NFileSet;
 
-void deploy_file(NFile const* file, const char* path);
-void deploy_fileset(NFileSet const* fileset, const char* path);
+bool file_exists(const char* path);
+bool deploy_file(NFile const* file, const char* path);
+bool deploy_fileset(NFileSet const* fileset, const char* path);
 
 #endif //FILESET_HH

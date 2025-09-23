@@ -12,7 +12,6 @@ include objects.mk
 
 CFLAGS=-std=c17 -D__STDC_WANT_LIB_EXT2__=1
 CPPFLAGS=-MMD -I. -Isrc -isystem src/contrib/miniz
-LDFLAGS=-flto=auto
 
 ifdef DEV
   CPPFLAGS += -O0 -ggdb -fno-inline-functions -fstack-protector-strong -fno-common -Wextra -Wpedantic -Wshadow -Wformat=2 -Wcast-align -Wno-strict-prototypes
@@ -21,7 +20,7 @@ ifdef DEV
   endif
 else
   CPPFLAGS += -Os -ffast-math -march=native -flto -D_FORTIFY_SOURCE=2 -fstack-protector-strong -fno-common
-  LDFLAGS += -s
+  LDFLAGS += -s -flto=auto
 endif
 
 CPPFLAGS_CONTRIB = -I. -O3 -ffast-math -march=native -flto
@@ -77,6 +76,11 @@ clean:
 	find . -type f -name '*.[od]' -exec rm {} +
 	rm -f neblina embed
 
+install: neblina
+	install neblina /usr/local/bin/neblina
+
+uninstall:
+	rm /usr/local/bin/neblina
 
 -include $(OBJ:.o=.d)
 

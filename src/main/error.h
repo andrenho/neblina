@@ -1,6 +1,9 @@
 #ifndef ERROR_H_
 #define ERROR_H_
 
+#include <errno.h>
+#include <stdio.h>
+
 #define NON_RECOVERABLE_ERROR 57
 
 #ifndef _MSC_VER
@@ -17,5 +20,7 @@ void err(const char* fmt, ...) ATTR_PRINTF(1, 2);
 
 #define THROW_NULL(...) { err(__VA_ARGS__); return NULL; }
 #define THROW(...) { err(__VA_ARGS__); return false; }
+#define THROW_PROPAGATE { return false; }
+#define THROW_ERRNO { err("%s", strerror(errno)); return false; }
 
 #endif
