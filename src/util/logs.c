@@ -12,7 +12,7 @@ void DBG(const char* fmt, ...)
         return;
     va_list ap;
     va_start(ap, fmt);
-    printf("%s%13s: ", args.logging_color, args.service);
+    printf("\e[%sm%-13s: ", args.logging_color, args.service ? args.service : "main");
     vfprintf(stdout, fmt, ap);
     printf("\e[0m\n");
     va_end(ap);
@@ -22,7 +22,7 @@ void LOG(const char* fmt, ...)
 {
     va_list ap;
     va_start(ap, fmt);
-    printf("%s%13s: ", args.logging_color, args.service);
+    printf("\e[%sm%-13s: ", args.logging_color, args.service ? args.service : "main");
     vfprintf(stdout, fmt, ap);
     printf("\e[0m\n");
     va_end(ap);

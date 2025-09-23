@@ -39,5 +39,7 @@ int main(int argc, char* argv[])
     }
 
     args_free();
+    fflush(stdout);
+    fflush(stderr);
     return EXIT_SUCCESS;
 }

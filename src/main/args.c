@@ -74,7 +74,7 @@ void args_parse(int argc, char* argv[])
 #endif
     }
     if (!args.logging_color)
-        args.logging_color = strdup("0;30");
+        args.logging_color = strdup("0;37");
 }
 
 void args_free()
