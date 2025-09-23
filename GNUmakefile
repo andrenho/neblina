@@ -39,6 +39,9 @@ ifeq ($(UNAME_S),Linux)
 	sudo setcap cap_net_bind_service=ep ./$@
 endif
 
+embed: tools/embed/embed.o src/file/whole_file.o src/file/gz.o src/contrib/miniz/miniz.o
+	$(CC) -o $@ $^ $(LDFLAGS)
+
 test: neblina
 	cd ../tests && python3 -m unittest
 

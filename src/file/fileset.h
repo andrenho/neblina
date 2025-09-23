@@ -1,28 +1,23 @@
 #ifndef FILESET_HH
 #define FILESET_HH
 
-#include <cstdint>
-#include <string>
-#include <unordered_map>
+#include <stdint.h>
+#include <stddef.h>
 
-#include "util/filesystem.hh"
-
-// File and FileSet are used by the "embed" generator to generate embedded files (possible compressed) into the binary.
-
-struct File {
+typedef struct {
+    const char*    name;
     uint8_t const* contents;
     size_t         compressed_sz;
     size_t         uncompressed_sz;
-    bool           is_compressed;
-    std::string    etag {};
+    const char*    etag;
+} NFile;
 
-    static File uncompressed(uint8_t const* contents, size_t sz, std::string const& etag={}) { return { contents, 0, sz, false, etag }; }
-    static File compressed(uint8_t const* contents, size_t sz, size_t usz, std::string const& etag={}) { return { contents, sz, usz, true, etag }; }
-};
+typedef struct {
+    NFile const** files;
+    size_t        n_files;
+} NFileSet;
 
-using FileSet = std::unordered_map<fs::path, File>;
-
-void deploy_file(File const& file, fs::path const& path);
-void deploy_fileset(FileSet const& fileset, fs::path const& directory);
+void deploy_file(NFile const* file, const char* path);
+void deploy_fileset(NFileSet const* fileset, const char* path);
 
 #endif //FILESET_HH
