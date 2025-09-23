@@ -88,7 +88,7 @@ static void generate_file(const char* basepath, const char* path, char* out_name
 
 #include <windows.h>
 
-static size_t generate_dir_win(const char* basepath, const char* path, char** files, size_t count)
+static size_t generate_dir(const char* basepath, const char* path, char** files, size_t count)
 {
     char searchPath[MAX_FILENAME];
     snprintf(searchPath, sizeof(searchPath), "%s\\*", path);
