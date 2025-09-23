@@ -1,15 +1,10 @@
 #ifndef GZ_HH
 #define GZ_HH
 
-#include <cstdint>
-#include <vector>
+#include <stdint.h>
+#include <stddef.h>
 
-namespace gz {
-
-std::vector<uint8_t> gzip(std::vector<uint8_t> const& uncompressed_data);
-std::vector<uint8_t> gunzip(std::vector<uint8_t> const& compressed_data);
-std::vector<uint8_t> gunzip(uint8_t const* data, size_t sz);
-
-}
+uint8_t const* gzip(uint8_t const* data, size_t usz, size_t* csz);
+uint8_t const* gunzip(uint8_t const* data, size_t usz);
 
 #endif //GZ_HH

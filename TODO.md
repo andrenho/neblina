@@ -150,3 +150,4 @@ Extra:
 - [ ] Combine multiple services in one (?)
 - [ ] Create named pipe / socket / shared memory connection
 
+- https://github.com/rafagafe/tiny-json

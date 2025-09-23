@@ -1,34 +1,26 @@
-#include "gz.hh"
+#include "gz.h"
+
+#include <stdlib.h>
 
 #include <miniz.h>
 
-#include <fstream>
-#include <stdexcept>
-
-#include "util/string.hh"
-
-namespace gz {
-
-std::vector<uint8_t> gzip(std::vector<uint8_t> const& data)
+uint8_t const* gzip(uint8_t const* data, size_t usz, size_t* csz)
 {
-    std::vector<uint8_t> compressed;
-    unsigned long compressed_sz = data.size()*2+18;
+    unsigned long compressed_sz = usz * 2 + 18;
+    uint8_t* compressed = calloc(1, compressed_sz);
 
-    // add gzip header
-    compressed.reserve(10);
-    compressed.push_back(0x1f);
-    compressed.push_back(0x8b);
-    compressed.push_back(0x8);
-    for (size_t i = 0; i < 6; ++i)
-        compressed.push_back(0);
-    compressed.push_back(0xff);
-    compressed.resize(compressed_sz + 10);
+    // gzip header
+    compressed[0] = 0x1f;
+    compressed[1] = 0x8b;
+    compressed[2] = 0x08;
+    compressed[8] = 0xff;
 
     // compress data
-    mz_stream stream {};
+    mz_stream stream;
+    memset(&stream, 0, sizeof(stream));
 
-    stream.next_in = data.data();
-    stream.avail_in = data.size();
+    stream.next_in = data;
+    stream.avail_in = compressed_sz;
     stream.next_out = &compressed[10];
     stream.avail_out = compressed_sz;
 
