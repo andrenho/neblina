@@ -1,4 +1,3 @@
-# nmake makefile for building neblina with MSVC cl.exe
 
 # 
 # Objects
@@ -20,7 +19,6 @@ CPPFLAGS = $(CPPFLAGS) /O2 /GL /GS /D_FORTIFY_SOURCE=2
 LDFLAGS  = /LTCG /INCREMENTAL:NO /OPT:REF /OPT:ICF
 !ENDIF
 
-# contrib flags (separate, without warnings/deep checks)
 CPPFLAGS_CONTRIB = /nologo /MD /I. /O2 /GL
 
 #
