@@ -11,7 +11,7 @@ OBJ = src\main.obj \
 #
 # Flags
 #
-CFLAGS = /std:latest /DSTDC_WANT_LIB_EXT2__=1
+CFLAGS = /std:c17 /DSTDC_WANT_LIB_EXT2__=1
 CPPFLAGS = /nologo /MD /D_CRT_SECURE_NO_WARNINGS /I. /Isrc /I"src\contrib\miniz"
 
 !IFDEF DEV
