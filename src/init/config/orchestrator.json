@@ -1,0 +1,9 @@
+{
+  "services": [
+    { "name": "parrot", "port": 23456, "open_to_world": false, "loggingColor": "0;32", "active": true },
+    { "name": "sparrot", "port": 23457, "open_to_world": false, "loggingColor": "0;35", "active": true },
+    { "name": "http", "port": 8080, "open_to_world": false, "loggingColor": "0;33", "active": true },
+    { "name": "https", "port": 443, "open_to_world": true, "loggingColor": "0;34", "active": true },
+    { "name": "http-to-https", "port": 80, "open_to_world": true, "loggingColor": "0;36", "active": true }
+  ]
+}

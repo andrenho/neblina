@@ -1,0 +1,8 @@
+{
+  "routes": [
+    { "path": "/health", "handler": "health-reqhandler" },
+    { "path": "/google", "redirect": "https://www.google.com" },
+    { "path": "/(.*)", "serveStaticDir": "www" }
+  ],
+  "example": { "path": "/proxy(.*)", "proxyHost": "localhost", "proxyPort": 5000 }
+}

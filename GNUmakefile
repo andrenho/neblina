@@ -39,7 +39,7 @@ ifeq ($(UNAME_S),Linux)
 	sudo setcap cap_net_bind_service=ep ./$@
 endif
 
-embed: CPPFLAGS = -I. -Isrc -isystem src/contrib/miniz -Wall -Wextra -ggdb -O0
+embed: CPPFLAGS = -I. -Isrc -isystem src/contrib/miniz -Wall -Wextra -ggdb -O0 -D_GNU_SOURCE=1
 embed: tools/embed/embed.o src/file/whole_file.o src/file/gz.o src/contrib/miniz/miniz.o
 	$(CC) -o $@ $^
 

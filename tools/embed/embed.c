@@ -50,7 +50,7 @@ bool is_compressable(const char* extension)
     return false;
 }
 
-static void generate_file(const char* path, char* out_name)
+static void generate_file(const char* basepath, const char* path, char* out_name)
 {
     const char* basename = basename_from_path(path);
     const char* extension = strrchr(path, '.');
@@ -71,7 +71,7 @@ static void generate_file(const char* path, char* out_name)
     }
 
     printf("static NFile %s = {\n", out_name);
-	printf("    .name = \"%s\"\n", basename);
+	printf("    .name = \"%s/%s\"\n", basepath, basename);
 	printf("    .contents = (uint8_t const[]) {\n");
     for (size_t i = 0; i < file_sz; ++i) {
         if ((i % 16) == 0) printf("        ");
@@ -86,10 +86,8 @@ static void generate_file(const char* path, char* out_name)
     free(data);
 }
 
-static size_t generate_dir(const char* path, char** files)
+static size_t generate_dir(const char* basepath, const char* path, char** files, size_t count)
 {
-    size_t count = 0;
-
     DIR* dir = opendir(path);
     if (!dir) abort();
 
@@ -98,14 +96,16 @@ static size_t generate_dir(const char* path, char** files)
         if (strcmp(dp->d_name, ".") == 0 || strcmp(dp->d_name, "..") == 0)
             continue;
 
-        char fpath[1024];
+        char fpath[MAX_FILENAME];
         snprintf(fpath, sizeof(fpath), "%s/%s", path, dp->d_name);
-        
-        char* outname = calloc(1, MAX_FILENAME);
-        generate_file(fpath, outname);
-        files[count] = outname;
 
-        ++count;
+        if (dp->d_type == DT_REG || dp->d_type == DT_LNK) {
+            char* outname = calloc(1, MAX_FILENAME);
+            generate_file(&path[strlen(basepath) + 1], fpath, outname);
+            files[count++] = outname;
+        } else {
+            count = generate_dir(path, fpath, files, count);
+        }
     }
 
     closedir(dir);
@@ -132,10 +132,10 @@ int main(int argc, char* argv[])
 
     char out_name[MAX_FILENAME];
     if (!is_dir) {
-        generate_file(path, out_name);
+        generate_file("", path, out_name);
     } else {
         char* files[MAX_FILES] = { NULL };
-        size_t n_files = generate_dir(path, files);
+        size_t n_files = generate_dir(path, path, files, 0);
         printf("static NFileSet fileset = {\n");
         printf("    .n_files = %zu\n", n_files);
         printf("    .files = (NFile const*[]) { ");

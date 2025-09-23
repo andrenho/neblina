@@ -1,0 +1,5 @@
+{
+  "privateKey": "key.pem",
+  "publicKey": "cert.pem",
+  "proxyPort": 8080
+}
