@@ -109,7 +109,7 @@ static size_t generate_dir(const char* basepath, const char* path, char** files,
 
         if (ffd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) {
             // Recurse into subdir
-            count = generate_dir_win(basepath, fpath, files, count);
+            count = generate_dir(basepath, fpath, files, count);
         } else {
             // Treat as a regular file
             char* outname = calloc(1, MAX_FILENAME);
