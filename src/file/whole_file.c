@@ -21,6 +21,8 @@ uint8_t* whole_file_read(const char* path, size_t* sz_out)
         pos += n;
     } while (pos < *sz_out);
 
+    fclose(f);
+
     return buffer;
 }
 

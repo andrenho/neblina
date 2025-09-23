@@ -45,3 +45,4 @@
 /neblina
 compile_commands.json
 /.cache
+/embed

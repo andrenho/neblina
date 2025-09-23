@@ -9,6 +9,7 @@
 #include "../../src/file/whole_file.h"
 
 #define MAX_FILENAME 8128
+#define MAX_FILES 256
 
 const char* compressable_extensions[] = { 
     ".txt", ".html", ".js", ".css", ".json", ".bmp", ".csv", ".mid", ".midi",
@@ -56,6 +57,10 @@ static void generate_file(const char* path, char* out_name)
     strcpy(out_name, basename);
     remove_extension(out_name);
 
+    char* n = strdup(out_name);
+    sprintf(out_name, "%s_%s", n, &extension[1]);
+    free(n);
+
     size_t file_sz;
     size_t cmp_sz = 0;
     uint8_t* data = whole_file_read(path, &file_sz);
@@ -81,8 +86,10 @@ static void generate_file(const char* path, char* out_name)
     free(data);
 }
 
-static void generate_dir(const char* path)
+static size_t generate_dir(const char* path, char** files)
 {
+    size_t count = 0;
+
     DIR* dir = opendir(path);
     if (!dir) abort();
 
@@ -91,12 +98,19 @@ static void generate_dir(const char* path)
         if (strcmp(dp->d_name, ".") == 0 || strcmp(dp->d_name, "..") == 0)
             continue;
 
-        char path[1024];
-        snprintf(path, sizeof(path), "%s/%s", path, dp->d_name);
+        char fpath[1024];
+        snprintf(fpath, sizeof(fpath), "%s/%s", path, dp->d_name);
         
-        char outname[MAX_FILENAME];
-        generate_file(path, outname);
+        char* outname = calloc(1, MAX_FILENAME);
+        generate_file(fpath, outname);
+        files[count] = outname;
+
+        ++count;
     }
+
+    closedir(dir);
+
+    return count;
 }
 
 int main(int argc, char* argv[])
@@ -117,8 +131,18 @@ int main(int argc, char* argv[])
     printf("#include \"file/fileset.h\"\n\n");
 
     char out_name[MAX_FILENAME];
-    if (!is_dir)
+    if (!is_dir) {
         generate_file(path, out_name);
-    else
-        generate_dir(path);
+    } else {
+        char* files[MAX_FILES] = { NULL };
+        size_t n_files = generate_dir(path, files);
+        printf("static NFileSet fileset = {\n");
+        printf("    .n_files = %zu\n", n_files);
+        printf("    .files = (NFile const*[]) { ");
+        for (size_t i = 0; i < n_files; ++i) {
+            printf("&%s, ", files[i]);
+            free(files[i]);
+        }
+        printf("},\n};\n");
+    }
 }

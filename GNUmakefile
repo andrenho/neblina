@@ -39,8 +39,9 @@ ifeq ($(UNAME_S),Linux)
 	sudo setcap cap_net_bind_service=ep ./$@
 endif
 
+embed: CPPFLAGS = -I. -Isrc -isystem src/contrib/miniz -Wall -Wextra -ggdb -O0
 embed: tools/embed/embed.o src/file/whole_file.o src/file/gz.o src/contrib/miniz/miniz.o
-	$(CC) -o $@ $^ $(LDFLAGS)
+	$(CC) -o $@ $^
 
 test: neblina
 	cd ../tests && python3 -m unittest
@@ -62,7 +63,9 @@ bear:
 	bear -- make
 
 clean:
-	rm -f $(OBJ) $(OBJ:.o=.d) neblina
+	find . -type f -name '*.[od]' -exec rm {} +
+	rm -f neblina embed
+
 
 -include $(OBJ:.o=.d)
 
