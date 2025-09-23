@@ -2,11 +2,10 @@
 
 # 
 # Objects
-# 
-OBJ = src\main.obj \
-      src\main\args.obj src\main\error.obj \
-      src\file\whole_file.obj \
-      src\contrib\miniz\miniz.obj
+#
+
+!INCLUDE objects.mk
+OBJ = $(OBJ:.o=.obj)
 
 #
 # Flags
