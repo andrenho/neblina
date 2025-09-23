@@ -32,10 +32,7 @@ all: neblina.exe
 src\contrib\miniz\miniz.obj: src\contrib\miniz\miniz.c
 	cl /c $(CPPFLAGS_CONTRIB) /Fo$@ $**
 
-{src\}.c{}.obj:
-	cl /c $(CPPFLAGS) /Fo$@ $**
-
-{src\}.cc{}.obj:
+{src\}.c{src\}.obj:
 	cl /c $(CPPFLAGS) /Fo$@ $**
 
 neblina.exe: $(OBJ)
