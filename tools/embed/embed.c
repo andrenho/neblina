@@ -3,8 +3,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#include <dirent.h>
-
 #include "../../src/file/gz.h"
 #include "../../src/file/whole_file.h"
 
@@ -86,6 +84,48 @@ static void generate_file(const char* basepath, const char* path, char* out_name
     free(data);
 }
 
+#ifdef _WIN32
+
+#include <windows.h>
+
+static size_t generate_dir_win(const char* basepath, const char* path, char** files, size_t count)
+{
+    char searchPath[MAX_FILENAME];
+    snprintf(searchPath, sizeof(searchPath), "%s\\*", path);
+
+    WIN32_FIND_DATAA ffd;
+    HANDLE hFind = FindFirstFileA(searchPath, &ffd);
+    if (hFind == INVALID_HANDLE_VALUE) {
+        fprintf(stderr, "Cannot open directory: %s\n", path);
+        abort();
+    }
+
+    do {
+        if (strcmp(ffd.cFileName, ".") == 0 || strcmp(ffd.cFileName, "..") == 0)
+            continue;
+
+        char fpath[MAX_FILENAME];
+        snprintf(fpath, sizeof(fpath), "%s\\%s", path, ffd.cFileName);
+
+        if (ffd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) {
+            // Recurse into subdir
+            count = generate_dir_win(basepath, fpath, files, count);
+        } else {
+            // Treat as a regular file
+            char* outname = calloc(1, MAX_FILENAME);
+            generate_file(&fpath[strlen(basepath) + 1], fpath, outname);
+            files[count++] = outname;
+        }
+    } while (FindNextFileA(hFind, &ffd));
+
+    FindClose(hFind);
+    return count;
+}
+
+#else
+
+#include <dirent.h>
+
 static size_t generate_dir(const char* basepath, const char* path, char** files, size_t count)
 {
     DIR* dir = opendir(path);
@@ -112,6 +152,8 @@ static size_t generate_dir(const char* basepath, const char* path, char** files,
 
     return count;
 }
+
+#endif
 
 int main(int argc, char* argv[])
 {
