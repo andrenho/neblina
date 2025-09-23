@@ -35,6 +35,7 @@ int main(int argc, char* argv[])
             ERR("There was an error trying to deploy the initial file configuration: %s", last_error);
             return EXIT_FAILURE;
         }
+        LOG("Initial directory setup deployed to '%s'", args.data_dir);
     }
 
     args_free();

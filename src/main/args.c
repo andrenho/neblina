@@ -65,9 +65,13 @@ void args_parse(int argc, char* argv[])
         err_non_recoverable("Missing argument");
 
     if (!args.data_dir) {
+#ifdef _WIN32
+        args.data_dir = "./neblina";
+#else
         args.data_dir = malloc(1024);
         snprintf(args.data_dir, 1024, "%s/neblina", getenv("HOME"));
         args.data_dir = realloc(args.data_dir, strlen(args.data_dir) + 1);
+#endif
     }
     if (!args.logging_color)
         args.logging_color = strdup("0;30");
