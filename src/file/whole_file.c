@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-uint8_t const* whole_file_read(const char* path, size_t* sz_out)
+uint8_t* whole_file_read(const char* path, size_t* sz_out)
 {
     FILE* f = fopen(path, "rb");
     if (!f)

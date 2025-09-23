@@ -5,7 +5,7 @@
 
 #include <miniz.h>
 
-uint8_t const* gzip(uint8_t const* uncompressed, size_t usz, size_t* csz)
+uint8_t* gzip(uint8_t const* uncompressed, size_t usz, size_t* csz)
 {
     unsigned long compressed_sz = usz * 2 + 18;
     uint8_t* compressed = calloc(1, compressed_sz);
@@ -58,7 +58,7 @@ uint8_t const* gzip(uint8_t const* uncompressed, size_t usz, size_t* csz)
     THROW_NULL("Error compressing binary: %s", mz_error(result))
 }
 
-uint8_t const* gunzip(uint8_t const* compressed, size_t csz, size_t* usz)
+uint8_t* gunzip(uint8_t const* compressed, size_t csz, size_t* usz)
 {
     if (csz < 18)
         THROW_NULL("Invalid gzip: too short")
