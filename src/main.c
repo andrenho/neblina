@@ -7,6 +7,8 @@
 #include "main/args.h"
 #include "file/gz.h"
 
+#include "init.gen.inc"
+
 bool termination_requested = false;
 
 void handle_sigint(int signum)

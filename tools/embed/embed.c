@@ -71,7 +71,7 @@ static void generate_file(const char* basepath, const char* path, char* out_name
     }
 
     printf("static NFile %s = {\n", out_name);
-	printf("    .name = \"%s/%s\"\n", basepath, basename);
+	printf("    .name = \"%s/%s\",\n", basepath, basename);
 	printf("    .contents = (uint8_t const[]) {\n");
     for (size_t i = 0; i < file_sz; ++i) {
         if ((i % 16) == 0) printf("        ");
@@ -79,8 +79,8 @@ static void generate_file(const char* basepath, const char* path, char* out_name
         if ((i % 16) == 15) printf("\n");
     }
     printf("\n    },\n");
-	printf("    .compressed_sz = %zu\n", cmp_sz);
-	printf("    .uncompressed_sz = %zu\n", file_sz);
+	printf("    .compressed_sz = %zu,\n", cmp_sz);
+	printf("    .uncompressed_sz = %zu,\n", file_sz);
     printf("};\n\n");
 
     free(data);
@@ -128,7 +128,7 @@ int main(int argc, char* argv[])
         exit(EXIT_FAILURE);
     }
 
-    printf("#include \"file/fileset.h\"\n\n");
+    printf("#include \"src/file/fileset.h\"\n\n");
 
     char out_name[MAX_FILENAME];
     if (!is_dir) {
@@ -137,7 +137,7 @@ int main(int argc, char* argv[])
         char* files[MAX_FILES] = { NULL };
         size_t n_files = generate_dir(path, path, files, 0);
         printf("static NFileSet fileset = {\n");
-        printf("    .n_files = %zu\n", n_files);
+        printf("    .n_files = %zu,\n", n_files);
         printf("    .files = (NFile const*[]) { ");
         for (size_t i = 0; i < n_files; ++i) {
             printf("&%s, ", files[i]);

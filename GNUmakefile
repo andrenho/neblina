@@ -26,7 +26,18 @@ endif
 
 CPPFLAGS_CONTRIB = -I. -O3 -ffast-math -march=native -flto
 
-# 
+#
+# auto-generated files
+#
+
+init.gen.inc: embed
+	./embed -d src/init > $@
+
+src/main.o: init.gen.inc
+
+.INTERMEDIATE: init.gen.inc
+
+#
 # targets
 # 
 
