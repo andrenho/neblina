@@ -22,6 +22,12 @@ LDFLAGS  = /LTCG /INCREMENTAL:NO /OPT:REF /OPT:ICF
 CPPFLAGS_CONTRIB = /nologo /MD /I. /O2 /GL
 
 #
+# auto-generated files
+#
+
+
+
+#
 # Targets
 #
 
@@ -37,6 +43,9 @@ src\contrib\miniz\miniz.obj: src\contrib\miniz\miniz.c
 
 neblina.exe: $(OBJ)
 	link /nologo $(LDFLAGS) /OUT:$@ $(OBJ)
+
+embed.exe: tools\embed\embed.obj src\file\whole_file.obj src\file\gz.obj src\contrib\miniz\miniz.obj
+	link /nologo /OUT:$@ $^
 
 test: neblina.exe
 	python -m unittest discover ..\tests
