@@ -5,9 +5,9 @@ all: neblina
 # 
 
 ifeq ($(OS),Windows_NT)
-  OS=posix
-else
   OS=win32
+else
+  OS=posix
 endif
 include objects.mk
 
