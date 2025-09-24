@@ -48,3 +48,4 @@ compile_commands.json
 /embed
 *.gen.inc
 /json2c
+/tools/json2c/test/test_json

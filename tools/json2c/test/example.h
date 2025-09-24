@@ -9,7 +9,7 @@ typedef struct {
 } Example_Detail;
 
 typedef struct {
-    const char*    name;
+    char*          name;
     Example_Detail detail;
 } Example_Obj;
 
@@ -23,8 +23,8 @@ typedef struct {
     size_t       obj_sz;
 } Example;
 
-bool example_json_from_string(const char* json, Example* example);
-bool example_json_load(const char* path, Example* example);
+JSONParseResult example_json_from_string(const char* json, Example* example);
+JSONParseResult example_json_load(const char* path, Example* example);
 void example_json_free(Example* example);
 
 #endif //NEBLINA_EXAMPLE_H
