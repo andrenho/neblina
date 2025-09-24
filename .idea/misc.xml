@@ -9,16 +9,18 @@
   <component name="MakefileSettings">
     <option name="linkedExternalProjectsSettings">
       <MakefileProjectSettings>
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/tools/json2c/test" />
         <option name="modules">
           <set>
-            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/tools/json2c/test" />
           </set>
         </option>
         <option name="version" value="2" />
       </MakefileProjectSettings>
     </option>
   </component>
-  <component name="MakefileWorkspace" PROJECT_DIR="$PROJECT_DIR$" />
-  <component name="WestSettings"><![CDATA[{}]]></component>
+  <component name="MakefileWorkspace" PROJECT_DIR="$PROJECT_DIR$/tools/json2c/test">
+    <contentRoot DIR="$PROJECT_DIR$" />
+  </component>
+  <component name="WestSettings">{}</component>
 </project>
