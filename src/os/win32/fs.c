@@ -1,25 +1,25 @@
 #include "os/fs.h"
 
 #define _POSIX_C_SOURCE 1
-#include <sys/stat.h>
-#include <direct.h>
+#include <windows.h>
 
 #include "common.h"
 
 bool fs_file_exists(const char* path)
 {
-    struct _stat st;
-    return _stat(path, &st) == 0;
-    // TODO
+    DWORD attrs = GetFileAttributesA(path);
+    return (attrs != INVALID_FILE_ATTRIBUTES);
 }
 
 static int mkdir_maybe_existent(const char* path)
 {
-    int ret = _mkdir(path);
-    if (ret != 0 && errno == EEXIST)
-        ret = 0;
-    return ret;
-    // TODO
+    if (!CreateDirectoryA(path, NULL)) {
+        DWORD err = GetLastError();
+        if (err == ERROR_ALREADY_EXISTS)
+            return 0;
+        return err;
+    }
+    return 0;
 }
 
 bool fs_mkdir_recursive(const char* path)
@@ -27,6 +27,10 @@ bool fs_mkdir_recursive(const char* path)
     int ret = 0;
 
     char* path_buf = strdup(path);
+    for (char* c = path_buf; *c; ++c)
+        if (*c == '\\')
+            *c = '/';
+
     char* slash = path_buf;
 
     for (;;) {

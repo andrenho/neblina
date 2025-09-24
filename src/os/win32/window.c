@@ -10,12 +10,12 @@ void vnprintf(const char *restrict fmt, va_list ap)
 {
     printf(ESC "[0;3%dm%-13s: ", args.logging_color, args.service ? args.service : "main");
     vfprintf(stdout, fmt, ap);
-    printf(ESC "[0m");
+    printf(ESC "[0m\n");
 }
 
 void vnprintf_error(const char *restrict fmt, va_list ap)
 {
-    fprintf(stderr, "%s: ", args.service);
+    fprintf(stderr, "%s: \n", args.service);
     vfprintf(stderr, fmt, ap);
 }
 
