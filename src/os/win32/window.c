@@ -7,11 +7,13 @@
 void vnprintf(const char *restrict fmt, va_list ap)
 {
     // TODO
+    vfprintf(stdout, fmt, ap);
 }
 
 void vnprintf_error(const char *restrict fmt, va_list ap)
 {
     // TODO
+    vfprintf(stderr, fmt, ap);
 }
 
 void window_init()

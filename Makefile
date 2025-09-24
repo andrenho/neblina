@@ -4,6 +4,7 @@ all: neblina.exe
 # Objects
 #
 
+OS=win32
 !INCLUDE objects.mk
 OBJ = $(OBJ:.o=.obj)
 
@@ -50,7 +51,7 @@ src\contrib\miniz\miniz.obj: src\contrib\miniz\miniz.c
 neblina.exe: $(OBJ)
 	link /nologo $(LDFLAGS) /OUT:$@ $(OBJ)
 
-embed.exe: tools\embed\embed.obj src\file\whole_file.obj src\file\gz.obj src\contrib\miniz\miniz.obj src\main\error.obj
+embed.exe: tools\embed\embed.obj src\file\whole_file.obj src\file\gz.obj src\contrib\miniz\miniz.obj src\main\error.obj src\util\logs.obj src\file\gz.obj src\main\args.obj src\os\posix\window.obj
 	link /nologo /OUT:$@ $**
 
 test: neblina.exe

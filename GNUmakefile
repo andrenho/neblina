@@ -4,7 +4,11 @@ all: neblina
 # objects
 # 
 
-OS=posix
+ifeq ($(OS),Windows_NT)
+  OS=posix
+else
+  OS=win32
+endif
 include objects.mk
 
 #
