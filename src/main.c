@@ -10,6 +10,8 @@ bool termination_requested = false;  // global
 
 int main(int argc, char* argv[])
 {
+    window_init();
+
     // exit gracefully on CTRL+C
     os_handle_ctrl_c();
 
@@ -26,6 +28,7 @@ int main(int argc, char* argv[])
     }
 
     // cleanup
+    window_close();
     args_free();
 
     return EXIT_SUCCESS;

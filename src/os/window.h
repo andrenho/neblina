@@ -20,4 +20,7 @@ void nprintf_error(const char *restrict fmt, ...) {
     va_end(ap);
 }
 
+void window_init();
+void window_close();
+
 #endif //NEBLINA_WINDOW_H

@@ -16,3 +16,11 @@ void vnprintf_error(const char *restrict fmt, va_list ap)
     fprintf(stderr, "%s: ", args.service);
     vfprintf(stderr, fmt, ap);
 }
+
+void window_init()
+{
+}
+
+void window_close()
+{
+}

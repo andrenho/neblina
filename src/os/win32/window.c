@@ -13,3 +13,11 @@ void vnprintf_error(const char *restrict fmt, va_list ap)
 {
     // TODO
 }
+
+void window_init()
+{
+}
+
+void window_close()
+{
+}
