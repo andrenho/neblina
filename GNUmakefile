@@ -15,11 +15,11 @@ include objects.mk
 # flags
 # 
 
-CFLAGS=-std=c17 -D__STDC_WANT_LIB_EXT2__=1
+CFLAGS=-std=c17 -D__STDC_WANT_LIB_EXT2__=1 -D_POSIX_C_SOURCE=200809L
 CPPFLAGS=-MMD -I. -Isrc -isystem src/contrib/miniz
 
 ifdef DEV
-  CPPFLAGS += -O0 -ggdb -fno-inline-functions -fstack-protector-strong -fno-common -Wextra -Wpedantic -Wshadow -Wformat=2 -Wcast-align -Wno-strict-prototypes
+  CPPFLAGS += -O0 -ggdb -fno-inline-functions -fstack-protector-strong -fno-common -Wextra -Wpedantic -Wshadow -Wformat=2 -Wcast-align -Wno-strict-prototypes -Wno-newline-eof
   ifeq ($(CC),g++)
     CPPFLAGS += -fanalyzer -Wlogical-op -Wduplicated-cond -Wduplicated-branches
   endif

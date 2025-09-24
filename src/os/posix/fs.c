@@ -1,6 +1,5 @@
 #include "os/fs.h"
 
-#define _POSIX_C_SOURCE 1
 #include <sys/stat.h>
 
 #include "common.h"
