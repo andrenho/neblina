@@ -1,4 +1,4 @@
-all: neblina
+all: neblina json2c  # TODO - remove json2c from here
 
 #
 # objects
@@ -15,7 +15,7 @@ include objects.mk
 # flags
 #
 
-INCLUDES=-I. -Isrc -isystem src/contrib/miniz -isystem src/contrib/jsmn -D__STDC_WANT_LIB_EXT2__=1 -D_POSIX_C_SOURCE=200809L
+INCLUDES=-I. -Isrc -isystem src/contrib/miniz -isystem src/contrib -D__STDC_WANT_LIB_EXT2__=1 -D_POSIX_C_SOURCE=200809L
 
 CFLAGS=-std=c17
 CPPFLAGS=-MMD $(INCLUDES)
@@ -60,6 +60,10 @@ endif
 
 embed: CPPFLAGS = $(INCLUDES) -Wextra -ggdb -O0
 embed: tools/embed/embed.o src/file/whole_file.o src/main/error.o src/util/logs.o src/file/gz.o src/main/args.o src/os/posix/window.o src/contrib/miniz/miniz.o
+	$(CC) -o $@ $^
+
+json2c: CPPFLAGS = $(INCLUDES) -Wextra -ggdb -O0
+json2c: tools/json2c/json2c.o
 	$(CC) -o $@ $^
 
 test: neblina

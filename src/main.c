@@ -1,13 +1,16 @@
+#include <jsmn.h>   // implementation
+
 #include "common.h"
-
 #include "file/fileset.h"
-
-#include "init.gen.inc"
+#include "config/config.h"
 #include "os/os.h"
 #include "os/fs.h"
 #include "os/window.h"
 
+#include "init.gen.inc"
+
 bool termination_requested = false;  // global
+Config* main_config = NULL;
 
 int main(int argc, char* argv[])
 {
@@ -19,16 +22,19 @@ int main(int argc, char* argv[])
     // read and parse command-line arguments
     args_parse(argc, argv);
 
-    if (!args.service) {
-        // create initial directory setup
-        if (!fs_file_exists(args.data_dir)) {
-            if (!deploy_fileset(&fileset, args.data_dir)) {
-                ERR("There was an error trying to deploy the initial file configuration: %s", last_error);
-                return EXIT_FAILURE;
-            }
-            LOG("Initial directory setup deployed to '%s'", args.data_dir);
+    // create initial directory setup
+    if (!fs_file_exists(args.data_dir) && !args.service) {
+        if (!deploy_fileset(&fileset, args.data_dir)) {
+            ERR("There was an error trying to deploy the initial file configuration: %s", last_error);
+            return EXIT_FAILURE;
         }
-        LOG("Orchestrator service initialized");
+        LOG("Initial directory setup deployed to '%s'", args.data_dir);
+    }
+
+    // load config file
+    {
+        char config_filename[PATH_MAX]; snprintf(config_filename, PATH_MAX, "%s/config/config.json", args.data_dir);
+        main_config = config_json_load(config_filename);
     }
 
     // cleanup

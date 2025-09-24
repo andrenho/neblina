@@ -7,7 +7,7 @@
 #define LAST_ERROR_SZ 8128
 char last_error[LAST_ERROR_SZ];
 
-void fatal_non_recoverable(const char* fmt, ...)
+void FATAL_NON_RECOVERABLE(const char* fmt, ...)
 {
     va_list ap;
     va_start(ap, fmt);
@@ -17,7 +17,7 @@ void fatal_non_recoverable(const char* fmt, ...)
     exit(NON_RECOVERABLE_ERROR);
 }
 
-void fatal(const char* fmt, ...)
+void FATAL(const char* fmt, ...)
 {
     va_list ap;
     va_start(ap, fmt);

@@ -1,0 +1,10 @@
+{
+    "name": "John Smith",
+    "age": 107,
+    "height": 3.14,
+    "gender": false,
+    "obj": [
+        { "name": "a" },
+        { "name": "b" }
+    ]
+}

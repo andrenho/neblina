@@ -40,7 +40,7 @@ void args_parse(int argc, char* argv[])
                 else if (strcmp(argv[i], "-v") == 0)
                     args.verbose = true;
                 else
-                    fatal_non_recoverable("Argument %s not supported", argv[i]);
+                    FATAL_NON_RECOVERABLE("Argument %s not supported", argv[i]);
                 break;
             case DATA_DIR:
                 args.data_dir = strdup(argv[i]);
@@ -58,7 +58,7 @@ void args_parse(int argc, char* argv[])
     }
 
     if (context != CNONE)
-        fatal_non_recoverable("Missing argument");
+        FATAL_NON_RECOVERABLE("Missing argument");
 
     if (!args.data_dir) {
 #ifdef _WIN32

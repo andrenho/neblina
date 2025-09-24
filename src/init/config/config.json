@@ -1,0 +1,5 @@
+{
+    "services": [
+        { "name": "parrot", "active": true, "port": 23456, "open_to_world": false, "loggingColor": 32 }
+    ]
+}

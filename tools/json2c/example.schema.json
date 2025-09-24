@@ -1,0 +1,11 @@
+{
+    "Obj": {
+        "name": "string"
+    },
+    "name": "string",
+    "age": "int",
+    "height": "double",
+    "gender": "bool",
+    "optional": "string*",
+    "obj": "Obj[]"
+}

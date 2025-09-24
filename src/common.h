@@ -10,10 +10,13 @@
 
 #include "main/args.h"
 #include "util/logs.h"
+#include "main/error.h"
+#include "config/config.h"
 
 // globals
 extern bool termination_requested;
 extern char last_error[];
+extern Config* main_config;
 
 #ifndef _MSC_VER
 #  define ATTR_PRINTF(a, b) __attribute__ ((format (printf, a, b)))
