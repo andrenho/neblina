@@ -10,7 +10,7 @@
 #include "init.gen.inc"
 
 bool termination_requested = false;  // global
-Config* main_config = NULL;
+Config main_config;
 
 int main(int argc, char* argv[])
 {
@@ -34,10 +34,12 @@ int main(int argc, char* argv[])
     // load config file
     {
         char config_filename[PATH_MAX]; snprintf(config_filename, PATH_MAX, "%s/config/config.json", args.data_dir);
-        main_config = config_json_load(config_filename);
+        if (!config_json_load(config_filename, &main_config))
+            FATAL_NON_RECOVERABLE("Error loading config file: %s", last_error);
     }
 
     // cleanup
+    config_json_free(&main_config);
     window_close();
     args_free();
 

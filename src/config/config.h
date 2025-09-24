@@ -15,10 +15,11 @@ typedef struct {
 typedef struct {
     Config_Service* services;
     size_t          services_sz;
+    char*           hello;
 } Config;
 
-Config* config_json_from_string(const char* json);
-Config* config_json_load(const char* path);
-void    config_json_free(Config* config);
+bool config_json_from_string(const char* json, Config* config);
+bool config_json_load(const char* path, Config* config);
+void config_json_free(Config* config);
 
 #endif //CONFIG_H

@@ -16,7 +16,7 @@
 // globals
 extern bool termination_requested;
 extern char last_error[];
-extern Config* main_config;
+extern Config main_config;
 
 #ifndef _MSC_VER
 #  define ATTR_PRINTF(a, b) __attribute__ ((format (printf, a, b)))
