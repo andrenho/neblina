@@ -5,6 +5,7 @@
 #include "init.gen.inc"
 #include "os/os.h"
 #include "os/fs.h"
+#include "os/window.h"
 
 bool termination_requested = false;  // global
 
