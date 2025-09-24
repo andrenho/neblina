@@ -13,10 +13,12 @@ include objects.mk
 
 #
 # flags
-# 
+#
 
-CFLAGS=-std=c17 -D__STDC_WANT_LIB_EXT2__=1 -D_POSIX_C_SOURCE=200809L
-CPPFLAGS=-MMD -I. -Isrc -isystem src/contrib/miniz
+INCLUDES=-I. -Isrc -isystem src/contrib/miniz -isystem src/contrib/jsmn -D__STDC_WANT_LIB_EXT2__=1 -D_POSIX_C_SOURCE=200809L
+
+CFLAGS=-std=c17
+CPPFLAGS=-MMD $(INCLUDES)
 
 ifdef DEV
   CPPFLAGS += -O0 -ggdb -fno-inline-functions -fstack-protector-strong -fno-common -Wextra -Wpedantic -Wshadow -Wformat=2 -Wcast-align -Wno-strict-prototypes -Wno-newline-eof
@@ -56,7 +58,7 @@ ifeq ($(UNAME_S),Linux)
 	sudo setcap cap_net_bind_service=ep ./$@
 endif
 
-embed: CPPFLAGS = -I. -Isrc -isystem src/contrib/miniz -Wall -Wextra -ggdb -O0 -D_GNU_SOURCE=1
+embed: CPPFLAGS = $(INCLUDES) -Wextra -ggdb -O0
 embed: tools/embed/embed.o src/file/whole_file.o src/main/error.o src/util/logs.o src/file/gz.o src/main/args.o src/os/posix/window.o src/contrib/miniz/miniz.o
 	$(CC) -o $@ $^
 

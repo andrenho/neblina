@@ -13,8 +13,9 @@ OBJ = $(OBJ:.o=.obj)
 #
 # Flags
 #
+INCLUDES=/I. /Isrc /I"src\contrib\miniz" /I"src\contrib\jsmn"
 CFLAGS = /std:c17 /DSTDC_WANT_LIB_EXT2__=1
-CPPFLAGS = /nologo /MD /D_CRT_SECURE_NO_WARNINGS /I. /Isrc /I"src\contrib\miniz"
+CPPFLAGS = /nologo /MD /D_CRT_SECURE_NO_WARNINGS $(INCLUDES)
 
 !IFDEF DEV
 CPPFLAGS = $(CPPFLAGS) /Od /Zi /GS /W4
