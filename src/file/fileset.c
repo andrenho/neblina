@@ -9,7 +9,6 @@
 #define PATH_SEP '\\'
 #else
 #include <errno.h>
-#include <unistd.h>
 #include <stdlib.h>
 
 #define PATH_SEP '/'
@@ -19,45 +18,14 @@
 #include "gz.h"
 #include "whole_file.h"
 #include "main/error.h"
-
-int mkdir_recursive(const char *path) {
-    char tmp[1024];
-    snprintf(tmp, sizeof(tmp), "%s", path);
-    size_t len = strlen(tmp);
-
-    if (len == 0) return -1;
-
-    // strip trailing separators
-    while (len > 1 && (tmp[len-1] == '/' || tmp[len-1] == '\\'))
-        tmp[--len] = '\0';
-
-    for (char *p = tmp + 1; *p; p++) {
-        if (*p == '/' || *p == '\\') {
-            *p = '\0';
-            mkdir(tmp, 0755);
-            *p = PATH_SEP;
-        }
-    }
-    return mkdir(tmp, 0755);
-}
-
-bool file_exists(const char* path)
-{
-#if _WIN32
-    struct _stat st;
-    return _stat(path, &st) == 0;
-#else
-    struct stat st;
-    return stat(path, &st) == 0;
-#endif
-}
+#include "os/fs.h"
 
 bool deploy_file(NFile const* file, const char* path)
 {
     char filename[8128]; snprintf(filename, sizeof filename, "%s/%s", path, file->name);
     char filepath[8128]; strcpy(filepath, filename); strrchr(filepath, '/')[0] = '\0';
 
-    mkdir_recursive(filepath);
+    fs_mkdir_recursive(filepath);
 
     uint8_t* data = (uint8_t *) file->contents;
     size_t sz = file->uncompressed_sz;

@@ -1,0 +1,4 @@
+#ifndef NEBLINA_WINDOW_H
+#define NEBLINA_WINDOW_H
+
+#endif //NEBLINA_WINDOW_H

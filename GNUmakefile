@@ -4,6 +4,7 @@ all: neblina
 # objects
 # 
 
+OS=posix
 include objects.mk
 
 #
@@ -36,7 +37,7 @@ init.gen.inc: embed
 
 src/main.o: init.gen.inc
 
-.INTERMEDIATE: init.gen.inc
+INTERMEDIATE = init.gen.inc
 
 #
 # targets
@@ -52,7 +53,7 @@ ifeq ($(UNAME_S),Linux)
 endif
 
 embed: CPPFLAGS = -I. -Isrc -isystem src/contrib/miniz -Wall -Wextra -ggdb -O0 -D_GNU_SOURCE=1
-embed: tools/embed/embed.o src/file/whole_file.o src/file/gz.o src/contrib/miniz/miniz.o
+embed: tools/embed/embed.o src/file/whole_file.o src/main/error.o src/util/logs.o src/file/gz.o src/main/args.o src/contrib/miniz/miniz.o
 	$(CC) -o $@ $^
 
 test: neblina
@@ -76,7 +77,7 @@ bear:
 
 clean:
 	find . -type f -name '*.[od]' -exec rm {} +
-	rm -f neblina embed
+	rm -f neblina embed $(INTERMEDIATE)
 
 install: neblina
 	install neblina /usr/local/bin/neblina

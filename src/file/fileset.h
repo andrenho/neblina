@@ -18,7 +18,6 @@ typedef struct {
     size_t        n_files;
 } NFileSet;
 
-bool file_exists(const char* path);
 bool deploy_file(NFile const* file, const char* path);
 bool deploy_fileset(NFileSet const* fileset, const char* path);
 

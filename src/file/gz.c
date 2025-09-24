@@ -1,9 +1,8 @@
 #include "gz.h"
+
+#include "common.h"
+#include "miniz.h"
 #include "main/error.h"
-
-#include <stdlib.h>
-
-#include <miniz.h>
 
 uint8_t* gzip(uint8_t const* uncompressed, size_t usz, size_t* csz)
 {

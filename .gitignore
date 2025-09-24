@@ -46,3 +46,4 @@
 compile_commands.json
 /.cache
 /embed
+*.gen.inc
