@@ -25,6 +25,8 @@ endif
 
 CPPFLAGS_CONTRIB = -I. -O3 -ffast-math -march=native -flto
 
+UNAME_S = $(shell uname -s)
+
 #
 # auto-generated files
 #

@@ -1,11 +1,9 @@
 #include <stdbool.h>
 #include <signal.h>
 #include <stdlib.h>
-#include <string.h>
 #include <stdio.h>
 
 #include "main/args.h"
-#include "file/gz.h"
 #include "file/fileset.h"
 #include "util/logs.h"
 
