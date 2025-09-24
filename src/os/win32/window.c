@@ -2,22 +2,31 @@
 
 #include "common.h"
 
+#include <windows.h>
+
 #define ESC "\x1B"
 
 void vnprintf(const char *restrict fmt, va_list ap)
 {
-    // TODO
+    printf(ESC "[0;3%dm%-13s: ", args.logging_color, args.service ? args.service : "main");
     vfprintf(stdout, fmt, ap);
+    printf(ESC "[0m");
 }
 
 void vnprintf_error(const char *restrict fmt, va_list ap)
 {
-    // TODO
+    fprintf(stderr, "%s: ", args.service);
     vfprintf(stderr, fmt, ap);
 }
 
 void window_init()
 {
+    HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+    DWORD dwMode = 0;
+    GetConsoleMode(hOut, &dwMode);
+    dwMode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
+    SetConsoleMode(hOut, dwMode);
+    SetConsoleTitle("neblina");
 }
 
 void window_close()
