@@ -1,3 +1,5 @@
+# This file is meant to be used by 'nmake' on Windows. See GNUmakefile for other POSIX OSes.
+
 all: neblina.exe
 
 # 
