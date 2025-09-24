@@ -6,9 +6,11 @@
 
 #define ESC "\x1B"
 
+// TODO - move this to a logging window
+
 void vnprintf(const char *restrict fmt, va_list ap)
 {
-    printf(ESC "[0;3%dm%-13s: ", args.logging_color, args.service ? args.service : "main");
+    printf(ESC "[0;%dm%-13s: ", args.logging_color, args.service ? args.service : "main");
     vfprintf(stdout, fmt, ap);
     printf(ESC "[0m\n");
 }

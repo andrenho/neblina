@@ -18,7 +18,7 @@ void args_parse(int argc, char* argv[])
     args = (Arguments) {
         .program_name = argv[0],
         .data_dir = NULL,
-        .logging_color = RESET_COLOR,
+        .logging_color = 0,
         .service = NULL,
         .verbose = false,
     };
@@ -69,8 +69,6 @@ void args_parse(int argc, char* argv[])
         args.data_dir = realloc(args.data_dir, strlen(args.data_dir) + 1);
 #endif
     }
-    if (!args.logging_color)
-        args.logging_color = RESET_COLOR;
 }
 
 void args_free()
