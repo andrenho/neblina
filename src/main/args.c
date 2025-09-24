@@ -1,11 +1,6 @@
 #include "args.h"
 
-#include <stddef.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <assert.h>
-
+#include "common.h"
 #include "error.h"
 
 Arguments args;
@@ -23,7 +18,7 @@ void args_parse(int argc, char* argv[])
     args = (Arguments) {
         .program_name = argv[0],
         .data_dir = NULL,
-        .logging_color = NULL,
+        .logging_color = RESET_COLOR,
         .service = NULL,
         .verbose = false,
     };
@@ -56,7 +51,7 @@ void args_parse(int argc, char* argv[])
                 context = CNONE;
                 continue;
             case LOG_COLOR:
-                args.logging_color = strdup(argv[i]);
+                args.logging_color = (int) strtol(argv[i], NULL, 10);
                 context = CNONE;
                 continue;
         }
@@ -75,12 +70,11 @@ void args_parse(int argc, char* argv[])
 #endif
     }
     if (!args.logging_color)
-        args.logging_color = strdup("0;37");
+        args.logging_color = RESET_COLOR;
 }
 
 void args_free()
 {
     free(args.data_dir);
     free(args.service);
-    free(args.logging_color);
 }

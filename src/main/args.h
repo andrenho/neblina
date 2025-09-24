@@ -7,7 +7,7 @@ typedef struct {
     char* program_name;
     char* data_dir;
     char* service;
-    char* logging_color;
+    int   logging_color;
     bool  verbose;
 } Arguments;
 

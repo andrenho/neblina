@@ -21,4 +21,6 @@ extern char last_error[];
 #  define ATTR_PRINTF(a, b)
 #endif
 
+#define RESET_COLOR (-1)
+
 #endif

@@ -53,7 +53,7 @@ ifeq ($(UNAME_S),Linux)
 endif
 
 embed: CPPFLAGS = -I. -Isrc -isystem src/contrib/miniz -Wall -Wextra -ggdb -O0 -D_GNU_SOURCE=1
-embed: tools/embed/embed.o src/file/whole_file.o src/main/error.o src/util/logs.o src/file/gz.o src/main/args.o src/contrib/miniz/miniz.o
+embed: tools/embed/embed.o src/file/whole_file.o src/main/error.o src/util/logs.o src/file/gz.o src/main/args.o src/os/posix/window.o src/contrib/miniz/miniz.o
 	$(CC) -o $@ $^
 
 test: neblina

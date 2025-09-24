@@ -38,5 +38,6 @@ bool whole_file_write(const char* path, uint8_t const* data, size_t sz)
         pos += n;
     } while (pos < sz);
 
+    fclose(f);
     return true;
 }
