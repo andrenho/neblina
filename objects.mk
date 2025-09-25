@@ -1,5 +1,5 @@
 OBJ = src/main.o \
-      src/config/config.gen.o \
+      src/config/config.o \
       src/contrib/miniz/miniz.o \
       src/file/whole_file.o src/file/gz.o src/file/fileset.o \
       src/main/args.o src/main/error.o \
