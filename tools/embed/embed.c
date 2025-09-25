@@ -2,7 +2,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include <dirent.h>
 
 #ifndef DT_REG
 #define DT_REG 8

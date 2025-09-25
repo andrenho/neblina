@@ -24,4 +24,8 @@ extern struct Config main_config;
 #  define ATTR_PRINTF(a, b)
 #endif
 
+#ifndef PATH_MAX
+#  define PATH_MAX 1024
+#endif
+
 #endif
