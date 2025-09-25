@@ -13,7 +13,7 @@ OBJ = $(OBJ:.o=.obj)
 #
 # Flags
 #
-INCLUDES=/I. /Isrc /I"src\contrib\miniz" /I"src\contrib" /I"src\util" /I"src\contrib\json-gen-c\src" /Dfallthrough
+INCLUDES=/I. /Isrc /I"src\contrib\miniz" /I"src\contrib" /I"src\util" /Dfallthrough
 CFLAGS = /std:c17 /DSTDC_WANT_LIB_EXT2__=1
 CPPFLAGS = /nologo /MD /D_CRT_SECURE_NO_WARNINGS $(INCLUDES)
 
