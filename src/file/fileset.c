@@ -43,6 +43,8 @@ bool deploy_file(NFile const* file, const char* path)
     if (file->compressed_sz != 0)
         free(data);
 
+    DBG("File deployed: %s", filename);
+
     return true;
 }
 

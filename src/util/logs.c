@@ -5,7 +5,7 @@
 
 void DBG(const char* fmt, ...)
 {
-    if (args.verbose)
+    if (!args.verbose)
         return;
     va_list ap;
     va_start(ap, fmt);
