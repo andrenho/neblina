@@ -3,6 +3,7 @@
     "age": 107,
     "height": 3.14,
     "gender": false,
+    "optional": null,
     "obj": [
         { "name": "a" },
         { "name": "b", "detail": { "number": 4 } }

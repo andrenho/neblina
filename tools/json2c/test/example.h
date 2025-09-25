@@ -25,6 +25,6 @@ typedef struct {
 
 JSONParseResult example_json_from_string(const char* json, Example* example);
 JSONParseResult example_json_load(const char* path, Example* example);
-void example_json_free(Example* example);
+void            example_json_free(Example* example);
 
 #endif //NEBLINA_EXAMPLE_H

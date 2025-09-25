@@ -34,6 +34,11 @@ int json_set_str(const char* json, jsmntok_t const* t, int i, char** obj_field, 
     if (t[i].type == JSMN_STRING) {
         const char* key_ptr = json + t[i].start;
         if (memcmp(key_ptr, field_name, strlen(field_name)) == 0) {
+            char s = json[t[i+i].start];
+            if (t[i+1].type == JSMN_PRIMITIVE && s == 'n') {
+                *obj_field = STRING_NULL;
+                return i + 1;
+            }
             if (t[i+1].type != JSMN_STRING)
                 return J_INVALID_FIELD_TYPE;
             size_t str_sz = t[i+1].end - t[i+1].start;
@@ -52,6 +57,10 @@ int json_set_int(const char* json, jsmntok_t const* t, int i, int* obj_field, co
         const char* key_ptr = json + t[i].start;
         if (memcmp(key_ptr, field_name, strlen(field_name)) == 0) {
             char s = json[t[i+i].start];
+            if (t[i+1].type == JSMN_PRIMITIVE && s == 'n') {
+                *obj_field = INT_NULL;
+                return i + 1;
+            }
             if (t[i+1].type != JSMN_PRIMITIVE || (s != '_' && (s < '0' || s > '9')))
                 return J_INVALID_FIELD_TYPE;
             size_t str_sz = t[i+1].end - t[i+1].start;
@@ -69,11 +78,34 @@ int json_set_double(const char* json, jsmntok_t const* t, int i, double* obj_fie
         const char* key_ptr = json + t[i].start;
         if (memcmp(key_ptr, field_name, strlen(field_name)) == 0) {
             char s = json[t[i+1].start];
+            if (t[i+1].type == JSMN_PRIMITIVE && s == 'n') {
+                *obj_field = DOUBLE_NULL;
+                return i + 1;
+            }
             if (t[i+1].type != JSMN_PRIMITIVE || (s != '_' && (s < '0' || s > '9')))
                 return J_INVALID_FIELD_TYPE;
             size_t str_sz = t[i+1].end - t[i+1].start;
             char nfield[str_sz + 1]; memcpy(nfield, json + t[i+1].start, str_sz); nfield[str_sz] = '\0';
             *obj_field = strtod(nfield, NULL);
+            return i + 1;
+        }
+    }
+    return i;
+}
+
+int json_set_boolean(const char* json, jsmntok_t const* t, int i, bool* obj_field, const char* field_name)
+{
+    if (t[i].type == JSMN_STRING) {
+        const char* key_ptr = json + t[i].start;
+        if (memcmp(key_ptr, field_name, strlen(field_name)) == 0) {
+            char s = json[t[i+1].start];
+            if (t[i+1].type == JSMN_PRIMITIVE && s == 'n') {
+                *obj_field = BOOL_NULL;
+                return i + 1;
+            }
+            if (t[i+1].type != JSMN_PRIMITIVE & s != 't' && s != 'f')
+                return J_INVALID_FIELD_TYPE;
+            *obj_field = (s == 't');
             return i + 1;
         }
     }
