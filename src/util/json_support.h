@@ -23,9 +23,13 @@ typedef enum {
 
 JSONParseResult json_read_file(const char* path, char** json);
 
-int json_set_str(const char* json, jsmntok_t const* t, int i, char** obj_field, const char* field_name);
-int json_set_int(const char* json, jsmntok_t const* t, int i, int* obj_field, const char* field_name);
-int json_set_double(const char* json, jsmntok_t const* t, int i, double* obj_field, const char* field_name);
-int json_set_boolean(const char* json, jsmntok_t const* t, int i, bool* obj_field, const char* field_name);
+JSONParseResult json_int(const char* json, jsmntok_t const* t, int i, int* out);
+
+int json_field_str(const char* json, jsmntok_t const* t, int i, char** obj_field, const char* field_name);
+int json_field_int(const char* json, jsmntok_t const* t, int i, int* obj_field, const char* field_name);
+int json_field_double(const char* json, jsmntok_t const* t, int i, double* obj_field, const char* field_name);
+int json_field_boolean(const char* json, jsmntok_t const* t, int i, bool* obj_field, const char* field_name);
+
+int json_field_array(const char* json, jsmntok_t const* t, int i, const char* field_name);
 
 #endif //NEBLINA_JSON_SUPPORT_H

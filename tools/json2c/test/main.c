@@ -13,6 +13,10 @@ int main()
     assert(example.height == 3.14);
     assert(!example.gender);
     assert(example.optional == INT_NULL);
+    assert(example.items_sz == 2);
+    assert(example.items[0] == 1);
+    assert(example.items[1] == 2);
+    assert(example.items[2] == 3);
     /*
     assert(example.obj_sz == 2);
     assert(strcmp(example.obj[0].name, "a") == 0);

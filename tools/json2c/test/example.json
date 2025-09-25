@@ -1,11 +1,12 @@
 {
     "name": "John Smith",
     "age": 107,
-    "height": 3.14,
     "gender": false,
     "optional": null,
+    "items": [1, 2, 3],
     "obj": [
         { "name": "a" },
         { "name": "b", "detail": { "number": 4 } }
-    ]
+    ],
+    "height": 3.14
 }

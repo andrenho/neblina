@@ -4,9 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define MAX_TOKENS 2048
-
-#define CHK { if(i < 0) abort(); } // return i; }
+#define CHK(i) { if(i < 0) abort(); } // return i; }
 
 static void example_init(Example* example)
 {
@@ -20,25 +18,43 @@ static void example_init(Example* example)
 
 JSONParseResult example_json_from_string(const char* json, Example* example)
 {
+    jsmn_parser p;
+
     example_init(example);
 
-    jsmn_parser p;
+    // count tokens
     jsmn_init(&p);
-
-    jsmntok_t t[MAX_TOKENS];
-    int r = jsmn_parse(&p, json, strlen(json), t, MAX_TOKENS);
-    if (r < 0)
+    size_t json_sz = strlen(json);
+    int n_tokens = jsmn_parse(&p, json, json_sz, NULL, 0);
+    if (n_tokens < 0)
         return J_PARSE_ERROR;
+
+    // parse JSON
+    jsmntok_t t[n_tokens];
+    jsmn_init(&p);
+    int r = jsmn_parse(&p, json, json_sz, t, n_tokens);
     if (t[0].type != JSMN_OBJECT)
         return J_INVALID_FIELD_TYPE;
 
     for (int i = 0; i < r; ++i) {
-        // TODO - check field type
-        i = json_set_str(json, t, i, &example->name, "name"); CHK
-        i = json_set_int(json, t, i, &example->age, "age"); CHK
-        i = json_set_double(json, t, i, &example->height, "height"); CHK
-        i = json_set_boolean(json, t, i, &example->gender, "gender"); CHK
-        i = json_set_int(json, t, i, &example->optional, "optional"); CHK
+        int a = 0;
+
+        i = json_field_str(json, t, i, &example->name, "name"); CHK(i)
+        i = json_field_int(json, t, i, &example->age, "age"); CHK(i)
+        i = json_field_double(json, t, i, &example->height, "height"); CHK(i)
+        i = json_field_boolean(json, t, i, &example->gender, "gender"); CHK(i)
+        i = json_field_int(json, t, i, &example->optional, "optional"); CHK(i)
+
+        // items
+        if ((a = json_field_array(json, t, i, "items")) >= 0) {
+            example->items_sz = a;
+            example->items = malloc(a * sizeof(int));
+            for (int j = 0; j < a; ++j) {
+                JSONParseResult v = json_int(json, t, i + j + 1, &example->items[j]); CHK(v)
+            }
+            i += a + 1;
+        }
+
     }
 
     return J_OK;

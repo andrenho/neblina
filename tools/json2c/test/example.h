@@ -19,6 +19,8 @@ typedef struct {
     double       height;
     bool         gender;
     int          optional;
+    int*         items;
+    size_t       items_sz;
     Example_Obj* obj;
     size_t       obj_sz;
 } Example;
