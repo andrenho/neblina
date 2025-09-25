@@ -4,6 +4,7 @@
 
 #include <signal.h>
 #include <unistd.h>
+#include <sys/wait.h>
 
 void handle_sigint(int signum)
 {
@@ -68,7 +69,7 @@ pid_t os_start_service(ConfigService const* service)
     return pid;
 }
 
-bool os_process_still_running(pid_t pid)
+bool os_process_still_running(pid_t pid, int* status)
 {
-    return true;   // TODO
+    return waitpid(pid, status, WNOHANG) != pid;
 }

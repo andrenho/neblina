@@ -51,9 +51,16 @@ void orchestrator_start()
         }
 
         // check if any services have died
-        for (size_t i = 0; i < n_tasks; ++i)
-            if (!os_process_still_running(tasks[i].pid))
+        for (size_t i = 0; i < n_tasks; ++i) {
+            int status;
+            if (!os_process_still_running(tasks[i].pid, &status)) {
+                LOG("Sevice process '%s' has died with status %d%s", tasks[i].service->name, status,
+                    status == NON_RECOVERABLE_ERROR ? " (non-recoverable)" : "");
                 tasks[i].pid = NOT_RUNNING;
+                if (status == NON_RECOVERABLE_ERROR)
+                    tasks[i].recent_attempts = 10;
+            }
+        }
 
         // reset recent attempts
         time_t now; time(&now);
