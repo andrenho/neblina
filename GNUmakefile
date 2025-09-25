@@ -54,6 +54,9 @@ INTERMEDIATE = init.gen.inc
 src/contrib/miniz/miniz.o: src/contrib/miniz/miniz.c
 	$(CC) -c $(CPPFLAGS_CONTRIB) -o $@ $^     # compile without warnings or deep checks
 
+src/contrib/microjson/mjson.o: src/contrib/microjson/mjson.c
+	$(CC) -c $(CPPFLAGS_CONTRIB) -o $@ $^     # compile without warnings or deep checks
+
 neblina: $(OBJ)
 	$(CC) -o $@ $^ $(LDFLAGS)
 ifeq ($(UNAME_S),Linux)

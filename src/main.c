@@ -44,7 +44,6 @@ int main(int argc, char* argv[])
     }
 
     // cleanup
-    config_free(&main_config);
     window_close();
     args_free();
 
