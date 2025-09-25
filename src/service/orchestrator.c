@@ -4,9 +4,9 @@
 
 #include "common.h"
 #include "os/os.h"
-#include "util/ntime.h"
 
 #define NOT_RUNNING (-1)
+#define MAX_ATTEMPS 10
 
 typedef struct {
     ConfigService const* service;
@@ -18,7 +18,7 @@ typedef struct {
 static Task   tasks[MAX_SERVICES];
 static size_t n_tasks = 0;
 
-void orchestrator_start()
+_Noreturn void orchestrator_start()
 {
     // create list of services
     for (int i = 0; i < main_config.services_sz; ++i) {
@@ -36,9 +36,15 @@ void orchestrator_start()
         // start/restart stopped services
         for (size_t i = 0; i < n_tasks; ++i) {
             if (tasks[i].pid == -1) {
-                tasks[i].pid = os_start_service(tasks[i].service);
-                time(&tasks[i].last_attempt);
-                ++tasks[i].recent_attempts;
+                if (tasks[i].recent_attempts == MAX_ATTEMPS) {
+                    LOG("Giving up on service '%s'", tasks[i].service->name);
+                    ++tasks[i].recent_attempts;
+                } else if (tasks[i].recent_attempts < MAX_ATTEMPS) {
+                    LOG("Starting service '%s' (attempt %d)", tasks[i].service->name, tasks[i].recent_attempts);
+                    tasks[i].pid = os_start_service(tasks[i].service);
+                    time(&tasks[i].last_attempt);
+                    ++tasks[i].recent_attempts;
+                }
             }
         }
 
@@ -50,7 +56,7 @@ void orchestrator_start()
         // reset recent attempts
         time_t now; time(&now);
         for (size_t i = 0; i < n_tasks; ++i)
-            if (time_diff_ms(tasks[i].last_attempt, now) > 10000)
+            if (tasks[i].recent_attempts >= MAX_ATTEMPS && difftime(now, tasks[i].last_attempt) > 10)
                 tasks[i].recent_attempts = 0;
 
         os_sleep_ms(100);
