@@ -1,13 +1,13 @@
 #ifndef NEBLINA_JSON_SUPPORT_H
 #define NEBLINA_JSON_SUPPORT_H
 
+#define JSMN_HEADER
+#include "jsmn.h"
+
 #include <float.h>
 #include <limits.h>
 #include <stdbool.h>
 #include <stddef.h>
-
-#define JSMN_HEADER
-#include "jsmn.h"
 
 typedef unsigned char JBool;
 
@@ -23,7 +23,8 @@ typedef enum {
 
 JSONParseResult json_read_file(const char* path, char** json);
 
-JSONParseResult json_init(jsmn_parser* p, const char* json, int* r, size_t max_tokens);
-
+int json_set_str(const char* json, jsmntok_t const* t, int i, char** obj_field, const char* field_name);
+int json_set_int(const char* json, jsmntok_t const* t, int i, int* obj_field, const char* field_name);
+int json_set_double(const char* json, jsmntok_t const* t, int i, double* obj_field, const char* field_name);
 
 #endif //NEBLINA_JSON_SUPPORT_H

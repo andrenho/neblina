@@ -1,3 +1,5 @@
+#include "jsmn.h"
+
 #include "json_support.h"
 
 #include <stdio.h>
@@ -27,16 +29,45 @@ JSONParseResult json_read_file(const char* path, char** json)
     return J_OK;
 }
 
-JSONParseResult json_init(jsmn_parser* p, const char* json, int* r, size_t max_tokens)
+int json_set_str(const char* json, jsmntok_t const* t, int i, char** obj_field, const char* field_name)
 {
-    jsmn_init(p);
+    if (t[i].type == JSMN_STRING) {
+        const char* key_ptr = json + t[i].start;
+        if (memcmp(key_ptr, field_name, strlen(field_name)) == 0) {
+            size_t str_sz = t[i+1].end - t[i+1].start;
+            *obj_field = malloc(str_sz + 1);
+            memcpy(*obj_field, json + t[i+1].start, str_sz);
+            (*obj_field)[str_sz] = '\0';
+            return i + 1;
+        }
+    }
+    return i;
+}
 
-    jsmntok_t t[max_tokens];
-    *r = jsmn_parse(p, json, strlen(json), t, max_tokens);
-    if (*r < 0)
-        return J_PARSE_ERROR;
-    if (t[0].type != JSMN_OBJECT)
-        return J_INVALID_FIELD_TYPE;
+int json_set_int(const char* json, jsmntok_t const* t, int i, int* obj_field, const char* field_name)
+{
+    if (t[i].type == JSMN_STRING) {
+        const char* key_ptr = json + t[i].start;
+        if (memcmp(key_ptr, field_name, strlen(field_name)) == 0) {
+            size_t str_sz = t[i+1].end - t[i+1].start;
+            char nfield[str_sz + 1]; memcpy(nfield, json + t[i+1].start, str_sz); nfield[str_sz] = '\0';
+            *obj_field = (int) strtol(nfield, NULL, 10);
+            return i + 1;
+        }
+    }
+    return i;
+}
 
-    return J_OK;
+int json_set_double(const char* json, jsmntok_t const* t, int i, double* obj_field, const char* field_name)
+{
+    if (t[i].type == JSMN_STRING) {
+        const char* key_ptr = json + t[i].start;
+        if (memcmp(key_ptr, field_name, strlen(field_name)) == 0) {
+            size_t str_sz = t[i+1].end - t[i+1].start;
+            char nfield[str_sz + 1]; memcpy(nfield, json + t[i+1].start, str_sz); nfield[str_sz] = '\0';
+            *obj_field = strtod(nfield, NULL);
+            return i + 1;
+        }
+    }
+    return i;
 }

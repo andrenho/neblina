@@ -4,22 +4,28 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "jsmn.h"
-
 #define MAX_TOKENS 2048
 
 JSONParseResult example_json_from_string(const char* json, Example* example)
 {
     jsmn_parser p;
-    int r;
-    JSONParseResult res = json_init(&p, json, &r, MAX_TOKENS);
-    if (r != J_OK)
-        return r;
+    jsmn_init(&p);
+
+    jsmntok_t t[MAX_TOKENS];
+    int r = jsmn_parse(&p, json, strlen(json), t, MAX_TOKENS);
+    if (r < 0)
+        return J_PARSE_ERROR;
+    if (t[0].type != JSMN_OBJECT)
+        return J_INVALID_FIELD_TYPE;
 
     for (int i = 0; i < r; ++i) {
+        // TODO - check field type
+        i = json_set_str(json, t, i, &example->name, "name");
+        i = json_set_int(json, t, i, &example->age, "age");
+        i = json_set_double(json, t, i, &example->height, "height");
     }
 
-    return res;
+    return J_OK;
 }
 
 JSONParseResult example_json_load(const char* path, Example* example)
