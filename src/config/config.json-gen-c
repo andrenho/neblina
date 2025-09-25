@@ -1,0 +1,11 @@
+struct Service {
+    sstr_t name;
+    bool   active;
+    int    port;
+    bool   openToWorld;
+    int    loggingColor;
+}
+
+struct Config {
+    Service services[];
+}

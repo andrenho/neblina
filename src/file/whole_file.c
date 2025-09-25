@@ -10,19 +10,21 @@ uint8_t* whole_file_read(const char* path, size_t* sz_out)
         return NULL;
 
     fseek(f, 0, SEEK_END);
-    *sz_out = ftell(f);
+    size_t sz = ftell(f);
     rewind(f);
 
-    uint8_t* buffer = malloc(*sz_out);
+    uint8_t* buffer = malloc(sz);
 
     size_t pos = 0;
     do {
-        int n = fread(&buffer[pos], 1, *sz_out - pos, f);
+        int n = fread(&buffer[pos], 1, sz - pos, f);
         pos += n;
-    } while (pos < *sz_out);
+    } while (pos < sz);
 
     fclose(f);
 
+    if (sz_out)
+        *sz_out = sz;
     return buffer;
 }
 

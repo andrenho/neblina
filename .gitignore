@@ -46,6 +46,5 @@
 compile_commands.json
 /.cache
 /embed
-*.gen.inc
-/json2c
-/tools/json2c/test/test_json
+*.gen.*
+/json-gen-c

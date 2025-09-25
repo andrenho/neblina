@@ -1,0 +1,3 @@
+[submodule "src/contrib/json-gen-c"]
+	path = src/contrib/json-gen-c
+	url = https://github.com/zltl/json-gen-c.git
