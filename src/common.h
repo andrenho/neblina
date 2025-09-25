@@ -18,14 +18,17 @@ extern bool termination_requested;
 extern char last_error[];
 extern Config main_config;
 
-#ifndef _MSC_VER
-#  define ATTR_PRINTF(a, b) __attribute__ ((format (printf, a, b)))
-#else
+#ifdef _MSC_VER
 #  define ATTR_PRINTF(a, b)
+#else
+#  define ATTR_PRINTF(a, b) __attribute__ ((format (printf, a, b)))
 #endif
 
-#ifndef PATH_MAX
+#ifdef _WIN32
 #  define PATH_MAX 1024
+#  define pid_t DWORD
+#else
+#  include <unistd.h>
 #endif
 
 #endif

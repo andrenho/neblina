@@ -4,9 +4,10 @@
 #include "os/fs.h"
 #include "os/window.h"
 #include "config/config.h"
+#include "file/whole_file.h"
+#include "service/orchestrator.h"
 
 #include "init.gen.inc"
-#include "file/whole_file.h"
 
 bool termination_requested = false;  // global
 Config main_config;
@@ -42,6 +43,10 @@ int main(int argc, char* argv[])
             FATAL_NON_RECOVERABLE("Error parsing config file - not valid JSON or in unexpected format");
         free(json);
     }
+
+    // start services
+    if (!args.service)
+        orchestrator_start();
 
     // cleanup
     window_close();

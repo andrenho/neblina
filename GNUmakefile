@@ -15,7 +15,7 @@ include objects.mk
 # flags
 #
 
-INCLUDES=-I. -Isrc -Isrc/util -isystem src/contrib/miniz -isystem src/contrib -D__STDC_WANT_LIB_EXT2__=1 -D_POSIX_C_SOURCE=200809L
+INCLUDES=-I. -Isrc -Isrc/util -isystem src/contrib/miniz -isystem src/contrib -D__STDC_WANT_LIB_EXT2__=1 -D_POSIX_C_SOURCE=200809L -D_GNU_SOURCE
 
 CFLAGS=-std=c17
 CPPFLAGS=-MMD $(INCLUDES)
