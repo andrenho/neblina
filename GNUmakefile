@@ -68,7 +68,7 @@ ifeq ($(UNAME_S),Linux)
 endif
 
 embed: CPPFLAGS = $(INCLUDES) -Wextra -ggdb -O0
-embed: tools/embed/embed.o src/file/whole_file.o src/main/error.o src/util/logs.o src/file/gz.o src/main/args.o src/os/posix/window.o src/contrib/miniz/miniz.o
+embed: tools/embed/embed.o src/file/whole_file.o src/util/error.o src/util/logs.o src/file/gz.o src/config/args.o src/os/posix/window.o src/contrib/miniz/miniz.o
 	$(CC) -o $@ $^
 
 test: neblina

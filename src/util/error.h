@@ -3,7 +3,6 @@
 
 #include "common.h"
 #include "util/logs.h"
-#include "main/error.h"
 
 #define NON_RECOVERABLE_ERROR 57
 

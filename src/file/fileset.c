@@ -17,7 +17,7 @@
 #include "fileset.h"
 #include "gz.h"
 #include "whole_file.h"
-#include "main/error.h"
+#include "util/error.h"
 #include "os/fs.h"
 
 bool deploy_file(NFile const* file, const char* path)

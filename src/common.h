@@ -8,10 +8,10 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "main/args.h"
-#include "util/logs.h"
-#include "main/error.h"
+#include "config/args.h"
 #include "config/config.h"
+#include "util/error.h"
+#include "util/logs.h"
 
 // globals
 extern bool termination_requested;

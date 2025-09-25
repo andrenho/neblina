@@ -7,10 +7,25 @@
 #include "file/whole_file.h"
 #include "service/orchestrator.h"
 
+// embedded files
 #include "init.gen.inc"
 
-bool termination_requested = false;  // global
+// services
+
+#include "services/parrot/parrot.h"
+struct {
+    const char* name;
+    void        (*start_service)();
+} services[] = {
+    { "parrot", start_parrot },
+};
+
+// globals
+
+bool termination_requested = false;
 Config main_config;
+
+// main
 
 int main(int argc, char* argv[])
 {
@@ -45,10 +60,20 @@ int main(int argc, char* argv[])
     }
 
     // start services
-    if (!args.service)
+    if (!args.service) {
         orchestrator_start();
+    } else {
+        for (size_t i = 0; i < sizeof(services) / sizeof(services[i]); ++i) {
+            if (strcmp(services[i].name, args.service) == 0) {
+                services[i].start_service();
+                goto cleanup;
+            }
+        }
+        FATAL_NON_RECOVERABLE("Service '%s' not found.", args.service);
+    }
 
     // cleanup
+cleanup:
     window_close();
     args_free();
 
