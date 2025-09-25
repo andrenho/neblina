@@ -3,7 +3,7 @@
 #include "os/os.h"
 #include "os/fs.h"
 #include "os/window.h"
-#include "config/config.gen.h"
+#include "config/config.h"
 
 #include "init.gen.inc"
 #include "file/whole_file.h"
@@ -31,6 +31,7 @@ int main(int argc, char* argv[])
     }
 
     // load config file
+    /*
     {
         char config_filename[PATH_MAX]; snprintf(config_filename, PATH_MAX, "%s/config/config.json", args.data_dir);
         char* json = (char *) whole_file_read(config_filename, NULL);
@@ -45,6 +46,7 @@ int main(int argc, char* argv[])
         free(json);
         free(sjson);
     }
+    */
 
     // cleanup
     window_close();
