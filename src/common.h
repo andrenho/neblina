@@ -25,6 +25,7 @@ extern Config main_config;
 #endif
 
 #ifdef _WIN32
+#  include <windows.h>
 #  define PATH_MAX 1024
 #  define pid_t DWORD
 #else
