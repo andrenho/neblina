@@ -11,6 +11,10 @@ else
 endif
 include objects.mk
 
+ifdef SERVICE
+  SERVICE = -s $(SERVICE)
+endif
+
 #
 # flags
 #
@@ -72,9 +76,9 @@ test: neblina
 
 leaks: all
 ifeq ($(UNAME_S),Linux)
-	$(if $(SERVICE),,$(error Variable SERVICE must be defined))
+	$(info Use SERVICE variable to start a service)
 	sudo setcap -r ./neblina || true
-	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --suppressions=valgrind.supp ./neblina -s $(SERVICE) -v
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --suppressions=valgrind.supp ./neblina $(SERVICE) -v
 else
 	$(error Checking for leaks only supported on Linux.)
 endif

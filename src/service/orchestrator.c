@@ -18,7 +18,7 @@ typedef struct {
 static Task   tasks[MAX_SERVICES];
 static size_t n_tasks = 0;
 
-_Noreturn void orchestrator_start()
+void orchestrator_start()
 {
     // create list of services
     for (int i = 0; i < main_config.services_sz; ++i) {
@@ -32,7 +32,7 @@ _Noreturn void orchestrator_start()
     n_tasks = main_config.services_sz;
 
     // keep track of services, restart if down
-    for (;;) {
+    while (!termination_requested) {
         // start/restart stopped services
         for (size_t i = 0; i < n_tasks; ++i) {
             if (tasks[i].pid == -1) {

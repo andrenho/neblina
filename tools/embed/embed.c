@@ -3,13 +3,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#ifndef DT_REG
-#define DT_REG 8
-#endif
-#ifndef DT_LNK
-#define DT_LNK 10
-#endif
-
 #include "../../src/file/gz.h"
 #include "../../src/file/whole_file.h"
 
