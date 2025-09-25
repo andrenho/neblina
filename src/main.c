@@ -29,6 +29,7 @@ Config main_config;
 
 int main(int argc, char* argv[])
 {
+    // initialize
     window_init();
 
     // exit gracefully on CTRL+C

@@ -9,6 +9,8 @@ typedef struct {
     char* service;
     int   logging_color;
     bool  verbose;
+    int   port;
+    bool  open_to_world;
 } Arguments;
 
 void args_parse(int argc, char* argv[]);

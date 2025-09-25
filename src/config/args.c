@@ -23,7 +23,7 @@ void args_parse(int argc, char* argv[])
         .verbose = false,
     };
 
-    typedef enum { CNONE, DATA_DIR, SERVICE, LOG_COLOR } Context;
+    typedef enum { CNONE, DATA_DIR, SERVICE, LOG_COLOR, PORT } Context;
     Context context = CNONE;
 
     for (int i = 1; i < argc; ++i) {
@@ -35,10 +35,14 @@ void args_parse(int argc, char* argv[])
                     context = SERVICE;
                 else if (strcmp(argv[i], "-c") == 0)
                     context = LOG_COLOR;
-                else if (strcmp(argv[i], "-h") == 0)
-                    print_help();
+                else if (strcmp(argv[i], "-P") == 0)
+                    context = PORT;
+                else if (strcmp(argv[i], "-w") == 0)
+                    args.open_to_world = true;
                 else if (strcmp(argv[i], "-v") == 0)
                     args.verbose = true;
+                else if (strcmp(argv[i], "-h") == 0)
+                    print_help();
                 else
                     FATAL_NON_RECOVERABLE("Argument %s not supported", argv[i]);
                 break;
@@ -54,6 +58,9 @@ void args_parse(int argc, char* argv[])
                 args.logging_color = (int) strtol(argv[i], NULL, 10);
                 context = CNONE;
                 continue;
+            case PORT:
+                args.port = (int) strtol(argv[i], NULL, 10);
+                context = CNONE;
         }
     }
 

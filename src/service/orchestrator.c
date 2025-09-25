@@ -22,14 +22,15 @@ void orchestrator_start()
 {
     // create list of services
     for (int i = 0; i < main_config.services_sz; ++i) {
-        tasks[i] = (Task) {
-            .service = &main_config.services[i],
-            .pid = NOT_RUNNING,
-            .recent_attempts = 0,
-        };
-        time(&tasks[i].last_attempt);
+        if (main_config.services[i].active) {
+            tasks[n_tasks++] = (Task) {
+                .service = &main_config.services[i],
+                .pid = NOT_RUNNING,
+                .recent_attempts = 0,
+            };
+            time(&tasks[i].last_attempt);
+        }
     }
-    n_tasks = main_config.services_sz;
 
     // keep track of services, restart if down
     while (!termination_requested) {
@@ -40,8 +41,9 @@ void orchestrator_start()
                     LOG("Giving up on service '%s'", tasks[i].service->name);
                     ++tasks[i].recent_attempts;
                 } else if (tasks[i].recent_attempts < MAX_ATTEMPS) {
-                    LOG("Starting service '%s' (attempt %d)", tasks[i].service->name, tasks[i].recent_attempts);
+                    LOG("Starting service '%s' with (attempt %d)", tasks[i].service->name, tasks[i].recent_attempts);
                     tasks[i].pid = os_start_service(tasks[i].service);
+                    LOG("Service '%s' started with pid %d", tasks[i].service->name, tasks[i].pid);
                     time(&tasks[i].last_attempt);
                     ++tasks[i].recent_attempts;
                 }
