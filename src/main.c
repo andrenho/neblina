@@ -9,7 +9,7 @@
 #include "file/whole_file.h"
 
 bool termination_requested = false;  // global
-struct Config main_config;
+Config main_config;
 
 int main(int argc, char* argv[])
 {
@@ -31,24 +31,18 @@ int main(int argc, char* argv[])
     }
 
     // load config file
-    /*
     {
         char config_filename[PATH_MAX]; snprintf(config_filename, PATH_MAX, "%s/config/config.json", args.data_dir);
         char* json = (char *) whole_file_read(config_filename, NULL);
         if (!json)
             FATAL_NON_RECOVERABLE("Could not open config file: %s", last_error);
-
-        Config_init(&main_config);
-        sstr_t sjson = sstr(json);
-        int r = json_unmarshal_Config(sjson, &main_config);
-        if (r != 0)
-            FATAL_NON_RECOVERABLE("Error parsing config file");
+        if (!config_load(json, &main_config))
+            FATAL_NON_RECOVERABLE("Error parsing config file - not valid JSON or in unexpected format");
         free(json);
-        free(sjson);
     }
-    */
 
     // cleanup
+    config_free(&main_config);
     window_close();
     args_free();
 
