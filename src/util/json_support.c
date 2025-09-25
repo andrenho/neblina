@@ -34,7 +34,7 @@ int json_set_str(const char* json, jsmntok_t const* t, int i, char** obj_field, 
     if (t[i].type == JSMN_STRING) {
         const char* key_ptr = json + t[i].start;
         if (memcmp(key_ptr, field_name, strlen(field_name)) == 0) {
-            char s = json[t[i+i].start];
+            char s = json[t[i+1].start];
             if (t[i+1].type == JSMN_PRIMITIVE && s == 'n') {
                 *obj_field = STRING_NULL;
                 return i + 1;
@@ -56,7 +56,7 @@ int json_set_int(const char* json, jsmntok_t const* t, int i, int* obj_field, co
     if (t[i].type == JSMN_STRING) {
         const char* key_ptr = json + t[i].start;
         if (memcmp(key_ptr, field_name, strlen(field_name)) == 0) {
-            char s = json[t[i+i].start];
+            char s = json[t[i+1].start];
             if (t[i+1].type == JSMN_PRIMITIVE && s == 'n') {
                 *obj_field = INT_NULL;
                 return i + 1;
