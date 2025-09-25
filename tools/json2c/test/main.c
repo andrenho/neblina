@@ -6,7 +6,7 @@
 int main()
 {
     Example example;
-    example_json_load("example.json", &example);
+    assert(example_json_load("example.json", &example) == J_OK);
 
     // assert(strcmp(example.name, "John Smith") == 0);
     assert(example.age == 107);

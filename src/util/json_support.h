@@ -12,7 +12,7 @@
 typedef unsigned char JBool;
 
 typedef enum {
-    J_OK, J_CANT_OPEN_FILE, J_PARSE_ERROR, J_INVALID_FIELD_TYPE,
+    J_OK, J_CANT_OPEN_FILE = -1, J_PARSE_ERROR = -2, J_INVALID_FIELD_TYPE = -3,
 } JSONParseResult;
 
 #define STRING_NULL  NULL

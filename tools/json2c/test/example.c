@@ -6,6 +6,8 @@
 
 #define MAX_TOKENS 2048
 
+#define CHK { if(i < 0) abort(); } // return i; }
+
 JSONParseResult example_json_from_string(const char* json, Example* example)
 {
     jsmn_parser p;
@@ -20,9 +22,9 @@ JSONParseResult example_json_from_string(const char* json, Example* example)
 
     for (int i = 0; i < r; ++i) {
         // TODO - check field type
-        i = json_set_str(json, t, i, &example->name, "name");
-        i = json_set_int(json, t, i, &example->age, "age");
-        i = json_set_double(json, t, i, &example->height, "height");
+        i = json_set_str(json, t, i, &example->name, "name"); CHK
+        i = json_set_int(json, t, i, &example->age, "age"); CHK
+        i = json_set_double(json, t, i, &example->height, "height"); CHK
     }
 
     return J_OK;
