@@ -16,3 +16,18 @@ void os_handle_ctrl_c()
     signal(SIGINT, handle_sigint);
     signal(SIGTERM, handle_sigint);
 }
+
+void os_sleep_ms(size_t ms)
+{
+    Sleep(ms);
+}
+
+pid_t os_start_service(ConfigService const* service)
+{
+    return 0;   // TODO
+}
+
+bool os_process_still_running(pid_t pid)
+{
+    return false;   // TODO
+}
