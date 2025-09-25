@@ -18,6 +18,34 @@ typedef struct {
 static Task   tasks[MAX_SERVICES];
 static size_t n_tasks = 0;
 
+static void start_task_if_stopped(Task*task)
+{
+    if (task->pid == -1) {
+        if (task->recent_attempts == MAX_ATTEMPS) {
+            LOG("Giving up on service '%s'", task->service->name);
+            ++task->recent_attempts;
+        } else if (task->recent_attempts < MAX_ATTEMPS) {
+            LOG("Starting service '%s' with (attempt %d)", task->service->name, task->recent_attempts);
+            task->pid = os_start_service(task->service);
+            LOG("Service '%s' started with pid %d", task->service->name, task->pid);
+            time(&task->last_attempt);
+            ++task->recent_attempts;
+        }
+    }
+}
+
+static void mark_task_as_terminated_if_dead(Task *task)
+{
+    int status;
+    if (!os_process_still_running(task->pid, &status)) {
+        LOG("Sevice process '%s' has died with status %d%s", task->service->name, status,
+            status == NON_RECOVERABLE_ERROR ? " (non-recoverable)" : "");
+        task->pid = NOT_RUNNING;
+        if (status == NON_RECOVERABLE_ERROR)
+            task->recent_attempts = 10;
+    }
+}
+
 void orchestrator_start()
 {
     // create list of services
@@ -34,33 +62,14 @@ void orchestrator_start()
 
     // keep track of services, restart if down
     while (!termination_requested) {
+
         // start/restart stopped services
-        for (size_t i = 0; i < n_tasks; ++i) {
-            if (tasks[i].pid == -1) {
-                if (tasks[i].recent_attempts == MAX_ATTEMPS) {
-                    LOG("Giving up on service '%s'", tasks[i].service->name);
-                    ++tasks[i].recent_attempts;
-                } else if (tasks[i].recent_attempts < MAX_ATTEMPS) {
-                    LOG("Starting service '%s' with (attempt %d)", tasks[i].service->name, tasks[i].recent_attempts);
-                    tasks[i].pid = os_start_service(tasks[i].service);
-                    LOG("Service '%s' started with pid %d", tasks[i].service->name, tasks[i].pid);
-                    time(&tasks[i].last_attempt);
-                    ++tasks[i].recent_attempts;
-                }
-            }
-        }
+        for (size_t i = 0; i < n_tasks; ++i)
+            start_task_if_stopped(&tasks[i]);
 
         // check if any services have died
-        for (size_t i = 0; i < n_tasks; ++i) {
-            int status;
-            if (!os_process_still_running(tasks[i].pid, &status)) {
-                LOG("Sevice process '%s' has died with status %d%s", tasks[i].service->name, status,
-                    status == NON_RECOVERABLE_ERROR ? " (non-recoverable)" : "");
-                tasks[i].pid = NOT_RUNNING;
-                if (status == NON_RECOVERABLE_ERROR)
-                    tasks[i].recent_attempts = 10;
-            }
-        }
+        for (size_t i = 0; i < n_tasks; ++i)
+            mark_task_as_terminated_if_dead(&tasks[i]);
 
         // reset recent attempts
         time_t now; time(&now);
