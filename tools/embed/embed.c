@@ -124,7 +124,13 @@ static size_t generate_dir(const char* basepath, const char* path, char** files,
 
 #else
 
+#define _DEFAULT_SOURCE
 #include <dirent.h>
+
+#ifdef __APPLE__
+#  define DT_REG 8
+#  define DT_LNK 10
+#endif
 
 static size_t generate_dir(const char* basepath, const char* path, char** files, size_t count)
 {

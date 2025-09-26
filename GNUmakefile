@@ -31,10 +31,10 @@ ifdef DEV
   endif
 else
   CPPFLAGS += -Os -ffast-math -march=native -flto -D_FORTIFY_SOURCE=2 -fstack-protector-strong -fno-common
-  LDFLAGS += -s -flto=auto
+  LDFLAGS += -flto=auto
 endif
 
-CPPFLAGS_CONTRIB = -I. -O3 -ffast-math -march=native -flto
+CPPFLAGS_CONTRIB = -I. -O3 -ffast-math -march=native -flto -Wno-switch
 
 UNAME_S = $(shell uname -s)
 
@@ -63,6 +63,9 @@ src/contrib/microjson/mjson.o: src/contrib/microjson/mjson.c
 
 neblina: $(OBJ)
 	$(CC) -o $@ $^ $(LDFLAGS)
+ifndef DEV
+	strip ./$@
+endif
 ifeq ($(UNAME_S),Linux)
 	sudo setcap cap_net_bind_service=ep ./$@
 endif
