@@ -2,18 +2,21 @@ all: neblina
 
 #
 # objects
-# 
+#
 
 ifeq ($(OS),Windows_NT)
   OS=win32
+  OS_SPECIFIC=win32
 else
   OS=posix
+  UNAME_S := $(shell uname -s)
+  ifeq ($(UNAME_S),Darwin)
+    OS_SPECIFIC=apple
+  else
+    OS_SPECIFIC=unix
+  endif
 endif
 include objects.mk
-
-ifdef SERVICE
-  SERVICE = -s $(SERVICE)
-endif
 
 #
 # flags
@@ -36,7 +39,11 @@ endif
 
 CPPFLAGS_CONTRIB = -I. -O3 -ffast-math -march=native -flto -Wno-switch
 
-UNAME_S = $(shell uname -s)
+
+ifdef SERVICE
+  SERVICE = -s $(SERVICE)
+endif
+
 
 #
 # auto-generated files

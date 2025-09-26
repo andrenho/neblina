@@ -1,7 +1,12 @@
 #include "tcp_server.h"
 
+#include <threads.h>
+
 #include "common.h"
 #include "os/os.h"
+#include "poller/poller.h"
+
+#define MAX_EVENTS 1024
 
 #ifdef _WIN32
 #  include <winsock2.h>
@@ -12,8 +17,8 @@
 #  include <arpa/inet.h>
 #  include <sys/socket.h>
 #  include <netdb.h>
-#  define INVALID_SOCKET -1
-#  define SOCKET_ERROR -1
+#  define INVALID_SOCKET (-1)
+#  define SOCKET_ERROR (-1)
    typedef int SOCKET;
    typedef struct sockaddr_in SOCKADDR_IN;
    typedef struct sockaddr SOCKADDR;
@@ -93,6 +98,39 @@ static SOCKET get_listener_socket(int port, bool open_to_world)
     return listener;
 }
 
+static void handle_new_connection()
+{
+    struct sockaddr_storage remoteaddr; // Client address
+    memset(&remoteaddr, 0, sizeof remoteaddr);
+    socklen_t addrlen = sizeof remoteaddr;
+
+    int new_fd = accept(socket_fd, (struct sockaddr *) &remoteaddr, &addrlen);
+    if (new_fd == -1) {
+        ERR("%s listen error: %s", ERR_PRX, strerror(errno));
+        return;
+    }
+
+    char hoststr[NI_MAXHOST] = "Unknown";
+    char portstr[NI_MAXSERV] = "0";
+
+    getnameinfo((struct sockaddr const*)(&remoteaddr), addrlen, hoststr, sizeof(hoststr), portstr, sizeof(portstr), NI_NUMERICHOST | NI_NUMERICSERV);
+    DBG("New connection from %s:%s as fd %d", hoststr, portstr, new_fd);
+
+    /*  TODO - create new connection
+    poll_fds.push_back({ .fd = new_fd, .events = POLLIN, .revents = 0 });
+    connections_[new_fd] = new_connection(new_fd, hoststr, portstr);
+    if (listener_)
+        listener_->new_connection(connections_.at(new_fd).get());
+    */
+
+    poller_add_connection(new_fd);
+}
+
+static void handle_new_data(int fd)
+{
+    LOG("New data");
+}
+
 void tcp_server_start(int port, bool open_to_world, CreateConnectionF cf, ProcessConnectionF pf)
 {
 #ifdef _WIN32
@@ -103,9 +141,18 @@ void tcp_server_start(int port, bool open_to_world, CreateConnectionF cf, Proces
 #endif
 
     socket_fd = get_listener_socket(port, open_to_world);
+    poller_init(socket_fd);   // TODO - check for errors
 
     while (!termination_requested) {
-        os_sleep_ms(100);
+
+        PollerEvent events[MAX_EVENTS];
+        size_t n_events = poller_wait(events, MAX_EVENTS);   // TODO - check for errors
+        for (size_t i = 0; i < n_events; ++i) {
+            if (events[i].type == PT_NEW_CONNECTION)
+                handle_new_connection();
+            else if (events[i].type == PT_NEW_DATA)
+                handle_new_data(events[i].fd);
+        }
     }
 
     // close socket
