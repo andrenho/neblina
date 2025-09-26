@@ -93,7 +93,7 @@ static SOCKET get_listener_socket(int port, bool open_to_world)
     return listener;
 }
 
-void tcp_server_start(int port, bool open_to_world)
+void tcp_server_start(int port, bool open_to_world, CreateConnectionF cf, ProcessConnectionF pf)
 {
 #ifdef _WIN32
     WSADATA wsaData;
