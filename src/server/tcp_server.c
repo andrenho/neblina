@@ -120,14 +120,14 @@ static void handle_new_connection()
     poller_add_connection(new_fd);
 }
 
-static void handle_new_data(int fd)
+static void handle_new_data(SOCKET fd)
 {
     LOG("New data");
     uint8_t buf[255];
     read(fd, buf, sizeof buf);
 }
 
-static void handle_disconnect(int fd)
+static void handle_disconnect(SOCKET fd)
 {
     LOG("Disconnected");
     poller_remove_connection(fd);
