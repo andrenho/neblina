@@ -55,8 +55,10 @@ bool poller_remove_connection(SOCKET fd)
 size_t poller_wait(PollerEvent* out_evt, size_t evt_sz)
 {
     int n_ready = WSAPoll(poll_fds, poll_count, 100);  // timeout 100 ms
-    if (n_ready <= 0)
+    if (n_ready <= 0) {
+		ERR("WSAPoll() error: %d", WSAGetLastError());
         return 0;
+    }
 
     size_t out_count = 0;
     for (int i = 0; i < poll_count && out_count < evt_sz; i++) {
@@ -66,9 +68,11 @@ size_t poller_wait(PollerEvent* out_evt, size_t evt_sz)
 
         if (poll_fds[i].fd == fs_socket) {
             out_evt[out_count++] = (PollerEvent) { .type = PT_NEW_CONNECTION, .fd = fs_socket };
-        } else if (revents & (POLLERR | POLLHUP)) {
+        } 
+        if (poll_fds[i].fd != fs_socket && revents & (POLLERR | POLLHUP)) {
             out_evt[out_count++] = (PollerEvent) { .type = PT_DISCONNECTED, .fd = poll_fds[i].fd };
-        } else if (revents & POLLRDNORM) {
+        } 
+        if (poll_fds[i].fd != fs_socket && revents & POLLRDNORM) {
             out_evt[out_count++] = (PollerEvent) { .type = PT_NEW_DATA, .fd = poll_fds[i].fd };
         }
     }

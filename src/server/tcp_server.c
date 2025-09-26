@@ -4,7 +4,7 @@
 #include "os/os.h"
 #include "poller/poller.h"
 
-#define MAX_EVENTS 1024
+#define MAX_EVENTS 64
 
 #ifdef _WIN32
 #  include <winsock2.h>
@@ -103,7 +103,7 @@ static void handle_new_connection()
     memset(&remoteaddr, 0, sizeof remoteaddr);
     socklen_t addrlen = sizeof remoteaddr;
 
-    int new_fd = accept(socket_fd, (struct sockaddr *) &remoteaddr, &addrlen);
+    SOCKET new_fd = accept(socket_fd, (struct sockaddr *) &remoteaddr, &addrlen);
     if (new_fd == -1) {
         ERR("%s listen error: %s", ERR_PRX, strerror(errno));
         return;
@@ -124,7 +124,7 @@ static void handle_new_data(SOCKET fd)
 {
     LOG("New data");
     uint8_t buf[255];
-    read(fd, buf, sizeof buf);
+    recv(fd, buf, sizeof buf, 0);
 }
 
 static void handle_disconnect(SOCKET fd)
