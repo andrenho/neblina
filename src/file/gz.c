@@ -5,7 +5,7 @@
 
 uint8_t* gzip(uint8_t const* uncompressed, size_t usz, size_t* csz)
 {
-    unsigned long compressed_sz = usz * 2 + 18;
+    unsigned long compressed_sz = (unsigned long) usz * 2 + 18;
     uint8_t* compressed = calloc(1, compressed_sz);
 
     // gzip header
@@ -19,7 +19,7 @@ uint8_t* gzip(uint8_t const* uncompressed, size_t usz, size_t* csz)
     memset(&stream, 0, sizeof(stream));
 
     stream.next_in = uncompressed;
-    stream.avail_in = usz;
+    stream.avail_in = (unsigned int) usz;
     stream.next_out = &compressed[10];
     stream.avail_out = compressed_sz - 10;
 
@@ -39,7 +39,7 @@ uint8_t* gzip(uint8_t const* uncompressed, size_t usz, size_t* csz)
             compressed[end+1] = (crc >> 8) & 0xff;
             compressed[end+2] = (crc >> 16) & 0xff;
             compressed[end+3] = (crc >> 24) & 0xff;
-            uLong len = usz;
+            uLong len = (uLong) usz;
             compressed[end+4] = len & 0xff;
             compressed[end+5] = (len >> 8) & 0xff;
             compressed[end+6] = (len >> 16) & 0xff;
@@ -75,7 +75,7 @@ uint8_t* gunzip(uint8_t const* compressed, size_t csz, size_t* usz)
     memset(&stream, 0, sizeof(stream));
 
     stream.next_in = &compressed[header_size];
-    stream.avail_in = csz - header_size - footer_size;
+    stream.avail_in = (uLong) (csz - header_size - footer_size);
 
     // Guess decompressed size from ISIZE in footer:
     *usz = (compressed[csz-4]) | (compressed[csz-3] << 8) | (compressed[csz-2] << 16) | (compressed[csz-1] << 24);
@@ -83,7 +83,7 @@ uint8_t* gunzip(uint8_t const* compressed, size_t csz, size_t* usz)
     uint8_t* out = calloc(1, *usz);
 
     stream.next_out = out;
-    stream.avail_out = *usz;
+    stream.avail_out = (uLong) *usz;
 
     int result = mz_inflateInit2(&stream, -MZ_DEFAULT_WINDOW_BITS);
     // negative = raw DEFLATE (no zlib/gzip header)

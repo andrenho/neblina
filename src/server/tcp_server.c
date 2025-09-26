@@ -5,6 +5,8 @@
 
 #ifdef _WIN32
 #  include <winsock2.h>
+#  include <ws2tcpip.h>
+#  pragma comment(lib, "Ws2_32.lib")
 #else
 #  include <unistd.h>
 #  include <arpa/inet.h>
@@ -21,6 +23,15 @@ static SOCKET socket_fd;
 
 static const char* ERR_PRX = "TCP server error:";
 
+static void close_socket(SOCKET fd)
+{
+#ifdef _WIN32
+    closesocket(fd);
+#elif __unix__
+    close(fd);
+#endif
+}
+
 static SOCKET get_listener_socket(int port, bool open_to_world)
 {
     SOCKET listener = -1;
@@ -36,6 +47,7 @@ static SOCKET get_listener_socket(int port, bool open_to_world)
 
     int rv;
     struct addrinfo* servinfo;
+	memset(&servinfo, 0, sizeof(servinfo));
     char sport[15]; snprintf(sport, sizeof sport, "%d", port);
     if ((rv = getaddrinfo(listen_to, sport, &hints, &servinfo)) != 0)
         FATAL("%s getaddrinfo error: %s", ERR_PRX, gai_strerror(rv));
@@ -50,13 +62,17 @@ static SOCKET get_listener_socket(int port, bool open_to_world)
             FATAL("%s socket error: %s", ERR_PRX, strerror(errno));
 
         // set socket as reusable
+#ifdef _WIN32
+        char yes = '1';
+#else
         int yes = 1;
+#endif
         if (setsockopt(listener, SOL_SOCKET, SO_REUSEADDR, &yes, sizeof(int)) == SOCKET_ERROR)
             FATAL("%s setsocket error: %s", ERR_PRX, strerror(errno));
 
         // bind to port
         if (bind(listener, p->ai_addr, p->ai_addrlen) == SOCKET_ERROR) {
-            close(listener);
+            close_socket(listener);
             continue;  // not possible, try next
         }
 
@@ -83,7 +99,7 @@ void tcp_server_start(int port, bool open_to_world)
     WSADATA wsaData;
     if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0)
         FATAL("WSAStartup() error!");
-    DBG("WSAStartup() succeed.\n");
+    DBG("WSAStartup() succeeded");
 #endif
 
     socket_fd = get_listener_socket(port, open_to_world);
@@ -93,9 +109,5 @@ void tcp_server_start(int port, bool open_to_world)
     }
 
     // close socket
-#ifdef _WIN32
-    closesocket(socket_fd);
-#elif __unix__
-    close(socket_fd);
-#endif
+    close_socket(socket_fd);
 }

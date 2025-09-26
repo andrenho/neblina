@@ -17,7 +17,7 @@ uint8_t* whole_file_read(const char* path, size_t* sz_out)
 
     size_t pos = 0;
     do {
-        int n = fread(&buffer[pos], 1, sz - pos, f);
+        size_t n = fread(&buffer[pos], 1, sz - pos, f);
         pos += n;
     } while (pos < sz);
 
@@ -36,7 +36,7 @@ bool whole_file_write(const char* path, uint8_t const* data, size_t sz)
 
     size_t pos = 0;
     do {
-        unsigned long n = fwrite(&data[pos], 1, sz - pos, f);
+        size_t n = fwrite(&data[pos], 1, sz - pos, f);
         pos += n;
     } while (pos < sz);
 

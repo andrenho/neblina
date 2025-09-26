@@ -137,6 +137,7 @@
     <ClInclude Include="src\os\fs.h" />
     <ClInclude Include="src\os\os.h" />
     <ClInclude Include="src\os\window.h" />
+    <ClInclude Include="src\server\tcp_server.h" />
     <ClInclude Include="src\services\parrot\parrot.h" />
     <ClInclude Include="src\service\orchestrator.h" />
     <ClInclude Include="src\util\error.h" />
@@ -154,6 +155,7 @@
     <ClCompile Include="src\os\win32\fs.c" />
     <ClCompile Include="src\os\win32\os.c" />
     <ClCompile Include="src\os\win32\window.c" />
+    <ClCompile Include="src\server\tcp_server.c" />
     <ClCompile Include="src\services\parrot\parrot.c" />
     <ClCompile Include="src\service\orchestrator.c" />
     <ClCompile Include="src\util\error.c" />

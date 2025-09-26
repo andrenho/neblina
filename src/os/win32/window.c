@@ -28,7 +28,7 @@ void window_init()
     GetConsoleMode(hOut, &dwMode);
     dwMode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
     SetConsoleMode(hOut, dwMode);
-    SetConsoleTitle("neblina");
+    SetConsoleTitleA("neblina");
 }
 
 void window_close()
