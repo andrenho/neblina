@@ -48,3 +48,4 @@ compile_commands.json
 /embed
 *.gen.*
 /json-gen-c
+.vs
