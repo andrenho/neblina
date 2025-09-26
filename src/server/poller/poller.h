@@ -19,5 +19,6 @@ typedef struct {
 void   poller_init(SOCKET fd_listener);
 size_t poller_wait(PollerEvent* out_evt, size_t evt_sz);
 bool   poller_add_connection(SOCKET fd);
+bool   poller_remove_connection(SOCKET fd);
 
 #endif //NEBLINA_POLLER_H

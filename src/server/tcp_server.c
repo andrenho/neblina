@@ -127,6 +127,12 @@ static void handle_new_data(int fd)
     read(fd, buf, sizeof buf);
 }
 
+static void handle_disconnect(int fd)
+{
+    LOG("Disconnected");
+    poller_remove_connection(fd);
+}
+
 void tcp_server_start(int port, bool open_to_world, CreateConnectionF cf, ProcessConnectionF pf)
 {
 #ifdef _WIN32
@@ -144,12 +150,13 @@ void tcp_server_start(int port, bool open_to_world, CreateConnectionF cf, Proces
         PollerEvent events[MAX_EVENTS];
         size_t n_events = poller_wait(events, MAX_EVENTS);   // TODO - check for errors
         for (size_t i = 0; i < n_events; ++i) {
-            if (events[i].type == PT_NEW_CONNECTION)
+            if (events[i].type == PT_NEW_CONNECTION) {
                 handle_new_connection();
-            else if (events[i].type == PT_NEW_DATA)
+            } else if (events[i].type == PT_NEW_DATA) {
                 handle_new_data(events[i].fd);
-            else if (events[i].type == PT_DISCONNECTED)
-                LOG("Disconnected %d", events[i].fd);
+            } else if (events[i].type == PT_DISCONNECTED) {
+                handle_disconnect(events[i].fd);
+            }
         }
     }
 
