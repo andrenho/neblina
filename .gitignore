@@ -49,3 +49,5 @@ compile_commands.json
 *.gen.*
 /json-gen-c
 .vs
+/neblina_data
+/x64

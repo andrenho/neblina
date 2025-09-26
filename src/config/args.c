@@ -69,7 +69,7 @@ void args_parse(int argc, char* argv[])
 
     if (!args.data_dir) {
 #ifdef _WIN32
-        args.data_dir = "./neblina";
+        args.data_dir = "./neblina_data";
 #else
         args.data_dir = malloc(1024);
         snprintf(args.data_dir, 1024, "%s/neblina", getenv("HOME"));

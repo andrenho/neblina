@@ -4,6 +4,7 @@
 
 #include "common.h"
 #include "os/os.h"
+#include "util/error.h"
 
 #define NOT_RUNNING (-1)
 #define MAX_ATTEMPS 10
@@ -18,7 +19,7 @@ typedef struct {
 static Task   tasks[MAX_SERVICES];
 static size_t n_tasks = 0;
 
-static void start_task_if_stopped(Task*task)
+static void start_task_if_stopped(Task* task)
 {
     if (task->pid == -1) {
         if (task->recent_attempts == MAX_ATTEMPS) {
@@ -27,6 +28,10 @@ static void start_task_if_stopped(Task*task)
         } else if (task->recent_attempts < MAX_ATTEMPS) {
             LOG("Starting service '%s' with (attempt %d)", task->service->name, task->recent_attempts);
             task->pid = os_start_service(task->service);
+            if (task->pid == 0) {
+                ERR("Could not start process '%s': %s", task->service->name, last_error);
+                return;
+            }
             LOG("Service '%s' started with pid %d", task->service->name, task->pid);
             time(&task->last_attempt);
             ++task->recent_attempts;
