@@ -1,7 +1,5 @@
 #include "tcp_server.h"
 
-#include <threads.h>
-
 #include "common.h"
 #include "os/os.h"
 #include "poller/poller.h"
@@ -13,6 +11,7 @@
 #  include <ws2tcpip.h>
 #  pragma comment(lib, "Ws2_32.lib")
 #else
+#  define _DARWIN_C_SOURCE
 #  include <unistd.h>
 #  include <arpa/inet.h>
 #  include <sys/socket.h>
@@ -32,7 +31,7 @@ static void close_socket(SOCKET fd)
 {
 #ifdef _WIN32
     closesocket(fd);
-#elif __unix__
+#else
     close(fd);
 #endif
 }
@@ -129,6 +128,8 @@ static void handle_new_connection()
 static void handle_new_data(int fd)
 {
     LOG("New data");
+    uint8_t buf[255];
+    read(fd, buf, sizeof buf);
 }
 
 void tcp_server_start(int port, bool open_to_world, CreateConnectionF cf, ProcessConnectionF pf)
