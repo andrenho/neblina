@@ -3,7 +3,10 @@
 - [x] Create C version
 - [x] Orchestrator
 - [ ] Parrot
+  - [ ] TCP server
+  - [ ] Connections
 - [ ] SParrot
+  - [ ] SSL server
 - [ ] HTTP
   - [ ] Request/response
   - [ ] Handlers
