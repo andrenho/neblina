@@ -1,3 +1,98 @@
+### v0.5 - C version
+
+- [x] Create C version
+- [x] Orchestrator
+- [ ] Parrot
+- [ ] SParrot
+- [ ] HTTP
+  - [ ] Request/response
+  - [ ] Handlers
+    - [ ] Not found (default)
+    - [ ] Health
+    - [ ] Static request / static dir
+    - [ ] Redirect
+    - [ ] Proxy
+- [ ] HTTPS
+- [ ] HTTP-to-HTTPS
+
+### v0.6 - Other services
+
+- [ ] FTP
+- [ ] SFTP
+- [ ] XMPP
+- [ ] NNTP
+- [ ] Gopher (as a .so)
+
+### v0.7 - Initial release
+
+- [ ] Webpage
+- [ ] Code review
+- [ ] Add version number
+- [ ] Make install
+- [ ] Prepare for release
+- [ ] Run tests on github
+
+### v0.8 - Web Application
+
+- [ ] `json2cpp`
+  - [ ] Improve
+  - [ ] Add tests
+  - [ ] Add unordered_map
+- [ ] Parse QueryParameters on HttpConnection::find_request_handler
+- [ ] REST interface
+- [ ] Database access
+- [ ] Tool to generate entities and DAOs
+- [ ] Create sample "guestbook" service as .so
+- [ ] CORS
+  - [ ] OPTIONS
+- [ ] If a client sends Expect: 100-continue, the server must either respond 100 Continue or a final status code.
+- [ ] Proxy
+
+### v0.9 - Authentication
+
+- [ ] Basic auth
+- [ ] OAuth2 support
+- [ ] Web tool to manage users
+
+### v0.10 - Config tool
+
+- [ ] Web tool for config
+- [ ] Ask for password and configuration when using for the first time
+- [ ] Initial setup
+
+### v0.11 - Advanced web applications
+
+- [ ] Markdown webpage
+- [ ] Password manager
+- [ ] Note taking
+- [ ] Notepad
+- [ ] Blog
+- [ ] Social network
+- [ ] Photo/video app
+- [ ] Podcast
+
+### v0.12 - Advanced web server
+- [ ] Run connection/ session in threads
+- [ ] Transfer-Encoding (chunks)
+- [ ] Streaming
+- [ ] Caching: If-Modified-Since, Last-Modified
+- [ ] Support everything in the RFCs
+- [ ] Control the time that the connection is open, close it after a while
+- [ ] Dock app on Windows, Linux
+
+### ???
+
+- [ ] Pass parameters as custom parameters
+- [ ] Combine multiple services in one (?)
+- [ ] Create named pipe / socket / shared memory connection
+
+- https://github.com/rafagafe/tiny-json
+
+
+--------------------------------------------------------------------------------------------------------------
+
+# Done
+
 ### v0.1 - JSON -> C++
 
 - [x] Application to generate C++ classes to parse JSON objects
@@ -79,75 +174,3 @@ Extra:
 - [ ] Single config file
 - [ ] Windows version (basic), Mac version
 
-### v0.5 - Other services
-
-- [ ] FTP
-- [ ] SFTP
-- [ ] XMPP
-- [ ] NNTP
-- [ ] Gopher (as a .so)
-
-### v0.6 - Initial release
-
-- [ ] Webpage
-- [ ] Code review
-- [ ] Add version number
-- [ ] Make install
-- [ ] Prepare for release
-- [ ] Run tests on github
-
-### v0.7 - Web Application
-
-- [ ] `json2cpp`
-  - [ ] Improve
-  - [ ] Add tests
-  - [ ] Add unordered_map
-- [ ] Parse QueryParameters on HttpConnection::find_request_handler
-- [ ] REST interface
-- [ ] Database access
-- [ ] Tool to generate entities and DAOs
-- [ ] Create sample "guestbook" service as .so
-- [ ] CORS
-  - [ ] OPTIONS
-- [ ] If a client sends Expect: 100-continue, the server must either respond 100 Continue or a final status code.
-- [ ] Proxy
-
-### v0.8 - Authentication
-
-- [ ] Basic auth
-- [ ] OAuth2 support
-- [ ] Web tool to manage users
-
-### v0.9 - Config tool
-
-- [ ] Web tool for config
-- [ ] Ask for password and configuration when using for the first time
-- [ ] Initial setup
-
-### v0.10 - Advanced web applications
-
-- [ ] Markdown webpage
-- [ ] Password manager
-- [ ] Note taking
-- [ ] Notepad
-- [ ] Blog
-- [ ] Social network
-- [ ] Photo/video app
-- [ ] Podcast
-
-### v0.11 - Advanced web server
-- [ ] Run connection/ session in threads
-- [ ] Transfer-Encoding (chunks)
-- [ ] Streaming
-- [ ] Caching: If-Modified-Since, Last-Modified
-- [ ] Support everything in the RFCs
-- [ ] Control the time that the connection is open, close it after a while
-- [ ] Dock app on Windows, Linux
-
-### ???
-
-- [ ] Pass parameters as custom parameters
-- [ ] Combine multiple services in one (?)
-- [ ] Create named pipe / socket / shared memory connection
-
-- https://github.com/rafagafe/tiny-json
