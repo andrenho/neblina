@@ -33,6 +33,13 @@ bool poller_add_connection(int fd)
     return true;
 }
 
+bool poller_remove_connection(SOCKET fd)
+{
+    if (epoll_ctl(epoll_fd, EPOLL_CTL_DEL, fd, NULL) < 0)
+        THROW("Error deleting socket fd in epoll: %s", strerror(errno));
+    return true;
+}
+
 size_t poller_wait(PollerEvent* out_evt, size_t evt_sz)
 {
     struct epoll_event events[evt_sz];
