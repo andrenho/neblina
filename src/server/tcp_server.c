@@ -115,12 +115,7 @@ static void handle_new_connection()
     getnameinfo((struct sockaddr const*)(&remoteaddr), addrlen, hoststr, sizeof(hoststr), portstr, sizeof(portstr), NI_NUMERICHOST | NI_NUMERICSERV);
     DBG("New connection from %s:%s as fd %d", hoststr, portstr, new_fd);
 
-    /*  TODO - create new connection
-    poll_fds.push_back({ .fd = new_fd, .events = POLLIN, .revents = 0 });
-    connections_[new_fd] = new_connection(new_fd, hoststr, portstr);
-    if (listener_)
-        listener_->new_connection(connections_.at(new_fd).get());
-    */
+    // TODO - create new connection
 
     poller_add_connection(new_fd);
 }
@@ -153,6 +148,8 @@ void tcp_server_start(int port, bool open_to_world, CreateConnectionF cf, Proces
                 handle_new_connection();
             else if (events[i].type == PT_NEW_DATA)
                 handle_new_data(events[i].fd);
+            else if (events[i].type == PT_DISCONNECTED)
+                LOG("Disconnected %d", events[i].fd);
         }
     }
 

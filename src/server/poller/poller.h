@@ -8,7 +8,7 @@
 typedef int SOCKET;
 #endif
 
-typedef enum { PT_NEW_CONNECTION, PT_NEW_DATA } PollerEventType;
+typedef enum { PT_NEW_CONNECTION, PT_NEW_DATA, PT_DISCONNECTED } PollerEventType;
 typedef struct {
     PollerEventType type;
     int             fd;
