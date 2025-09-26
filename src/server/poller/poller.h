@@ -1,0 +1,4 @@
+#ifndef NEBLINA_POLLER_H
+#define NEBLINA_POLLER_H
+
+#endif //NEBLINA_POLLER_H
