@@ -1,7 +1,7 @@
 #include "tcp_server.h"
 
 #include "common.h"
-#include "os/os.h"
+#include "pool/connpool.h"
 #include "poller/poller.h"
 #include "socket.h"
 
@@ -121,6 +121,8 @@ static void handle_new_connection()
 static void handle_disconnect(SOCKET fd)
 {
     LOG("Disconnected from socket %d", fd);
+
+    // remove from connection set
     Connection* ci = NULL;
     HASH_FIND_INT(connection_set, &fd, ci);
     if (ci) {
@@ -128,7 +130,11 @@ static void handle_disconnect(SOCKET fd)
         free(ci->inbuf);
         free(ci);
     }
+
+    // remove from poller
     poller_remove_connection(fd);
+
+    // close socket
     close_socket(fd);
 }
 
@@ -141,11 +147,15 @@ static void handle_new_data(SOCKET fd)
         return;
     }
 
+    // receive data
     uint8_t buf[BUFFER_SZ];
     ssize_t sz = recv(fd, buf, sizeof buf, 0);
     if (sz < 0) {
+        // client disconnected
         handle_disconnect(fd);
     } else {
+        // TODO - add mutex here --\
+
         // add data to the input buffer
         if ((c->inbuf_sz + sz) > c->inbuf_rsvrd) {
             c->inbuf_rsvrd = c->inbuf_sz + sz;
@@ -156,9 +166,14 @@ static void handle_new_data(SOCKET fd)
         c->inbuf_sz += sz;
 
         // check if ready to process
-        if (data_type == D_BINARY || strchr((char *) c->inbuf, '\n')) {
+        if (data_type == D_BINARY || strchr((char *) c->inbuf, '\n'))
             c->ready = true;
-        }
+
+        // TODO ------------------/
+
+        // notify thread pool that this connection is ready to process
+        if (c->ready)
+            connpool_ready(fd);
     }
 }
 
@@ -173,20 +188,25 @@ void tcp_server_start(int port, bool open_to_world, DataType data_type_)
     DBG("WSAStartup() succeeded");
 #endif
 
+    // create listener
     socket_fd = get_listener_socket(port, open_to_world);
-    poller_init(socket_fd);   // TODO - check for errors
 
+    // initialize pooler
+    poller_init(socket_fd);
+
+    // initialize thread pool
+    connpool_init(8 /* TODO - get it from somewhere? */, &connection_set);
+
+    // main loop
     while (!termination_requested) {
 
         PollerEvent events[MAX_EVENTS];
         size_t n_events = poller_wait(events, MAX_EVENTS);   // TODO - check for errors
         for (size_t i = 0; i < n_events; ++i) {
-            if (events[i].type == PT_NEW_CONNECTION) {
-                handle_new_connection();
-            } else if (events[i].type == PT_NEW_DATA) {
-                handle_new_data(events[i].fd);
-            } else if (events[i].type == PT_DISCONNECTED) {
-                handle_disconnect(events[i].fd);
+            switch (events[i].type) {
+                case PT_NEW_CONNECTION: handle_new_connection(); break;
+                case PT_NEW_DATA:       handle_new_data(events[i].fd); break;
+                case PT_DISCONNECTED:   handle_disconnect(events[i].fd); break;
             }
         }
     }
