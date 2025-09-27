@@ -11,8 +11,7 @@ static SOCKET   socket_fd;
 static DataType data_type;
 
 static const char* ERR_PRX = "TCP server error:";
-
-ConnectionItem* connection_set = NULL;
+static Connection* connection_set = NULL;
 
 static void close_socket(SOCKET fd)
 {
@@ -38,7 +37,6 @@ static SOCKET get_listener_socket(int port, bool open_to_world)
 
     int rv;
     struct addrinfo* servinfo;
-	memset(&servinfo, 0, sizeof(servinfo));
     char sport[15]; snprintf(sport, sizeof sport, "%d", port);
     if ((rv = getaddrinfo(listen_to, sport, &hints, &servinfo)) != 0)
         FATAL("%s getaddrinfo error: %s", ERR_PRX, gai_strerror(rv));
@@ -107,8 +105,8 @@ static void handle_new_connection()
     poller_add_connection(new_fd);
 
     // add connection to connection set
-    ConnectionItem* ci = malloc(sizeof(ConnectionItem));
-    *ci = (ConnectionItem) {
+    Connection* ci = malloc(sizeof(Connection));
+    *ci = (Connection) {
         .fd = new_fd,
         .data_type = data_type,
         .inbuf = malloc(DFLT_CONN_BUF_SZ),
@@ -123,17 +121,20 @@ static void handle_new_connection()
 static void handle_disconnect(SOCKET fd)
 {
     LOG("Disconnected from socket %d", fd);
-    ConnectionItem* ci;
+    Connection* ci = NULL;
     HASH_FIND_INT(connection_set, &fd, ci);
-    if (ci)
+    if (ci) {
         HASH_DEL(connection_set, ci);
+        free(ci->inbuf);
+        free(ci);
+    }
     poller_remove_connection(fd);
     close_socket(fd);
 }
 
 static void handle_new_data(SOCKET fd)
 {
-    ConnectionItem* c;
+    Connection* c;
     HASH_FIND_INT(connection_set, &fd, c);
     if (!c) {
         ERR("Data to socket %d, but socket is not available", fd);
@@ -149,7 +150,7 @@ static void handle_new_data(SOCKET fd)
         if ((c->inbuf_sz + sz) > c->inbuf_rsvrd) {
             c->inbuf_rsvrd = c->inbuf_sz + sz;
             c->inbuf = realloc(c->inbuf, c->inbuf_rsvrd + 1);
-            c->inbuf[c->inbuf_rsvrd + 1] = '\0';
+            c->inbuf[c->inbuf_rsvrd] = '\0';
         }
         memcpy(&c->inbuf[c->inbuf_sz], buf, sz);
         c->inbuf_sz += sz;

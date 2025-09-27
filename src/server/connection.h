@@ -1,6 +1,7 @@
 #ifndef NEBLINA_CONNECTION_H
 #define NEBLINA_CONNECTION_H
 
+#include <stdbool.h>
 #include <stdint.h>
 #include <stddef.h>
 
@@ -18,7 +19,7 @@ typedef struct {
     bool           ready;       // ready for processing
     void*          session;     // Session provided by the service
     UT_hash_handle hh;          // UTHash handle to use this structure as a map
-} ConnectionItem;
+} Connection;
 
 
 #endif //NEBLINA_CONNECTION_H
