@@ -4,11 +4,13 @@
 #include <stdbool.h>
 #include <stdint.h>
 #include <stddef.h>
+
 #include "connection.h"
+#include "session.h"
 
 #define DFLT_CONN_BUF_SZ 64
 #define BUFFER_SZ (8 * 1024)
 
-void tcp_server_start(int port, bool open_to_world, DataType data_type);
+void tcp_server_start(int port, bool open_to_world, DataType data_type, SessionDef session_def);
 
 #endif //NEBLINA_TCP_SERVER_H

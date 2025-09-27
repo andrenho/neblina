@@ -12,6 +12,7 @@ static DataType data_type;
 
 static const char* ERR_PRX = "TCP server error:";
 static Connection* connection_set = NULL;
+static SessionDef  session_def;
 
 static void close_socket(SOCKET fd)
 {
@@ -113,8 +114,10 @@ static void handle_new_connection()
         .inbuf_sz = 0,
         .inbuf_rsvrd = DFLT_CONN_BUF_SZ,
         .ready = false,
-        .session = NULL,   // TODO - create new Session from service
+        .session = NULL,
     };
+    if (session_def.init)
+        ci->session = session_def.init();
     HASH_ADD_INT(connection_set, fd, ci);
 }
 
@@ -126,6 +129,8 @@ static void handle_disconnect(SOCKET fd)
     Connection* ci = NULL;
     HASH_FIND_INT(connection_set, &fd, ci);
     if (ci) {
+        if (session_def.finalize)
+            session_def.finalize(ci->session);
         HASH_DEL(connection_set, ci);
         free(ci->inbuf);
         free(ci);
@@ -136,6 +141,20 @@ static void handle_disconnect(SOCKET fd)
 
     // close socket
     close_socket(fd);
+}
+
+bool send_f(uint8_t const* data, size_t sz, void* ctx)
+{
+    SOCKET fd = (SOCKET) (uintptr_t) ctx;
+    size_t pos = 0;
+    do {
+        ssize_t n = send(fd, &data[pos], sz, 0);
+        if (n <= 0)
+            return false;
+        pos += n;
+    } while (pos < sz);
+
+    return true;
 }
 
 static void handle_new_data(SOCKET fd)
@@ -160,9 +179,9 @@ static void handle_new_data(SOCKET fd)
         if ((c->inbuf_sz + sz) > c->inbuf_rsvrd) {
             c->inbuf_rsvrd = c->inbuf_sz + sz;
             c->inbuf = realloc(c->inbuf, c->inbuf_rsvrd + 1);
-            c->inbuf[c->inbuf_rsvrd] = '\0';
         }
         memcpy(&c->inbuf[c->inbuf_sz], buf, sz);
+        c->inbuf[c->inbuf_rsvrd] = '\0';
         c->inbuf_sz += sz;
 
         // check if ready to process
@@ -173,13 +192,14 @@ static void handle_new_data(SOCKET fd)
 
         // notify thread pool that this connection is ready to process
         if (c->ready)
-            connpool_ready(fd);
+            connpool_ready(fd, &session_def, send_f, (void *) (uintptr_t) fd);
     }
 }
 
-void tcp_server_start(int port, bool open_to_world, DataType data_type_)
+void tcp_server_start(int port, bool open_to_world, DataType data_type_, SessionDef session_def_)
 {
     data_type = data_type_;
+    session_def = session_def_;
 
 #ifdef _WIN32
     WSADATA wsaData;

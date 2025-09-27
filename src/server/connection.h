@@ -7,6 +7,7 @@
 
 #include "socket.h"
 #include "uthash.h"
+#include "session.h"
 
 typedef enum { D_BINARY, D_TEXT } DataType;
 
@@ -17,7 +18,7 @@ typedef struct {
     size_t         inbuf_sz;        // buffer current size
     size_t         inbuf_rsvrd;     // memory area reserved to the buffer (malloc'd)
     bool           ready;       // ready for processing
-    void*          session;     // Session provided by the service
+    Session*       session;     // Session provided by the service
     UT_hash_handle hh;          // UTHash handle to use this structure as a map
 } Connection;
 
