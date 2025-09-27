@@ -7,6 +7,7 @@ all: neblina.exe
 #
 
 OS=win32
+OS_SPECIFIC=win32
 !INCLUDE objects.mk
 OBJ = $(OBJ:.o=.obj)
 

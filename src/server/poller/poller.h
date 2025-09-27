@@ -6,12 +6,14 @@
 
 #ifndef _WIN32
 typedef int SOCKET;
+#else
+#include <winsock2.h>
 #endif
 
 typedef enum { PT_NEW_CONNECTION, PT_NEW_DATA, PT_DISCONNECTED } PollerEventType;
 typedef struct {
     PollerEventType type;
-    int             fd;
+    SOCKET          fd;
 } PollerEvent;
 
 #define TIMEOUT 100
