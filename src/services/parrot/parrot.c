@@ -9,10 +9,11 @@ static Session* parrot_init()
     return NULL;
 }
 
-bool parrot_process(Session* session, uint8_t* data, size_t data_sz, SendF send_f, void* ctx)
+static void parrot_process(Session* session, uint8_t const* data, size_t data_sz, SendF send_f, void* ctx)
 {
     (void) session;
-    return send_f(data, data_sz, ctx);
+    send_f(data, data_sz, ctx);
+    send_f((uint8_t const *) "\r\n", 2, ctx);
 }
 
 static void parrot_finalize(Session* session)

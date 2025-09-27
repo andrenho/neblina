@@ -10,7 +10,7 @@ typedef void Session;
 
 typedef struct {
     Session* (*init)();
-    bool     (*process)(Session* session, uint8_t* data, size_t data_sz, SendF send_f, void* ctx);
+    void     (*process)(Session* session, uint8_t const* data, size_t data_sz, SendF send_f, void* ctx);
     void     (*finalize)(Session* session);
 } SessionDef;
 
