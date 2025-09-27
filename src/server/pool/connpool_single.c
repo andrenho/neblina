@@ -6,10 +6,11 @@ static Connection** connection_set;
 
 void connpool_init(size_t n_threads, Connection** connection_set_)
 {
+    (void) n_threads;
     connection_set = connection_set_;
 }
 
-void coonpool_process_connection(Connection *c, const SessionCallbacks *session_def, SendF send_f, const void *ctx) {
+void coonpool_process_connection(Connection *c, const SessionCallbacks *session_def, SendF send_f, void *ctx) {
     if (session_def->process_session) {
         if (c->data_type == D_BINARY) {
             session_def->process_session(c->session, c->inbuf, c->inbuf_sz, send_f, ctx);
@@ -42,4 +43,8 @@ void connpool_ready(SOCKET fd, SessionCallbacks* session_def, SendF send_f, void
     HASH_FIND_INT(*connection_set, &fd, c);
     if (c)
         coonpool_process_connection(c, session_def, send_f, ctx);
+}
+
+void connpoll_finalize()
+{
 }

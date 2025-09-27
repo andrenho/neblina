@@ -16,6 +16,12 @@ else
     OS_SPECIFIC=unix
   endif
 endif
+
+THREAD = multi
+ifdef SINGLE_THREAD
+  THREAD = single
+endif
+
 include objects.mk
 
 #
@@ -41,10 +47,6 @@ CPPFLAGS_CONTRIB = -I. -O3 -ffast-math -march=native -flto -Wno-switch
 
 ifdef SERVICE
   SERVICE_OPT := -s $(SERVICE)
-endif
-
-ifdef SINGLE_THREAD
-  CPPFLAGS += -DSINGLE_THREAD=1
 endif
 
 #
@@ -91,6 +93,15 @@ ifeq ($(UNAME_S),Linux)
 	$(info Use SERVICE variable to start a service)
 	sudo setcap -r ./neblina || true
 	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --suppressions=valgrind.supp ./neblina $(SERVICE_OPT) -P 5000 -v
+else
+	$(error Checking for leaks only supported on Linux.)
+endif
+
+thread-check: all
+ifeq ($(UNAME_S),Linux)
+	$(info Use SERVICE variable to start a service)
+	sudo setcap -r ./neblina || true
+	valgrind --tool=drd ./neblina $(SERVICE_OPT) -P 5000 -v
 else
 	$(error Checking for leaks only supported on Linux.)
 endif

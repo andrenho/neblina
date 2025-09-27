@@ -215,7 +215,7 @@ void tcp_server_start(int port, bool open_to_world, DataType data_type_, Session
     poller_init(socket_fd);
 
     // initialize thread pool
-    connpool_init(8 /* TODO - get it from somewhere? */, &connection_set);
+    connpool_init(3 /* TODO - get it from somewhere? */, &connection_set);
 
     // main loop
     while (!termination_requested) {
@@ -230,6 +230,8 @@ void tcp_server_start(int port, bool open_to_world, DataType data_type_, Session
             }
         }
     }
+
+    connpoll_finalize();
 
     // close socket
     close_socket(socket_fd);
