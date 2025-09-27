@@ -110,7 +110,7 @@ static void handle_new_connection()
     *ci = (Connection) {
         .fd = new_fd,
         .data_type = data_type,
-        .inbuf = malloc(DFLT_CONN_BUF_SZ),
+        .inbuf = malloc(DFLT_CONN_BUF_SZ + 1),
         .inbuf_sz = 0,
         .inbuf_rsvrd = DFLT_CONN_BUF_SZ,
         .ready = false,
