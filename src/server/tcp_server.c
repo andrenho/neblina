@@ -3,14 +3,24 @@
 #include "common.h"
 #include "os/os.h"
 #include "poller/poller.h"
-
 #include "socket.h"
+#include "uthash.h"
 
 #define MAX_EVENTS 64
 
-static SOCKET socket_fd;
+static SOCKET   socket_fd;
+static DataType data_type;
 
 static const char* ERR_PRX = "TCP server error:";
+
+typedef struct {
+    SOCKET         fd;          // key
+    Connection     connection;
+    void*          session;     // provided by the service
+    UT_hash_handle hh;          // uthash requirement
+} ConnectionItem;
+
+ConnectionItem* connection_set = NULL;
 
 static void close_socket(SOCKET fd)
 {
@@ -84,6 +94,7 @@ static SOCKET get_listener_socket(int port, bool open_to_world)
 
 static void handle_new_connection()
 {
+    // accept connection
     struct sockaddr_storage remoteaddr; // Client address
     memset(&remoteaddr, 0, sizeof remoteaddr);
     socklen_t addrlen = sizeof remoteaddr;
@@ -94,32 +105,69 @@ static void handle_new_connection()
         return;
     }
 
+    // find connecter IP/port
     char hoststr[NI_MAXHOST] = "Unknown";
     char portstr[NI_MAXSERV] = "0";
-
     getnameinfo((struct sockaddr const*)(&remoteaddr), addrlen, hoststr, sizeof(hoststr), portstr, sizeof(portstr), NI_NUMERICHOST | NI_NUMERICSERV);
     DBG("New connection from %s:%s as fd %d", hoststr, portstr, new_fd);
 
-    // TODO - create new connection
-
+    // add connection to poller
     poller_add_connection(new_fd);
-}
 
-static void handle_new_data(SOCKET fd)
-{
-    LOG("New data");
-    uint8_t buf[255];
-    recv(fd, buf, sizeof buf, 0);
+    // add connection to connection set
+    ConnectionItem* ci = malloc(sizeof(ConnectionItem));
+    ci->fd = new_fd;
+    ci->connection = (Connection) { .input_queue = malloc(DFLT_CONN_BUF_SZ), .input_queue_sz = 0, .reserved_sz = DFLT_CONN_BUF_SZ, .new_data = false };
+    ci->session = NULL;               // TODO - create new connection
+    HASH_ADD_INT(connection_set, fd, ci);
 }
 
 static void handle_disconnect(SOCKET fd)
 {
-    LOG("Disconnected");
+    LOG("Disconnected from socket %d", fd);
+    ConnectionItem* ci;
+    HASH_FIND_INT(connection_set, &fd, ci);
+    if (ci)
+        HASH_DEL(connection_set, ci);
     poller_remove_connection(fd);
+    close_socket(fd);
 }
 
-void tcp_server_start(int port, bool open_to_world, CreateConnectionF cf, ProcessConnectionF pf)
+
+static void handle_new_data(SOCKET fd)
 {
+    ConnectionItem* ci;
+    HASH_FIND_INT(connection_set, &fd, ci);
+    if (!ci) {
+        ERR("Data to socket %d, but socket is not available", fd);
+        return;
+    }
+    Connection* c = &ci->connection;
+
+    uint8_t buf[BUFFER_SZ];
+    ssize_t sz = recv(fd, buf, sizeof buf, 0);
+    if (sz < 0) {
+        handle_disconnect(fd);
+    } else {
+        if (c->input_queue_sz + sz > c->reserved_sz) {
+            c->reserved_sz = c->input_queue_sz + sz;
+            c->input_queue = realloc(c->input_queue, c->reserved_sz + 1);
+            c->input_queue[c->reserved_sz + 1] = '\0';
+        }
+        memcpy(&c->input_queue[c->input_queue_sz], buf, sz);
+        c->input_queue_sz += sz;
+        if (data_type == D_BINARY) {
+            c->new_data = true;
+        } else if (strchr((char *) c->input_queue, '\n')) {
+            c->new_data = true;
+        }
+    }
+}
+
+void tcp_server_start(int port, bool open_to_world, DataType data_type_)
+{
+    data_type = data_type_;
+
 #ifdef _WIN32
     WSADATA wsaData;
     if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0)

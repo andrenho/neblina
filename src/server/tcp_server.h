@@ -5,15 +5,18 @@
 #include <stdint.h>
 #include <stddef.h>
 
+#define DFLT_CONN_BUF_SZ 64
+#define BUFFER_SZ 8 * 1024
+
 typedef struct {
     uint8_t* input_queue;
     size_t   input_queue_sz;
-    void*    data;
+    size_t   reserved_sz;
+    bool     new_data;
 } Connection;
 
-typedef void(*CreateConnectionF)(Connection* c);
-typedef void(*ProcessConnectionF)(Connection* c);
+typedef enum { D_BINARY, D_TEXT } DataType;
 
-void tcp_server_start(int port, bool open_to_world, CreateConnectionF cf, ProcessConnectionF pf);
+void tcp_server_start(int port, bool open_to_world, DataType data_type);
 
 #endif //NEBLINA_TCP_SERVER_H

@@ -5,5 +5,5 @@
 
 void start_parrot()
 {
-    tcp_server_start(args.port, args.open_to_world, NULL, NULL);
+    tcp_server_start(args.port, args.open_to_world, D_TEXT);
 }
