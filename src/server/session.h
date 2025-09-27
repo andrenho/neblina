@@ -9,9 +9,9 @@ typedef bool(SendF)(uint8_t const* data, size_t sz, void* ctx);
 typedef void Session;
 
 typedef struct {
-    Session* (*init)();
-    void     (*process)(Session* session, uint8_t const* data, size_t data_sz, SendF send_f, void* ctx);
-    void     (*finalize)(Session* session);
-} SessionDef;
+    Session* (*create_session)();
+    void     (*process_session)(Session* session, uint8_t const* data, size_t data_sz, SendF send_f, void* ctx);
+    void     (*destroy_session)(Session* session);
+} SessionCallbacks;
 
 #endif //NEBLINA_SESSION_FACTORY_H

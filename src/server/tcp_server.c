@@ -12,7 +12,7 @@ static DataType data_type;
 
 static const char* ERR_PRX = "TCP server error:";
 static Connection* connection_set = NULL;
-static SessionDef  session_def;
+static SessionCallbacks  session_def;
 
 static void close_socket(SOCKET fd)
 {
@@ -116,8 +116,8 @@ static void handle_new_connection()
         .ready = false,
         .session = NULL,
     };
-    if (session_def.init)
-        ci->session = session_def.init();
+    if (session_def.create_session)
+        ci->session = session_def.create_session();
     HASH_ADD_INT(connection_set, fd, ci);
 }
 
@@ -129,8 +129,8 @@ static void handle_disconnect(SOCKET fd)
     Connection* ci = NULL;
     HASH_FIND_INT(connection_set, &fd, ci);
     if (ci) {
-        if (session_def.finalize)
-            session_def.finalize(ci->session);
+        if (session_def.destroy_session)
+            session_def.destroy_session(ci->session);
         HASH_DEL(connection_set, ci);
         free(ci->inbuf);
         free(ci);
@@ -196,7 +196,7 @@ static void handle_new_data(SOCKET fd)
     }
 }
 
-void tcp_server_start(int port, bool open_to_world, DataType data_type_, SessionDef session_def_)
+void tcp_server_start(int port, bool open_to_world, DataType data_type_, SessionCallbacks session_def_)
 {
     data_type = data_type_;
     session_def = session_def_;
