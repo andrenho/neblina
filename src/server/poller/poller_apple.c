@@ -48,7 +48,7 @@ size_t poller_wait(PollerEvent* out_evt, size_t evt_sz)
     struct timespec timeout = { .tv_sec = 0, .tv_nsec = 100 * 1000000 }; // 100ms
 
     int n_events = kevent(kqueue_fd, NULL, 0, events, evt_sz, &timeout);
-    if (n_events < 0)
+    if (n_events < 0 && errno != EINTR)
         THROW("kevent wait failed: %s", strerror(errno));
 
     for (int i = 0; i < n_events; ++i) {
