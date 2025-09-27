@@ -4,7 +4,6 @@
 #include "os/os.h"
 #include "poller/poller.h"
 #include "socket.h"
-#include "uthash.h"
 
 #define MAX_EVENTS 64
 
@@ -12,13 +11,6 @@ static SOCKET   socket_fd;
 static DataType data_type;
 
 static const char* ERR_PRX = "TCP server error:";
-
-typedef struct {
-    SOCKET         fd;          // key
-    Connection     connection;
-    void*          session;     // provided by the service
-    UT_hash_handle hh;          // uthash requirement
-} ConnectionItem;
 
 ConnectionItem* connection_set = NULL;
 
@@ -116,9 +108,15 @@ static void handle_new_connection()
 
     // add connection to connection set
     ConnectionItem* ci = malloc(sizeof(ConnectionItem));
-    ci->fd = new_fd;
-    ci->connection = (Connection) { .input_queue = malloc(DFLT_CONN_BUF_SZ), .input_queue_sz = 0, .reserved_sz = DFLT_CONN_BUF_SZ, .new_data = false };
-    ci->session = NULL;               // TODO - create new connection
+    *ci = (ConnectionItem) {
+        .fd = new_fd,
+        .data_type = data_type,
+        .inbuf = malloc(DFLT_CONN_BUF_SZ),
+        .inbuf_sz = 0,
+        .inbuf_rsvrd = DFLT_CONN_BUF_SZ,
+        .ready = false,
+        .session = NULL,   // TODO - create new Session from service
+    };
     HASH_ADD_INT(connection_set, fd, ci);
 }
 
@@ -133,33 +131,32 @@ static void handle_disconnect(SOCKET fd)
     close_socket(fd);
 }
 
-
 static void handle_new_data(SOCKET fd)
 {
-    ConnectionItem* ci;
-    HASH_FIND_INT(connection_set, &fd, ci);
-    if (!ci) {
+    ConnectionItem* c;
+    HASH_FIND_INT(connection_set, &fd, c);
+    if (!c) {
         ERR("Data to socket %d, but socket is not available", fd);
         return;
     }
-    Connection* c = &ci->connection;
 
     uint8_t buf[BUFFER_SZ];
     ssize_t sz = recv(fd, buf, sizeof buf, 0);
     if (sz < 0) {
         handle_disconnect(fd);
     } else {
-        if (c->input_queue_sz + sz > c->reserved_sz) {
-            c->reserved_sz = c->input_queue_sz + sz;
-            c->input_queue = realloc(c->input_queue, c->reserved_sz + 1);
-            c->input_queue[c->reserved_sz + 1] = '\0';
+        // add data to the input buffer
+        if ((c->inbuf_sz + sz) > c->inbuf_rsvrd) {
+            c->inbuf_rsvrd = c->inbuf_sz + sz;
+            c->inbuf = realloc(c->inbuf, c->inbuf_rsvrd + 1);
+            c->inbuf[c->inbuf_rsvrd + 1] = '\0';
         }
-        memcpy(&c->input_queue[c->input_queue_sz], buf, sz);
-        c->input_queue_sz += sz;
-        if (data_type == D_BINARY) {
-            c->new_data = true;
-        } else if (strchr((char *) c->input_queue, '\n')) {
-            c->new_data = true;
+        memcpy(&c->inbuf[c->inbuf_sz], buf, sz);
+        c->inbuf_sz += sz;
+
+        // check if ready to process
+        if (data_type == D_BINARY || strchr((char *) c->inbuf, '\n')) {
+            c->ready = true;
         }
     }
 }
