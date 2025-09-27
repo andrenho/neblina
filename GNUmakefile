@@ -43,6 +43,9 @@ ifdef SERVICE
   SERVICE_OPT := -s $(SERVICE)
 endif
 
+ifdef SINGLE_THREAD
+  CPPFLAGS += -DSINGLE_THREAD=1
+endif
 
 #
 # auto-generated files

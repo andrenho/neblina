@@ -7,6 +7,7 @@
   - [x] TCP server
   - [ ] Connections
     - [ ] Thread pool
+  - [ ] Write HACKING.md documentation
 - [ ] SParrot
   - [ ] SSL server
 - [ ] HTTP
