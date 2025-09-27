@@ -24,10 +24,10 @@ void connpool_ready(SOCKET fd, SessionCallbacks* session_def, SendF send_f, void
                 while ((fnd = strstr((const char *) c->inbuf, "\r\n"))) {
                     // copy to a new buffer
                     size_t sz = fnd - (const char *) c->inbuf;
-                    char buf[sz + 1];
+                    char* buf = calloc(1, sz + 1);
                     memcpy(buf, (const char *) c->inbuf, sz);
-                    buf[sz] = '\0';
                     session_def->process_session(c->session, (uint8_t const *) buf, sz, send_f, ctx);
+		    free(buf);
 
                     // remove from input
                     memmove(c->inbuf, fnd + 2, c->inbuf_sz - (sz + 2));

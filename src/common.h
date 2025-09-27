@@ -29,6 +29,7 @@ extern Config main_config;
 #  include <windows.h>
 #  define PATH_MAX 1024
 #  define pid_t DWORD
+    typedef ptrdiff_t ssize_t;
 #else
 #  include <unistd.h>
 #endif
