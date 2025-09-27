@@ -4,11 +4,7 @@
 #include <stdbool.h>
 #include <stddef.h>
 
-#ifndef _WIN32
-typedef int SOCKET;
-#else
-#include <winsock2.h>
-#endif
+#include "../socket.h"
 
 typedef enum { PT_NEW_CONNECTION, PT_NEW_DATA, PT_DISCONNECTED } PollerEventType;
 typedef struct {

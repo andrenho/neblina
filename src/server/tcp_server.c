@@ -4,24 +4,9 @@
 #include "os/os.h"
 #include "poller/poller.h"
 
-#define MAX_EVENTS 64
+#include "socket.h"
 
-#ifdef _WIN32
-#  include <winsock2.h>
-#  include <ws2tcpip.h>
-#  pragma comment(lib, "Ws2_32.lib")
-#else
-#  define _DARWIN_C_SOURCE
-#  include <unistd.h>
-#  include <arpa/inet.h>
-#  include <sys/socket.h>
-#  include <netdb.h>
-#  define INVALID_SOCKET (-1)
-#  define SOCKET_ERROR (-1)
-   typedef int SOCKET;
-   typedef struct sockaddr_in SOCKADDR_IN;
-   typedef struct sockaddr SOCKADDR;
-#endif
+#define MAX_EVENTS 64
 
 static SOCKET socket_fd;
 
