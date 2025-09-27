@@ -2,9 +2,11 @@
 
 - [x] Create C version
 - [x] Orchestrator
+- [ ] Run leaks with services
 - [ ] Parrot
-  - [ ] TCP server
+  - [x] TCP server
   - [ ] Connections
+    - [ ] Thread pool
 - [ ] SParrot
   - [ ] SSL server
 - [ ] HTTP
@@ -89,7 +91,7 @@
 - [ ] Combine multiple services in one (?)
 - [ ] Create named pipe / socket / shared memory connection
 
-- https://github.com/rafagafe/tiny-json
+- https://nachtimwald.com/2019/04/12/thread-pool-in-c/
 
 
 --------------------------------------------------------------------------------------------------------------

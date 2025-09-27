@@ -43,9 +43,16 @@ bool poller_remove_connection(SOCKET fd)
 size_t poller_wait(PollerEvent* out_evt, size_t evt_sz)
 {
     struct epoll_event events[evt_sz];
-    size_t n_events = epoll_wait(epoll_fd, events, (int) evt_sz, 100);
+    int n_events = epoll_wait(epoll_fd, events, (int) evt_sz, 100);
 
-    for (size_t i = 0; i < n_events; ++i) {
+    if (n_events < 0) {
+        if (errno == EINTR)
+            return 0;
+        else
+            FATAL("epoll error: %s", strerror(errno));
+    }
+
+    for (int i = 0; i < n_events; ++i) {
         if (events[i].data.fd == fs_socket) {
             out_evt[i] = (PollerEvent) { .type = PT_NEW_CONNECTION, .fd = fs_socket };
         } else {

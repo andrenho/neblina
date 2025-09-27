@@ -39,9 +39,8 @@ endif
 
 CPPFLAGS_CONTRIB = -I. -O3 -ffast-math -march=native -flto -Wno-switch
 
-
 ifdef SERVICE
-  SERVICE = -s $(SERVICE)
+  SERVICE_OPT := -s $(SERVICE)
 endif
 
 
@@ -88,7 +87,7 @@ leaks: all
 ifeq ($(UNAME_S),Linux)
 	$(info Use SERVICE variable to start a service)
 	sudo setcap -r ./neblina || true
-	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --suppressions=valgrind.supp ./neblina $(SERVICE) -v
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --suppressions=valgrind.supp ./neblina $(SERVICE_OPT) -P 5000 -v
 else
 	$(error Checking for leaks only supported on Linux.)
 endif
