@@ -10,6 +10,7 @@ void connpool_init(size_t n_threads, Connection** connection_set_)
     connection_set = connection_set_;
 }
 
+/*
 void coonpool_process_connection(Connection *c, const SessionCallbacks *session_def, SendF send_f, void *ctx) {
     if (session_def->process_session) {
         if (c->data_type == D_BINARY) {
@@ -36,13 +37,12 @@ void coonpool_process_connection(Connection *c, const SessionCallbacks *session_
     }
     c->ready = false;
 }
+ */
 
-void connpool_ready(SOCKET fd, SessionCallbacks* session_def, SendF send_f, void* ctx)
+void connpool_add_task(SOCKET fd, uint8_t* data, size_t data_sz, ProcessSessionF process_cb, void* session, SendF send_f)
 {
-    Connection* c;
-    HASH_FIND_INT(*connection_set, &fd, c);
-    if (c)
-        coonpool_process_connection(c, session_def, send_f, ctx);
+    process_cb(session, data, data_sz, send_f, fd);
+    free(data);
 }
 
 void connpoll_finalize()

@@ -4,14 +4,16 @@
 #include <stdint.h>
 #include <stddef.h>
 
-typedef bool(SendF)(uint8_t const* data, size_t sz, void* ctx);
+typedef bool(SendF)(SOCKET fd, uint8_t const* data, size_t sz);
 
-typedef void Session;
+typedef void*(*CreateSessionF)();
+typedef void (*ProcessSessionF)(void* session, uint8_t const* data, size_t data_sz, SendF send_f, SOCKET fd);
+typedef void*(*DestroySessionF)(void* session);
 
 typedef struct {
-    Session* (*create_session)();
-    void     (*process_session)(Session* session, uint8_t const* data, size_t data_sz, SendF send_f, void* ctx);
-    void     (*destroy_session)(Session* session);
+    CreateSessionF  create_session;
+    ProcessSessionF process_session;
+    DestroySessionF destroy_session;
 } SessionCallbacks;
 
 #endif //NEBLINA_SESSION_FACTORY_H

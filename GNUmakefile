@@ -88,7 +88,7 @@ embed: tools/embed/embed.o src/file/whole_file.o src/util/error.o src/util/logs.
 test: neblina
 	cd ../tests && python3 -m unittest
 
-leaks: all
+leaks: dev
 ifeq ($(UNAME_S),Linux)
 	$(info Use SERVICE variable to start a service)
 	sudo setcap -r ./neblina || true
@@ -97,7 +97,7 @@ else
 	$(error Checking for leaks only supported on Linux.)
 endif
 
-thread-check: all
+thread-check: dev
 ifeq ($(UNAME_S),Linux)
 	$(info Use SERVICE variable to start a service)
 	sudo setcap -r ./neblina || true
@@ -107,7 +107,7 @@ else
 endif
 
 dev:
-	$(MAKE) all DEV=1
+	$(MAKE) all DEV=1 SINGLE_THREAD=1
 
 bear:
 	make clean

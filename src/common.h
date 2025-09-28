@@ -14,7 +14,7 @@
 #include "util/logs.h"
 
 // globals
-extern bool termination_requested;
+extern volatile bool termination_requested;
 extern char last_error[];
 extern Config main_config;
 

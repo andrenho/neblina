@@ -8,11 +8,10 @@
 #define MAX_EVENTS 64
 
 static SOCKET   socket_fd;
-static DataType data_type;
 
 static const char* ERR_PRX = "TCP server error:";
 static Connection* connection_set = NULL;
-static SessionCallbacks  session_def;
+static SessionCallbacks  session_cb;
 
 static void close_socket(SOCKET fd)
 {
@@ -109,15 +108,10 @@ static void handle_new_connection()
     Connection* ci = malloc(sizeof(Connection));
     *ci = (Connection) {
         .fd = new_fd,
-        .data_type = data_type,
-        .inbuf = malloc(DFLT_CONN_BUF_SZ + 1),
-        .inbuf_sz = 0,
-        .inbuf_rsvrd = DFLT_CONN_BUF_SZ,
-        .ready = false,
         .session = NULL,
     };
-    if (session_def.create_session)
-        ci->session = session_def.create_session();
+    if (session_cb.create_session)
+        ci->session = session_cb.create_session();
     HASH_ADD_INT(connection_set, fd, ci);
 }
 
@@ -129,10 +123,9 @@ static void handle_disconnect(SOCKET fd)
     Connection* ci = NULL;
     HASH_FIND_INT(connection_set, &fd, ci);
     if (ci) {
-        if (session_def.destroy_session)
-            session_def.destroy_session(ci->session);
+        if (session_cb.destroy_session)
+            session_cb.destroy_session(ci->session);
         HASH_DEL(connection_set, ci);
-        free(ci->inbuf);
         free(ci);
     }
 
@@ -143,9 +136,8 @@ static void handle_disconnect(SOCKET fd)
     close_socket(fd);
 }
 
-bool send_f(uint8_t const* data, size_t sz, void* ctx)
+bool send_f(SOCKET fd, uint8_t const* data, size_t sz)
 {
-    SOCKET fd = (SOCKET) (uintptr_t) ctx;
     size_t pos = 0;
     do {
         ssize_t n = send(fd, &data[pos], sz, 0);
@@ -167,39 +159,21 @@ static void handle_new_data(SOCKET fd)
     }
 
     // receive data
-    uint8_t buf[BUFFER_SZ];
-    ssize_t sz = recv(fd, buf, sizeof buf, 0);
-    if (sz < 0) {
-        // client disconnected
-        handle_disconnect(fd);
+    uint8_t* buf = malloc(BUFFER_SZ);
+    ssize_t sz = recv(fd, buf, BUFFER_SZ, 0);
+    if (sz <= 0) {
+        free(buf);
+        if (sz < 0) // client disconnected
+            handle_disconnect(fd);
     } else {
-        // TODO - add mutex here --\
-
-        // add data to the input buffer
-        if ((c->inbuf_sz + sz) > c->inbuf_rsvrd) {
-            c->inbuf_rsvrd = c->inbuf_sz + sz;
-            c->inbuf = realloc(c->inbuf, c->inbuf_rsvrd + 1);
-        }
-        memcpy(&c->inbuf[c->inbuf_sz], buf, sz);
-        c->inbuf[c->inbuf_rsvrd] = '\0';
-        c->inbuf_sz += sz;
-
-        // check if ready to process
-        if (data_type == D_BINARY || strchr((char *) c->inbuf, '\n'))
-            c->ready = true;
-
-        // TODO ------------------/
-
-        // notify thread pool that this connection is ready to process
-        if (c->ready)
-            connpool_ready(fd, &session_def, send_f, (void *) (uintptr_t) fd);
+        buf = realloc(buf, sz);
+        connpool_add_task(fd, buf, sz, session_cb.process_session, c->session, send_f);
     }
 }
 
-void tcp_server_start(int port, bool open_to_world, DataType data_type_, SessionCallbacks session_def_)
+void tcp_server_start(int port, bool open_to_world, SessionCallbacks session_cb_)
 {
-    data_type = data_type_;
-    session_def = session_def_;
+    session_cb = session_cb_;
 
 #ifdef _WIN32
     WSADATA wsaData;

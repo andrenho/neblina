@@ -22,7 +22,7 @@ struct {
 
 // globals
 
-bool termination_requested = false;
+volatile bool termination_requested = false;
 Config main_config;
 
 // main

@@ -5,7 +5,7 @@
 #include "../connection.h"
 
 void connpool_init(size_t n_threads, Connection** connection_set);
-void connpool_ready(SOCKET fd, SessionCallbacks* session_def, SendF send_f, void* ctx);
+void connpool_add_task(SOCKET fd, uint8_t* data, size_t data_sz, ProcessSessionF process_cb, void* session, SendF send_f);
 void connpoll_finalize();
 
 #endif //NEBLINA_CONNPOOL_H
