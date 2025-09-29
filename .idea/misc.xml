@@ -9,7 +9,6 @@
             <option value="$PROJECT_DIR$" />
           </set>
         </option>
-        <option name="switches" value="SINGLE_THREAD=1" />
         <option name="version" value="2" />
       </MakefileProjectSettings>
     </option>

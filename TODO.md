@@ -7,6 +7,10 @@
   - [x] TCP server
   - [ ] Connections
     - [ ] Thread pool
+      - [x] Single threaded
+      - [ ] Multithreaded
+      - [ ] Process line-by-line
+      - [ ] Define number of threads
   - [ ] Write HACKING.md documentation
 - [ ] SParrot
   - [ ] SSL server

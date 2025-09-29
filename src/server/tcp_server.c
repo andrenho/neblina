@@ -189,7 +189,7 @@ void tcp_server_start(int port, bool open_to_world, SessionCallbacks session_cb_
     poller_init(socket_fd);
 
     // initialize thread pool
-    connpool_init(3 /* TODO - get it from somewhere? */, &connection_set);
+    connpool_init(3 /* TODO - get it from somewhere? */);
 
     // main loop
     while (!termination_requested) {
