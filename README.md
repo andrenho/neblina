@@ -1,5 +1,7 @@
 # Neblina
 
+Outdated - please use https://github.com/andrenho/neblina2
+
 <img src="https://upload.wikimedia.org/wikipedia/commons/3/35/Pico_da_Neblina_%28FAB%29.jpg" width="350">
 
 A single binary application in C++ that provides a whole cloud. It's small and simple and it can be used on a small server (such as a Raspberry Pi).
